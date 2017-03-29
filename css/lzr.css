@@ -1,0 +1,173 @@
+/*头部样式代码*/
+.header {
+	height:1.375rem;
+	line-height: 1.375rem;
+	position: absolute;
+	left: 0;
+	top: 0;
+	right:0;
+	background-color: #eb6d00;
+	text-align: center;
+	font-size:0.48rem;
+	color:white;
+	font-family: 'Arial Normal', 'Arial';
+}
+/*-------------------------------------------------------------*/
+/*底部样式代码*/
+.footer {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+    right:0;
+	height: 1.307rem;
+	line-height: 1.307rem;
+	overflow: hidden;
+	background-color: #ffffff;
+	border-top: 1px solid #ccc;
+}
+.footer .item-foot{
+	width:25%;
+	display: inline-block;
+	float:left;
+	text-align: center;
+	height:100%;
+	position: relative;
+}
+.footer .new{
+   background: url(../images/icon-new.png) no-repeat;
+   background-position: 0.96rem 0.16rem;
+   background-size: 0.56rem 0.533rem;
+}
+.footer .project{
+   background: url(../images/icon-project.png) no-repeat;
+   background-position: 1.013rem 0.16rem;
+   background-size: 0.467rem 0.533rem;
+}
+.footer .sale{
+   background: url(../images/icon-sale.png) no-repeat;
+   background-position:  0.933rem 0.16rem;
+   background-size:  0.587rem 0.533rem;
+}
+.footer .sale.cur{
+   background: url(../images/icon-sale-check.png) no-repeat;
+   background-position:  0.933rem 0.16rem;
+   background-size:  0.587rem 0.533rem;
+}
+.footer .oa{
+   background: url(../images/icon-oa.png) no-repeat;
+   background-position: 1.013rem 0.16rem;
+   background-size: 0.533rem 0.533rem;
+}
+.footer .oa.cur{
+   background: url(../images/icon-oa-check.png) no-repeat;
+   background-position: 1.013rem 0.16rem;
+   background-size: 0.533rem 0.533rem;
+}
+.footer .item-foot.cur a{
+	color:#eb6d00;
+}
+.footer .item-foot a{
+	display: inline-block;
+	width:100%;
+	height:100%;
+	text-align: center;
+	font-size: 0.32rem;
+	margin-top: 0.293rem;
+	color:#8c8c8c;
+}
+/*底部样式代码结束*/
+/*-------------------------------------------------------------*/
+.g-content {
+	overflow-y: auto;
+	top: 1.375rem;
+	bottom: 1.307rem;
+	position: absolute;
+	left: 0;
+	right: 0;
+	/* 增加该属性，可以增加弹性*/
+	-webkit-overflow-scrolling: touch;
+	z-index:1; 
+}
+.g-content-oa{
+   background-color: #f1f1f1;
+}
+.g-content-oa .banner{
+  height:4.507rem;
+  width:100%;
+}
+.g-content-oa .banner img{
+	width:100%;
+	max-width: 100%;
+}
+.g-content .item-lists{
+	margin-top: 0.4rem;
+	overflow:hidden;
+}
+.g-content .item-lists .huiyi{
+	background: url(../images/huiyi.png) no-repeat;
+}
+.g-content .item-lists .cheliang{
+	background: url(../images/cheliang.png) no-repeat;
+}
+.g-content .item-lists .qiye{
+	background: url(../images/qiye.png) no-repeat;
+}
+.g-content .item-lists .tongzhi{
+	background: url(../images/tongzhi.png) no-repeat;
+}
+.g-content .item-lists .shigong{
+	background: url(../images/shigong.png) no-repeat;
+}
+.g-content .item-lists .yunpan{
+	background: url(../images/yunpan.png) no-repeat;
+}
+.g-content .item-lists .list{
+	width:33.333%;
+	height:3.333rem;
+	display: inline-block;
+	float:left;
+	text-align: center;
+	box-sizing: border-box;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	-ms-box-sizing:border-box;
+	-o-box-sizing:border-box;
+	border-right:1px solid #e1e1e1;
+	border-bottom: 1px solid #e1e1e1;
+	background-color: #ffffff;
+    background-position: 50% 30%;
+    background-size: 0.907rem 0.907rem;
+}
+.g-content .item-lists .list.cur{
+	background-color: #eee;
+}
+.g-content .item-lists .list:nth-child(3n+0){
+	border-right: none;
+}
+.g-content .item-lists .list a{
+	display: inline-block;
+	width:100%;
+	height:100%;
+	padding-top:58%;
+	color:#343434;
+	font-size: 0.373rem;
+	text-decoration: none;
+}
+/*--------------------------------------------------------------------------------------*/
+/*销售页面*/
+.g-content-sale{
+	background-color: #f1f1f1;
+}
+.g-content-sale .item-lists-sale .head{
+    height:0.933rem;
+    line-height: 0.933rem;
+    width:100%;
+    background-color: #f5f5f5;
+    text-indent: 1em;
+    color:#7a7a7a;
+    font-size: 0.373rem;
+}
+.g-content-sale .item-lists {
+    margin-top: 0rem;
+    overflow: hidden;
+}
