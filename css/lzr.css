@@ -1,6 +1,6 @@
 /*头部样式代码*/
 body{
-	font-family:"Helvetica Neue",Helvetica,STHeiTi,sans-serif;
+	font-family:"Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif !important;
 }
 .header {
 	height:1.375rem;
@@ -631,7 +631,6 @@ body{
 .g-content-us .item-lists {
     margin-top: 0rem; 
 }
-s
 .g-content-us .item-lists .shigong{
 	background: url(../images/us/icon-shigong.png) no-repeat;
 }
@@ -686,8 +685,152 @@ s
     background-position: 2.24rem 0.16rem;
     background-size: 0.493rem 0.533rem;
 }
-.g-us-footer .us {
+.g-us-footer .index.cur{
+    background: url(../images/index/icon-index-check.png) no-repeat;
+    background-position: 2.24rem 0.16rem;
+    background-size: 0.493rem 0.533rem;
+}
+.g-us-footer .us{
+    background: url(../images/index/icon-user.png) no-repeat;
+    background-position: 2.24rem 0.16rem;
+    background-size: 0.48rem 0.533rem;
+}
+.g-us-footer .us.cur{
     background: url(../images/us/icon-us-check.png) no-repeat;
     background-position: 2.24rem 0.16rem;
     background-size: 0.48rem 0.533rem;
+}
+/*--------------------------------------------------------------------------------------*/
+/*华美乐首页部分*/
+.g-content-index .item-lists {
+    margin-top: 0rem;
+    margin-bottom: 0.4rem;
+    background-color: #ffffff;
+}
+.g-content-index .item-lists .head{
+	height:1.067rem;
+	line-height: 1.067rem;
+	width:100%;
+	display: block;
+	margin:0 auto;
+	clear:both;
+	overflow:hidden;
+	text-align:center;
+	background-color: #ffffff;
+	vertical-align: middle;
+	font-size: 0.4rem;
+}
+.g-content-index .item-lists .head img{
+	width:0.427rem;
+	height:0.053rem;
+	margin-right: 0.267rem;
+	margin-left:0.267rem;
+	vertical-align: middle;
+}
+.g-content-index .item-lists .list{
+	border:none !important;
+}
+
+.g-content-index .item-lists .ready{
+	background: url(../images/index/icon-ready.png) no-repeat;
+	background-size: 0.667rem 0.8rem;
+}
+.g-content-index .item-lists .shuidian{
+	background: url(../images/index/icon-shuidian.png) no-repeat;
+	background-size: 0.693rem 0.8rem;
+}
+.g-content-index .item-lists .nimu{
+	background: url(../images/index/icon-nimu.png) no-repeat;
+	background-size: 0.787rem 0.8rem;
+}
+.g-content-index .item-lists .youqi{
+	background: url(../images/index/icon-youqi.png) no-repeat;
+	background-size: 0.627rem 0.8rem;
+}
+.g-content-index .item-lists .jungong{
+	background: url(../images/index/icon-jungong.png) no-repeat;
+	background-size: 0.96rem 0.813rem;
+}
+.g-content-index .item-lists .ruzhu{
+	background: url(../images/index/icon-ruzhu.png) no-repeat;
+	background-size: 0.493rem 0.827rem;
+}
+.g-content-index .item-lists .list {
+    width: 33.333%;
+    height: 3.333rem;
+    display: inline-block;
+    float: left;
+    text-align: center;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    background-color: #ffffff;
+    background-position: 50% 30%;
+}
+.g-content-index .item-lists .hot-styles{
+  width:100%;
+  height:6.333rem;
+}
+.g-content-index .item-lists .hot-styles .swiper-slide{
+	 width:8.013rem !important;
+	 margin-right: 0.4rem;
+}
+.g-content-index .item-lists .hot-styles .swiper-slide img{
+   width:8.013rem;
+   height:4.84rem;
+}
+.g-content-index .item-lists .likes-item{
+	  width:9.2rem;
+	  height:auto;
+	  margin:0 auto;
+	  display: block;
+
+}
+.g-content-index .item-lists .likes-item .likes-list{
+	width:9.2rem;
+	height:auto;
+	padding-bottom: 0.133rem;
+}
+.g-content-index .item-lists .likes-item .likes-list a{
+	display: inline-block;
+	text-decoration: none;
+}
+.g-content-index .item-lists .likes-item .likes-list img{
+	width:100%;
+	height:4.787rem;
+}
+
+
+.g-content-index .item-lists .likes-item  .flag { display: table; width:100%;
+ }
+
+.g-content-index .item-lists .likes-item  .flag__item { display: table-cell; }
+.g-content-index .item-lists .likes-item  .flag-top .flag__item { vertical-align: top; }
+.g-content-index .item-lists .likes-item  .flag-middle .flag__item { vertical-align: middle; }
+.g-content-index .item-lists .likes-item  .flag-bottom .flag__item { vertical-align: bottom; }
+
+.g-content-index .item-lists .likes-item .flag__item img{
+	width:1.173rem;
+	height:1.173rem;
+	border-radius: 0.587rem;
+}
+.g-content-index .item-lists .likes-item  .flag .flag__item_body{
+      padding-left: 0.533rem;
+      width:100%;
+      font-size: 0.347rem;
+}
+.g-content-index .item-lists .likes-item  .flag__item img{
+      display: block;
+}
+.g-content-index .item-lists .likes-item  .flag__item .heading{
+      margin: 0;
+      color:#232323;
+      font-size: 0.4rem;
+}
+.g-content-index .item-lists .likes-item  .flag__item .p{
+      margin-top: 0.213rem;
+      color:#8b8b8b;
+      font-size: 0.347rem;
 }
