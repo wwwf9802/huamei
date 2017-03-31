@@ -37,7 +37,6 @@
                   </div>
               </div>
               <div class="mui-content-padded oauth-area">
-
               </div>
           </div>
 
@@ -49,32 +48,5 @@
     <script src='js/swiper-3.3.1.min.js' type="text/javascript"></script>
     <script src='js/mui.min.js'></script>
     <script src='js/vue.min.js'></script>
-    <script>
-        $(".item-lists .list").on("touchstart",function(){
-              $(this).addClass("cur")
-        });
-        $(".item-lists .list").on("touchend",function(){
-              $(this).removeClass("cur")
-        })
-        var mySwiper = new Swiper ('.swiper-container', {
-	        loop: true,
-	        autoplay: 3000,
-	        // 如果需要分页器
-	        pagination: '.swiper-pagination',
-	        paginationClickable: true,
-	        spaceBetween: 0,
-	        centeredSlides: true,
-	        autoplayDisableOnInteraction: false
-        })
-        // $(".pas-not-see").on('tap',function(){
-        //    if( !$(this).hasClass("can-see") )
-        //    {
-        //         $(this).addClass("can-see");
-        //    }
-        //    else{
-        //       $(this).removeClass("can-see");
-        //    }
-        // })
-    </script>
 </body>
 </html>
