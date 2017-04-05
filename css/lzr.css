@@ -309,6 +309,72 @@
 	margin-top: 2.667rem;
 }
 /*--------------------------------------------------------------------------------------*/
+/*通知详情页面*/
+.g-content-news-details{
+	bottom:0;
+}
+.g-content-news-details .item-news-details{
+	padding: 0.4rem;
+}
+.g-content-news-details .item-news-details .title{
+	font-size:0.427rem;
+	color:#252525;
+	height:0.8rem;
+	line-height: 0.8rem;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow:hidden;
+	margin-bottom: 0.2rem;
+}
+.g-content-news-details .item-news-details .sub-title{
+   font-size: 0;
+   padding-bottom: 0.533rem;
+   border-bottom: 1px solid #dddddd;
+}
+.g-content-news-details .item-news-details .sub-title div{
+	display: inline-block;
+	font-size: 0.347rem;
+}
+.g-content-news-details .item-news-details .sub-title .user-info{
+	 margin-right: 0.8rem;
+}
+.g-content-news-details .item-news-details .sub-title .time{
+	 float:right;
+}
+.g-content-news-details .item-news-details .sub-title span{
+	 color:#ababab;
+}
+.g-content-news-details .item-news-details .center-box{
+	width:6.733rem;
+	height:3.267rem;
+	position: absolute;
+	left:50%;
+	top:50%;
+	margin-left: -3.3665rem;
+	margin-top: -1.6335rem;
+	text-align: center;
+}
+.g-content-news-details .item-news-details .center-box .msg{
+	font-size: 0.427rem;
+	text-align: center;
+
+}
+.g-content-news-details .item-news-details .center-box a{
+	width:3.6rem;
+	height:0.933rem;
+	line-height: 0.933rem;
+	text-align: center;
+	border-radius: 0.133rem;
+	display:inline-block;
+	margin:0 auto;
+	margin-top: 0.8rem;
+	border:1px solid #eb6d00;
+	color:#eb6d00;
+	text-decoration: none;
+	cursor: pointer;
+	font-size: 0.427rem;
+}
+/*--------------------------------------------------------------------------------------*/
 /*登录 login页面*/
 .g-login{
 	background-color: #ffffff;
@@ -784,10 +850,13 @@
 }
 .g-content-project-list .item-project{
 	height:auto;
+	background-color: #f1f1f1;
 
 }
 .g-content-project-list .item-project .item-pro-list{
 	height:auto;
+	margin-bottom: 0.4rem;
+	background-color: #ffffff;
 }
 .g-content-project-list .item-project .item-pro-list .head{
 	width:100%;
@@ -832,6 +901,10 @@
 	height:auto;
 	margin-top:0.4rem;
 }
+.g-content-project-list .item-project .list-qingdan-box a{
+	 color:#252525;
+	 text-decoration: none;
+}
 .g-content-project-list .item-project .list-qingdan-box2{
 	margin-top:0.4rem;
 }
@@ -842,11 +915,32 @@
 	font-size: 0;
 	width:100%;
 }
-.g-content-project-list .item-project .list-qingdan .tr .td{
+.g-content-project-list .item-project .list-qingdan .list-qingdan-box .tr .td{
 	display: inline-block;
 	font-size: 0.373rem;
 	max-width:25%;
 	min-width: 25%;
+}
+.g-content-project-list .item-project .list-qingdan .list-qingdan-box2 .tr{
+	font-size: 0.373rem;
+}
+.g-content-project-list .item-project .list-qingdan .list-qingdan-box2 .tr .td{
+	display: inline-block;
+	font-size: 0.373rem;
+	min-width: 22%;
+	max-width: 100%;
+	float:left;
+}
+.g-content-project-list .item-project .list-qingdan .list-qingdan-box2 .tr .td-progress{
+	display: inline-block;
+	font-size: 0.373rem;
+	min-width: 50%;
+	max-width: 100%;
+	position: relative;
+}
+
+.g-content-project-list .item-project .list-qingdan .list-qingdan-box2 .tr .td.td-red{
+	color:#ff6464;
 }
 .g-content-project-list .item-project .list-qingdan .tr .td.th{
 	 color:#aaaaaa;
@@ -861,3 +955,210 @@
 	margin-right: 0.267rem;
 }
 
+.g-content-project-list .item-project .mui-progressbar {
+    height: 0.16rem;
+    display: inline-block;
+    float: left;
+    width:76%;
+    margin-top: 0.32rem;
+    margin-right: 0.267rem;
+}
+
+.g-content-project-list .item-project .mui-progressbar span {
+    background: #eb6d00;
+}
+.g-content-project-list .item-project .list-qingdan .tr .td p{
+	font-size: 0.373rem;
+	color:#eb6d00;
+	display: inline-block;
+	float: left;
+}
+
+.header-details.mui-bar-nav .title {
+    position: relative;
+    left: 0%;
+    height: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 92%;
+    display: inline-block;
+    float: left;
+}
+/*合同详情*/
+/*-------------------------------------------------------------------------------------*/
+.g-project-details .item-lists {
+    margin-top: 0rem;
+    overflow: hidden;
+}
+.g-project-details .item-lists .gongdi{
+	background: url(../images/project/icon-gongdi.png) no-repeat;
+}
+.g-project-details .item-lists .renwu{
+	background: url(../images/project/icon-renwu.png) no-repeat;
+}
+.g-project-details .item-lists .yichang{
+	background: url(../images/project/icon-yichang.png) no-repeat;
+}
+.g-project-details .item-lists .tuzhi{
+	background: url(../images/project/icon-tuzhi.png) no-repeat;
+}
+.g-project-details .item-lists .hetong{
+	background: url(../images/project/icon-hetong.png) no-repeat;
+}
+.g-project-details .item-lists .chengyuan{
+	background: url(../images/project/icon-chengyuan.png) no-repeat;
+}
+.g-project-details .item-lists .shangpin{
+	background: url(../images/project/icon-shangpin.png) no-repeat;
+}
+.g-project-details .item-lists .guke{
+	background: url(../images/project/icon-guke.png) no-repeat;
+}
+.g-project-details .item-lists .yezhu{
+	background: url(../images/project/icon-yezhu.png) no-repeat;
+}
+.g-project-details .item-lists .yusuan{
+	background: url(../images/project/icon-yusuan.png) no-repeat;
+}
+.g-project-details .item-lists .shuidian{
+	background: url(../images/project/icon-shuidian.png) no-repeat;
+}
+.g-project-details .item-lists .youqi{
+	background: url(../images/project/icon-youqi.png) no-repeat;
+}
+.g-project-details .item-lists{
+	margin-bottom: 0.4rem;
+}
+.g-project-details .item-lists .list{
+	width:33.333%;
+	height:3.333rem;
+	display: inline-block;
+	float:left;
+	text-align: center;
+	box-sizing: border-box;
+	-webkit-box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	-ms-box-sizing:border-box;
+	-o-box-sizing:border-box;
+	border-right:1px solid #e1e1e1;
+	border-top: 1px solid #e1e1e1;
+	background-color: #ffffff;
+    background-position: 50% 30%;
+    background-size: 0.907rem 0.907rem;
+}
+
+/*待处理页面*/
+/*------------------------------------------------------------------------------------------*/
+.g-content-daichuli{
+	bottom: 0rem;
+	background-color: #f6f6f6;
+}
+.g-content-daichuli .item-daichuli{
+	margin-top:0.333rem;
+	background-color: #ffffff;
+	padding-top: 0.267rem;
+}
+.g-content-daichuli .item-daichuli a{
+	text-decoration: none;
+}
+.g-content-daichuli .item-daichuli .title{
+	text-indent: 1em;
+	font-size: 0.427rem;
+	color:#252525;
+	margin-bottom: 0.267rem;
+}
+.g-content-daichuli .item-daichuli .title .title-sort{
+	 float:right;
+	 color:#eb6d00;
+	 margin-right: 0.267rem;
+}
+.g-content-daichuli .item-daichuli .time{
+	text-indent: 1em;
+	color:#aaaaaa;
+	font-size: 0.347rem;
+	margin-bottom: 0.267rem;
+}
+.g-content-daichuli .item-daichuli .address{
+	text-indent: 1em;
+	color:#7a7a7a;
+	font-size: 0.347rem;
+	border-top:1px solid #dddddd;
+	line-height: 1.067rem;
+	height:1.067rem;
+}
+.g-content-daichuli .item-daichuli .address img{
+	 width:0.347rem;
+	 height:0.4rem;
+	 vertical-align: middle;
+	 margin-right: 0.267rem;
+}
+/*------------------------------------------------------------------------------------------*/
+/*任务明细页面*/
+.g-renwu-mingxi .user-info{
+	width:100%;
+	height:1.973rem;
+ 	background: url(../images/icon-deboule-p.png) no-repeat;
+	background-size: 1.093rem 0.907rem;
+	background-position: 3% center;
+	text-indent: 6em;
+	vertical-align: middle;
+	background-color: #ffffff;
+}
+.g-renwu-mingxi .user-info .title{
+	padding-top: 0.347rem;
+	font-size: 0.427rem;
+	color:#252525;
+	margin-bottom: 0.133rem;
+}
+.g-renwu-mingxi .user-info .sub-title{
+	 font-size: 0.347rem;
+}
+.g-renwu-mingxi .user-info .sub-title span{
+	color:#aaaaaa;
+}
+.g-renwu-mingxi .item-paigong{
+	margin-top: 0.4rem;
+	background-color: #ffffff;
+}
+.g-renwu-mingxi .item-paigong .head{
+	 height:1.2rem;
+	 line-height: 1.2rem;
+	 vertical-align: middle;
+	 text-indent: 1em;
+	 font-size: 0.427rem;
+	 color:#eb6d00;
+	 border-bottom: 1px solid #dddddd;
+}
+.g-renwu-mingxi .item-paigong .head span{
+	color:#dddddd;
+}
+.g-renwu-mingxi .item-paigong .info-paigong{
+	padding-top: 0.267rem;
+}
+.g-renwu-mingxi .item-paigong .info-paigong .tr{
+	font-size: 0;
+	color:#252525;
+}
+.g-renwu-mingxi .item-paigong .info-paigong .tr .td{
+	 min-width: 25%;
+}
+.g-renwu-mingxi .item-paigong .info-paigong .tr .th{
+	 text-indent: 1em;
+	 color:#aaaaaa;
+}
+.g-renwu-mingxi .item-paigong .info-paigong .tr div{
+	 display: inline-block;
+	 font-size: 0.373rem;
+}
+.g-renwu-mingxi .paigong-dan{
+	margin-top: 0.4rem;
+	background-color: #ffffff;
+}
+.g-renwu-mingxi .paigong-dan .title{
+	 height:1.173rem;
+	 line-height: 1.173rem;
+	 text-align:center;
+	 font-size: 0.48rem;
+	 color:#eb6d00;
+}
