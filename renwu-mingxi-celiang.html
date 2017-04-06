@@ -1,0 +1,159 @@
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>任务明细</title>
+	<!-- Mobile Devices Support @begin -->
+    <meta http-equiv = "X-UA-Compatible" content = "IE=edge,chrome=1" / >
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+    <meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="yes" name="apple-touch-fullscreen">
+	<meta content="telephone=no,email=no" name="format-detection">
+    <script src="js/flexible.js" type="text/javascript"></script>
+    <script src="js/flexible_css.js" type="text/javascript"></script>
+    <!-- Mobile Devices Support @end -->
+    <script src="js/flexible.js" type="text/javascript"></script>
+    <script src="js/flexible_css.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="css/base-reset.css">
+    <link rel="stylesheet" href="css/mui.min.css">
+    <link rel="stylesheet" type="text/css" href="css/swiper-3.3.1.min.css">
+    <link href="js/picker/mui.picker.min.css" rel="stylesheet" />
+	<link href="js/picker/mui.poppicker.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/lzr.css">
+</head>
+<body>
+    <div class="mui-bar mui-bar-nav header project-list-head">
+        <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+        任务明细
+    </div>
+
+    <div class="g-content g-content-daichuli g-renwu-mingxi">
+    	 <div class="user-info">
+    	 	   <div class="title">东莞南城区南城花园一期A栋2306</div>
+    	 	   <div class="sub-title"><span>业主：</span>李晓<span>&nbsp;&nbsp;|&nbsp; </span> 15627215946</div>
+    	 </div>
+    	 <div class="item-paigong">
+    	 	 <div class="head">
+    	 	 	  10 &nbsp;&nbsp;<span>|</span>&nbsp;&nbsp; 所有门窗测量
+    	 	 </div>
+    	 	 <div class="info-paigong">
+    	 	 	 <div class="tr">
+    	 	 	 	<div class="td th">发起人：</div>
+    	 	 	 	<div class="td">系统</div>
+    	 	 	 </div>
+    	 	 	 <div class="tr">
+    	 	 	 	<div class="td th">接收人：</div>
+    	 	 	 	<div class="td">五天-装饰分部部长</div>
+    	 	 	 </div>
+    	 	 	 <div class="tr">
+    	 	 	 	<div class="td th">任务类型：</div>
+    	 	 	 	<div class="td">测量类</div>
+    	 	 	 </div>
+    	 	 	 <div class="tr">
+    	 	 	 	<div class="td th">完成日期：</div>
+    	 	 	 	<div class="td">2017</div>
+    	 	 	 </div>
+    	 	 </div>
+    	 </div>
+    	 <div class="paigong-dan paizhao-dan">
+    	 	  <div class="title">
+    	 	  	   拍照
+    	 	  </div>
+              <div class="item-upload-photo">
+                   <div class="photo-list">
+                       <img src="images/icon-jia.png" alt="">
+                       <input type="file" name="" id="">
+                       <span class='wen'> 测量现场</span>
+                   </div>
+                   <div class="photo-list">
+                       <img src="images/icon-jia.png" alt="">
+                       <input type="file" name="" id="">
+                       <span class='wen'>门派照片</span>
+                   </div>
+                   <div class="photo-list">
+                       <img src="images/icon-jia.png" alt="">
+                       <input type="file" name="" id="">
+                       <span class='wen'> 测量位置</span>
+                   </div>
+                   <div class="photo-list">
+                       <img src="images/icon-jia.png" alt="">
+                       <input type="file" name="" id="">
+                       <span class='wen add-wen'> 添加</span>
+                   </div>
+              </div>
+    	 </div>
+    	 <div class="paigong-dan fankui-miaoshu">
+    	 	 <div class="title">
+    	 	  	   反馈描述：
+    	 	 </div>
+    	 	 <div class="textarea">
+    	 	 	 <textarea name="" @input='keyup($event)' id="textarea_info" cols="30" rows="10" placeholder="说点什么吧..."></textarea>
+    	 	 	 <span v-el:numtips class='num-tips'><span class='shuru-num'>{{num}}</span>/500</span>
+    	 	 </div>
+    	 </div>
+    	 <div class="queren-btn">
+    	 	  <div id='sure_btn' class="sure-btn">确认完成</div>
+    	 </div>
+    </div>
+	<script src="js/zepto1.1.6.min.js" type="text/javascript"></script>
+    <script src='js/swiper-3.3.1.min.js' type="text/javascript"></script>
+    <script src='js/mui.min.js'></script>
+    <script src='js/vue.min.js'></script>
+    <script type="text/javascript" src="js/picker/mui.picker.min.js"></script>
+	<script type="text/javascript" src="js/picker/mui.poppicker.js"></script>
+	<script type="text/javascript" src="js/layer-m/layer.js" ></script>
+    <script>
+         var vm=new Vue({
+            el:'body',
+            data:{
+               num:0,
+               panduan:true
+            },
+            methods:{
+                keyup:function(e){
+                    var len = e.target.value.length;
+                    if (len <= 500) {
+                         this.num=len;
+                         this.panduan=true;
+                    } else {
+                         tanchu("反馈描述最多限制为500字数！");
+                         this.num=500;
+                         this.panduan=false;
+                    }
+                }
+            }
+         });
+
+        // 创建全局变量
+        var arr=[];
+        var arr_length='';
+        var sure_btn_c=$("#sure_btn");
+         
+        // 确认完成操作
+        sure_btn.addEventListener("tap",function(){
+              
+        },false)
+
+        /**判断是否为空**/
+        function isBlank(_value) {
+            if (_value == null || _value == "" || _value == undefined) {
+                return true;
+            }
+            return false;
+        }
+
+        //弹出框函数
+        function tanchu(cont) {
+            layer.open({
+                btn: ['OK'],
+                content: cont, //内容
+                shade: [0.5, '#000'], //遮罩层  透明度，颜色
+                shadeClose: true, //点击遮罩层 关闭弹出层
+                time: 0 //  自动关闭时间，  0表示不自动关闭              
+            });
+        }
+
+    </script>
+</body>
+</html>

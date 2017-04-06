@@ -1207,7 +1207,7 @@
 .g-renwu-mingxi .fankui-miaoshu .textarea{
   width:92%;
   margin:0 auto;
-  height:1.867rem;
+  height:2.507rem;
   position: relative;
 }
 .g-renwu-mingxi .fankui-miaoshu .textarea textarea{
@@ -1220,7 +1220,7 @@
 	right: 0.16rem;
 	bottom:0.08rem;
 	color:#7a7a7a;
-	font-size: 0.32rem;
+	font-size: 0.35rem;
 }
 .g-renwu-mingxi .queren-btn{
 	height:1.333rem;
@@ -1246,9 +1246,58 @@
 	font-size: 0.48rem;
 	cursor: pointer;
 }
-
- .mui-btn-blue, .mui-btn-primary,input[type=submit] {
+.g-renwu-mingxi .renwu-gendan-btn{
+	height:1.333rem;
+	line-height: 1.333rem;
+	border-top: 1px solid #dddddd;
+	margin-top: 0.4rem;
+	position: absolute;
+	bottom:0;
+	left:0;
+	right:0;
+	width:100%;
+}
+.g-renwu-mingxi .renwu-gendan-btn .sure-btn{
+	color:white;
+}
+.g-renwu-mingxi .queren-btn .sure-btn.gaoliang{ 
+	color:white;
+}
+.mui-btn-blue, .mui-btn-primary,input[type=submit] {
     color: #fff;
     border: 1px solid #eb6d00;
     background-color: #eb6d00;
+}
+.g-renwu-mingxi .paizhao-dan .title {
+    border-bottom: 1px solid #dddddd;
+}
+.g-renwu-mingxi .paizhao-dan .item-upload-photo{
+	height:2.827rem;
+	width:100%;
+	margin-top: 0.4rem;
+}
+.g-renwu-mingxi .paizhao-dan .item-upload-photo .photo-list{
+	width:1.867rem;
+	height:1.867rem;
+	display: inline-block;
+	float:left;
+	margin-left: 0.533rem;
+}
+.g-renwu-mingxi .paizhao-dan .item-upload-photo .photo-list img{
+	width:1.867rem;
+	height:1.867rem;
+}
+.g-renwu-mingxi .paizhao-dan .item-upload-photo .photo-list .wen{
+	width:1.867rem;
+	height:0.8rem;
+	line-height: 0.8rem;
+	text-align: center;
+	display: inline-block;
+	font-size: 0.35rem;
+}
+.g-renwu-mingxi .paizhao-dan .item-upload-photo .photo-list .wen.add-wen{
+	 color:#eb6d00;
+}
+.g-renwu-mingxi .paizhao-dan .item-upload-photo .photo-list input[type='file']{
+  opacity: 0;
 }

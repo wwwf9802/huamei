@@ -7,8 +7,8 @@
     <meta http-equiv = "X-UA-Compatible" content = "IE=edge,chrome=1" / >
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
     <meta content="yes" name="apple-mobile-web-app-capable">
-		<meta content="yes" name="apple-touch-fullscreen">
-		<meta content="telephone=no,email=no" name="format-detection">
+	<meta content="yes" name="apple-touch-fullscreen">
+	<meta content="telephone=no,email=no" name="format-detection">
     <script src="js/flexible.js" type="text/javascript"></script>
     <script src="js/flexible_css.js" type="text/javascript"></script>
     <!-- Mobile Devices Support @end -->
@@ -102,23 +102,31 @@
 	<script type="text/javascript" src="js/picker/mui.poppicker.js"></script>
 	<script type="text/javascript" src="js/layer-m/layer.js" ></script>
     <script>
-         new Vue({
+         var vm=new Vue({
          	el:'body',
          	data:{
-               num:0
+               num:0,
+               panduan:true
          	},
          	methods:{
                 keyup:function(e){
                     var len = e.target.value.length;
                     if (len <= 500) {
 		                 this.num=len;
+		                 this.panduan=true;
 		            } else {
+		            	 tanchu("反馈描述最多限制为500字数！");
 		                 this.num=500;
+		                 this.panduan=false;
 		            }
                 }
          	}
          });
 
+         // 创建全局变量
+         var arr=[];
+         var arr_length='';
+         var sure_btn_c=$("#sure_btn");
          (function($) {
 			$.init();
 
@@ -130,11 +138,15 @@
 				});
 				cardPicker.setData(pro_arr);
 				cardPicker.show(function(items) {
-					cardVal0.innerText = items[0].text;;
+					cardVal0.innerText = items[0].text;
 					cardPicker.dispose();
+					arr.push(cardVal0.innerText);
+					arr_length=arr.length;
+					if(arr_length>=3){
+                        sure_btn_c.addClass("gaoliang")
+					}
 				});
 			}, false);
-
             // 工程经理
 			var gong_arr = [{text:"zzz"},{text:"xxxx"},{text:"aaa"}];
 			gongcheng_jingli.addEventListener('tap', function() {
@@ -145,6 +157,11 @@
 				cardPicker.show(function(items) {
 					cardVal1.innerText = items[0].text;;
 					cardPicker.dispose();
+					arr.push(cardVal1.innerText);
+					arr_length=arr.length;
+					if(arr_length>=3){
+                        sure_btn_c.addClass("gaoliang")
+					}					 
 				});
 			}, false);
 
@@ -158,23 +175,34 @@
 				cardPicker.show(function(items) {
 					cardVal2.innerText = items[0].text;;
 					cardPicker.dispose();
+					arr.push(cardVal2.innerText);
+					arr_length=arr.length;
+					if(arr_length>=3){
+                        sure_btn_c.addClass("gaoliang")
+					}
 				});
 			}, false);
 			
 		})(mui);
-
+       
         sure_btn.addEventListener("tap",function(){
              var jingli_value= cardVal0.innerText;
              var gongcheng_value= cardVal1.innerText;
              var dudao_value= cardVal2.innerText;
-             if(!isBlank(jingli_value) && !isBlank(gongcheng_value) && !isBlank(dudao_value) ){
-             	 
+             if(!isBlank(jingli_value) && !isBlank(gongcheng_value) && !isBlank(dudao_value) && vm.panduan ){
+
+             	 // 输入成功后要做的事情
+             }
+             else if(!vm.panduan){
+             	 tanchu("反馈描述最多限制为500字数！");
+             	 return false;
              }
              else{
              	 tanchu("您还有必填的信息没填，请填写完整！");
              	 return false;
              }
         },false)
+
 		/**判断是否为空**/
         function isBlank(_value) {
             if (_value == null || _value == "" || _value == undefined) {
