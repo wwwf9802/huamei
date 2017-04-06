@@ -53,4 +53,31 @@
     <script src='js/mui.min.js'></script>
     <script src='js/vue.min.js'></script>
 </body>
+<script>
+    init();
+	function init(){
+		mui.ajax(getBaseServerUrl() + '/system/user/login', {
+				dataType: 'json', //服务器返回json格式数据
+				type: 'get', //HTTP请求类型
+				data: {
+					tenantId : 'humello',
+					userName : 'admin',
+					password : 'admin2016',
+					userType : '10',
+					esn : ''
+				},
+				headers: {
+					"auth": localStorage.auth
+				},
+				success: function(jsonData) {
+					console.log(JSON.stringify(jsonData));
+				},
+				error: function(XMLHttpRequest, textStatus, errorThrown) {
+					 console.log(XMLHttpRequest.status);
+                        console.log(XMLHttpRequest.readyState);
+                        console.log(textStatus);
+				}
+			});
+	}
+</script>
 </html>

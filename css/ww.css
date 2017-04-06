@@ -30,6 +30,7 @@
 	.checkSelect .branch{background-color: #F9F9F9;}
 	.checkSelect .branch>li{line-height: 0.5rem;font-size: 0.45rem;color: #7A7A7A;position: relative;}
 	.checkSelect .branch>li>.item>.txt{margin-left: 1.3rem;line-height: 0.7rem;border-bottom: 1px solid #ddd;padding: 0.4rem;}
+	.checkSelect .branch>li:last-child>.item>.txt{border-bottom: none;}
 	.checkSelect .branch>li .selectBtn{background: url(../images/icon-select.png) no-repeat;width: 0.5rem;height: 0.5rem;display: block;background-size: contain;position: absolute;left: 0.42rem;top: 50%;margin-top: -0.3rem;}
 	.checkSelect .branch>li .selectBtn.active{background: url(../images/icon-select1.png) no-repeat;width: 0.5rem;height: 0.5rem;background-size: contain;}
 	.checkSelect .branch>li .verifyed{position: absolute;left: 0.2rem;top: 50%;margin-top: -0.3rem;font-size: 0.4rem;color: #aaa;}
