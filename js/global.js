@@ -1,11 +1,11 @@
 
 function getBaseServerUrl()
 {
-	return "http://192.168.1.55/eidpws";
+	return "http://192.168.1.50:900/eidpws";
 }
 function getImgBaseServerUrl()
 {
-	return "http://192.168.1.55";
+	return "http://192.168.1.50";
 }
 
 

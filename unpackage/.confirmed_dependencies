@@ -1,1 +1,26 @@
+<<<<<<< HEAD
 null
+=======
+{
+  "login.html": {
+    "resources": [
+      "css/base-reset.css",
+      "css/lzr.css",
+      "images/login/user-btn.png",
+      "fonts/mui.ttf",
+      "js/vue.min.js",
+      "js/swiper-3.3.1.min.js",
+      "images/login/logo.png",
+      "js/zepto1.1.6.min.js",
+      "js/flexible_css.js",
+      "css/common.css",
+      "js/mui.min.js",
+      "images/login/user-bg.png",
+      "css/mui.min.css",
+      "images/login/paw-bg.png",
+      "js/flexible.js",
+      "css/swiper-3.3.1.min.css"
+    ]
+  }
+}
+>>>>>>> e363c4acdc36dff1ab48f5207f9415d0693b3adc
