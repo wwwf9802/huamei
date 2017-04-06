@@ -1282,10 +1282,12 @@
 	display: inline-block;
 	float:left;
 	margin-left: 0.533rem;
+	position: relative;
 }
 .g-renwu-mingxi .paizhao-dan .item-upload-photo .photo-list img{
 	width:1.867rem;
 	height:1.867rem;
+	cursor: pointer;
 }
 .g-renwu-mingxi .paizhao-dan .item-upload-photo .photo-list .wen{
 	width:1.867rem;
@@ -1300,4 +1302,9 @@
 }
 .g-renwu-mingxi .paizhao-dan .item-upload-photo .photo-list input[type='file']{
   opacity: 0;
+  position: absolute;
+  left:0px;top:0px;
+  width:1.867rem;
+  height:1.867rem;
+  z-index: 99;
 }
