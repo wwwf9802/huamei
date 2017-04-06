@@ -1,4 +1,4 @@
-﻿{
+{
     "@platforms": ["android", "iPhone", "iPad"],
     "id": "H568DFB9E",/*应用的标识，创建应用时自动生成，勿手动修改*/
     "name": "huamei",/*应用名称，程序桌面图标名称*/
@@ -10,7 +10,11 @@
     "icons": {
         "72": "icon.png"
     },
+<<<<<<< HEAD
     "launch_path": "im-chat.html",/*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
+=======
+    "launch_path": "upload-img.html",/*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
+>>>>>>> 4753b091606e8bfe449a6d8addf0c3e82218e685
     "developer": {
         "name": "",/*开发者名称*/
         "email": "",/*开发者邮箱地址*/
@@ -199,5 +203,120 @@
                 }
             }
         }
-    }
+    },
+	"dependencies": {
+		"pages": {
+			"index.html": {
+				"resources": [
+					"images/index/icon-ruzhu.png",
+					"css/base-reset.css",
+					"css/lzr.css",
+					"images/index/icon-youqi.png",
+					"images/index/icon-jungong.png",
+					"images/index/icon-ready.png",
+					"images/banner.png",
+					"images/index/icon-juxing.png",
+					"js/swiper-3.3.1.min.js",
+					"images/index/icon-index-check.png",
+					"images/index/icon-shuidian.png",
+					"images/index/icon-user.png",
+					"js/zepto1.1.6.min.js",
+					"images/index/icon-nimu.png",
+					"js/flexible_css.js",
+					"js/mui.min.js",
+					"css/common.css",
+					"images/index/style-bg.png",
+					"css/mui.min.css",
+					"js/flexible.js",
+					"css/swiper-3.3.1.min.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"new.html": {
+				"resources": [
+					"js/zepto1.1.6.min.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"upload-img.html": {
+				"resources": [
+					"js/zepto1.1.6.min.js",
+					"js/mui.min.js",
+					"upload/mobileBUGFix.mini.js",
+					"upload/LocalResizeIMG.js",
+					"css/mui.min.css"
+				],
+				"refer": [],
+				"priority": 0
+			}
+		},
+		"idle": {
+			"resources": [
+				"images/kehu-liebiao.png",
+				"us.html",
+				"images/icon-red.png",
+				"images/us/icon-tuzhi.png",
+				"login.html",
+				"project-list.html",
+				"images/us/icon-jiazhuang.png",
+				"images/us/icon-daohuo.png",
+				"fonts/mui-icons-extra.ttf",
+				"images/icon-project.png",
+				"sale.html",
+				"images/us/icon-fuwu.png",
+				"images/login/pas-can-see.png",
+				"images/tongzhi.png",
+				"images/icon-juxing.png",
+				"images/icon-jiantou.png",
+				"js/mui.pullToRefresh.material.js",
+				"images/icon-oa.png",
+				"images/done-icon.png",
+				"fonts/mui.ttf",
+				"images/login/logo.png",
+				"images/us/icon-tongzhi.png",
+				"images/us/icon-team.png",
+				"images/login/user-bg.png",
+				"images/wuliu-gendan.png",
+				"images/login/pas-not-see.png",
+				"images/login/paw-bg.png",
+				"images/us/icon-us-check.png",
+				"images/jiazhuang-gendan.png",
+				"images/us/icon-tousu.png",
+				"images/login/user-btn.png",
+				"js/vue.min.js",
+				"css/icons-extra.css",
+				"images/icon-shuaixuan.png",
+				"images/us/banner.png",
+				"images/news-list-bg.png",
+				"images/dianmian-gendan.png",
+				"images/us/icon-chongzhi.png",
+				"oa_index.html",
+				"images/us/icon-shigong.png",
+				"images/us/icon-index.png",
+				"images/yunpan.png",
+				"images/shigong.png",
+				"images/wofaqi-icon.png",
+				"images/icon-new-check.png",
+				"images/us/icon-user.png",
+				"images/icon-sale.png",
+				"js/mui.pullToRefresh.js",
+				"news-list.html",
+				"images/huiyi.png",
+				"images/qiye.png",
+				"images/shangpin-jiage.png",
+				"images/team-icon.png",
+				"images/cheliang.png",
+				"images/icon-project-check.png",
+				"images/icon-oa-check.png",
+				"news.html",
+				"images/lingshou-xiadan.png",
+				"images/icon-new.png",
+				"images/news-icon.png",
+				"images/icon-sale-check.png",
+				"images/daichuli-icon.png"
+			]
+		}
+	}
 }

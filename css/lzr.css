@@ -1136,6 +1136,12 @@
 .g-renwu-mingxi .item-paigong .info-paigong{
 	padding-top: 0.267rem;
 }
+.g-renwu-mingxi .item-paigong .shouhuo-done{
+	 background: url(../images/icon-done.png) no-repeat;
+	 background-size: 1.973rem 1.667rem;
+	 background-position: 90% center;
+}
+
 .g-renwu-mingxi .item-paigong .info-paigong .tr{
 	font-size: 0;
 	color:#252525;
@@ -1158,7 +1164,214 @@
 .g-renwu-mingxi .paigong-dan .title{
 	 height:1.173rem;
 	 line-height: 1.173rem;
-	 text-align:center;
-	 font-size: 0.48rem;
+	 text-indent: 1em;
+	 font-size: 0.38rem;
+	 background: url(../images/icon-juxing.png) no-repeat;
+	 background-position: left center;
+	 background-size: 0.093rem 0.4rem;
+}
+.g-renwu-mingxi .paigong-dan .paigong-lists{
+	height:1.173rem;
+	width:100%;
+	line-height: 1.173rem;
+	border-top:1px solid #dddddd;
+	text-indent: 1em;
+	font-size: 0.347rem;
+	vertical-align: middle;
+	background: url(../images/icon-jiantou.png) no-repeat;
+	background-position: 95% center;
+	background-size: 0.253rem 0.453rem;
+	position: relative;
+}
+.g-renwu-mingxi .paigong-dan .paigong-lists span.icon-xing{
+	color:#eb4d4b;
+	font-size: 0.547rem;
+	vertical-align: middle;
+	text-align:center;
+	display: inline-block;
+	text-indent: 0em;
+	margin-top: 0.08rem;
+}
+.g-renwu-mingxi .paigong-dan .paigong-lists span.chose-value{
+	 position: absolute;
+	 right:1.093rem;
+	 top:0px;
+	 text-align: left;
+	 display: inline-block;
+	 font-size: 0.373rem;
+
+}
+.g-renwu-mingxi .fankui-miaoshu .title{
+	 height:1.173rem;
+	 line-height: 1.173rem;
+	 text-indent: 1em;
+	 font-size: 0.38rem;
+	 background-position: left center;
+	 background: none;
+	 color:#7a7a7a;
+}
+.g-renwu-mingxi .fankui-miaoshu .textarea{
+  width:92%;
+  margin:0 auto;
+  height:2.507rem;
+  position: relative;
+}
+.g-renwu-mingxi .fankui-miaoshu .textarea textarea{
+  width:100%;
+  height:1.867rem;
+  font-size: 0.32rem;
+}
+.g-renwu-mingxi .fankui-miaoshu .textarea .num-tips{
+	position: absolute;
+	right: 0.16rem;
+	bottom:0.08rem;
+	color:#7a7a7a;
+	font-size: 0.35rem;
+}
+.g-renwu-mingxi .queren-btn{
+	height:1.333rem;
+	line-height: 1.333rem;
+	border-top: 1px solid #dddddd;
+	margin-top: 0.4rem;
+	position: relative;
+}
+.g-renwu-mingxi .queren-btn .sure-btn{
+	width:90%;
+	margin:0 auto;
+	height:0.933rem;
+	line-height: 0.933rem;
+	color:#fdc799;
+	text-align:center;
+	background-color: #fb8f32;
+	position: absolute;
+	left:50%;
+	top:50%;
+	margin-top: -0.467rem;
+	margin-left: -45%;
+	border-radius:0.133rem;
+	font-size: 0.48rem;
+	cursor: pointer;
+}
+.g-renwu-mingxi .renwu-gendan-btn{
+	height:1.333rem;
+	line-height: 1.333rem;
+	border-top: 1px solid #dddddd;
+	margin-top: 0.4rem;
+	position: absolute;
+	bottom:0;
+	left:0;
+	right:0;
+	width:100%;
+}
+.g-renwu-mingxi .renwu-gendan-btn .sure-btn{
+	color:white;
+}
+.g-renwu-mingxi .queren-btn .sure-btn.gaoliang{ 
+	color:white;
+}
+.mui-btn-blue, .mui-btn-primary,input[type=submit] {
+    color: #fff;
+    border: 1px solid #eb6d00;
+    background-color: #eb6d00;
+}
+.g-renwu-mingxi .paizhao-dan .title {
+    border-bottom: 1px solid #dddddd;
+}
+.g-renwu-mingxi .paizhao-dan .item-upload-photo{
+	height:2.827rem;
+	width:100%;
+	margin-top: 0.4rem;
+}
+.g-renwu-mingxi .paizhao-dan .item-upload-photo .photo-list{
+	width:1.867rem;
+	height:1.867rem;
+	display: inline-block;
+	float:left;
+	margin-left: 0.533rem;
+	position: relative;
+}
+.g-renwu-mingxi .paizhao-dan .item-upload-photo .photo-list img{
+	width:1.867rem;
+	height:1.867rem;
+	cursor: pointer;
+}
+.g-renwu-mingxi .paizhao-dan .item-upload-photo .photo-list .wen{
+	width:1.867rem;
+	height:0.8rem;
+	line-height: 0.8rem;
+	text-align: center;
+	display: inline-block;
+	font-size: 0.35rem;
+}
+.g-renwu-mingxi .paizhao-dan .item-upload-photo .photo-list .wen.add-wen{
 	 color:#eb6d00;
+}
+.g-renwu-mingxi .paizhao-dan .item-upload-photo .photo-list input[type='file']{
+  opacity: 0;
+  position: absolute;
+  left:0px;top:0px;
+  width:1.867rem;
+  height:1.867rem;
+  z-index: 99;
+}
+.g-shouhuo .item-shousong-huo{
+	margin-top: 0.4rem;
+}
+.g-shouhuo .item-shousong-huo .item-lists{
+	height:auto;
+	background-color: #ffffff;
+}
+.g-shouhuo .item-shousong-huo .item-lists .title{
+	 padding:0.267rem;
+	 width:100%;
+}
+.g-shouhuo .item-shousong-huo .item-lists .normal{
+	 width:1.307rem;
+	 height:0.507rem;
+	 line-height: 0.507rem;
+	 border-radius: 0.267rem;
+	 margin-left: 0.4rem;
+	 display: inline-block;
+	 border:1px solid #0a984d;
+	 color:#0a984d;
+	 text-align: center;
+}
+
+.g-shouhuo .item-shousong-huo .item-lists .title .title-wen{
+	 font-size: 0.427rem;
+	 color:#252525;
+}
+.g-shouhuo .item-shousong-huo .item-lists .title .qianshou{
+	 width:1.833rem;
+	 display:inline-block;
+	 font-size: 0.427rem;
+	 color:#252525;
+	 float:right;
+	 background: url(../images/icon-jiantou.png) no-repeat;
+	 background-position: right center;
+	 background-size: 0.253rem 0.453rem;
+}
+.g-shouhuo .item-shousong-huo .item-lists .title .qianshou .daiqianshou{
+	  color:#eb6d00;
+}
+.g-shouhuo .item-shousong-huo .item-lists .title .qianshou .yiqianshou{
+	  color:#bfbfbf;
+}
+.g-shouhuo .item-shousong-huo .item-lists .sub-title{
+	 padding:0.267rem;
+	 width:100%;
+	 font-size: 0.347rem;
+}
+.g-shouhuo .item-shousong-huo .item-lists .sub-title span{
+	 color:#bfbfbf;
+	 margin-right: 0.867rem;
+} 
+.g-shouhuo .item-shousong-huo .item-lists .sub-title span.shangpinshu{
+	 margin-left: 0.867rem;
+	 margin-right: 0.367rem;
+} 
+.g-shouhuo .item-huo-done .item-lists .sub-title {
+    padding-bottom: 0;
+    padding-top: 0;
+    margin-bottom: 0.133rem;
 }
