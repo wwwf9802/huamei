@@ -1158,7 +1158,97 @@
 .g-renwu-mingxi .paigong-dan .title{
 	 height:1.173rem;
 	 line-height: 1.173rem;
-	 text-align:center;
-	 font-size: 0.48rem;
-	 color:#eb6d00;
+	 text-indent: 1em;
+	 font-size: 0.38rem;
+	 background: url(../images/icon-juxing.png) no-repeat;
+	 background-position: left center;
+	 background-size: 0.093rem 0.4rem;
+}
+.g-renwu-mingxi .paigong-dan .paigong-lists{
+	height:1.173rem;
+	width:100%;
+	line-height: 1.173rem;
+	border-top:1px solid #dddddd;
+	text-indent: 1em;
+	font-size: 0.347rem;
+	vertical-align: middle;
+	background: url(../images/icon-jiantou.png) no-repeat;
+	background-position: 95% center;
+	background-size: 0.253rem 0.453rem;
+	position: relative;
+}
+.g-renwu-mingxi .paigong-dan .paigong-lists span.icon-xing{
+	color:#eb4d4b;
+	font-size: 0.547rem;
+	vertical-align: middle;
+	text-align:center;
+	display: inline-block;
+	text-indent: 0em;
+	margin-top: 0.08rem;
+}
+.g-renwu-mingxi .paigong-dan .paigong-lists span.chose-value{
+	 position: absolute;
+	 right:1.093rem;
+	 top:0px;
+	 text-align: left;
+	 display: inline-block;
+	 font-size: 0.373rem;
+
+}
+.g-renwu-mingxi .fankui-miaoshu .title{
+	 height:1.173rem;
+	 line-height: 1.173rem;
+	 text-indent: 1em;
+	 font-size: 0.38rem;
+	 background-position: left center;
+	 background: none;
+	 color:#7a7a7a;
+}
+.g-renwu-mingxi .fankui-miaoshu .textarea{
+  width:92%;
+  margin:0 auto;
+  height:1.867rem;
+  position: relative;
+}
+.g-renwu-mingxi .fankui-miaoshu .textarea textarea{
+  width:100%;
+  height:1.867rem;
+  font-size: 0.32rem;
+}
+.g-renwu-mingxi .fankui-miaoshu .textarea .num-tips{
+	position: absolute;
+	right: 0.16rem;
+	bottom:0.08rem;
+	color:#7a7a7a;
+	font-size: 0.32rem;
+}
+.g-renwu-mingxi .queren-btn{
+	height:1.333rem;
+	line-height: 1.333rem;
+	border-top: 1px solid #dddddd;
+	margin-top: 0.4rem;
+	position: relative;
+}
+.g-renwu-mingxi .queren-btn .sure-btn{
+	width:90%;
+	margin:0 auto;
+	height:0.933rem;
+	line-height: 0.933rem;
+	color:#fdc799;
+	text-align:center;
+	background-color: #fb8f32;
+	position: absolute;
+	left:50%;
+	top:50%;
+	margin-top: -0.467rem;
+	margin-left: -45%;
+	border-radius:0.133rem;
+	font-size: 0.48rem;
+	cursor: pointer;
+}
+
+ .mui-btn-blue, .mui-btn-primary,input[type=submit] {
+    color: #fff;
+    border: 1px solid #eb6d00;
+    background-color: #eb6d00;
 }
