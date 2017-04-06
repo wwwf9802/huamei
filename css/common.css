@@ -35,10 +35,62 @@ body{
     color:white;
 }
 
+.header-right{
+	position: absolute;
+	font-size:.4rem;
+	right:0.267rem;
+}
 
 .under-top{
 	margin-top:1.375rem;
 }
+/***************************p***********************************/
+.p-box{
+	width:100%;
+	height:1.973rem;
+ 	background: url(../images/icon-deboule-p.png) no-repeat;
+	background-size: 1.093rem 0.907rem;
+	background-position: 3% center;
+	text-indent: 6em;
+	vertical-align: middle;
+	background-color: #ffffff;
+}
+
+.p-box-title{
+	padding-top: 0.347rem;
+	font-size: 0.427rem;
+	color:#252525;
+	margin-bottom: 0.133rem;
+}
+
+.p-box-sub-title{
+	font-size: 0.35rem;
+}
+
+.p-box-sub-title>span{
+	color:#aaa;
+}
+
+.common-title{
+	 height:1.2rem;
+	 line-height: 1.2rem;
+	 vertical-align: middle;
+	 text-indent: 1em;
+	 font-size: 0.427rem;
+	 color:#eb6d00;
+	 border-bottom: 1px solid #dddddd;
+	 background:#fff;
+	 margin-top:.25rem;
+}
+.common-title>span{
+	color:#dddddd;
+}
+/**************评价五星*******************/
+.y-starBox{background:#fff;overflow:hidden;padding:0 .3rem;}
+.y-starBox>p{color:#333;margin-top:.2rem;}
+.y-starBox>ul{background:#fff;overflow:hidden;margin-top:.2rem;}
+.y-starBox>ul>li{background:url(../images/icon-star2..png) no-repeat;background-size:100% 100%;float:left;width:0.5rem;height:0.5rem;margin-left:.2rem;}
+.y-starBox>ul>li.active{background:url(../images/icon-star1.png) no-repeat;background-size:100% 100%;} 
 /*-------------------------------------------------------------*/
 /*底部样式代码开始*/
 .footer {
