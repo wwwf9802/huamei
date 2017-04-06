@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="yes" name="apple-touch-fullscreen">
+		<meta content="telephone=no,email=no" name="format-detection">
+		<link rel="stylesheet" href="css/mui.min.css" />
+	</head>
+	<style>
+		#d1{overflow:hidden;}
+	 	#d1>img{width:50%;height:200px;float:left;}
+	</style>
+	<body>
+		<div id="d1"></div>
+		<a href="#picture"><button id="b1">点击上传</button></a>
+		<input type="file" id="uploadphoto" name="uploadfile" style="display:none;" />
+		
+		<div id="picture" class="mui-popover mui-popover-action mui-popover-bottom">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a href="#" onclick="getImage()";>拍照</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a href="#" onclick="uploadphoto.click()" >从相册选取</a>
+				</li>
+			</ul>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a href="#picture"><b>返回</b></a>
+				</li>
+			</ul>
+		</div>
+		
+	</body>
+	<script src="js/zepto1.1.6.min.js"></script>
+	<script src="upload/LocalResizeIMG.js"></script>
+	<script src="upload/mobileBUGFix.mini.js"></script>
+	<script src="js/mui.min.js"></script>
+	<script>
+		$(document).ready(function(e) {
+			$('#uploadphoto').localResizeIMG({
+				width: 500,
+				quality: 0.4,
+				success: function(result) {
+					var submitData = {
+						base64_string: result.clearBase64,
+						src:result.base64
+					};
+					var img=new Image();
+					img.src=submitData.src;
+					d1.appendChild(img);
+				}
+			});
+
+		});
+	
+		
+		function getImage(){
+			var cmr = plus.camera.getCamera();
+			cmr.captureImage(function(p){
+				plus.io.resolveLocalFileSystemURL(p, function(entry){
+					reduceImg(entry.toLocalURL());;
+				}, function(e){
+					outLine('读取拍照文件错误：'+e.message);
+				});
+			}, function(e){
+				outLine('失败：'+e.message);
+			}, {filename:'_doc/camera/',index:1});
+		}
+		
+		function reduceImg(path) {
+			console.log(path);
+			var img = new Image();
+			img.src = path; // 传过来的图片路径在这里用。
+			img.onload = function() {
+                var that = this;
+                var quity=0.4;
+
+                //生成比例
+                var w = that.width,
+                    h = that.height,
+                    scale = w / h;
+                w = 500;
+                h = w / scale;
+
+                //生成canvas
+                var canvas = document.createElement('canvas');
+                var ctx = canvas.getContext('2d');
+                $(canvas).attr({
+                    width: w,
+                    height: h
+                });
+                ctx.drawImage(that, 0, 0, w, h);
+
+                /**
+                 * 生成base64
+                 * 兼容修复移动设备需要引入mobileBUGFix.js
+                 */
+                var base64 = canvas.toDataURL('image/jpeg', quity);
+
+                // 修复IOS
+                if (navigator.userAgent.match(/iphone/i)) {
+                    var mpImg = new MegaPixImage(img);
+                    mpImg.render(canvas, {
+                        maxWidth: w,
+                        maxHeight: h,
+                        quality: quity
+                    });
+                    base64 = canvas.toDataURL('image/jpeg', quity);
+                }
+
+                // 修复android
+                if (navigator.userAgent.match(/Android/i)) {
+                    var encoder = new JPEGEncoder();
+                    base64 = encoder.encode(ctx.getImageData(0, 0, w, h), quity*100);
+                }
+
+                // 生成结果
+                var result = {
+                    base64: base64,
+                    clearBase64: base64.substr(base64.indexOf(',') + 1)
+                };
+                
+                
+                var img=new Image();
+                img.src=result.base64;
+				d1.appendChild(img);
+            };
+			
+		}
+		
+	</script>
+</html>
