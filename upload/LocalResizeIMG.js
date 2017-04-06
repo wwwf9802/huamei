@@ -59,21 +59,6 @@
                 var base64 = canvas.toDataURL('image/jpeg', obj.quality || 0.8);
 
                 // 修复IOS
-                if (navigator.userAgent.match(/iphone/i)) {
-                    var mpImg = new MegaPixImage(img);
-                    mpImg.render(canvas, {
-                        maxWidth: w,
-                        maxHeight: h,
-                        quality: obj.quality || 0.8
-                    });
-                    base64 = canvas.toDataURL('image/jpeg', obj.quality || 0.8);
-                }
-
-                // 修复android
-                if (navigator.userAgent.match(/Android/i)) {
-                    var encoder = new JPEGEncoder();
-                    base64 = encoder.encode(ctx.getImageData(0, 0, w, h), obj.quality * 100 || 80);
-                }
 
                 // 生成结果
                 var result = {

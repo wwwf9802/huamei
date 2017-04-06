@@ -10,7 +10,7 @@
     "icons": {
         "144": "icon.png"
     },
-    "launch_path": "login.html",/*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
+    "launch_path": "upload-img.html",/*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
     "developer": {
         "name": "",/*开发者名称*/
         "email": "",/*开发者邮箱地址*/
@@ -1469,6 +1469,17 @@
 					"images/login/paw-bg.png",
 					"js/flexible.js",
 					"css/swiper-3.3.1.min.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"upload-img.html": {
+				"resources": [
+					"js/zepto1.1.6.min.js",
+					"js/mui.min.js",
+					"upload/LocalResizeIMG.js",
+					"css/mui.min.css",
+					"js/uploadImg.js"
 				],
 				"refer": [],
 				"priority": 0

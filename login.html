@@ -35,7 +35,7 @@
 					</div>
 					<div class="mui-input-row">
 						<label class='paw-icon'></label>
-						<input id='password' type="password" class="mui-input-password mui-input" placeholder="请输入密码">
+						<input  id='password' type="password" class="mui-input-password mui-input" placeholder="请输入密码">
 						<!-- <span class='pas-not-see'></span> -->
 					</div>
 				</form>
@@ -48,6 +48,7 @@
 				</div>
 				<div class="mui-content-padded oauth-area">
 				</div>
+				<input type="text" />
 			</div>
 
 		</div>
@@ -63,7 +64,7 @@
 		function init() {
 			console.log(getBaseServerUrl() + '/system/user/login');
 			mui.ajax(getBaseServerUrl() + '/system/user/login', {
-				dataType: 'json', //服务器返回json格式数据
+				//dataType: 'json', //服务器返回json格式数据
 				type: 'get', //HTTP请求类型
 				data: {
 					tenantId: 'humello',
@@ -73,7 +74,9 @@
 					esn: ''
 				},
 				success: function(jsonData) {
-					console.log(JSON.stringify(jsonData));
+					if(jsonData.empOrg!==undefined){
+						alert(11111111111);
+					}
 				},
 				error: function(XMLHttpRequest, textStatus, errorThrown) {
 					console.log(XMLHttpRequest.status);
