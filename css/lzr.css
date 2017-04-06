@@ -1136,6 +1136,12 @@
 .g-renwu-mingxi .item-paigong .info-paigong{
 	padding-top: 0.267rem;
 }
+.g-renwu-mingxi .item-paigong .shouhuo-done{
+	 background: url(../images/icon-done.png) no-repeat;
+	 background-size: 1.973rem 1.667rem;
+	 background-position: 90% center;
+}
+
 .g-renwu-mingxi .item-paigong .info-paigong .tr{
 	font-size: 0;
 	color:#252525;
@@ -1307,4 +1313,65 @@
   width:1.867rem;
   height:1.867rem;
   z-index: 99;
+}
+.g-shouhuo .item-shousong-huo{
+	margin-top: 0.4rem;
+}
+.g-shouhuo .item-shousong-huo .item-lists{
+	height:auto;
+	background-color: #ffffff;
+}
+.g-shouhuo .item-shousong-huo .item-lists .title{
+	 padding:0.267rem;
+	 width:100%;
+}
+.g-shouhuo .item-shousong-huo .item-lists .normal{
+	 width:1.307rem;
+	 height:0.507rem;
+	 line-height: 0.507rem;
+	 border-radius: 0.267rem;
+	 margin-left: 0.4rem;
+	 display: inline-block;
+	 border:1px solid #0a984d;
+	 color:#0a984d;
+	 text-align: center;
+}
+
+.g-shouhuo .item-shousong-huo .item-lists .title .title-wen{
+	 font-size: 0.427rem;
+	 color:#252525;
+}
+.g-shouhuo .item-shousong-huo .item-lists .title .qianshou{
+	 width:1.833rem;
+	 display:inline-block;
+	 font-size: 0.427rem;
+	 color:#252525;
+	 float:right;
+	 background: url(../images/icon-jiantou.png) no-repeat;
+	 background-position: right center;
+	 background-size: 0.253rem 0.453rem;
+}
+.g-shouhuo .item-shousong-huo .item-lists .title .qianshou .daiqianshou{
+	  color:#eb6d00;
+}
+.g-shouhuo .item-shousong-huo .item-lists .title .qianshou .yiqianshou{
+	  color:#bfbfbf;
+}
+.g-shouhuo .item-shousong-huo .item-lists .sub-title{
+	 padding:0.267rem;
+	 width:100%;
+	 font-size: 0.347rem;
+}
+.g-shouhuo .item-shousong-huo .item-lists .sub-title span{
+	 color:#bfbfbf;
+	 margin-right: 0.867rem;
+} 
+.g-shouhuo .item-shousong-huo .item-lists .sub-title span.shangpinshu{
+	 margin-left: 0.867rem;
+	 margin-right: 0.367rem;
+} 
+.g-shouhuo .item-huo-done .item-lists .sub-title {
+    padding-bottom: 0;
+    padding-top: 0;
+    margin-bottom: 0.133rem;
 }
