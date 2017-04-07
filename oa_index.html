@@ -1,95 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>OA应用</title>
-	<!-- Mobile Devices Support @begin -->
-    <meta http-equiv = "X-UA-Compatible" content = "IE=edge,chrome=1" / >
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
-    <meta content="yes" name="apple-mobile-web-app-capable">
-	<meta content="yes" name="apple-touch-fullscreen">
-	<meta content="telephone=no,email=no" name="format-detection">
-    <script src="js/flexible.js" type="text/javascript"></script>
-    <script src="js/flexible_css.js" type="text/javascript"></script>
-    <!-- Mobile Devices Support @end -->
-    <link rel="stylesheet" href="css/base-reset.css">
-    <link rel="stylesheet" href="css/mui.min.css">
-    <link rel="stylesheet" type="text/css" href="css/swiper-3.3.1.min.css">
-    <link rel="stylesheet" type="text/css" href="css/common.css">
-    <link rel="stylesheet" type="text/css" href="css/lzr.css">
-</head>
-<body>
-    <div class="g-content g-content-oa" style="top:0">
-    	<div class="banner swiper-container">
-          <div class="swiper-wrapper">
-              <div class="swiper-slide">
-                   <img src="images/banner.png">
-              </div>
-              <div class="swiper-slide">
-                 <img src="images/banner.png">
-              </div>
-              <div class="swiper-slide">
-                 <img src="images/banner.png">
-              </div>
-          </div>
-          <!-- 如果需要分页器 -->
-          <div class="swiper-pagination"></div>
-        </div>
-        <div class="item-lists">
-           <div class="list huiyi">
-           	   <a href="##">
-           	   	    会议室预定
-           	   </a>
-           </div>
-           <div class="list cheliang">
-           	   <a href="##">
-           	   	    车辆管理
-           	   </a>
-           </div>
-           <div class="list qiye">
-           	   <a href="##">
-           	   	    企业学院
-           	   </a>
-           </div>
-           <div class="list tongzhi">
-           	   <a href="##">
-           	   	    通知公告
-           	   </a>
-           </div>
-           <div class="list shigong">
-           	   <a href="##">
-           	   	    施工沟通
-           	   </a>
-           </div>
-           <div class="list yunpan">
-           	   <a href="##">
-           	   	    云盘
-           	   </a>
-           </div>
-        	
-        </div>
-    </div>
 
-	<script src="js/zepto1.1.6.min.js" type="text/javascript"></script>
-    <script src='js/swiper-3.3.1.min.js' type="text/javascript"></script>
-    <script src='js/mui.min.js'></script>
-    <script>
-        $(".item-lists .list").on("touchstart",function(){
-              $(this).addClass("cur")
-        });
-        $(".item-lists .list").on("touchend",function(){
-              $(this).removeClass("cur")
-        })
-        var mySwiper = new Swiper ('.swiper-container', {
-	        loop: true,
-	        autoplay: 3000,
-	        // 如果需要分页器
-	        pagination: '.swiper-pagination',
-	        paginationClickable: true,
-	        spaceBetween: 0,
-	        centeredSlides: true,
-	        autoplayDisableOnInteraction: false
-        })
-    </script>
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<title>OA应用</title>
+		<!-- Mobile Devices Support @begin -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="yes" name="apple-touch-fullscreen">
+		<meta content="telephone=no,email=no" name="format-detection">
+		<script src="js/flexible.js" type="text/javascript"></script>
+		<script src="js/flexible_css.js" type="text/javascript"></script>
+		<!-- Mobile Devices Support @end -->
+		<link rel="stylesheet" href="css/base-reset.css">
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="css/swiper-3.3.1.min.css">
+		<link rel="stylesheet" type="text/css" href="css/common.css">
+		<link rel="stylesheet" type="text/css" href="css/lzr.css">
+	</head>
+
+	<body>
+		<div class="g-content g-content-oa" style="top:0">
+			<div class="banner swiper-container">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide">
+						<img src="images/banner.png">
+					</div>
+					<div class="swiper-slide">
+						<img src="images/banner.png">
+					</div>
+					<div class="swiper-slide">
+						<img src="images/banner.png">
+					</div>
+				</div>
+				<!-- 如果需要分页器 -->
+				<div class="swiper-pagination"></div>
+			</div>
+			<div class="item-lists">
+				<div class="list huiyi">
+					<a href="##">
+						会议室预定
+					</a>
+				</div>
+				<div class="list cheliang">
+					<a href="##">
+						车辆管理
+					</a>
+				</div>
+				<div class="list qiye">
+					<a href="##">
+						企业学院
+					</a>
+				</div>
+				<div class="list tongzhi">
+					<a href="##">
+						通知公告
+					</a>
+				</div>
+				<div class="list shigong">
+					<a href="##">
+						施工沟通
+					</a>
+				</div>
+				<div class="list yunpan">
+					<a href="##">
+						云盘
+					</a>
+				</div>
+
+			</div>
+		</div>
+
+		<script src="js/zepto1.1.6.min.js" type="text/javascript"></script>
+		<script src='js/swiper-3.3.1.min.js' type="text/javascript"></script>
+		<script src='js/mui.min.js'></script>
+		<script>
+			$(".item-lists .list").on("touchstart", function() {
+				$(this).addClass("cur")
+			});
+			$(".item-lists .list").on("touchend", function() {
+				$(this).removeClass("cur")
+			})
+			var mySwiper = new Swiper('.swiper-container', {
+				loop: true,
+				autoplay: 3000,
+				// 如果需要分页器
+				pagination: '.swiper-pagination',
+				paginationClickable: true,
+				spaceBetween: 0,
+				centeredSlides: true,
+				autoplayDisableOnInteraction: false
+			})
+
+			if(window.plus) {
+				plusReady()
+			} else {
+				document.addEventListener('plusready', plusReady, false);
+			}
+
+			function plusReady(){
+				mui.back = function() {
+				    plus.nativeUI.confirm('确认退出？',function(e){
+				    	if(e.index==0){
+				    		plus.runtime.quit();
+				    	}
+				    },"华美乐");
+				}
+			}
+		</script>
+	</body>
+
 </html>

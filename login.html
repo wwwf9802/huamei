@@ -19,7 +19,9 @@
 		<link rel="stylesheet" type="text/css" href="css/common.css">
 		<link rel="stylesheet" type="text/css" href="css/lzr.css">
 	</head>
-
+	<style>
+		html{background:#fff}
+	</style>
 	<body>
 		<div class="g-login">
 			<div class="logo">
@@ -78,7 +80,7 @@
 							id: "webview_embed.html",
 							createNew: false,
 							show: {
-								autoShow: true, //页面loaded事件发生后自动显示，默认为true
+								autoShow: false, //页面loaded事件发生后自动显示，默认为true
 								aniShow: "fade-in", //页面显示动画，默认为”slide-in-right“；
 								duration: 200 //页面动画持续时间，Android平台默认100毫秒，iOS平台默认200毫秒；
 							},
@@ -87,7 +89,8 @@
 								title: '正在加载...',
 							}
 						});
-					} else {
+					}
+					else {
 						plus.nativeUI.alert(jsonData.errorMsg);
 					}
 				},
@@ -100,8 +103,30 @@
 		}
 
 		$("#login").on("tap", function() {
-			init();
+			mui.openWindow({
+				url: "index.html",
+				id: "index.html",
+				createNew: false,
+				show: {
+					autoShow: true, //页面loaded事件发生后自动显示，默认为true
+					aniShow: "pop-in", //页面显示动画，默认为”slide-in-right“；
+					duration: 200 //页面动画持续时间，Android平台默认100毫秒，iOS平台默认200毫秒；
+				},
+				waiting: {
+					autoShow: true,
+					title: '正在加载...',
+				}
+			});
 		});
+		
+		if(window.plus) {
+			plusReady()
+		} else {
+			document.addEventListener('plusready', plusReady, false);
+		}
+			
+		function plusReady(){
+		}
 	</script>
 
 </html>

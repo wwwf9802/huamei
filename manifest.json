@@ -287,7 +287,19 @@
 					"img/index-product1.png",
 					"img/index-product-AD.png",
 					"myCenter.html",
-					"buy-car.html"
+					"buy-car.html",
+					"css/lzr.css",
+					"css/base-reset.css",
+					"images/icon-oa.png",
+					"images/icon-project.png",
+					"images/icon-new-check.png",
+					"images/icon-sale.png",
+					"images/icon-project-check.png",
+					"images/icon-oa-check.png",
+					"images/icon-new.png",
+					"images/icon-sale-check.png",
+					"js/flexible_css.js",
+					"js/flexible.js"
 				],
 				"refer": [
 					"plus/payment.html",
@@ -319,7 +331,11 @@
 					"plus/webview.html",
 					"plus/geolocation.html",
 					"about.html",
-					"plus/events.html"
+					"plus/events.html",
+					"news.html",
+					"oa_index.html",
+					"sale.html",
+					"xiangmu.html"
 				],
 				"priority": 0
 			},
@@ -1468,9 +1484,12 @@
 					"css/mui.min.css",
 					"images/login/paw-bg.png",
 					"js/flexible.js",
-					"css/swiper-3.3.1.min.css"
+					"css/swiper-3.3.1.min.css",
+					"js/global.js"
 				],
-				"refer": [],
+				"refer": [
+					"index.html"
+				],
 				"priority": 0
 			},
 			"upload-img.html": {
@@ -1480,6 +1499,156 @@
 					"upload/LocalResizeIMG.js",
 					"css/mui.min.css",
 					"js/uploadImg.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"news.html": {
+				"resources": [
+					"images/team-icon.png",
+					"css/lzr.css",
+					"css/base-reset.css",
+					"css/common.css",
+					"images/wofaqi-icon.png",
+					"images/done-icon.png",
+					"css/mui.min.css",
+					"images/news-icon.png",
+					"images/daichuli-icon.png",
+					"fonts/mui.ttf",
+					"js/zepto1.1.6.min.js",
+					"js/flexible_css.js",
+					"js/mui.min.js",
+					"js/flexible.js",
+					"js/public.js"
+				],
+				"refer": [
+					"xiaoxi/news-list.html",
+					"xiaoxi/daichuli.html"
+				],
+				"priority": 0
+			},
+			"oa_index.html": {
+				"resources": [
+					"images/cheliang.png",
+					"images/yunpan.png",
+					"images/shigong.png",
+					"images/huiyi.png",
+					"images/qiye.png",
+					"images/banner.png",
+					"images/tongzhi.png",
+					"css/swiper-3.3.1.min.css",
+					"css/base-reset.css",
+					"css/mui.min.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"sale.html": {
+				"resources": [
+					"images/dianmian-gendan.png",
+					"images/kehu-liebiao.png",
+					"images/jiazhuang-gendan.png",
+					"images/lingshou-xiadan.png",
+					"images/shangpin-jiage.png",
+					"images/wuliu-gendan.png",
+					"js/swiper-3.3.1.min.js",
+					"css/base-reset.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"xiangmu.html": {
+				"resources": [
+					"images/icon-juxing.png",
+					"images/icon-jiantou.png",
+					"css/swiper-3.3.1.min.css",
+					"js/vue.min.js",
+					"js/swiper-3.3.1.min.js",
+					"css/base-reset.css",
+					"css/lzr.css",
+					"js/zepto1.1.6.min.js",
+					"js/flexible_css.js",
+					"css/common.css",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"js/flexible.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"xiaoxi/news-list.html": {
+				"resources": [
+					"css/base-reset.css",
+					"images/icon-red.png",
+					"css/mui.min.css",
+					"images/news-list-bg.png",
+					"css/lzr.css",
+					"images/icon-oa.png",
+					"fonts/mui.ttf",
+					"js/swiper-3.3.1.min.js",
+					"js/zepto1.1.6.min.js",
+					"js/flexible_css.js",
+					"css/common.css",
+					"js/mui.min.js",
+					"images/icon-project.png",
+					"images/icon-new-check.png",
+					"js/flexible.js",
+					"images/icon-sale.png",
+					"css/swiper-3.3.1.min.css",
+					"news.html",
+					"xiaoxi/news-details.html",
+					"sale.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"xiaoxi/daichuli.html": {
+				"resources": [
+					"js/zepto1.1.6.min.js",
+					"css/lzr.css",
+					"css/base-reset.css",
+					"js/flexible_css.js",
+					"js/mui.min.js",
+					"css/common.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"js/vue.min.js",
+					"images/icon-p-lanse.png",
+					"js/swiper-3.3.1.min.js",
+					"js/flexible.js",
+					"images/icon-shuaixuan.png",
+					"css/swiper-3.3.1.min.css",
+					"xiaoxi/renwu-mingxi.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"xiaoxi/renwu-mingxi.html": {
+				"resources": [
+					"js/picker/mui.poppicker.js",
+					"js/picker/mui.picker.min.css",
+					"css/base-reset.css",
+					"css/mui.min.css",
+					"js/picker/mui.picker.min.js",
+					"js/layer-m/need/layer.css",
+					"js/layer-m/layer.js",
+					"js/picker/mui.poppicker.css",
+					"images/icon-deboule-p.png",
+					"xiaoxi/daichuli.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"xiaoxi/news-details.html": {
+				"resources": [
+					"xiaoxi/news-list.html",
+					"css/lzr.css",
+					"css/base-reset.css",
+					"css/common.css",
+					"css/mui.min.css",
+					"css/swiper-3.3.1.min.css"
 				],
 				"refer": [],
 				"priority": 0

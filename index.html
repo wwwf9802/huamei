@@ -54,13 +54,15 @@
 			var rem = width / 10;
 			var fontSize = rem;
 			var bottomheight = parseInt(fontSize) * 1.307 + 'px';
-			var topheight=parseInt(fontSize) * 1.375 + 'px';
+			var topheight = parseInt(fontSize) * 1.375 + 'px';
 
 			var subStyles = {
 				top: topheight,
-				bottom: bottomheight
+				bottom: bottomheight,
+				//bounceBackground:"#666666",
+				//bounce: 'vertical',
 			};
-			
+
 			if(window.plus) {
 				plusReady()
 			} else {
@@ -72,9 +74,10 @@
 				plus.webview.create("xiangmu.html", "xiangmu", subStyles);
 				plus.webview.create("sale.html", "sale", subStyles);
 				plus.webview.create("oa_index.html", "oa_index", subStyles);
-				/*mui.openWindow({
-					url: "section.html",
-					id: "section",
+				mui.openWindow({
+					url: "news.html",
+					id: "news.html",
+					styles:subStyles,
 					createNew: false,
 					show: {
 						autoShow: true, //页面loaded事件发生后自动显示，默认为true
@@ -85,32 +88,30 @@
 						autoShow: true,
 						title: '正在加载...',
 					}
-				});*/				
-				plus.webview.getWebviewById("news").show("fade-in",200);		
-				
+				});
+
 			}
-			
-			var lastId="news";
-			
-			$(".item-foot").on("tap",function(){
-				
+
+			var lastId = "news";
+
+			$(".item-foot").on("tap", function() {
+
 				$(".item-foot").removeClass("cur");
 				$(this).addClass("cur");
-				
-				var id=$(this).data("id");
-				var content=$(this).find("a").text();
-				topContent.innerHTML=content;
-				
-				
+
+				var id = $(this).data("id");
+				var content = $(this).find("a").text();
+				topContent.innerHTML = content;
+
 				//plus.webview.getWebviewById(id).evalJS("init()");
-				plus.webview.getWebviewById(id).show("fade-in",200);			
-				lastId=id;
-				
-				var arr=plus.webview.getWebviewById(id).opened();				 
-				for(var i=0;i<arr.length;i++){
+				plus.webview.getWebviewById(id).show("fade-in", 200);
+				lastId = id;
+
+				var arr = plus.webview.getWebviewById(id).opened();
+				for(var i = 0; i < arr.length; i++) {
 					arr[i].close();
 				}
-				
+
 				/*setTimeout(function(){
 					var array = plus.webview.all();
 			    	if(array) {
@@ -120,7 +121,7 @@
 						}
 				    }
 				},1000);*/
-				
+
 			});
 		</script>
 	</body>
