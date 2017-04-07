@@ -35,7 +35,7 @@
 					</div>
 					<div class="mui-input-row">
 						<label class='paw-icon'></label>
-						<input  id='password' type="password" class="mui-input-password mui-input" placeholder="请输入密码">
+						<input id='password' type="password" class="mui-input-password mui-input" placeholder="请输入密码">
 						<!-- <span class='pas-not-see'></span> -->
 					</div>
 				</form>
@@ -48,7 +48,6 @@
 				</div>
 				<div class="mui-content-padded oauth-area">
 				</div>
-				<input type="text" />
 			</div>
 
 		</div>
@@ -60,11 +59,8 @@
 		<script type="text/javascript" src="js/global.js"></script>
 	</body>
 	<script>
-		init();
 		function init() {
-			console.log(getBaseServerUrl() + '/system/user/login');
 			mui.ajax(getBaseServerUrl() + '/system/user/login', {
-				//dataType: 'json', //服务器返回json格式数据
 				type: 'get', //HTTP请求类型
 				data: {
 					tenantId: 'humello',
@@ -74,8 +70,24 @@
 					esn: ''
 				},
 				success: function(jsonData) {
-					if(jsonData.empOrg!==undefined){
-						alert(11111111111);
+					if(jsonData.hasOwnProperty("empOrg")) {
+						localStorage.loginData = JSON.stringify(jsonData);
+						mui.openWindow({
+							url: "index.html",
+							id: "webview_embed.html",
+							createNew: false,
+							show: {
+								autoShow: true, //页面loaded事件发生后自动显示，默认为true
+								aniShow: "fade-in", //页面显示动画，默认为”slide-in-right“；
+								duration: 200 //页面动画持续时间，Android平台默认100毫秒，iOS平台默认200毫秒；
+							},
+							waiting: {
+								autoShow: true,
+								title: '正在加载...',
+							}
+						});
+					} else {
+						plus.nativeUI.alert(jsonData.errorMsg);
 					}
 				},
 				error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -85,6 +97,10 @@
 				}
 			});
 		}
+
+		$("#login").on("tap", function() {
+			init();
+		});
 	</script>
 
 </html>
