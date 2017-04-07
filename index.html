@@ -20,21 +20,21 @@
 	</head>
 
 	<body>
-		<div class="header">
-			华美乐
+		<div id="topContent" class="header">
+			消息
 		</div>
 		<!-- <div class="footer g-us-footer">
        <div class="item-foot index cur"><a href="index.html">首页</a></div>
        <div class="item-foot us"><a href="us.html">我的</a></div>
     </div>-->
 		<div class="footer">
-			<div class="item-foot new" data-id="news">
+			<div class="item-foot new cur" data-id="news">
 				<a>消息</a>
 			</div>
 			<div class="item-foot project" data-id="xiangmu">
 				<a>项目</a>
 			</div>
-			<div class="item-foot sale cur" data-id="sale">
+			<div class="item-foot sale" data-id="sale">
 				<a>销售</a>
 			</div>
 			<div class="item-foot oa" data-id="oa_index">
@@ -68,8 +68,8 @@
 			}
 
 			function plusReady() {
-				plus.webview.create("xiangmu.html", "xiangmu", subStyles);
 				plus.webview.create("news.html", "news", subStyles);
+				plus.webview.create("xiangmu.html", "xiangmu", subStyles);
 				plus.webview.create("sale.html", "sale", subStyles);
 				plus.webview.create("oa_index.html", "oa_index", subStyles);
 				/*mui.openWindow({
@@ -86,34 +86,30 @@
 						title: '正在加载...',
 					}
 				});*/				
-				plus.webview.getWebviewById("xiangmu").show("fade-in",200);		
+				plus.webview.getWebviewById("news").show("fade-in",200);		
 				
 			}
 			
-			var lastId="xiangmu";
+			var lastId="news";
 			
 			$(".item-foot").on("tap",function(){
-							
-				var array = plus.webview.all();
-		    	if(array) {
-					for(var i = 0, len = array.length; i < len; i++) {
-                       console.log(array[i].getURL());
-					}					 
-			    }
 				
 				$(".item-foot").removeClass("cur");
 				$(this).addClass("cur");
 				
 				var id=$(this).data("id");
+				var content=$(this).find("a").text();
+				topContent.innerHTML=content;
 				
-				plus.webview.getWebviewById(id).evalJS("init()");
+				
+				//plus.webview.getWebviewById(id).evalJS("init()");
 				plus.webview.getWebviewById(id).show("fade-in",200);			
 				lastId=id;
 				
-				/*var arr=plus.webview.getWebviewById(id).opened();				 
+				var arr=plus.webview.getWebviewById(id).opened();				 
 				for(var i=0;i<arr.length;i++){
 					arr[i].close();
-				}*/
+				}
 				
 				/*setTimeout(function(){
 					var array = plus.webview.all();
