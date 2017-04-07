@@ -98,6 +98,7 @@
 
 				$(".item-foot").removeClass("cur");
 				$(this).addClass("cur");
+				
 
 				var id = $(this).data("id");
 				var content = $(this).find("a").text();
@@ -107,12 +108,11 @@
 				plus.webview.getWebviewById(id).show("fade-in", 200);
 				lastId = id;
 
-				var arr = plus.webview.getWebviewById(id).opened();
+				/*var arr = plus.webview.getWebviewById(id).opened();
 				for(var i = 0; i < arr.length; i++) {
 					arr[i].close();
-				}
+				}*/
 
-				/*setTimeout(function(){
 					var array = plus.webview.all();
 			    	if(array) {
 			    		console.log("********************");
@@ -120,7 +120,6 @@
 							console.log(array[i].getURL());
 						}
 				    }
-				},1000);*/
 
 			});
 		</script>

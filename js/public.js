@@ -3,11 +3,14 @@ function openNew(url) {
 		location.href = url;
 		return;
 	}
-
-	var webview = plus.webview.create(url, url);
-	webview.addEventListener("titleUpdate", function() {
+	if(plus.webview.getWebviewById(url)){
+		return;
+	}else{
+		var webview = plus.webview.create(url, url);
+		webview.addEventListener("titleUpdate", function() {
 		setTimeout(function() {
 			webview.show("pop-in", 200);
 		}, 10);
-	});
+		});
+	}
 }
