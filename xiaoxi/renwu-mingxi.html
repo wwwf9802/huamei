@@ -84,7 +84,7 @@
     	 	  	   反馈描述：
     	 	 </div>
     	 	 <div class="textarea">
-    	 	 	 <textarea name="" @input='keyup($event)' id="textarea_info" cols="30" rows="10" placeholder="说点什么吧..."></textarea>
+    	 	 	 <textarea v-el:textarea  class='' name="" @input='keyup($event)' id="textarea_info" cols="30" rows="10" placeholder="说点什么吧..."></textarea>
     	 	 	 <span v-el:numtips class='num-tips'><span class='shuru-num'>{{num}}</span>/500</span>
     	 	 </div>
     	 </div>
@@ -113,7 +113,7 @@
 		                 this.num=len;
 		                 this.panduan=true;
 		            } else {
-		            	 tanchu("反馈描述最多限制为500字数！");
+                         this.$els.textarea.className='error_red';
 		                 this.num=500;
 		                 this.panduan=false;
 		            }

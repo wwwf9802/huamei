@@ -1227,6 +1227,9 @@
   height:1.867rem;
   font-size: 0.32rem;
 }
+.g-renwu-mingxi .fankui-miaoshu .textarea textarea.error_red{
+  border:1px solid #b62f49;
+}
 .g-renwu-mingxi .fankui-miaoshu .textarea .num-tips{
 	position: absolute;
 	right: 0.16rem;
