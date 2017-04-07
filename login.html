@@ -70,6 +70,7 @@
 					esn: ''
 				},
 				success: function(jsonData) {
+					console.log(JSON.stringify(jsonData));
 					if(jsonData.hasOwnProperty("empOrg")) {
 						localStorage.loginData = JSON.stringify(jsonData);
 						mui.openWindow({
