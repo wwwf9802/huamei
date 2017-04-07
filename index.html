@@ -20,7 +20,7 @@
 	</head>
 
 	<body>
-		<div id="topContent" class="header">
+		<div id="topContent" class="mui-bar mui-bar-nav header">
 			消息
 		</div>
 		<!-- <div class="footer g-us-footer">
@@ -54,7 +54,7 @@
 			var rem = width / 10;
 			var fontSize = rem;
 			var bottomheight = parseInt(fontSize) * 1.307 + 'px';
-			var topheight = parseInt(fontSize) * 1.375 + 'px';
+			var topheight = parseInt(fontSize) * 1.5 + 'px';
 
 			var subStyles = {
 				top: topheight,
@@ -114,12 +114,14 @@
 				}*/
 
 					var array = plus.webview.all();
-			    	if(array) {
+			    	/*if(array) {
 			    		console.log("********************");
 						for(var i = 0; i < array.length; i++) {
 							console.log(array[i].getURL());
 						}
-				    }
+				    }*/
+				   console.log("当前一共有"+array.length+"个webview");
+				   console.log(JSON.stringify(array));
 
 			});
 		</script>

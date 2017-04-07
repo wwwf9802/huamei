@@ -143,12 +143,12 @@ a {
 
 /* 让链接在 hover 状态下具有下划线 */
 a:hover {
-	text-decoration:underline;
+	text-decoration:none;
 }
 
 /* 这两个元素的下划线，默认去掉 */
 ins, a {
-	text-decoration:none;
+	text-decoration:none !important;
 	color:#666;
 }
 
