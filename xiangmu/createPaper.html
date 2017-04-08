@@ -41,7 +41,7 @@
 					<input type="file" id="uploadphoto" name="uploadfile" accept="image/*" style="display: none;" />
 					<div v-for="item in imgDataArr" class="photo-div">
 						<img src="{{item}}" class="uploadPic" />
-						<img src="../images/check-close.png" class="close" v-on:click="close($index)" />
+						<img src="../images/check-close.png" class="close" v-on:tap="close($index)" />
 					</div>
 					<div class="photo-div">
 						<img id="upploadImg" src="../images/addphoto.png" class="uploadPic" />
@@ -105,29 +105,29 @@
 		// 扩展API加载完毕，现在可以正常调用扩展API 
 		function onPlusReady() {
 			if(plus.os.name == "iOS"){
-	        $("#upploadImg").on('click', function() {
+	        $("#upploadImg").on('tap', function() {
 			        $("#uploadphoto").click();
 		        });
 	        }else{
-	    	    $("#upploadImg").on('click', function() {
+	    	    $("#upploadImg").on('tap', function() {
 			        $(".shadow").fadeIn(300);
 		        });
 	        }
 		}
 	    
-		$(".shadow").on('click', function() {
+		$(".shadow").on('tap', function() {
 			$(this).fadeOut(300);
 		});
 		
-		$(".closePhoto").on('click', function() {
+		$(".closePhoto").on('tap', function() {
 			$(this).fadeOut(300);
 		});
 		
-		$("#getPhoto").on('click', function() {
+		$("#getPhoto").on('tap', function() {
 			$("#uploadphoto").click();
 		});
 
-		$("#getCamera").on('click', function() {
+		$("#getCamera").on('tap', function() {
 			captureImage();
 		});
 		// 拍照
