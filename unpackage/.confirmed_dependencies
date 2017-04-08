@@ -1,0 +1,25 @@
+{
+	"xiangmu/createPaper.html": {
+		"resources": [
+			"css/base-reset.css",
+			"css/lzr.css",
+			"images/icon-jiantou.png",
+			"upload/mobileBUGFix.mini.js",
+			"fonts/mui.ttf",
+			"images/check-close.png",
+			"js/vue.min.js",
+			"js/swiper-3.3.1.min.js",
+			"js/zepto1.1.6.min.js",
+			"js/flexible_css.js",
+			"js/mui.min.js",
+			"css/common.css",
+			"upload/LocalResizeIMG.js",
+			"css/mui.min.css",
+			"css/ww.css",
+			"images/addphoto.png",
+			"js/flexible.js",
+			"css/swiper-3.3.1.min.css",
+			"js/fx.js"
+		]
+	}
+}
