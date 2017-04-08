@@ -22,7 +22,20 @@
 
 	<body>
 		<div class="g-content g-content-project-list" style="top:0">
-			<div class="item-project">
+		    <div class="serach-lay">
+		        <form  method="post" id="form" action="##">
+		    	  <input v-el:search v-on:focus="onfocus($event)" v-on:blur="blur($event)" debounce="500" class='search' type="search" name="search" id="search" placeholder="电话/地址/业主名称">
+		    	  <div v-show='focusy' id='cancel' class="botton cancel-bottom">取消</div>
+		    	</form>
+		    </div>
+		    <div v-if='search_cont' class="Gsearch_content">
+		             <div class="title">历史记录</div>
+                    <ul id="his_content">
+                    	 
+                    </ul>
+                    <ul id="search_content" style="display:none;"></ul>
+            </div>
+			<div v-else class="item-project" id='item-project'>
 				<div class="item-pro-list">
 					<div class="head">
 						<a href="project-details.html">
@@ -220,13 +233,34 @@
 
 			</div>
 		</div>
-		<div style="height:1000px"></div>
 
 		<script src="js/zepto1.1.6.min.js" type="text/javascript"></script>
 		<script src='js/swiper-3.3.1.min.js' type="text/javascript"></script>
 		<script src='js/mui.min.js'></script>
 		<script src='js/vue.min.js'></script>
 		<script>
+
+		    var vm=new Vue({
+                el:"body",
+                data:{
+                  focusy:false,
+                  search_cont:false
+                },
+                methods:{
+                  onfocus(e){
+                  	 this.$els.search.className='onfocus'
+                  	 this.focusy=true;
+                  	 this.search_cont=true;
+                  	 this.$nextTick(function(){
+                  	 	showSearchHis();
+                  	 })
+                  },
+                  blur(e){
+                  	 // this.$els.search.className='left'
+                  }
+                }
+		    });
+
 			$(".item-lists .list").on("touchstart", function() {
 				$(this).addClass("cur")
 			});
@@ -264,6 +298,159 @@
 				    },"华美乐");
 				}
 			}
+			// 点击取消清空输入框数据
+            $(".cancel-bottom").on('tap',function(){
+            	 search.value='';
+            	 vm.focusy=false;
+            	 vm.search_cont=false;
+            	 vm.$els.search.className='search'
+            })
+
+		   // 点击手机软键盘的搜索框 
+		   form.onsubmit = function() {
+			    var search_value=search.value;
+			    setHistoryData(search_value);
+			    vm.focusy=false;
+                vm.search_cont=false;
+			    return false;
+		   };
+           // input搜索框获取到焦点出现的搜索历史记录
+	       function showSearchHis(){
+	                
+	                $("#his_content").show();
+ 	                $("html,body").css({
+	                    'overflow':'hidden'
+	                })
+	                
+
+	                if( localStorage.getItem("historyString") )
+	                {
+	                //  获取localStorage历史记录并赋值给数组historyArray
+	                var historyArray=localStorage.getItem("historyString").split(";");
+	                historyArray.reverse(); //数组反转
+	                if(historyArray.length>10){
+	                    var listnum=10
+	                }
+	                else{
+	                   var listnum= historyArray.length;
+	                }
+	                var listhistory=[];
+	                for(var i=0;i<listnum;i++){
+	                    listhistory[i]='<li><a href="?iRegionID=0&iPriceID=0&iLayoutID=0&sKeyword='+historyArray[i]+'&iFeatureID=">'+historyArray[i]+'</a></li>';
+	                }
+	                $("#his_content").html(listhistory.join(""));
+	             }
+	        };
+
+	        // 点击搜索按钮实现记录localStorage(历史搜索记录)以及跳转
+            function setHistoryData(value){
+                    $("html,body").css({
+                        'overflow':'visible'
+                    })
+                     
+                    if (localStorage.getItem("historyString")) 
+                    {
+                        var historyArray = localStorage.getItem("historyString").split(";");
+                    } 
+                    else {
+                        var historyArray = []
+                    }
+                    var searchcontent=value;
+                    if ($.trim(searchcontent) != "") 
+                    {
+                        searchcontent=jsXss(searchcontent);
+                        if ( historyArray.indexOf(searchcontent) != -1) 
+                        {
+                            historyArray.splice(historyArray.indexOf(searchcontent), 1)
+                        }
+                        historyArray.push(searchcontent);
+                        // 设定locanStorage本地历史记录的值
+                        localStorage.setItem("historyString", historyArray.join(";"))
+                    }
+                    window.location.href = '?iRegionID=0&iPriceID=0&iLayoutID=0&sKeyword=' + searchcontent + '&iFeatureID=';
+            };
+
+            function jsXss(s){
+                    { 
+                    var pattern = new RegExp("[%--`~!@#$^&*()=|{}':;',\\[\\].<>/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？]");
+                    var rs = ""; 
+                    for (var i = 0; i < s.length; i++) { 
+                     rs = rs+s.substr(i, 1).replace(pattern, ''); 
+                    }
+                    return rs;
+                    }  
+            }
+
+            // 监听input事件，实现模糊搜索
+            search.addEventListener('input',mohuSearchData); 
+            function mohuSearchData(e){
+                $("html,body").css({
+                        'overflow':'hidden'
+                })
+                $("#his_content").hide(); 
+                var skeyword=e.target.value;
+                var skeyword=trim(skeyword);
+                if($.trim(skeyword)!=""){
+                    $.ajax({
+                        url:"./js/more.json",//模糊搜索地址，结合后台数据的。
+                        type:"post",
+                        dataType:"json",
+                        data:{"keyword":skeyword},
+                        success:function(res){
+                            // console.log(res);
+                            var listsearch=[];
+                            // var listnum=res.data.data.data.length;
+                            var listnum=res.lists.length;
+                            if(listnum>0){
+                                $("#search_content").show();
+                                for(var i=0;i<listnum;i++){
+                                        var sLpName=res.lists[i].title;
+                                        var sLpNameNew=sLpName.replace(eval("/("+skeyword+")/gi"),'<span class="red2">$1</span>');
+                                        if( sLpNameNew.indexOf("span") >= 0  )
+                                        {
+                                            listsearch[i]=' <li data-name='+sLpName+'><a href="javascript:void(0)">'+
+                                    '<p class="sptitle">'+sLpNameNew+'</p>'+
+                                     '</a></li>'
+                                        }
+                                }
+                                $("#search_content").html(listsearch.join(""));
+                            }
+                            else{
+                               $("#search_content").hide();  
+                            }
+                        },
+                        error:function(res){
+                             console.dir(res);
+                        }
+                    })
+                }
+                else{
+                    $("#search_content").hide(); 
+                }
+            }
+
+            // 去除搜索关键字字符串中的空值。
+            // function trim(str){
+            //     return str.replace(/[ ]/g,""); //去除字符串中的空格
+            // }
+            function trim (text) {
+                if (typeof (text) == "string")
+                {
+                    return text.replace(/^\s*|\s*$/g, "");
+                }
+                else
+                {
+                    return text;
+                }
+            }
+            
+            // 点击 模糊搜索出来的数据,也是执行 setHistoryData 这个方法
+            $("#search_content").on("tap","li",function(){
+            	alert(111)
+            	// var value=$(this).find('.sptitle').html();
+            	// alert(value);
+            	// setHistoryData(value);
+            });
 		</script>
 	</body>
 

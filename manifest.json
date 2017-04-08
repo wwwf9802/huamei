@@ -1573,7 +1573,10 @@
 					"css/common.css",
 					"js/mui.min.js",
 					"css/mui.min.css",
-					"js/flexible.js"
+					"js/flexible.js",
+					"images/icon-search.png",
+					"xiangmu.html",
+					"js/more.json"
 				],
 				"refer": [],
 				"priority": 0
