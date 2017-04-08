@@ -14,6 +14,8 @@
 		<link rel="stylesheet" type="text/css" href="../css/common.css">
 		<link rel="stylesheet" type="text/css" href="../css/lzr.css">
 		<link rel="stylesheet" href="../css/ww.css" />
+		<link rel="stylesheet" href="../js/picker/mui.picker.min.css" />
+		<link rel="stylesheet" href="../js/picker/mui.poppicker.css" />
 	</head>
 
 	<body class="createPaper">
@@ -29,7 +31,7 @@
 				<div class="title left">
 					商品类型
 				</div>
-				<div class="item right">
+				<div id="selectProduct" class="item right">
 					点击选择
 				</div>
 				<i></i>
@@ -65,6 +67,8 @@
 	<script src='../js/mui.min.js'></script>
 	<script src='../js/vue.min.js'></script>
 	<script type="text/javascript" src="../js/zepto1.1.6.min.js" ></script>
+	<script type="text/javascript" src="../js/picker/mui.picker.min.js" ></script>
+	<script type="text/javascript" src="../js/picker/mui.poppicker.js" ></script>
 	<script src="../upload/LocalResizeIMG.js"></script>
 	<script src="../upload/mobileBUGFix.mini.js"></script>
 	<script>
@@ -179,6 +183,21 @@
 				$(".loading").css('display', 'none');
 			}
 		}
+		
+		(function(mui) {
+			mui.init();
+			var arr = [{text:"11111",value:"11111"},{text:"2222",value:"2222"}];
+			selectProduct.addEventListener('tap', function() {
+				var productPicker = new mui.PopPicker({
+					layer: 1,
+				});
+				productPicker.setData(arr);
+				productPicker.show(function(items) {
+					selectProduct.innerText = items[0].text;
+					productPicker.dispose();
+				});
+			}, false);
+		})(mui);
 	</script>
 
 </html>
