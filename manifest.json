@@ -10,7 +10,11 @@
     "icons": {
         "144": "icon.png"
     },
+<<<<<<< HEAD
+    "launch_path": "xiaoxi/chatList.html",/*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
+=======
     "launch_path": "login.html",/*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
+>>>>>>> ce316e6c291213937ee3d6f494c826cd6f392153
     "developer": {
         "name": "",/*开发者名称*/
         "email": "",/*开发者邮箱地址*/
@@ -1705,6 +1709,60 @@
 				],
 				"refer": [],
 				"priority": 0
+<<<<<<< HEAD
+			},
+			"xiaoxi/chatList.html": {
+				"resources": [
+					"js/zepto1.1.6.min.js",
+					"images/cheliang.png",
+					"css/base-reset.css",
+					"js/flexible_css.js",
+					"js/mui.min.js",
+					"css/common.css",
+					"css/mui.min.css",
+					"css/ww.css",
+					"js/flexible.js",
+					"js/vue.min.js",
+					"js/global.js",
+					"js/public.js"
+				],
+				"refer": [
+					"xiaoxi/im-chat.html"
+				],
+				"priority": 0
+			},
+			"xiaoxi/im-chat.html": {
+				"resources": [
+					"js/mui.imageViewer.js",
+					"images/logo.png",
+					"css/app.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"css/mui.imageviewer.css",
+					"js/arttmpl.js",
+					"js/mui.min.js",
+					"css/common.css",
+					"css/lzr.css",
+					"css/base-reset.css",
+					"css/ww.css",
+					"css/swiper-3.3.1.min.css",
+					"js/public.js",
+					"js/global.js",
+					"js/vue.min.js",
+					"xiaoxi/%3C%\u003d(item.logo)%20%%3E",
+					"xiaoxi/%3C%\u003d(item.content)%%3E",
+					"images/banner.png",
+					"js/mui.previewimage.js",
+					"css/viewer.min.js",
+					"js/viewer.min.js",
+					"css/viewer.min.css",
+					"js/jquery.min.js",
+					"js/zepto1.1.6.min.js"
+				],
+				"refer": [],
+				"priority": 0
+=======
+>>>>>>> ce316e6c291213937ee3d6f494c826cd6f392153
 			}
 		},
 		"idle": {

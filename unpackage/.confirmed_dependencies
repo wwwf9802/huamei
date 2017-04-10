@@ -1,4 +1,32 @@
 {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+	"xiangmu/createPaper.html": {
+		"resources": [
+			"css/base-reset.css",
+			"css/lzr.css",
+			"images/icon-jiantou.png",
+			"upload/mobileBUGFix.mini.js",
+			"fonts/mui.ttf",
+			"images/check-close.png",
+			"js/vue.min.js",
+			"js/swiper-3.3.1.min.js",
+			"js/zepto1.1.6.min.js",
+			"js/flexible_css.js",
+			"js/mui.min.js",
+			"css/common.css",
+			"upload/LocalResizeIMG.js",
+			"css/mui.min.css",
+			"css/ww.css",
+			"images/addphoto.png",
+			"js/flexible.js",
+			"css/swiper-3.3.1.min.css",
+			"js/fx.js"
+		],
+		"refer": []
+	},
+>>>>>>> 3f7d9d44118affceee31b126fabf237af48ed37e
 	"xiangmu/photoList.html": {
 		"resources": [
 			"css/base-reset.css",
@@ -20,6 +48,29 @@
 			"images/addphoto.png",
 			"js/flexible.js",
 			"css/swiper-3.3.1.min.css"
+<<<<<<< HEAD
+=======
+		],
+		"refer": []
+	},
+	"xiaoxi/chatList.html": {
+		"resources": [
+			"js/zepto1.1.6.min.js",
+			"images/cheliang.png",
+			"css/base-reset.css",
+			"js/flexible_css.js",
+			"js/mui.min.js",
+			"css/common.css",
+			"css/mui.min.css",
+			"css/ww.css",
+			"js/flexible.js",
+			"js/vue.min.js",
+			"js/global.js",
+			"js/public.js"
+		],
+		"refer": [
+			"xiaoxi/im-chat.html"
+>>>>>>> 3f7d9d44118affceee31b126fabf237af48ed37e
 		]
 	},
 	"login.html": {
@@ -41,6 +92,7 @@
 			"js/global.js",
 			"js/flexible.js",
 			"css/swiper-3.3.1.min.css"
+<<<<<<< HEAD
 		],
 		"refer": [
 			"index.html"
@@ -107,4 +159,158 @@
 			"css/swiper-3.3.1.min.css"
 		]
 	}
+=======
+		]
+	},
+	"xiaoxi/im-chat.html": {
+		"resources": [
+			"js/mui.imageViewer.js",
+			"images/logo.png",
+			"css/app.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"css/mui.imageviewer.css",
+			"js/arttmpl.js",
+			"js/mui.min.js",
+			"css/common.css",
+			"css/lzr.css",
+			"css/base-reset.css",
+			"css/ww.css",
+			"css/swiper-3.3.1.min.css",
+			"js/public.js",
+			"js/global.js",
+			"js/vue.min.js",
+			"xiaoxi/%3C%\u003d(item.logo)%20%%3E",
+			"xiaoxi/%3C%\u003d(item.content)%%3E",
+			"images/banner.png",
+			"js/mui.previewimage.js",
+			"css/viewer.min.js",
+			"js/viewer.min.js",
+			"css/viewer.min.css",
+			"js/jquery.min.js",
+			"js/zepto1.1.6.min.js"
+		]
+	}
+=======
+  "news.html": {
+    "resources": [
+      "css/base-reset.css",
+      "css/mui.min.css",
+      "css/lzr.css",
+      "css/common.css",
+      "js/public.js",
+      "images/news-icon.png",
+      "images/team-icon.png",
+      "images/wofaqi-icon.png",
+      "images/done-icon.png",
+      "images/daichuli-icon.png"
+    ],
+    "refer": []
+  },
+  "index.html": {
+    "refer": [
+      "news.html",
+      "oa_index.html",
+      "sale.html",
+      "xiangmu.html"
+    ],
+    "resources": [
+      "css/lzr.css",
+      "css/base-reset.css",
+      "css/common.css",
+      "css/mui.min.css",
+      "images/icon-oa.png",
+      "images/icon-project.png",
+      "images/icon-new-check.png",
+      "images/icon-sale.png",
+      "images/icon-project-check.png",
+      "images/icon-new.png"
+    ]
+  },
+  "login.html": {
+    "resources": [
+      "js/global.js",
+      "images/login/logo.png",
+      "css/base-reset.css",
+      "css/lzr.css",
+      "images/login/user-btn.png",
+      "fonts/mui.ttf",
+      "js/vue.min.js",
+      "js/swiper-3.3.1.min.js",
+      "js/zepto1.1.6.min.js",
+      "js/flexible_css.js",
+      "css/common.css",
+      "js/mui.min.js",
+      "images/login/user-bg.png",
+      "css/mui.min.css",
+      "images/login/paw-bg.png",
+      "js/flexible.js",
+      "css/swiper-3.3.1.min.css"
+    ],
+    "refer": [
+      "index.html"
+    ]
+  },
+  "xiangmu.html": {
+    "resources": [
+      "css/base-reset.css",
+      "css/mui.min.css",
+      "images/icon-juxing.png",
+      "images/icon-jiantou.png",
+      "images/icon-search.png",
+      "css/swiper-3.3.1.min.css",
+      "js/more.json",
+      "xiangmu.html"
+    ],
+    "refer": []
+  },
+  "xiangmu/photoList.html": {
+    "resources": [
+      "css/base-reset.css",
+      "css/lzr.css",
+      "upload/mobileBUGFix.mini.js",
+      "images/icon-red.png",
+      "images/check-close.png",
+      "fonts/mui.ttf",
+      "js/vue.min.js",
+      "js/swiper-3.3.1.min.js",
+      "js/zepto1.1.6.min.js",
+      "js/flexible_css.js",
+      "images/logo.png",
+      "css/common.css",
+      "js/mui.min.js",
+      "upload/LocalResizeIMG.js",
+      "css/mui.min.css",
+      "css/ww.css",
+      "images/addphoto.png",
+      "js/flexible.js",
+      "css/swiper-3.3.1.min.css"
+    ],
+    "refer": []
+  },
+  "oa_index.html": {
+    "resources": [
+      "images/cheliang.png",
+      "images/yunpan.png",
+      "images/shigong.png",
+      "images/huiyi.png",
+      "images/qiye.png",
+      "images/banner.png",
+      "images/tongzhi.png"
+    ],
+    "refer": []
+  },
+  "sale.html": {
+    "resources": [
+      "images/dianmian-gendan.png",
+      "images/kehu-liebiao.png",
+      "images/jiazhuang-gendan.png",
+      "images/lingshou-xiadan.png",
+      "images/shangpin-jiage.png",
+      "images/wuliu-gendan.png"
+    ],
+    "refer": []
+  }
+>>>>>>> ce316e6c291213937ee3d6f494c826cd6f392153
+>>>>>>> 3f7d9d44118affceee31b126fabf237af48ed37e
 }
