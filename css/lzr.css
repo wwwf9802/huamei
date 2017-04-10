@@ -924,7 +924,16 @@
     min-height: 0.667rem;
 }
 .g-content-project-list .Gsearch_content .title{
-   
+   text-indent: 1em;
+   height:0.933rem;
+   line-height: 0.933rem;
+   background-color: #ffffff;
+}
+.g-content-project-list .Gsearch_content .title.clear-his{
+    text-align: center;
+    color:#bfbfbf;
+    font-size:0.373rem;
+    line-height: 0.933rem;
 }
 
 .g-content-project-list #his_content{
@@ -934,7 +943,11 @@
 	 height:0.933rem;
 	 line-height: 0.933rem;
 	 border-bottom: 1px solid #eee;
+	 background:url(../images/icon-jiantou.png) no-repeat;
+	 background-size: 0.253rem 0.453rem;
+	 background-position: 95% center;
 	 background-color: #ffffff;
+
 }
 .g-content-project-list #his_content li a{
 	 height:0.933rem;

@@ -29,10 +29,13 @@
 		    	</form>
 		    </div>
 		    <div v-if='search_cont' class="Gsearch_content">
-		             <div class="title">历史记录</div>
-                    <ul id="his_content">
-                    	 
-                    </ul>
+		            <div id="his_content_lay">
+			            <div v-show='his_length' class="title">历史搜索</div>
+	                    <ul id="his_content">
+	                    	 
+	                    </ul>
+	                    <div v-show='his_length' class="title clear-his">清空搜索记录</div>
+                    </div>
                     <ul id="search_content" style="display:none;"></ul>
             </div>
 			<div v-else class="item-project" id='item-project'>
@@ -244,7 +247,8 @@
                 el:"body",
                 data:{
                   focusy:false,
-                  search_cont:false
+                  search_cont:false,
+                  his_length:0
                 },
                 methods:{
                   onfocus(e){
@@ -314,9 +318,15 @@
                 vm.search_cont=false;
 			    return false;
 		   };
+
+		   // 清空搜索记录 
+		   $(".g-content").on('tap','.clear-his',function(){
+		   	   $("#his_content").hide();
+		   	   localStorage.clear();
+		   	   vm.his_length=0;
+		   })
            // input搜索框获取到焦点出现的搜索历史记录
 	       function showSearchHis(){
-	                
 	                $("#his_content").show();
  	                $("html,body").css({
 	                    'overflow':'hidden'
@@ -338,6 +348,7 @@
 	                for(var i=0;i<listnum;i++){
 	                    listhistory[i]='<li><a href="?iRegionID=0&iPriceID=0&iLayoutID=0&sKeyword='+historyArray[i]+'&iFeatureID=">'+historyArray[i]+'</a></li>';
 	                }
+	                vm.his_length=listhistory.length;
 	                $("#his_content").html(listhistory.join(""));
 	             }
 	        };
@@ -445,11 +456,11 @@
             }
             
             // 点击 模糊搜索出来的数据,也是执行 setHistoryData 这个方法
-            $("#search_content").on("tap","li",function(){
-            	alert(111)
-            	// var value=$(this).find('.sptitle').html();
-            	// alert(value);
-            	// setHistoryData(value);
+            $(".g-content").on("tap","li",function(){
+            	var value=$(this).find('.sptitle').text();
+            	setHistoryData(value);
+            	vm.focusy=false;
+                vm.search_cont=false;
             });
 		</script>
 	</body>
