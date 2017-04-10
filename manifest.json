@@ -10,7 +10,7 @@
     "icons": {
         "144": "icon.png"
     },
-    "launch_path": "xiangmu/photoList.html",/*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
+    "launch_path": "login.html",/*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
     "developer": {
         "name": "",/*开发者名称*/
         "email": "",/*开发者邮箱地址*/
@@ -104,7 +104,7 @@
         
         "Speech": {
             "description": "语音识别"
-        }
+        },"Push":{}
     },
     "plus": {
         "splashscreen": {
@@ -153,7 +153,7 @@
                 "password": "",/*Android应用打包使用密钥库中证书的密码*/
                 "aliasname": "",/*Android应用打包使用密钥库中证书的别名*/
                 "ImmersedStatusbar":true,/*Android平台开启沉浸式状态栏样式*/
-                "permissions": ["<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>","<uses-permission android:name=\"android.permission.READ_CONTACTS\"/>","<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>","<uses-permission android:name=\"android.permission.VIBRATE\"/>","<uses-permission android:name=\"android.permission.READ_LOGS\"/>","<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>","<uses-feature android:name=\"android.hardware.camera.autofocus\"/>","<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>","<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>","<uses-permission android:name=\"com.android.launcher.permission.UNINSTALL_SHORTCUT\"/>","<uses-permission android:name=\"android.permission.CAMERA\"/>","<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>","<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>","<uses-permission android:name=\"com.android.launcher.permission.INSTALL_SHORTCUT\"/>","<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>","<uses-permission android:name=\"android.permission.SEND_SMS\"/>","<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>","<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>","<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>","<uses-permission android:name=\"android.permission.CALL_PHONE\"/>","<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>","<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>","<uses-feature android:name=\"android.hardware.camera\"/>","<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>","<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>","<uses-permission android:name=\"android.permission.WRITE_SMS\"/>","<uses-permission android:name=\"android.permission.READ_SMS\"/>"]/*使用Native.js调用原生安卓API需要使用到的系统权限*/
+                "permissions": ["<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>","<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>","<uses-permission android:name=\"android.permission.READ_CONTACTS\"/>","<uses-permission android:name=\"android.permission.GET_TASKS\"/>","<uses-permission android:name=\"android.permission.VIBRATE\"/>","<uses-permission android:name=\"android.permission.READ_LOGS\"/>","<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>","<uses-feature android:name=\"android.hardware.camera.autofocus\"/>","<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>","<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>","<uses-permission android:name=\"android.permission.RECEIVE_BOOT_COMPLETED\"/>","<uses-permission android:name=\"com.android.launcher.permission.UNINSTALL_SHORTCUT\"/>","<uses-permission android:name=\"android.permission.CAMERA\"/>","<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>","<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>","<uses-permission android:name=\"com.android.launcher.permission.INSTALL_SHORTCUT\"/>","<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>","<uses-permission android:name=\"android.permission.SEND_SMS\"/>","<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>","<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>","<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>","<uses-permission android:name=\"android.permission.CALL_PHONE\"/>","<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>","<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>","<uses-feature android:name=\"android.hardware.camera\"/>","<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>","<uses-permission android:name=\"android.permission.RECEIVE_USER_PRESENT\"/>","<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>","<uses-permission android:name=\"android.permission.WRITE_SMS\"/>","<uses-permission android:name=\"android.permission.READ_SMS\"/>"]/*使用Native.js调用原生安卓API需要使用到的系统权限*/
             },
             "orientation": [
                 "portrait-primary"
@@ -231,7 +231,7 @@
                 "maps": {
                     
                 },
-                "push": {
+                "push": {"igexin":{"appid":"6FxOdC3I7B8jEtLPX6nkQ9","appkey":"fbhFcn1qJO9KlNT61HNbd7","appsecret":"M4IUqzSnQ09j9aZaePxZD"}
                     
                 },
                 "share": {/*配置应用使用分享功能，参考http://ask.dcloud.net.cn/article/27*/
@@ -1677,6 +1677,31 @@
 					"js/flexible.js",
 					"css/swiper-3.3.1.min.css",
 					"js/fx.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"xiangmu/photoList.html": {
+				"resources": [
+					"css/base-reset.css",
+					"css/lzr.css",
+					"upload/mobileBUGFix.mini.js",
+					"images/icon-red.png",
+					"images/check-close.png",
+					"fonts/mui.ttf",
+					"js/vue.min.js",
+					"js/swiper-3.3.1.min.js",
+					"js/zepto1.1.6.min.js",
+					"js/flexible_css.js",
+					"images/logo.png",
+					"css/common.css",
+					"js/mui.min.js",
+					"upload/LocalResizeIMG.js",
+					"css/mui.min.css",
+					"css/ww.css",
+					"images/addphoto.png",
+					"js/flexible.js",
+					"css/swiper-3.3.1.min.css"
 				],
 				"refer": [],
 				"priority": 0
