@@ -878,6 +878,12 @@
 	background-size:0.36rem 0.373rem;
 	background-position: 24% center;
 	background-color:#ffffff;
+
+
+	transition: width 0.5s;
+	-moz-transition: width 0.5s; /* Firefox 4 */
+	-webkit-transition: width 0.5s; /* Safari 和 Chrome */
+	-o-transition: width 0.5s; /* Opera */
 }
 .g-content-project-list .serach-lay input.onfocus{
 	height:0.853rem;
@@ -897,7 +903,13 @@
 	background-position: 1% center;
 	text-indent: 0.5em;
 	background-color:#ffffff;
+
+	transition: width 0.6s;
+	-moz-transition: width 0.6s; /* Firefox 4 */
+	-webkit-transition: width 0.6s; /* Safari 和 Chrome */
+	-o-transition: width 0.6s; /* Opera */
 }
+
 .g-content-project-list .serach-lay input.left{
 	height:0.853rem;
 	line-height: 0.853rem;
@@ -928,6 +940,7 @@
    height:0.933rem;
    line-height: 0.933rem;
    background-color: #ffffff;
+   color:#bfbfbf;
 }
 .g-content-project-list .Gsearch_content .title.clear-his{
     text-align: center;
@@ -937,7 +950,7 @@
 }
 
 .g-content-project-list #his_content{
-	text-indent: 1em;
+	text-indent: 0.5em;
 }
 .g-content-project-list #his_content li{
 	 height:0.933rem;
@@ -959,7 +972,7 @@
 }
 
 .g-content-project-list #search_content{
-	text-indent: 1em;
+	text-indent: 0.5em;
 }
 .g-content-project-list #search_content li{
 	 height:0.933rem;
