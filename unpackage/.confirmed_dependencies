@@ -1,25 +1,119 @@
 {
-  "xiangmu/createPaper.html": {
-    "resources": [
-      "css/base-reset.css",
-      "css/lzr.css",
-      "images/icon-jiantou.png",
-      "upload/mobileBUGFix.mini.js",
-      "fonts/mui.ttf",
-      "images/check-close.png",
-      "js/vue.min.js",
-      "js/swiper-3.3.1.min.js",
-      "js/zepto1.1.6.min.js",
-      "js/flexible_css.js",
-      "js/mui.min.js",
-      "css/common.css",
-      "upload/LocalResizeIMG.js",
-      "css/mui.min.css",
-      "css/ww.css",
-      "images/addphoto.png",
-      "js/flexible.js",
-      "css/swiper-3.3.1.min.css",
-      "js/fx.js"
-    ]
-  }
+	"xiangmu/createPaper.html": {
+		"resources": [
+			"css/base-reset.css",
+			"css/lzr.css",
+			"images/icon-jiantou.png",
+			"upload/mobileBUGFix.mini.js",
+			"fonts/mui.ttf",
+			"images/check-close.png",
+			"js/vue.min.js",
+			"js/swiper-3.3.1.min.js",
+			"js/zepto1.1.6.min.js",
+			"js/flexible_css.js",
+			"js/mui.min.js",
+			"css/common.css",
+			"upload/LocalResizeIMG.js",
+			"css/mui.min.css",
+			"css/ww.css",
+			"images/addphoto.png",
+			"js/flexible.js",
+			"css/swiper-3.3.1.min.css",
+			"js/fx.js"
+		],
+		"refer": []
+	},
+	"xiangmu/photoList.html": {
+		"resources": [
+			"css/base-reset.css",
+			"css/lzr.css",
+			"upload/mobileBUGFix.mini.js",
+			"images/icon-red.png",
+			"images/check-close.png",
+			"fonts/mui.ttf",
+			"js/vue.min.js",
+			"js/swiper-3.3.1.min.js",
+			"js/zepto1.1.6.min.js",
+			"js/flexible_css.js",
+			"images/logo.png",
+			"css/common.css",
+			"js/mui.min.js",
+			"upload/LocalResizeIMG.js",
+			"css/mui.min.css",
+			"css/ww.css",
+			"images/addphoto.png",
+			"js/flexible.js",
+			"css/swiper-3.3.1.min.css"
+		],
+		"refer": []
+	},
+	"xiaoxi/chatList.html": {
+		"resources": [
+			"js/zepto1.1.6.min.js",
+			"images/cheliang.png",
+			"css/base-reset.css",
+			"js/flexible_css.js",
+			"js/mui.min.js",
+			"css/common.css",
+			"css/mui.min.css",
+			"css/ww.css",
+			"js/flexible.js",
+			"js/vue.min.js",
+			"js/global.js",
+			"js/public.js"
+		],
+		"refer": [
+			"xiaoxi/im-chat.html"
+		]
+	},
+	"login.html": {
+		"resources": [
+			"css/base-reset.css",
+			"css/lzr.css",
+			"images/login/user-btn.png",
+			"fonts/mui.ttf",
+			"js/vue.min.js",
+			"js/swiper-3.3.1.min.js",
+			"images/login/logo.png",
+			"js/zepto1.1.6.min.js",
+			"js/flexible_css.js",
+			"css/common.css",
+			"js/mui.min.js",
+			"images/login/user-bg.png",
+			"css/mui.min.css",
+			"images/login/paw-bg.png",
+			"js/global.js",
+			"js/flexible.js",
+			"css/swiper-3.3.1.min.css"
+		]
+	},
+	"xiaoxi/im-chat.html": {
+		"resources": [
+			"js/mui.imageViewer.js",
+			"images/logo.png",
+			"css/app.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"css/mui.imageviewer.css",
+			"js/arttmpl.js",
+			"js/mui.min.js",
+			"css/common.css",
+			"css/lzr.css",
+			"css/base-reset.css",
+			"css/ww.css",
+			"css/swiper-3.3.1.min.css",
+			"js/public.js",
+			"js/global.js",
+			"js/vue.min.js",
+			"xiaoxi/%3C%\u003d(item.logo)%20%%3E",
+			"xiaoxi/%3C%\u003d(item.content)%%3E",
+			"images/banner.png",
+			"js/mui.previewimage.js",
+			"css/viewer.min.js",
+			"js/viewer.min.js",
+			"css/viewer.min.css",
+			"js/jquery.min.js",
+			"js/zepto1.1.6.min.js"
+		]
+	}
 }

@@ -5,9 +5,11 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title></title>
-		<link rel="stylesheet" href="../css/mui.min.css" />
-		<link rel="stylesheet" href="../css/app.css" />
-		<link rel="stylesheet" href="../css/mui.imageviewer.css" />
+		<link rel="stylesheet" href="../css/base-reset.css">
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/common.css">
+		<link href="../css/mui.imageviewer.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/ww.css" />
 		<style>
 			html,
 			body {
@@ -163,20 +165,20 @@
 				transform: rotateZ(45deg);
 			}
 			
-			.msg-item-self .msg-user,
-			.msg-item-self .msg-content {
+			.msgItemSelf .msg-user,
+			.msgItemSelf .msg-content {
 				float: right;
 			}
 			
-			.msg-item-self .msg-content .msg-content-arrow {
+			.msgItemSelf .msg-content .msg-content-arrow {
 				left: auto;
 				right: -5px;
 				-webkit-transform: rotateZ(225deg);
 				transform: rotateZ(225deg);
 			}
 			
-			.msg-item-self .msg-content,
-			.msg-item-self .msg-content .msg-content-arrow {
+			.msgItemSelf .msg-content,
+			.msgItemSelf .msg-content .msg-content-arrow {
 				background-color: #4CD964;
 				color: #fff;
 				border-color: #2AC845;
@@ -355,44 +357,42 @@
 				display: block;
 				background-color: white;
 				margin: 7px auto;
-				
 			}
 		</style>
 	</head>
 
-	<body contextmenu="return false;">
-		<header class="mui-bar mui-bar-nav" style="background-color: #eb6d00;height: 54px;">
-			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: white;font-size: 27px;position: relative;top: 0.23rem;"></a>
-			<h1 class="mui-title" style="color: white !important;font-size: 22px;top: 0.32rem;">深南</h1>
-		</header>
+	<body>
+		<div class="mui-bar mui-bar-nav header project-list-head" style="height: 50px;line-height: 50px;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="font-size: 1.8rem;"></a>
+			<span style="font-size: 1rem !important;">任务明细</span>
+		</div>
 		<pre id='h'></pre>
-		<script id='msg-template' type="text/template">
-			<% for(var i in record){ var item=record[i]; %>
-			<div class="msg-item <%= (item.sender=='self'?' msg-item-self':'') %>" msg-type='<%=(item.type)%>' msg-content='<%=(item.content)%>'>
-				<% if(item.sender=='self' ) { %>
-				<i class="msg-user mui-icon mui-icon-person"></i>
-				<% } else { %>
-				<img class="msg-user-img" src="<%=(item.logo) %>" alt="{{item.logo}}" />
-				<% } %>
-				<div class="msg-content">
-					<div class="msg-content-inner">
-						<% if(item.type=='text' ) { %>
-						<%=( item.content|| '&nbsp;&nbsp;') %>
-						<% } else if(item.type=='image' ) { %>
-						<img class="msg-content-image" src="<%=(item.content)%>" style="max-width: 100px;" />
-						<% } else if(item.type=='sound' ) { %>
-						<span class="mui-icon mui-icon-mic" style="font-size: 18px;font-weight: bold;"></span>
-						<span class="play-state">点击播放</span>
-						<% } %>
-					</div>
-					<div class="msg-content-arrow"></div>
-				</div>
-				<div class="mui-item-clear"></div>
-			</div>
-			<% } %>
-		</script>
-		<div class="mui-content">
+		<div id="chatList" class="mui-content" style="margin-top: 10px;">
 			<div id='msg-list'>
+				<!---bind="{msgItemSelf:item.empId==empId}"-->
+				<div v-for="item in dataArr" v-bind:class="{msgItemSelf:item.empId==empId}" class="msg-item" msg-type='{{item.msgType}}' msg-content='{{item.content}}'>
+					<i v-if="item.empId==empId" class="msg-user mui-icon mui-icon-person"></i>
+					<img v-if="item.empId!=empId" class="msg-user-img" src="{{item.logo}}" alt="{{item.logo}}" />
+					<div class="msg-content">
+						<div class="msg-content-inner">
+							<template v-if="item.msgType=='10'">
+								{{item.content}}
+								<span v-if="item.content == null || item.content == ''">&nbsp;&nbsp;</span>
+							</template>
+							<template v-else>
+								<template v-if="item.msgType=='30'">
+									<img class="msg-content-image" src="{{item.content}}" style="max-width: 100px;" />
+								</template>
+								<template v-else>
+									<span class="mui-icon mui-icon-mic" style="font-size: 18px;font-weight: bold;"></span>
+									<span class="play-state">点击播放</span>
+								</template>
+							</template>
+						</div>
+						<div class="msg-content-arrow"></div>
+					</div>
+					<div class="mui-item-clear"></div>
+				</div>
 			</div>
 		</div>
 		<footer>
@@ -424,8 +424,42 @@
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/mui.imageViewer.js"></script>
 		<script src="../js/arttmpl.js"></script>
+		<script type="text/javascript" src="../js/vue.min.js"></script>
+		<script type="text/javascript" src="../js/global.js"></script>
+		<script type="text/javascript" src="../js/public.js"></script>
+		<script type="text/javascript" src="../js/zepto1.1.6.min.js"></script>
 		<script type="text/javascript" charset="utf-8">
 			(function(mui, doc) {
+				var chatListVM = new Vue({
+					el: '#chatList',
+					data: {
+						dataArr: [],
+						empId: "",
+						groupId: ""
+					},
+					ready: function() {
+						this.empId = localStorage.empId;
+						this.groupId = localStorage.groupId;
+					}
+				});
+				var ui = {
+					body: doc.querySelector('body'),
+					footer: doc.querySelector('footer'),
+					buttonSpeech: doc.querySelector('.footer-left'),
+					buttonAdd: doc.querySelector('.footer-right'),
+					btnMsgType: doc.querySelector('#msg-type'), //输入类型
+					boxMsgText: doc.querySelector('#msg-text'), //文本输入框
+					btnMsgSpeech: doc.querySelector('#msg-speech'),
+					boxMsgSound: doc.querySelector('#msg-sound'),
+					areaMsgList: doc.querySelector('#msg-list'), //信息列表
+					boxSoundAlert: doc.querySelector('#sound-alert'), //语音提示
+					addBox: doc.querySelector('#addBox'),
+					cameraBtn: doc.querySelector('#cameraBtn'),
+					galleryBtn: doc.querySelector('#galleryBtn'),
+					h: doc.querySelector('#h'), //输入框 多行显示
+					content: doc.querySelector('.mui-content')
+				};
+
 				var MIN_SOUND_TIME = 800;
 				mui.init({
 					gestureConfig: {
@@ -441,137 +475,62 @@
 				template.config('escape', false);
 				//mui.plusReady=function(fn){fn();};
 				mui.plusReady(function() {
+					var record = [];
 
-					var record = [{
-						sender: 'zs',
-						type: 'text',
-						content: 'Hi，我是 MUI 小管家！',
-						logo: '../images/logo.png'
-					}, {
-						sender: 'self',
-						type: 'text',
-						content: 'Hi，我是 MUI 小管家！',
-						logo: '../images/logo.png'
-					}, {
-						sender: 'zs',
-						type: 'text',
-						content: 'Hi，我是 MUI 小管家！',
-						logo: '../images/logo.png'
-					}, {
-						sender: 'zs',
-						type: 'text',
-						content: 'Hi，我是 MUI 小管家！',
-						logo: '../images/logo.png'
-					}, {
-						sender: 'zs',
-						type: 'text',
-						content: 'Hi，我是 MUI 小管家！',
-						logo: '../images/logo.png'
-					}, {
-						sender: 'zs',
-						type: 'text',
-						content: 'Hi，我是 MUI 小管家！',
-						logo: '../images/logo.png'
-					}, {
-						sender: 'zs',
-						type: 'text',
-						content: 'Hi，我是 MUI 小管家！',
-						logo: '../images/logo.png'
-					}, {
-						sender: 'zs',
-						type: 'text',
-						content: 'Hi，我是 MUI 小管家！',
-						logo: '../images/logo.png'
-					}, {
-						sender: 'zs',
-						type: 'text',
-						content: 'Hi，我是 MUI 小管家！',
-						logo: '../images/logo.png'
-					}, {
-						sender: 'zs',
-						type: 'text',
-						content: 'Hi，我是 MUI 小管家！',
-						logo: '../images/logo.png'
-					}, {
-						sender: 'zs',
-						type: 'text',
-						content: 'Hi，我是 MUI 小管家！',
-						logo: '../images/logo.png'
-					}, {
-						sender: 'zs',
-						type: 'text',
-						content: 'Hi，我是 MUI 小管家！',
-						logo: '../images/logo.png'
-					}, {
-						sender: 'zs',
-						type: 'text',
-						content: 'Hi，我是 MUI 小管家！',
-						logo: '../images/logo.png'
-					}, {
-						sender: 'zs',
-						type: 'text',
-						content: 'Hi，我是 MUI 小管家！',
-						logo: '../images/logo.png'
-					}, {
-						sender: 'zs',
-						type: 'text',
-						content: 'Hi，我是 MUI 小管家！',
-						logo: '../images/logo.png'
-					}, {
-						sender: 'zs',
-						type: 'text',
-						content: 'xxxxxxxxxxxxxxxxxxx',
-						logo: '../images/logo.png'
-					}];
-					var ui = {
-						body: doc.querySelector('body'),
-						footer: doc.querySelector('footer'),
-						buttonSpeech: doc.querySelector('.footer-left'),
-						buttonAdd: doc.querySelector('.footer-right'),
-
-						btnMsgType: doc.querySelector('#msg-type'), //输入类型
-						boxMsgText: doc.querySelector('#msg-text'), //文本输入框
-
-						btnMsgSpeech: doc.querySelector('#msg-speech'),
-						boxMsgSound: doc.querySelector('#msg-sound'),
-						areaMsgList: doc.querySelector('#msg-list'), //信息列表
-						boxSoundAlert: doc.querySelector('#sound-alert'), //语音提示
-						addBox: doc.querySelector('#addBox'),
-						cameraBtn: doc.querySelector('#cameraBtn'),
-						galleryBtn: doc.querySelector('#galleryBtn'),
-						h: doc.querySelector('#h'), //输入框 多行显示
-						content: doc.querySelector('.mui-content')
-					};
-					ui.h.style.width = ui.boxMsgText.offsetWidth + 'px';
-					//alert(ui.boxMsgText.offsetWidth );
-					var footerPadding = ui.footer.offsetHeight - ui.boxMsgText.offsetHeight;
-					var msgItemTap = function(msgItem, event) {
-						var msgType = msgItem.getAttribute('msg-type');
-						var msgContent = msgItem.getAttribute('msg-content')
-						if(msgType == 'sound') {
-							player = plus.audio.createPlayer(msgContent);
-							var playState = msgItem.querySelector('.play-state');
-							playState.innerText = '正在播放...';
-							player.play(function() {
-								playState.innerText = '点击播放';
-							}, function(e) {
-								playState.innerText = '点击播放';
-							});
-						}
-					};
+					var queryMsg = function getChaList() {
+						mui.ajax(getBaseServerUrl() + '/app/chatGroup/getChatGroupMsgList', {
+							type: 'get', //HTTP请求类型
+							data: {
+								empId: chatListVM.empId,
+								groupId: chatListVM.groupId
+							},
+							success: function(jsonData) {
+								for(var i = 0; i < jsonData.length; i++) {
+									record.push({
+										empId: jsonData[i].groupMemberId,
+										groupId: jsonData[i].groupId,
+										msgType: jsonData[i].msgType,
+										content: jsonData[i].content,
+										logo: '../images/logo.png'
+									});
+								}
+								bindMsgList();
+								console.log(JSON.stringify(jsonData));
+							},
+							error: function(XMLHttpRequest, textStatus, errorThrown) {
+								console.log(XMLHttpRequest.status);
+								console.log(XMLHttpRequest.readyState);
+								console.log(textStatus);
+							}
+						});
+					}
+					var sendMsg = function sendMsg(record) {
+						mui.ajax({
+							url: getBaseServerUrl() + '/app/chatGroup/sendMessage',
+							dataType: 'json',
+							contentType: "application/json",
+							data: JSON.stringify(record),
+							type: 'post',
+							success: function(jsonData) {
+								console.log(JSON.stringify(jsonData));
+							},
+							error: function(XMLHttpRequest, textStatus, errorThrown) {
+								console.log(XMLHttpRequest.status);
+								console.log(XMLHttpRequest.readyState);
+								console.log(textStatus);
+							}
+						});
+					}
 					var imageViewer = new mui.ImageViewer('.msg-content-image', {
 						dbl: false
 					});
+
 					var bindMsgList = function() {
-						//绑定数据:
-						/*tp.bind({
-							template: 'msg-template',
-							element: 'msg-list',
-							model: record
-						});*/
-						ui.areaMsgList.innerHTML = template('msg-template', {
-							"record": record
-						});
+						chatListVM.dataArr = record;
+						setTimeout(setImageView, 100)
+					};
+
+					function setImageView() {
 						var msgItems = ui.areaMsgList.querySelectorAll('.msg-item');
 						[].forEach.call(msgItems, function(item, index) {
 							item.addEventListener('tap', function(event) {
@@ -580,15 +539,38 @@
 						});
 						imageViewer.findAllImage();
 						ui.areaMsgList.scrollTop = ui.areaMsgList.scrollHeight + ui.areaMsgList.offsetHeight;
+					}
+					//初始化查询
+					queryMsg();
+
+					ui.h.style.width = ui.boxMsgText.offsetWidth + 'px';
+					var footerPadding = ui.footer.offsetHeight - ui.boxMsgText.offsetHeight;
+					var msgItemTap = function(msgItem, event) {
+						var msgType = msgItem.getAttribute('msg-type');
+						var msgContent = msgItem.getAttribute('msg-content')
+						if(msgType == '20') {
+							dataURL2Audio(msgContent, function(entry) {
+								var toURL = entry.toURL();
+								var player = plus.audio.createPlayer(toURL);
+								var playState = msgItem.querySelector('.play-state');
+								playState.innerText = '正在播放...';
+								player.play(function() {
+									playState.innerText = '点击播放';
+								}, function(e) {
+									playState.innerText = '点击播放';
+								});
+							})
+						}
 					};
-					bindMsgList();
+
 					window.addEventListener('resize', function() {
 						ui.areaMsgList.scrollTop = ui.areaMsgList.scrollHeight + ui.areaMsgList.offsetHeight;
 					}, false);
 					var send = function(msg) {
 						record.push(msg);
 						bindMsgList();
-						toRobot(msg.content);
+						sendMsg(msg);
+						//toRobot(msg.content);
 					};
 					//发送消息
 					var toRobot = function(info) {
@@ -600,8 +582,8 @@
 						}, function(data) {
 							//alert(JSON.stringify(data));
 							record.push({
-								sender: 'zs',
-								type: 'text',
+								empId: 'zs',
+								msgType: '10',
 								content: data.text,
 								logo: '../images/logo.png'
 							});
@@ -615,32 +597,6 @@
 							ui.boxMsgText.focus();
 						}, 150);
 					}
-					//					//解决长按“发送”按钮，导致键盘关闭的问题；
-					//					ui.buttonSpeech.addEventListener('touchstart', function(event) {
-					//						if(ui.btnMsgType.classList.contains('mui-icon-paperplane')) {
-					//							msgTextFocus();
-					//							event.preventDefault();
-					//						}
-					//					});
-					//					//解决长按“发送”按钮，导致键盘关闭的问题；
-					//					ui.buttonSpeech.addEventListener('touchmove', function(event) {
-					//						if(ui.btnMsgType.classList.contains('mui-icon-paperplane')) {
-					//							msgTextFocus();
-					//							event.preventDefault();
-					//						}
-					//					});
-					//					ui.buttonSpeech.addEventListener('touchcancel', function(event) {
-					//						if (ui.btnMsgType.classList.contains('mui-icon-paperplane')) {
-					//							msgTextFocus();
-					//							event.preventDefault();
-					//						}
-					//					});
-					//					ui.buttonSpeech.addEventListener('touchend', function(event) {
-					//						if (ui.btnMsgType.classList.contains('mui-icon-paperplane')) {
-					//							msgTextFocus();
-					//							event.preventDefault();
-					//						}
-					//					});
 					ui.buttonSpeech.addEventListener('release', function(event) {
 						// 语音  mui-icon mui-icon-mic
 						// 文本 mui-icon mui-icon-compose
@@ -660,14 +616,10 @@
 					}, false);
 					ui.buttonAdd.addEventListener('release', function(event) {
 						if(ui.btnMsgType.classList.contains('mui-icon-paperplane')) { //输入框有文字  发送
-							//ui.boxMsgText.focus();
-							//							setTimeout(function() {
-							//								ui.boxMsgText.focus();
-							//							}, 150);
-							//							event.detail.gesture.preventDefault();
 							send({
-								sender: 'self',
-								type: 'text',
+								empId: chatListVM.empId,
+								groupId: chatListVM.groupId,
+								msgType: '30',
 								content: ui.boxMsgText.value.replace(new RegExp('\n', 'gm'), '<br/>')
 							});
 							ui.boxMsgText.value = '';
@@ -705,11 +657,6 @@
 						var cmr = plus.camera.getCamera();
 						cmr.captureImage(function(path) {
 							toBase64("file://" + plus.io.convertLocalFileSystemURL(path));
-							send({
-								sender: 'self',
-								type: 'image',
-								content: "file://" + plus.io.convertLocalFileSystemURL(path)
-							});
 						}, function(err) {});
 					}, false)
 
@@ -717,12 +664,9 @@
 					ui.galleryBtn.addEventListener('tap', function(event) {
 						hiddenAddBox();
 						plus.gallery.pick(function(path) {
+							console.log(path);
 							toBase64(path);
-							send({
-								sender: 'self',
-								type: 'image',
-								content: path
-							});
+
 						}, function(err) {}, null);
 					}, false);
 
@@ -758,18 +702,78 @@
 						}
 						startTimestamp = (new Date()).getTime();
 						recorder.record({
-							filename: "_doc/audio/"
+							filename: "_doc/audio/",
+							format:"amr" 
 						}, function(path) {
 							if(recordCancel) return;
-							send({
-								sender: 'self',
-								type: 'sound',
-								content: path
-							});
+							Audio2dataURL(path);
 						}, function(e) {
 							plus.nativeUI.toast("录音时出现异常: " + e.message);
 						});
 					}, false);
+
+					var Audio2dataURL = function(path) {
+						plus.io.resolveLocalFileSystemURL(path, function(entry) {
+							entry.file(function(file) {
+								var reader = new plus.io.FileReader();
+								reader.onloadend = function(e) {
+									send({
+										empId: chatListVM.empId,
+										groupId: chatListVM.groupId,
+										msgType: '20',
+										content: e.target.result
+									});
+								};
+								reader.readAsDataURL(file);
+							}, function(e) {
+								mui.toast("读写出现异常: " + e.message);
+							})
+						})
+					}
+
+					var dataURL2Audio = function(base64Str, callback) {
+						var base64Str = base64Str.replace('data:audio/amr;base64,', '');
+						var audioName =  "_doc/audio/" + (new Date()).valueOf() + '.amr';
+						plus.io.requestFileSystem(plus.io.PRIVATE_DOC, function(fs) {
+							fs.root.getFile(audioName, {
+								create: true
+							}, function(entry) {
+								// 获得平台绝对路径
+								var fullPath = entry.fullPath;
+								if(mui.os.android) {
+									// 读取音频
+									var Base64 = plus.android.importClass("android.util.Base64");
+									var FileOutputStream = plus.android.importClass("java.io.FileOutputStream");
+									try {
+										var out = new FileOutputStream(fullPath);
+										var bytes = Base64.decode(base64Str, Base64.DEFAULT);
+										out.write(bytes);
+										out.close();
+										// 回调
+										callback && callback(entry);
+									} catch(e) {
+										console.log(e.message);
+									}
+								} else if(mui.os.ios) {
+									var NSData = plus.ios.importClass('NSData');
+									var nsData = new NSData();
+									nsData = nsData.initWithBase64EncodedStringoptions(base64Str, 0);
+									if(nsData) {
+										nsData.plusCallMethod({
+											writeToFile: fullPath,
+											atomically: true
+										});
+										plus.ios.deleteObject(nsData);
+									}
+									// 回调
+									callback && callback(entry);
+								}
+							},function(e){
+								console.log(e.message);
+							})
+						})
+					}
+
 					ui.body.addEventListener('drag', function(event) {
 						//console.log('drag');
 						if(Math.abs(event.detail.deltaY) > 50) {
@@ -872,33 +876,40 @@
 						}
 					};
 
+					var toBase64 = function(path) {
+						console.log(path);
+						var img = new Image();
+						img.src = path; // 传过来的图片路径在这里用。
+						img.onload = function() {
+							var that = this;
+							var quity = 0.4;
+							var w = that.width,
+								h = that.height,
+								scale = w / h;
+							w = 500;
+							h = w / scale;
+							var canvas = document.createElement('canvas');
+							var ctx = canvas.getContext('2d');
+							$(canvas).attr({
+								width: w,
+								height: h
+							});
+							ctx.drawImage(that, 0, 0, w, h);
+							var base64 = canvas.toDataURL('image/jpeg', quity);
+							var result = {
+								base64: base64,
+								clearBase64: base64.substr(base64.indexOf(',') + 1)
+							};
+							send({
+								empId: chatListVM.empId,
+								groupId: chatListVM.groupId,
+								msgType: '30',
+								content: base64
+							});
+						}
+					}
 				});
 			}(mui, document));
-
-			function toBase64(path) {
-				console.log(path);
-				var img = new Image();
-				img.src = path; // 传过来的图片路径在这里用。
-				img.onload = function() {
-					var that = this;
-					//生成比例 
-					var w = that.width,
-						h = that.height,
-						scale = w / h;
-					w = 480 || w; //480  你想压缩到多大，改这里
-					h = w / scale;
-					//生成canvas
-					var canvas = document.createElement('canvas');
-					var ctx = canvas.getContext('2d');
-					canvas.style.width = w;
-					canvas.style.height = h;
-					ctx.drawImage(that, 0, 0, w, h);
-
-					var base64 = canvas.toDataURL('image/jpeg', 0.4 || 0.4); //1最清晰，越低越模糊。有一点不清楚这里明明设置的是jpeg。弹出 base64 开头的一段 data：image/png;却是png。哎开心就好，开心就好
-					var clearBase64 = base64.substring(base64.indexOf("base64,") + 7, base64.length);
-					console.log("<<<<<<<<<<" + base64.length);
-				}
-			}
 		</script>
 	</body>
 
