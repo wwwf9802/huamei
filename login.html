@@ -20,8 +20,11 @@
 		<link rel="stylesheet" type="text/css" href="css/lzr.css">
 	</head>
 	<style>
-		html{background:#fff}
+		html {
+			background: #fff
+		}
 	</style>
+
 	<body>
 		<div class="g-login">
 			<div class="logo">
@@ -61,8 +64,12 @@
 		<script type="text/javascript" src="js/global.js"></script>
 	</body>
 	<script>
+		$("#login").on('tap', function() {
+            init();
+		});
+
 		function init() {
-			mui.ajax(getBaseServerUrl() + '/system/user/login', {
+			mui.ajax(getBaseServerUrl1() + '/system/user/login', {
 				type: 'get', //HTTP请求类型
 				data: {
 					tenantId: 'humello',
@@ -73,8 +80,80 @@
 				},
 				success: function(jsonData) {
 					console.log(JSON.stringify(jsonData));
+<<<<<<< HEAD
 					
+					/*if(jsonData.hasOwnProperty("empOrg")) {
+=======
+
 					if(jsonData.hasOwnProperty("empOrg")) {
+>>>>>>> dd9ac856d1b32afc3706e6fa754ddcf0b13c2075
+						localStorage.loginData = JSON.stringify(jsonData);
+//						mui.openWindow({
+//							url: "index.html",
+//							id: "webview_embed.html",
+//							createNew: false,
+//							show: {
+//								autoShow: false, //页面loaded事件发生后自动显示，默认为true
+//								aniShow: "fade-in", //页面显示动画，默认为”slide-in-right“；
+//								duration: 200 //页面动画持续时间，Android平台默认100毫秒，iOS平台默认200毫秒；
+//							},
+//							waiting: {
+//								autoShow: true,
+//								title: '正在加载...',
+//							}
+//						});
+					} else {
+						plus.nativeUI.alert(jsonData.errorMsg);
+					}*/
+				},
+				error: function(XMLHttpRequest, textStatus, errorThrown) {
+					console.log(XMLHttpRequest.status);
+					console.log(XMLHttpRequest.readyState);
+					console.log(textStatus);
+				}
+			});
+		}
+
+		$("#login").on("tap", function() {
+			init();
+			//jzl();
+			//getCid();
+			/*plus.navigator.setFullscreen(false);
+			mui.openWindow({
+				url: "index.html",
+				id: "index.html",
+				createNew: false,
+				show: {
+					autoShow: true, //页面loaded事件发生后自动显示，默认为true
+					aniShow: "pop-in", //页面显示动画，默认为”slide-in-right“；
+					duration: 200 //页面动画持续时间，Android平台默认100毫秒，iOS平台默认200毫秒；
+				},
+				waiting: {
+					autoShow: true,
+					title: '正在加载...',
+				}
+			});*/
+		});
+
+		if(window.plus) {
+			plusReady()
+		} else {
+			document.addEventListener('plusready', plusReady, false);
+		}
+
+		function plusReady() {
+			plus.navigator.setStatusBarBackground("#EB6D00");
+			plus.navigator.setStatusBarStyle('UIStatusBarStyleBlackOpaque');
+			getMsg();
+		}
+		
+		function jzl(){
+			mui.ajax(getBaseServerUrl() + '/app/order/findGoods', {
+				type: 'get', //HTTP请求类型
+				success: function(jsonData) {
+					console.log(JSON.stringify(jsonData));
+					
+					/*if(jsonData.hasOwnProperty("empOrg")) {
 						localStorage.loginData = JSON.stringify(jsonData);
 						mui.openWindow({
 							url: "index.html",
@@ -93,7 +172,7 @@
 					}
 					else {
 						plus.nativeUI.alert(jsonData.errorMsg);
-					}
+					}*/
 				},
 				error: function(XMLHttpRequest, textStatus, errorThrown) {
 					console.log(XMLHttpRequest.status);
@@ -102,33 +181,41 @@
 				}
 			});
 		}
-
-		$("#login").on("tap", function() {
-			plus.navigator.setFullscreen(false);
-			mui.openWindow({
-				url: "index.html",
-				id: "index.html",
-				createNew: false,
-				show: {
-					autoShow: true, //页面loaded事件发生后自动显示，默认为true
-					aniShow: "pop-in", //页面显示动画，默认为”slide-in-right“；
-					duration: 200 //页面动画持续时间，Android平台默认100毫秒，iOS平台默认200毫秒；
-				},
-				waiting: {
-					autoShow: true,
-					title: '正在加载...',
-				}
-			});
-		});
 		
-		if(window.plus) {
-			plusReady()
-		} else {
-			document.addEventListener('plusready', plusReady, false);
+		function getMsg(){
+			message = document.getElementById("message");
+    // 监听点击消息事件
+		    plus.push.addEventListener( "click", function( msg ) {
+		        // 判断是从本地创建还是离线推送的消息
+		       /* switch( msg.payload ) {
+		            case "LocalMSG":
+		                outSet( "点击本地创建消息启动：" );
+		            break;
+		            default:
+		                outSet( "点击离线推送消息启动：");
+		            break;
+		        }*/
+		        // 提示点击的内容
+		        alert( msg);
+		        // 处理其它数据
+		        //logoutPushMsg( msg );
+		    }, false );
+		    // 监听在线消息事件
+		    plus.push.addEventListener( "receive", function( msg ) {
+		        /*if ( msg.aps ) {  // Apple APNS message
+		            outSet( "接收到在线APNS消息：" );
+		        } else {
+		            outSet( "接收到在线透传消息：" );
+		        }*/
+		        alert( msg );
+		    }, false );
 		}
-		function plusReady(){
-			plus.navigator.setStatusBarBackground("#EB6D00");
-			plus.navigator.setStatusBarStyle('UIStatusBarStyleBlackOpaque');
+		
+		function getCid() {
+			var info = plus.push.getClientInfo();
+			cid = info.clientid;
+			console.log(cid);
+			localStorage.cid = cid;
 		}
 	</script>
 

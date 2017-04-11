@@ -22,27 +22,27 @@
 
 	<body>
 		<div class="g-content g-content-project-list" style="top:0">
-		    <div class="serach-lay">
-		        <form  method="post" id="form" action="##">
-		    	  <input v-el:search v-on:focus="onfocus($event)" v-on:blur="blur($event)" debounce="500" class='search' type="search" name="search" id="search" placeholder="电话/地址/业主名称">
-		    	  <div v-show='focusy' id='cancel' class="botton cancel-bottom">取消</div>
-		    	</form>
-		    </div>
-		    <div v-if='search_cont' class="Gsearch_content">
-		            <div id="his_content_lay">
-			            <div v-show='his_length' class="title">历史搜索</div>
-	                    <ul id="his_content">
-	                    	 
-	                    </ul>
-	                    <div v-show='his_length' class="title clear-his">清空搜索记录</div>
-                    </div>
-                    <ul id="search_content" style="display:none;"></ul>
-            </div>
+			<div class="serach-lay">
+				<form method="post" id="form" action="##">
+					<input v-el:search v-on:focus="onfocus($event)" v-on:blur="blur($event)" debounce="500" class='search' type="search" name="search" id="search" placeholder="电话/地址/业主名称">
+					<div v-show='focusy' id='cancel' class="botton cancel-bottom">取消</div>
+				</form>
+			</div>
+			<div v-if='search_cont' class="Gsearch_content">
+				<div id="his_content_lay">
+					<div v-show='his_length' class="title">历史搜索</div>
+					<ul id="his_content">
+
+					</ul>
+					<div v-show='his_length' class="title clear-his">清空搜索记录</div>
+				</div>
+				<ul id="search_content" style="display:none;"></ul>
+			</div>
 			<div v-else class="item-project" id='item-project'>
-				<div class="item-pro-list">
+				<div class="item-pro-list" v-for="item in dataArr">
 					<div class="head">
-						<a href="project-details.html">
-							<div class='fangkuang-num'>1</div> 东莞南城区南城花园一期A栋2306
+						<a v-on:click="toProjectDetail(item.sitesSchedule.sitesId)">
+							<div class='fangkuang-num'>1</div> {{item.sitesRecord.sitesAddr}}
 						</a>
 					</div>
 					<div class="list-qingdan">
@@ -53,13 +53,13 @@
 										业主
 									</div>
 									<div class="td">
-										张小五
+										{{item.sitesRecord.customerName}}
 									</div>
 									<div class="td th">
 										电话
 									</div>
 									<div class="td">
-										15627215922
+										{{item.sitesRecord.iphone}}
 									</div>
 								</div>
 								<div class="tr">
@@ -67,13 +67,13 @@
 										顾客编号
 									</div>
 									<div class="td">
-										001000
+										{{item.sitesRecord.customerId}}
 									</div>
 									<div class="td th">
 										家装编号
 									</div>
 									<div class="td">
-										10021212
+										{{item.sitesRecord.contractId}}
 									</div>
 								</div>
 								<div class="tr">
@@ -81,13 +81,13 @@
 										开工日期
 									</div>
 									<div class="td">
-										2017-02-10
+										{{item.sitesRecord.startTime}}
 									</div>
 									<div class="td th">
 										竣工日期
 									</div>
 									<div class="td">
-										2017-05-14
+										{{item.sitesRecord.finishTime}}
 									</div>
 								</div>
 								<div class="tr">
@@ -95,13 +95,13 @@
 										项目经理
 									</div>
 									<div class="td">
-										xxx
+										{{item.sitesRecord.empName}}
 									</div>
 									<div class="td th">
 										装饰分部
 									</div>
 									<div class="td">
-										一克拉
+										{{item.sitesRecord.branchOrgName}}
 									</div>
 								</div>
 							</a>
@@ -118,7 +118,7 @@
 										项目阶段
 									</div>
 									<div class="td">
-										泥水阶段-5、交底（第一次检查）
+										{{item.sitesSchedule.nodeName}}
 									</div>
 								</div>
 								<div class="tr">
@@ -126,7 +126,7 @@
 										项目状态
 									</div>
 									<div class="td td-red">
-										延迟3天
+										{{item.sitesSchedule.planFinishTime | DateDif}}
 									</div>
 									<div class="td td-progress">
 										<div id="demo1" class="mui-progressbar progress" data-progress="80">
@@ -139,101 +139,6 @@
 						</div>
 					</div>
 				</div>
-
-				<div class="item-pro-list">
-					<div class="head">
-						<a href="project-details.html">
-							<div class='fangkuang-num'>1</div> 东莞南城区南城花园一期A栋2306
-						</a>
-					</div>
-					<div class="list-qingdan">
-						<div class="list-qingdan-box">
-							<div class="tr">
-								<div class="td th">
-									业主
-								</div>
-								<div class="td">
-									张小五
-								</div>
-								<div class="td th">
-									电话
-								</div>
-								<div class="td">
-									15627215922
-								</div>
-							</div>
-							<div class="tr">
-								<div class="td th">
-									顾客编号
-								</div>
-								<div class="td">
-									001000
-								</div>
-								<div class="td th">
-									家装编号
-								</div>
-								<div class="td">
-									10021212
-								</div>
-							</div>
-							<div class="tr">
-								<div class="td th">
-									开工日期
-								</div>
-								<div class="td">
-									2017-02-10
-								</div>
-								<div class="td th">
-									竣工日期
-								</div>
-								<div class="td">
-									2017-05-14
-								</div>
-							</div>
-							<div class="tr">
-								<div class="td th">
-									项目经理
-								</div>
-								<div class="td">
-									xxx
-								</div>
-								<div class="td th">
-									装饰分部
-								</div>
-								<div class="td">
-									一克拉
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="list-qingdan">
-						<div class="list-qingdan-box list-qingdan-box2">
-							<div class="tr tr-jingdu">
-								<img src="images/icon-juxing.png" alt=""> 进度情况
-							</div>
-							<div class="tr">
-								<div class="td th">
-									项目阶段
-								</div>
-								<div class="td">
-									泥水阶段-5、交底（第一次检查）
-								</div>
-							</div>
-							<div class="tr">
-								<div class="td th">
-									项目状态
-								</div>
-								<div class="td td-red">
-									延迟三天
-								</div>
-								<div class="td">
-									2017-05-14
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
 			</div>
 		</div>
 
@@ -241,29 +146,74 @@
 		<script src='js/swiper-3.3.1.min.js' type="text/javascript"></script>
 		<script src='js/mui.min.js'></script>
 		<script src='js/vue.min.js'></script>
+		<script type="text/javascript" src="js/global.js"></script>
+		<script type="text/javascript" src="js/public.js" ></script>
 		<script>
+			Vue.filter('DateDif', function(value) {
+				var now = new Date();
+				var num = DateDiff(value,now.getFullYear()+"-"+(now.getMonth()+1)+"-"+now.getDate());
+				if(num > 0){
+					return "延期"+num+"天";
+				}
+				return "按时完成";
+			})
+			
+		   
+			
+			init();
 
-		    var vm=new Vue({
-                el:"body",
-                data:{
-                  focusy:false,
-                  search_cont:false,
-                  his_length:0
-                },
-                methods:{
-                  onfocus(e){
-                  	 this.$els.search.className='onfocus'
-                  	 this.focusy=true;
-                  	 this.search_cont=true;
-                  	 this.$nextTick(function(){
-                  	 	showSearchHis();
-                  	 })
-                  },
-                  blur(e){
-                  	 // this.$els.search.className='left'
-                  }
-                }
-		    });
+			function init() {
+				//获取工地信息
+				mui.ajax(getBaseServerUrl() + '/sites/sitesRecord/querySitesRecordList', {
+					type: 'get', //HTTP请求类型
+					data: {
+						empId: '1',
+						searchValue: $("#search").val()
+					},
+					success: function(jsonData) {
+						console.log(jsonData);
+						vm.dataArr = jsonData;
+						//							var listsearch = [];
+						//							var listnum = res.lists.length;
+						//							if(listnum > 0) {
+						//								$("#search_content").show();
+						//								$("#search_content").html(listsearch.join(""));
+						//							} else {
+						//								$("#search_content").hide();
+						//							}
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {
+						$("#search_content").hide();
+					}
+				});
+			}
+
+			var vm = new Vue({
+				el: "body",
+				data: {
+					focusy: false,
+					search_cont: false,
+					his_length: 0,
+					dataArr: []
+				},
+				methods: {
+					onfocus(e) {
+						this.$els.search.className = 'onfocus'
+						this.focusy = true;
+						this.search_cont = true;
+						this.$nextTick(function() {
+							showSearchHis();
+						})
+					},
+					blur(e) {
+						// this.$els.search.className='left'
+					},
+					toProjectDetail(sitesId){
+						localStorage.selectSitesId = sitesId;
+						openNew("xiangmu/project-details.html");
+					}
+				}
+			});
 
 			$(".item-lists .list").on("touchstart", function() {
 				$(this).addClass("cur")
@@ -293,189 +243,147 @@
 				document.addEventListener('plusready', plusReady, false);
 			}
 
-			function plusReady(){
+			function plusReady() {
 				mui.back = function() {
-				    plus.nativeUI.confirm('确认退出？',function(e){
-				    	if(e.index==0){
-				    		plus.runtime.quit();
-				    	}
-				    },"华美乐");
+					plus.nativeUI.confirm('确认退出？', function(e) {
+						if(e.index == 0) {
+							plus.runtime.quit();
+						}
+					}, "华美乐");
 				}
 			}
 			// 点击取消清空输入框数据
-            $(".cancel-bottom").on('tap',function(){
-            	 search.value='';
-            	 vm.focusy=false;
-            	 vm.search_cont=false;
-            	 vm.$els.search.className='search'
-            })
+			$(".cancel-bottom").on('tap', function() {
+				search.value = '';
+				vm.focusy = false;
+				vm.search_cont = false;
+				vm.$els.search.className = 'search'
+			})
 
-		   // 点击手机软键盘的搜索框 
-		   form.onsubmit = function() {
-			    var search_value=search.value;
-			    setHistoryData(search_value);
-			    vm.focusy=false;
-                vm.search_cont=false;
-			    return false;
-		   };
+			// 点击手机软键盘的搜索框 
+			form.onsubmit = function() {
+				var search_value = search.value;
+				setHistoryData(search_value);
+				vm.focusy = false;
+				vm.search_cont = false;
+				return false;
+			};
 
-		   // 清空搜索记录 
-		   $(".g-content").on('tap','.clear-his',function(){
-		   	   $("#his_content").hide();
-		   	   $(".g-content-project-list .Gsearch_content").hide();
-		   	   localStorage.removeItem("historyString");
-		   	   var numhis=1;
-		   	   vm.his_length=0;
-		   	   $('.g-content .serach-lay').addClass("inputremovehis");
-		   })
-           // input搜索框获取到焦点出现的搜索历史记录
-	       function showSearchHis(){
-                if( $('.g-content .serach-lay').hasClass("inputremovehis") ){
-                	 $("#his_content").hide();
-                	 $(".g-content-project-list .Gsearch_content").hide();
-                }
-                else{
-                	$("#his_content").show();
-                	$(".g-content-project-list .Gsearch_content").show();
-                }
+			// 清空搜索记录 
+			$(".g-content").on('tap', '.clear-his', function() {
+					$("#his_content").hide();
+					$(".g-content-project-list .Gsearch_content").hide();
+					localStorage.removeItem("historyString");
+					var numhis = 1;
+					vm.his_length = 0;
+					$('.g-content .serach-lay').addClass("inputremovehis");
+				})
+				// input搜索框获取到焦点出现的搜索历史记录
+			function showSearchHis() {
+				if($('.g-content .serach-lay').hasClass("inputremovehis")) {
+					$("#his_content").hide();
+					$(".g-content-project-list .Gsearch_content").hide();
+				} else {
+					$("#his_content").show();
+					$(".g-content-project-list .Gsearch_content").show();
+				}
 
-	            $("html,body").css({
-                    'overflow':'hidden'
-                })
-                
-                if( localStorage.getItem("historyString") )
-                {    
-	                //  获取localStorage历史记录并赋值给数组historyArray
-	                var historyArray=localStorage.getItem("historyString").split(";");
-	                historyArray.reverse(); //数组反转
-                 
-	                if(historyArray.length>10){
-	                    var listnum=10
-	                }
-	                else{
-	                   var listnum= historyArray.length;
-	                }
-	                var listhistory=[];
-	                for(var i=0;i<listnum;i++){
-	                    listhistory[i]='<li><a href="?iRegionID=0&iPriceID=0&iLayoutID=0&sKeyword='+historyArray[i]+'&iFeatureID=">'+historyArray[i]+'</a></li>';
-	                }
-	                vm.his_length=listhistory.length;
-	                $("#his_content").html(listhistory.join(""));
-                }
-                 
-	        };
+				$("html,body").css({
+					'overflow': 'hidden'
+				})
 
-	        // 点击搜索按钮实现记录localStorage(历史搜索记录)以及跳转
-            function setHistoryData(value){
-                    $("html,body").css({
-                        'overflow':'visible'
-                    })
-                    $('.g-content .serach-lay').removeClass("inputremovehis");
-                    if (localStorage.getItem("historyString")) 
-                    {
-                        var historyArray = localStorage.getItem("historyString").split(";");
-                    } 
-                    else {
-                        var historyArray = []
-                    }
-                    var searchcontent=value;
-                    if ($.trim(searchcontent) != "") 
-                    {
-                        searchcontent=jsXss(searchcontent);
-                        if ( historyArray.indexOf(searchcontent) != -1) 
-                        {
-                            historyArray.splice(historyArray.indexOf(searchcontent), 1)
-                        }
-                        historyArray.push(searchcontent);
-                        // 设定locanStorage本地历史记录的值
-                        localStorage.setItem("historyString", historyArray.join(";"))
-                    }
-                    window.location.href = '?iRegionID=0&iPriceID=0&iLayoutID=0&sKeyword=' + searchcontent + '&iFeatureID=';
-            };
+				if(localStorage.getItem("historyString")) {
+					//  获取localStorage历史记录并赋值给数组historyArray
+					var historyArray = localStorage.getItem("historyString").split(";");
+					historyArray.reverse(); //数组反转
 
-            function jsXss(s){
-                    { 
-                    var pattern = new RegExp("[%--`~!@#$^&*()=|{}':;',\\[\\].<>/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？]");
-                    var rs = ""; 
-                    for (var i = 0; i < s.length; i++) { 
-                     rs = rs+s.substr(i, 1).replace(pattern, ''); 
-                    }
-                    return rs;
-                    }  
-            }
+					if(historyArray.length > 10) {
+						var listnum = 10
+					} else {
+						var listnum = historyArray.length;
+					}
+					var listhistory = [];
+					for(var i = 0; i < listnum; i++) {
+						listhistory[i] = '<li><a href="?iRegionID=0&iPriceID=0&iLayoutID=0&sKeyword=' + historyArray[i] + '&iFeatureID=">' + historyArray[i] + '</a></li>';
+					}
+					vm.his_length = listhistory.length;
+					$("#his_content").html(listhistory.join(""));
+				}
 
-            // 监听input事件，实现模糊搜索
-            search.addEventListener('input',mohuSearchData); 
-            function mohuSearchData(e){
-                $("html,body").css({
-                        'overflow':'hidden'
-                })
-                // $("#his_content").hide(); 
-                $("#his_content_lay").hide();
-                var skeyword=e.target.value;
-                var skeyword=trim(skeyword);
-                if($.trim(skeyword)!=""){
-                    $.ajax({
-                        url:"./js/more.json",//模糊搜索地址，结合后台数据的。
-                        type:"post",
-                        dataType:"json",
-                        data:{"keyword":skeyword},
-                        success:function(res){
-                            // console.log(res);
-                            var listsearch=[];
-                            // var listnum=res.data.data.data.length;
-                            var listnum=res.lists.length;
-                            if(listnum>0){
-                                $("#search_content").show();
-                                for(var i=0;i<listnum;i++){
-                                        var sLpName=res.lists[i].title;
-                                        var sLpNameNew=sLpName.replace(eval("/("+skeyword+")/gi"),'<span class="red2">$1</span>');
-                                        if( sLpNameNew.indexOf("span") >= 0  )
-                                        {
-                                            listsearch[i]=' <li data-name='+sLpName+'><a href="javascript:void(0)">'+
-                                    '<p class="sptitle">'+sLpNameNew+'</p>'+
-                                     '</a></li>'
-                                        }
-                                }
-                                $("#search_content").html(listsearch.join(""));
-                            }
-                            else{
-                               $("#search_content").hide();  
-                            }
-                        },
-                        error:function(res){
-                             console.dir(res);
-                        }
-                    })
-                }
-                else{
-                    $("#search_content").hide(); 
-                }
-            }
+			};
 
-            // 去除搜索关键字字符串中的空值。
-            // function trim(str){
-            //     return str.replace(/[ ]/g,""); //去除字符串中的空格
-            // }
-            function trim (text) {
-                if (typeof (text) == "string")
-                {
-                    return text.replace(/^\s*|\s*$/g, "");
-                }
-                else
-                {
-                    return text;
-                }
-            }
-            
-            // 点击 模糊搜索出来的数据,也是执行 setHistoryData 这个方法
-            $(".g-content").on("tap","li",function(e){
-            	e.stopPropagation();
-            	var value=$(this).find('.sptitle').text();
-            	setHistoryData(value);
-            	vm.focusy=false;
-                vm.search_cont=false;
-            });
+			// 点击搜索按钮实现记录localStorage(历史搜索记录)以及跳转
+			function setHistoryData(value) {
+				$("html,body").css({
+					'overflow': 'visible'
+				})
+				$('.g-content .serach-lay').removeClass("inputremovehis");
+				if(localStorage.getItem("historyString")) {
+					var historyArray = localStorage.getItem("historyString").split(";");
+				} else {
+					var historyArray = []
+				}
+				var searchcontent = value;
+				if($.trim(searchcontent) != "") {
+					searchcontent = jsXss(searchcontent);
+					if(historyArray.indexOf(searchcontent) != -1) {
+						historyArray.splice(historyArray.indexOf(searchcontent), 1)
+					}
+					historyArray.push(searchcontent);
+					// 设定locanStorage本地历史记录的值
+					localStorage.setItem("historyString", historyArray.join(";"))
+				}
+				window.location.href = '?iRegionID=0&iPriceID=0&iLayoutID=0&sKeyword=' + searchcontent + '&iFeatureID=';
+			};
+
+			function jsXss(s) {
+				{
+					var pattern = new RegExp("[%--`~!@#$^&*()=|{}':;',\\[\\].<>/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？]");
+					var rs = "";
+					for(var i = 0; i < s.length; i++) {
+						rs = rs + s.substr(i, 1).replace(pattern, '');
+					}
+					return rs;
+				}
+			}
+
+			// 监听input事件，实现模糊搜索
+			search.addEventListener('input', mohuSearchData);
+
+			function mohuSearchData(e) {
+				$("html,body").css({
+					'overflow': 'hidden'
+				})
+				$("#his_content_lay").hide();
+				var skeyword = e.target.value;
+				var skeyword = trim(skeyword);
+				if($.trim(skeyword) != "") {
+					init();
+				} else {
+					$("#search_content").hide();
+				}
+			}
+
+			// 去除搜索关键字字符串中的空值。
+			// function trim(str){
+			//     return str.replace(/[ ]/g,""); //去除字符串中的空格
+			// }
+			function trim(text) {
+				if(typeof(text) == "string") {
+					return text.replace(/^\s*|\s*$/g, "");
+				} else {
+					return text;
+				}
+			}
+
+			// 点击 模糊搜索出来的数据,也是执行 setHistoryData 这个方法
+			$(".g-content").on("tap", "li", function(e) {
+				e.stopPropagation();
+				var value = $(this).find('.sptitle').text();
+				setHistoryData(value);
+				vm.focusy = false;
+				vm.search_cont = false;
+			});
 		</script>
 	</body>
 

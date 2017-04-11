@@ -104,7 +104,7 @@
 				var content = $(this).find("a").text();
 				topContent.innerHTML = content;
 
-				//plus.webview.getWebviewById(id).evalJS("init()");
+				plus.webview.getWebviewById(id).evalJS("init()");
 				plus.webview.getWebviewById(id).show("fade-in", 200);
 				lastId = id;
 
