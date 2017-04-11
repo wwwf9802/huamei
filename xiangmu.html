@@ -41,7 +41,7 @@
 			<div v-else class="item-project" id='item-project'>
 				<div class="item-pro-list" v-for="item in dataArr">
 					<div class="head">
-						<a id="toProjectDetail">
+						<a v-on:click="toProjectDetail(item.sitesSchedule.sitesId)">
 							<div class='fangkuang-num'>1</div> {{item.sitesRecord.sitesAddr}}
 						</a>
 					</div>
@@ -147,6 +147,7 @@
 		<script src='js/mui.min.js'></script>
 		<script src='js/vue.min.js'></script>
 		<script type="text/javascript" src="js/global.js"></script>
+		<script type="text/javascript" src="js/public.js" ></script>
 		<script>
 			Vue.filter('DateDif', function(value) {
 				var now = new Date();
@@ -207,8 +208,9 @@
 					blur(e) {
 						// this.$els.search.className='left'
 					},
-					toProjectDetail(){
-						openNew("project-details.html");
+					toProjectDetail(sitesId){
+						localStorage.selectSitesId = sitesId;
+						openNew("xiangmu/project-details.html");
 					}
 				}
 			});
