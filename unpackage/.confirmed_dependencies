@@ -1,5 +1,12 @@
 {
+<<<<<<< HEAD
 	"login.html": {
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+	"xiangmu/createPaper.html": {
+>>>>>>> 5390d147bf1b18f004f3943af98a528922ae5892
 		"resources": [
 			"css/base-reset.css",
 			"css/lzr.css",
@@ -23,7 +30,12 @@
 			"index.html"
 		]
 	},
+<<<<<<< HEAD
 	"index.html": {
+=======
+>>>>>>> 3f7d9d44118affceee31b126fabf237af48ed37e
+	"xiangmu/photoList.html": {
+>>>>>>> 5390d147bf1b18f004f3943af98a528922ae5892
 		"resources": [
 			"css/lzr.css",
 			"css/base-reset.css",
@@ -61,7 +73,18 @@
 			"js/zepto1.1.6.min.js",
 			"js/flexible_css.js",
 			"js/mui.min.js",
+<<<<<<< HEAD
 			"js/flexible.js"
+=======
+			"upload/LocalResizeIMG.js",
+			"css/mui.min.css",
+			"css/ww.css",
+			"images/addphoto.png",
+			"js/flexible.js",
+			"css/swiper-3.3.1.min.css"
+<<<<<<< HEAD
+=======
+>>>>>>> 5390d147bf1b18f004f3943af98a528922ae5892
 		],
 		"refer": [
 			"xiaoxi/news-list.html",
@@ -100,7 +123,12 @@
 			"css/swiper-3.3.1.min.css"
 		],
 		"refer": [
+<<<<<<< HEAD
 			"xiaoxi/news-details.html"
+=======
+			"xiaoxi/im-chat.html"
+>>>>>>> 3f7d9d44118affceee31b126fabf237af48ed37e
+>>>>>>> 5390d147bf1b18f004f3943af98a528922ae5892
 		]
 	},
 	"sale.html": {
@@ -141,10 +169,87 @@
 			"js/flexible_css.js",
 			"css/common.css",
 			"js/mui.min.js",
+<<<<<<< HEAD
 			"js/flexible.js"
 		],
 		"refer": [
 			"xiaoxi/im-chat.html"
+=======
+			"images/login/user-bg.png",
+			"css/mui.min.css",
+			"images/login/paw-bg.png",
+			"js/global.js",
+			"js/flexible.js",
+			"css/swiper-3.3.1.min.css"
+<<<<<<< HEAD
+		],
+		"refer": [
+			"index.html"
+		]
+	},
+	"index.html": {
+		"resources": [
+			"css/lzr.css",
+			"css/base-reset.css",
+			"css/common.css",
+			"images/icon-oa.png",
+			"images/icon-project.png",
+			"css/mui.min.css",
+			"images/icon-new-check.png",
+			"images/icon-sale.png"
+		],
+		"refer": [
+			"news.html",
+			"oa_index.html",
+			"sale.html",
+			"xiangmu.html"
+		]
+	},
+	"news.html": {
+		"resources": [
+			"images/team-icon.png",
+			"css/lzr.css",
+			"css/base-reset.css",
+			"css/common.css",
+			"images/wofaqi-icon.png",
+			"images/done-icon.png",
+			"js/public.js",
+			"css/mui.min.css",
+			"images/news-icon.png",
+			"images/daichuli-icon.png"
+		]
+	},
+	"oa_index.html": {
+		"resources": [
+			"images/cheliang.png",
+			"images/yunpan.png",
+			"images/shigong.png",
+			"images/huiyi.png",
+			"images/qiye.png",
+			"images/banner.png",
+			"images/tongzhi.png"
+		]
+	},
+	"sale.html": {
+		"resources": [
+			"images/dianmian-gendan.png",
+			"images/kehu-liebiao.png",
+			"images/jiazhuang-gendan.png",
+			"images/lingshou-xiadan.png",
+			"images/shangpin-jiage.png",
+			"images/wuliu-gendan.png"
+		]
+	},
+	"xiangmu.html": {
+		"resources": [
+			"images/icon-juxing.png",
+			"images/icon-jiantou.png",
+			"images/icon-search.png",
+			"css/swiper-3.3.1.min.css"
+		]
+	}
+=======
+>>>>>>> 5390d147bf1b18f004f3943af98a528922ae5892
 		]
 	},
 	"xiaoxi/im-chat.html": {
@@ -197,4 +302,129 @@
 			"xiaoxi/daichuli.html"
 		]
 	}
+<<<<<<< HEAD
+=======
+=======
+  "news.html": {
+    "resources": [
+      "css/base-reset.css",
+      "css/mui.min.css",
+      "css/lzr.css",
+      "css/common.css",
+      "js/public.js",
+      "images/news-icon.png",
+      "images/team-icon.png",
+      "images/wofaqi-icon.png",
+      "images/done-icon.png",
+      "images/daichuli-icon.png"
+    ],
+    "refer": []
+  },
+  "index.html": {
+    "refer": [
+      "news.html",
+      "oa_index.html",
+      "sale.html",
+      "xiangmu.html"
+    ],
+    "resources": [
+      "css/lzr.css",
+      "css/base-reset.css",
+      "css/common.css",
+      "css/mui.min.css",
+      "images/icon-oa.png",
+      "images/icon-project.png",
+      "images/icon-new-check.png",
+      "images/icon-sale.png",
+      "images/icon-project-check.png",
+      "images/icon-new.png"
+    ]
+  },
+  "login.html": {
+    "resources": [
+      "js/global.js",
+      "images/login/logo.png",
+      "css/base-reset.css",
+      "css/lzr.css",
+      "images/login/user-btn.png",
+      "fonts/mui.ttf",
+      "js/vue.min.js",
+      "js/swiper-3.3.1.min.js",
+      "js/zepto1.1.6.min.js",
+      "js/flexible_css.js",
+      "css/common.css",
+      "js/mui.min.js",
+      "images/login/user-bg.png",
+      "css/mui.min.css",
+      "images/login/paw-bg.png",
+      "js/flexible.js",
+      "css/swiper-3.3.1.min.css"
+    ],
+    "refer": [
+      "index.html"
+    ]
+  },
+  "xiangmu.html": {
+    "resources": [
+      "css/base-reset.css",
+      "css/mui.min.css",
+      "images/icon-juxing.png",
+      "images/icon-jiantou.png",
+      "images/icon-search.png",
+      "css/swiper-3.3.1.min.css",
+      "js/more.json",
+      "xiangmu.html"
+    ],
+    "refer": []
+  },
+  "xiangmu/photoList.html": {
+    "resources": [
+      "css/base-reset.css",
+      "css/lzr.css",
+      "upload/mobileBUGFix.mini.js",
+      "images/icon-red.png",
+      "images/check-close.png",
+      "fonts/mui.ttf",
+      "js/vue.min.js",
+      "js/swiper-3.3.1.min.js",
+      "js/zepto1.1.6.min.js",
+      "js/flexible_css.js",
+      "images/logo.png",
+      "css/common.css",
+      "js/mui.min.js",
+      "upload/LocalResizeIMG.js",
+      "css/mui.min.css",
+      "css/ww.css",
+      "images/addphoto.png",
+      "js/flexible.js",
+      "css/swiper-3.3.1.min.css"
+    ],
+    "refer": []
+  },
+  "oa_index.html": {
+    "resources": [
+      "images/cheliang.png",
+      "images/yunpan.png",
+      "images/shigong.png",
+      "images/huiyi.png",
+      "images/qiye.png",
+      "images/banner.png",
+      "images/tongzhi.png"
+    ],
+    "refer": []
+  },
+  "sale.html": {
+    "resources": [
+      "images/dianmian-gendan.png",
+      "images/kehu-liebiao.png",
+      "images/jiazhuang-gendan.png",
+      "images/lingshou-xiadan.png",
+      "images/shangpin-jiage.png",
+      "images/wuliu-gendan.png"
+    ],
+    "refer": []
+  }
+>>>>>>> ce316e6c291213937ee3d6f494c826cd6f392153
+>>>>>>> 3f7d9d44118affceee31b126fabf237af48ed37e
+>>>>>>> 5390d147bf1b18f004f3943af98a528922ae5892
 }

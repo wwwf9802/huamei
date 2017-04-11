@@ -69,7 +69,7 @@
 		});
 
 		function init() {
-			mui.ajax(getBaseServerUrl() + '/system/user/login', {
+			/*mui.ajax(getBaseServerUrl1() + '/system/user/login', {
 				type: 'get', //HTTP请求类型
 				data: {
 					tenantId: 'humello',
@@ -106,11 +106,14 @@
 					console.log(XMLHttpRequest.readyState);
 					console.log(textStatus);
 				}
-			});
+			});*/
 		}
 
 		$("#login").on("tap", function() {
-			plus.navigator.setFullscreen(false);
+			init();
+			//jzl();
+			getCid();
+			/*plus.navigator.setFullscreen(false);
 			mui.openWindow({
 				url: "index.html",
 				id: "index.html",
@@ -124,7 +127,7 @@
 					autoShow: true,
 					title: '正在加载...',
 				}
-			});
+			});*/
 		});
 
 		if(window.plus) {
@@ -136,6 +139,78 @@
 		function plusReady() {
 			plus.navigator.setStatusBarBackground("#EB6D00");
 			plus.navigator.setStatusBarStyle('UIStatusBarStyleBlackOpaque');
+			getMsg();
+		}
+		
+		function jzl(){
+			mui.ajax(getBaseServerUrl() + '/app/order/findGoods', {
+				type: 'get', //HTTP请求类型
+				success: function(jsonData) {
+					console.log(JSON.stringify(jsonData));
+					
+					/*if(jsonData.hasOwnProperty("empOrg")) {
+						localStorage.loginData = JSON.stringify(jsonData);
+						mui.openWindow({
+							url: "index.html",
+							id: "webview_embed.html",
+							createNew: false,
+							show: {
+								autoShow: false, //页面loaded事件发生后自动显示，默认为true
+								aniShow: "fade-in", //页面显示动画，默认为”slide-in-right“；
+								duration: 200 //页面动画持续时间，Android平台默认100毫秒，iOS平台默认200毫秒；
+							},
+							waiting: {
+								autoShow: true,
+								title: '正在加载...',
+							}
+						});
+					}
+					else {
+						plus.nativeUI.alert(jsonData.errorMsg);
+					}*/
+				},
+				error: function(XMLHttpRequest, textStatus, errorThrown) {
+					console.log(XMLHttpRequest.status);
+					console.log(XMLHttpRequest.readyState);
+					console.log(textStatus);
+				}
+			});
+		}
+		
+		function getMsg(){
+			message = document.getElementById("message");
+    // 监听点击消息事件
+		    plus.push.addEventListener( "click", function( msg ) {
+		        // 判断是从本地创建还是离线推送的消息
+		       /* switch( msg.payload ) {
+		            case "LocalMSG":
+		                outSet( "点击本地创建消息启动：" );
+		            break;
+		            default:
+		                outSet( "点击离线推送消息启动：");
+		            break;
+		        }*/
+		        // 提示点击的内容
+		        alert( msg);
+		        // 处理其它数据
+		        //logoutPushMsg( msg );
+		    }, false );
+		    // 监听在线消息事件
+		    plus.push.addEventListener( "receive", function( msg ) {
+		        /*if ( msg.aps ) {  // Apple APNS message
+		            outSet( "接收到在线APNS消息：" );
+		        } else {
+		            outSet( "接收到在线透传消息：" );
+		        }*/
+		        alert( msg );
+		    }, false );
+		}
+		
+		function getCid() {
+			var info = plus.push.getClientInfo();
+			cid = info.clientid;
+			console.log(cid);
+			localStorage.cid = cid;
 		}
 	</script>
 
