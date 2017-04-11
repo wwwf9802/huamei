@@ -34,56 +34,55 @@
 			<div id="slider" class="mui-slider">
 
 				<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-					<a class="mui-control-item cur-item" href="#item1mobile">
-						待处理(<span class='num'>2</span>)
-					</a>
-					<a class="mui-control-item" href="#item2mobile">
-						已处理(<span class='num'>2</span>)
-					</a>
+					<div class="mui-control-item cur-item" v-on:click="getData(1)">
+						待处理(<span class='num'>{{unDealArrNum}}</span>)
+					</div>
+					<div class="mui-control-item" v-on:click="getData(2)">
+						已处理(<span class='num'>{{dealArrNum}}</span>)
+					</div>
 				</div>
 
 				<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-6"></div>
 				<div class="bg-hui"></div>
 				<div class="mui-slider-group">
-					<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
+					<div class="mui-slider-item mui-control-content mui-active">
 						<div id="scroll1" class="mui-scroll-wrapper">
 							<div class="mui-scroll">
-								<ul class="mui-table-view">
+								<div class="mui-table-view" v-for="item in dataArr">
 									<div class="yichang-lists">
 										<div class="item-lists">
 											<div class="title">
-												<span class='title-wen'>第三次检查异常</span>
-												<span class='title-wen right-wen'>待处理</span>
+												<span class='title-wen'>{{item.taskName}}</span>
+												<span class='title-wen right-wen'>{{item.state | formatStatus}}</span>
 											</div>
-											<div class="title sub-title">
+											<!--<div class="title sub-title">
 												<span class='title-wen'>3、淹到挂网</span>
 												<span class='title-wen right-wen'>不合格</span>
-											</div>
+											</div>-->
 											<div class="title sub-title">
-												<span class='title-wen'>3、淹到挂网3、淹到挂网</span>
-												<span class='title-wen right-wen'>不合格</span>
+												<span class='title-wen'>{{item.content}}</span>
 											</div>
 										</div>
 										<div class="yichang-msg">
 											<div class="item-lists">
 												<div class="sub-title">
 													<div class="listm left-m">
-														<span>异常发起：</span> 李伟
+														<span>异常发起：</span> {{item.froms}}
 														<br>
-														<span>通知人：</span> 张小五
+														<span>通知人：</span> {{item.receive}}
 													</div>
 													<div class="listm right-m">
-														<span class='shangpinshu'>异常日期</span> 2017.06
+														<span class='shangpinshu'>异常日期</span>{{item.createTime}}
 													</div>
 												</div>
 											</div>
 										</div>
-										<div class="center-btn">
-											<div class="list">关闭异常</div>
-											<div class="list jiancha">申请检查</div>
+										<div class="center-btn" v-if="item.state != '30'">
+											<div class="list" v-on:click="closeError(item.id)" v-if="item.state != '30'">关闭异常</div>
+											<div class="list jiancha" v-if="item.state == '10'">申请检查</div>
 										</div>
 									</div>
-								</ul>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -95,8 +94,42 @@
 		<script src='../js/swiper-3.3.1.min.js' type="text/javascript"></script>
 		<script src='../js/mui.min.js'></script>
 		<script src="../js/public.js"></script>
+		<script type="text/javascript" src="../js/global.js"></script>
+		<script type="text/javascript" src="../js/vue.min.js"></script>
 		<script>
-		    init();
+			Vue.filter('formatStatus', function(value) {
+				if(value == '10') {
+					return "待处理";
+				}
+				return "已处理";
+			})
+
+			var vm = new Vue({
+				el: "body",
+				data: {
+					dataArr: [],
+					unDealArr: [],
+					unDealArrNum: 0,
+					dealArr: [],
+					dealArrNum: 1
+				},
+				methods: {
+					getData: function(type) {
+						if(type == 1) {
+							this.dataArr = this.unDealArr;
+						} else {
+							this.dataArr = this.dealArr;
+						};
+					},
+					closeError: function(type) {
+						close(type)
+					},
+				},
+				ready: function() {
+					init();
+				}
+			});
+
 			function init() {
 				mui.ajax(getBaseServerUrl() + '/sites/sitesTask/queryTaskListForException', {
 					type: 'get', //HTTP请求类型
@@ -105,12 +138,51 @@
 						dealType: 1
 					},
 					success: function(jsonData) {
-						console.log(jsonData);
-						vm.dataArr = jsonData;
+						if(jsonData.status) {
+							vm.unDealArr = jsonData.other.tasklist;
+							vm.unDealArrNum = jsonData.other.tasklist.length;
+							vm.dataArr = vm.unDealArr;
+						} else {
+							plus.nativeUI.alert(jsonData.msg);
+						}
+
 					},
-					error: function(XMLHttpRequest, textStatus, errorThrown) {
-						$("#search_content").hide();
-					}
+					error: function(XMLHttpRequest, textStatus, errorThrown) {}
+				});
+				mui.ajax(getBaseServerUrl() + '/sites/sitesTask/queryTaskListForException', {
+					type: 'get', //HTTP请求类型
+					data: {
+						sitesId: localStorage.selectSitesId,
+						dealType: 2
+					},
+					success: function(jsonData) {
+						if(jsonData.status) {
+							vm.dealArr = jsonData.other.tasklist;
+							vm.dealArrNum = jsonData.other.tasklist.length;
+						} else {
+							plus.nativeUI.alert(jsonData.msg);
+						}
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {}
+				});
+			}
+
+			function close(id) {
+				mui.ajax({
+					url: getBaseServerUrl() + '/sites/sitesTask/saveExceptionClose',
+					dataType: 'json',
+					contentType: "application/json",
+					data: JSON.stringify({
+						id: id,
+					}),
+					type: 'post',
+					success: function(jsonData) {
+						if(jsonData.status) {
+							init();
+						}
+						plus.nativeUI.alert(jsonData.msg);
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {}
 				});
 			}
 
