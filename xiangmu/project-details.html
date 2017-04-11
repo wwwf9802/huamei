@@ -26,62 +26,62 @@
     <div class="g-content g-content-oa g-project-details">
         <div class="item-lists">
            <div class="list gongdi">
-           	   <a href="##">
+           	   <a  >
            	   	    工地进度
            	   </a>
            </div>
            <div class="list renwu">
-           	   <a href="##">
+           	   <a  >
            	   	    工地任务
            	   </a>
            </div>
-           <div class="list yichang">
-           	   <a href="##">
+           <div class="list yichang" data-page="gongdi-yichang.html">
+           	   <a>
            	   	    工地异常
            	   </a>
            </div>
            <div class="list tuzhi">
-           	   <a href="##">
+           	   <a  >
            	   	    图纸管理
            	   </a>
            </div>
            <div class="list hetong">
-           	   <a href="##">
+           	   <a  >
            	   	    合同信息
            	   </a>
            </div>
            <div class="list chengyuan">
-           	   <a href="##">
+           	   <a  >
            	   	    工地成员
            	   </a>
            </div>
            <div class="list shangpin">
-               <a href="##">
+               <a  >
                     商品跟单
                </a>
            </div>
            <div class="list guke">
-               <a href="##">
+               <a  >
                     顾客订购单
                </a>
            </div>
            <div class="list yezhu">
-               <a href="##">
+               <a  >
                     业主信息
                </a>
            </div>
            <div class="list yusuan">
-               <a href="##">
+               <a  >
                     预算
                </a>
            </div>
            <div class="list shuidian">
-               <a href="##">
+               <a  >
                     水电材料下单
                </a>
            </div>
            <div class="list youqi">
-               <a href="##">
+               <a  >
                     油漆辅料下单
                </a>
            </div>
@@ -98,7 +98,13 @@
 	  <script src="../js/zepto1.1.6.min.js" type="text/javascript"></script>
     <script src='../js/swiper-3.3.1.min.js' type="text/javascript"></script>
     <script src='../js/mui.min.js'></script>
+    <script type="text/javascript" src="../js/public.js" ></script>
     <script>
+        $(".item-lists").on('tap','.list',function(){
+        	openNew("gongdi-yichang.html");
+        });
+    
+       
         $(".item-lists .list").on("touchstart",function(){
               $(this).addClass("cur")
         });
