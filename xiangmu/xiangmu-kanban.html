@@ -1,0 +1,233 @@
+ <!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>项目看板</title>
+		<!-- Mobile Devices Support @begin -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="yes" name="apple-touch-fullscreen">
+		<meta content="telephone=no,email=no" name="format-detection">
+		<script src="../js/flexible.js" type="text/javascript"></script>
+		<script src="../js/flexible_css.js" type="text/javascript"></script>
+		<!-- Mobile Devices Support @end -->
+		<link rel="stylesheet" href="../css/base-reset.css">
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/swiper-3.3.1.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/common.css">
+		<link rel="stylesheet" type="text/css" href="../css/lzr.css">
+	<style>
+		[v-cloak]{
+		   display:none;
+		}
+   </style>
+	</head>
+
+	<body>
+		<div class="g-content g-content-project-list g-content-kanban" style="top:0">
+		     <div class="head">
+		     	装饰工地进度分析-集团
+		     </div>
+		     <div class="jindu ">
+		        <div class="jindu-c">
+			     	<div class="up" v-bind:style="{width: weijiesuanall + '%' }">
+			     		<span class="wen" v-bind:style="{left: leftup + '%' }">
+			     			未结算合同总数：<span v-cloak class='wen-weijiesuan'>{{weijiesuan_num}}</span>
+			     		</span>
+			     		<span class="line"></span>
+			     		<span class="line line-two"></span>
+			     	</div>
+			     	<div class="progress-line">
+			     		 <div class="jindutiao">
+			     		 	 <div data-size='{{weijiesuan}}' class="line weijiesuan"  v-bind:style="{width: weijiesuanb + '%' }"></div>
+			     		 	 <div data-size='{{daijiesuan}}' class="line daijiesuan" v-bind:style="{width: daijiesuanb + '%' }"></div>
+			     		 	 <div data-size='{{yijiesuan}}' class="line yijiesuan" v-bind:style="{width: yijiesuanb + '%' }"></div>
+			     		 </div>
+			     	</div>
+			     	<div class="up down" v-bind:style="{left:weijiesuanb + '%',width: qiandanall + '%' }">
+			     		<span class="wen" v-bind:style="{left: downleftup + '%' }">
+			     			当年签单总数：<span v-cloak class='wen-weijiesuan'>{{qiandan_num}}</span>
+			     		</span>
+			     		<span class="line"></span>
+			     		<span class="line line-two"></span>
+
+			     		<span class=" tip-jiesuan weijiesuan-tips" v-bind:style="{left: -leftweijiesuanb + '%' }">
+			     			 <span class='tips-num' v-cloak>{{weijiesuan}}</span><br>
+			     			 <span class='tips-wen'>去年未结算</span>
+			     		</span>
+			     		<span class=" tip-jiesuan daijiesuan-tips" v-bind:style="{left: daijiesuanb/3 + '%' }">
+			     			 <span class='tips-num' v-cloak>{{daijiesuan}}</span><br>
+			     			 <span class='tips-wen'>当年待结算</span>
+			     		</span>
+			     		<span class=" tip-jiesuan yijiesuan-tips" v-bind:style="{left: weijiesuanall + '%' }">
+			     			 <span class='tips-num' v-cloak>{{yijiesuan}}</span><br>
+			     			 <span class='tips-wen'>当年已结算</span>
+			     		</span>
+			     	</div>
+		     	</div>
+		     </div>
+		     <div class="head gongqi">
+		     	  平均工期：<span>68</span> 天
+		     </div>
+		     <div class=" head jiesuan-done">
+		          <span class="linezhu"></span>
+		     	  结算完成率-集团
+		     	  <span class='rigth-wen'>
+		     	  	  <span class="time">2017.04</span>
+		     	  	  <span class="icon"></span>
+		     	  </span>
+		     </div>
+		     <div class="jiesuan-tubiao">
+		     	  <div id="tubiao" class='tubiao'>
+		     	  </div>
+		     	  <div class="tubiao-wen">2017-03结算完成率</div>
+		     	  <div class="yiwancheng">
+		     	  	 <span class='icon-zheng'></span>
+		     	  	 <span class='wen' v-cloak>已完成</span> （{{yijiesuan}}）
+		     	  </div>
+		     	  <div class="daijiesuan">
+		     	  	 <span class='icon-zheng'></span>
+		     	  	 <span class='wen' v-cloak>待结算</span> （{{daijiesuan}}）
+		     	  </div>
+		     </div>
+		</div>
+
+		<script src="../js/zepto1.1.6.min.js" type="text/javascript"></script>
+		<script src='../js/swiper-3.3.1.min.js' type="text/javascript"></script>
+		<script src='../js/mui.min.js'></script>
+		<script src='../js/vue.min.js'></script>
+		<script src='../js/echarts.min.js'></script>
+		 
+		<script>
+			var kanbanVM=new Vue({
+				el:'body',
+				data:{
+                  weijiesuan:20,
+                  daijiesuan:400,
+                  yijiesuan:100,
+				},
+				computed:{
+					weijiesuan_num:function(){
+						var weijiesuan_num=this.weijiesuan+this.daijiesuan;
+						return weijiesuan_num
+					},
+					qiandan_num:function(){
+						var qiandan_num=this.yijiesuan+this.daijiesuan;
+						return qiandan_num
+					},
+					allcount:function(){
+						var count=this.weijiesuan+this.daijiesuan+this.yijiesuan;
+						return count
+					},
+					weijiesuanb:function(){
+						 var baofenbi=100/(this.allcount)
+						 var weijiesuanb=(this.weijiesuan) * baofenbi
+						 return weijiesuanb
+					},
+					leftweijiesuanb:function(){
+						 var leftweijiesuanb=this.weijiesuanb+4;
+						 return leftweijiesuanb
+					},
+					daijiesuanb:function(){
+						 var baofenbi=100/(this.allcount)
+						 var daijiesuanb=(this.daijiesuan) * baofenbi
+						 return daijiesuanb
+					},
+					yijiesuanb:function(){
+						 var baofenbi=100/(this.allcount)
+						 var yijiesuanb=(this.yijiesuan) * baofenbi
+						 return yijiesuanb
+					},
+					weijiesuanall:function(){
+						 var baofenbi=100/(this.allcount)
+						 var weijiesuanall=(this.weijiesuan+this.daijiesuan) * baofenbi
+						 return weijiesuanall
+					},
+					leftup:function(){
+						return this.weijiesuanall/3;
+					},
+					downleftup:function(){
+						return this.qiandanall/3;
+					},
+					qiandanall:function(){
+						 var baofenbi=100/(this.allcount)
+						 var qiandanall=(this.daijiesuan+this.yijiesuan) * baofenbi
+						 return qiandanall
+					}
+				}
+			})
+            
+            // echarts 图表
+
+			// 基于准备好的dom，初始化echarts实例
+	        var myChart = echarts.init(document.getElementById('tubiao'));
+	        var max_num=kanbanVM.qiandan_num;
+	        var nzhengchu=max_num % 100;
+	        var yiwanchengbaifenbi=kanbanVM.yijiesuan/max_num;
+	        console.log(yiwanchengbaifenbi)
+	        var baifenbishu=yiwanchengbaifenbi*100;
+	        if(!nzhengchu == 0){
+                  var chushu=Math.floor( max_num/100)+1 ;
+                  max_num=chushu*100;
+	        }
+	        var splitNumber=max_num/100;
+	        // 指定图表的配置项和数据
+	        var option = {
+			    tooltip : {
+				   formatter: "{a} <br/>{b} : {c}%"
+				},
+			    toolbox: {
+				    feature: {
+				        saveAsImage: {
+				            show: false
+				        }
+				    }
+				},
+			    legend: {
+				    //看这里
+				    show: false,
+ 				},
+			    series: [
+			        {
+			            name: '业务指标',
+			            type: 'gauge',
+			            min:0,
+			            max:max_num,
+			            splitNumber:splitNumber,
+			            radius: '100%',
+			            axisLine: {            // 坐标轴线
+			                lineStyle: {       // 属性lineStyle控制线条样式
+			                    color: [
+				                    [yiwanchengbaifenbi, '#3eb565'],
+				                    [1, '#ec6c00']
+			                    ],
+			                    width: 20,
+			                    shadowColor : '#fff', //默认透明
+			                    shadowBlur: 10
+			                }
+			            },
+			            axisTick: {            // 坐标轴小标记
+			                length :0,        // 属性length控制线长
+			                lineStyle: {       // 属性lineStyle控制线条样式
+			                    color: 'auto',
+			                    shadowColor : '#fff', //默认透明
+			                    shadowBlur: 10
+			                }
+			            },
+			            data: [
+			               {
+			               	value: 100
+			               }
+			            ],
+			            lineStyle: {normal: {color: 'red'}}
+			        }
+			    ]
+			};
+            myChart.setOption(option)
+		</script>
+
+	</body>
+
+</html>
