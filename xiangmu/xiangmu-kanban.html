@@ -26,7 +26,10 @@
 	</head>
 
 	<body>
-		<div class="g-content g-content-project-list g-content-kanban" style="top:0">
+	    <div id="topContent" class="mui-bar mui-bar-nav header">
+			项目看板
+		</div>
+		<div class="g-content g-content-project-list g-content-kanban">
 		     <div class="head">
 		     	装饰工地进度分析-集团
 		     </div>
@@ -85,11 +88,74 @@
 		     	  <div class="tubiao-wen">2017-03结算完成率</div>
 		     	  <div class="yiwancheng">
 		     	  	 <span class='icon-zheng'></span>
-		     	  	 <span class='wen' v-cloak>已完成</span> （{{yijiesuan}}）
+		     	  	 <span class='wen' v-cloak>已完成</span> （<span v-cloak>{{yijiesuan}}</span>）
 		     	  </div>
 		     	  <div class="daijiesuan">
 		     	  	 <span class='icon-zheng'></span>
-		     	  	 <span class='wen' v-cloak>待结算</span> （{{daijiesuan}}）
+		     	  	 <span class='wen' v-cloak>待结算</span> （<span v-cloak>{{daijiesuan}}</span>）
+		     	  </div>
+		     </div>
+		     <div class="pianqu-wanchenglv">
+		     	  <div class="tr th">
+		     	  	<div class="td">
+		     	  		片区
+		     	  	</div>
+		     	  	<div class="td">
+		     	  		目标
+		     	  	</div>
+		     	  	<div class="td">
+		     	  		已完成
+		     	  	</div>
+		     	  	<div class="td">
+		     	  		完成率
+		     	  	</div>
+		     	  </div>
+		     	  <div v-for='(index, item) in items' class="tr-lay">
+		     	  	<div class="tr tr-list" @tap.stop='slide(index,$event)'>
+			     	  	<div v-cloak class="td">
+			     	  		{{item.pianqu}}
+			     	  	</div>
+			     	  	<div v-cloak class="td">
+			     	  		{{item.mubiao}}
+			     	  	</div>
+			     	  	<div v-cloak class="td">
+			     	  		{{item.yiwancheng}}
+			     	  	</div>
+			     	  	<div v-cloak class="td">
+			     	  		{{item.wanchenglv}}
+			     	  	</div>
+		     	    </div>
+		     	    <div v-show='itemindex == index && boolean' class="tr_child">
+			     	   <div v-for='childitem in item.child' class="tr tr-child">
+			     	  	  <div  v-cloak class="td">
+				     	  		{{childitem.pianqu}}
+				     	  	</div>
+				     	  	<div v-cloak class="td">
+				     	  		{{childitem.mubiao}}
+				     	  	</div>
+				     	  	<div v-cloak class="td">
+				     	  		{{childitem.yiwancheng}}
+				     	  	</div>
+				     	  	<div v-cloak class="td">
+				     	  		{{childitem.wanchenglv}}
+				     	  	</div>
+			     	  </div>
+		     	    </div>
+		     	  </div>
+
+		     	  <div class="tr huizong">
+	     	  	        <div class="td">
+			     	  		汇总
+			     	  	</div>
+			     	  	<div class="td">
+			     	  		200
+			     	  	</div>
+			     	  	<div class="td">
+			     	  		100
+			     	  	</div>
+			     	  	<div class="td">
+			     	  		50%
+			     	  	</div>
 		     	  </div>
 		     </div>
 		</div>
@@ -107,6 +173,67 @@
                   weijiesuan:20,
                   daijiesuan:400,
                   yijiesuan:100,
+                  itemindex:null,
+                  boolean:false,
+                  lastIndex:null,
+                  isActive:false,
+                  items:[
+	                  {
+                        pianqu:'南城1',
+                        mubiao:60,
+                        yiwancheng:30,
+                        wanchenglv:'50%',
+                        child:[
+                           {
+                           	pianqu:'南城1',
+	                        mubiao:60,
+	                        yiwancheng:30,
+	                        wanchenglv:'50%'
+                           },
+                           {
+                           	pianqu:'南城1',
+	                        mubiao:60,
+	                        yiwancheng:30,
+	                        wanchenglv:'50%'
+                           }
+                        ]
+	                  },
+	                  {
+                        pianqu:'南城2',
+                        mubiao:60,
+                        yiwancheng:30,
+                        wanchenglv:'50%',
+                        child:[
+                           {
+                           	pianqu:'南城2',
+	                        mubiao:60,
+	                        yiwancheng:30,
+	                        wanchenglv:'50%'
+                           },
+                           {
+                           	pianqu:'南城2',
+	                        mubiao:60,
+	                        yiwancheng:30,
+	                        wanchenglv:'50%'
+                           }
+                        ]
+	                  }
+                  ]
+				},
+				methods:{
+					slide(index,e){
+                         this.itemindex=index;
+                         $(".tr-list").removeClass("active");
+                         if(this.itemindex != this.lastIndex){
+                         	this.boolean=true;
+                         	this.lastIndex =this.itemindex;
+                         	e.currentTarget.classList.add("active");
+                         }else{
+                         	this.boolean = !this.boolean;
+                         	this.lastIndex=null;
+                         	e.currentTarget.classList.remove("active");
+                         }
+				    }
 				},
 				computed:{
 					weijiesuan_num:function(){
@@ -163,11 +290,15 @@
 
 			// 基于准备好的dom，初始化echarts实例
 	        var myChart = echarts.init(document.getElementById('tubiao'));
-	        var max_num=kanbanVM.qiandan_num;
+	        var max_num=kanbanVM.allcount;
 	        var nzhengchu=max_num % 100;
+
 	        var yiwanchengbaifenbi=kanbanVM.yijiesuan/max_num;
-	        console.log(yiwanchengbaifenbi)
-	        var baifenbishu=yiwanchengbaifenbi*100;
+	        var weijiesuanbaifenbi=kanbanVM.weijiesuan/max_num;
+	        var daijiesuanbaifenbi=kanbanVM.daijiesuan/max_num;
+
+	        var baifenbishu=Math.ceil( yiwanchengbaifenbi*100);
+
 	        if(!nzhengchu == 0){
                   var chushu=Math.floor( max_num/100)+1 ;
                   max_num=chushu*100;
@@ -193,6 +324,7 @@
 			        {
 			            name: '业务指标',
 			            type: 'gauge',
+			            detail: {formatter:''+baifenbishu+'%'},
 			            min:0,
 			            max:max_num,
 			            splitNumber:splitNumber,
@@ -200,10 +332,11 @@
 			            axisLine: {            // 坐标轴线
 			                lineStyle: {       // 属性lineStyle控制线条样式
 			                    color: [
+			                        [weijiesuanbaifenbi,'#ff4e4e'],
 				                    [yiwanchengbaifenbi, '#3eb565'],
 				                    [1, '#ec6c00']
 			                    ],
-			                    width: 20,
+			                    width: 10,
 			                    shadowColor : '#fff', //默认透明
 			                    shadowBlur: 10
 			                }
@@ -218,7 +351,7 @@
 			            },
 			            data: [
 			               {
-			               	value: 100
+			               	value: kanbanVM.yijiesuan
 			               }
 			            ],
 			            lineStyle: {normal: {color: 'red'}}
