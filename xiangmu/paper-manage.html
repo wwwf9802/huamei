@@ -125,11 +125,13 @@
 				</div>
 			</div>
 		</section>
+		<button id="d1">请求数据</button>
 	</body>
 	<script src="../js/swiper-3.3.1.min.js"></script>
 	<script src="../js/zepto1.1.6.min.js"></script>
 	<script src="../js/mui.min.js"></script>
 	<script src="../js/vue.min.js"></script>
+	<script src="../js/global.js"></script>
 	<script>
 		var swiper = new Swiper('.swiper-container', {
 	        pagination: '.swiper-pagination',
@@ -213,5 +215,26 @@
 //		        freeMode: true
 //		    });
 		}
+		
+		function init() {
+				//获取工地信息
+				mui.ajax(getBaseServerUrl() + '/sites/sitesDrawing/querySitesDrawingAll', {
+					type: 'get', //HTTP请求类型
+					data: {
+						sitesId:'1',
+					},
+					success: function(jsonData) {
+						console.log(jsonData);
+						//vm.dataArr = jsonData;
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {
+						$("#search_content").hide();
+					}
+				});
+			}
+		
+		$(d1).click(function(){
+			init();
+		});
 	</script>
 </html>

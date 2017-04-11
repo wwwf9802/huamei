@@ -69,7 +69,7 @@
 		});
 
 		function init() {
-			/*mui.ajax(getBaseServerUrl1() + '/system/user/login', {
+			mui.ajax(getBaseServerUrl1() + '/system/user/login', {
 				type: 'get', //HTTP请求类型
 				data: {
 					tenantId: 'humello',
@@ -80,8 +80,13 @@
 				},
 				success: function(jsonData) {
 					console.log(JSON.stringify(jsonData));
+<<<<<<< HEAD
+					
+					/*if(jsonData.hasOwnProperty("empOrg")) {
+=======
 
 					if(jsonData.hasOwnProperty("empOrg")) {
+>>>>>>> dd9ac856d1b32afc3706e6fa754ddcf0b13c2075
 						localStorage.loginData = JSON.stringify(jsonData);
 //						mui.openWindow({
 //							url: "index.html",
@@ -99,20 +104,20 @@
 //						});
 					} else {
 						plus.nativeUI.alert(jsonData.errorMsg);
-					}
+					}*/
 				},
 				error: function(XMLHttpRequest, textStatus, errorThrown) {
 					console.log(XMLHttpRequest.status);
 					console.log(XMLHttpRequest.readyState);
 					console.log(textStatus);
 				}
-			});*/
+			});
 		}
 
 		$("#login").on("tap", function() {
 			init();
 			//jzl();
-			getCid();
+			//getCid();
 			/*plus.navigator.setFullscreen(false);
 			mui.openWindow({
 				url: "index.html",

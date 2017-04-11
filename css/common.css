@@ -7,14 +7,14 @@ body{
 .header {
 	height:1.5rem;
 	line-height: 2rem;
-	position: absolute;
+	position: fixed;
 	left: 0;
 	top: 0;
 	right:0;
 	background-color: #eb6d00;
 	text-align: center;
 	font-size:0.48rem;
-	color:white;
+	color:#fff;
 	-webkit-box-shadow: 0 1px 6px #ccc;
     box-shadow: 0 1px 6px #ccc;
    	z-index: 99;
@@ -190,3 +190,6 @@ body{
 
 /*mui  poper 按钮颜色修改*/
 .mui-poppicker-btn-ok{background-color:#EB6D00 !important;border:1px solid #EB6D00 !important}
+
+/*底部大按钮*/
+.c-big-btn{background:#EB6D00;width:9rem;height:1rem;border-radius:.1rem;margin:0 auto .2rem;text-align: center;line-height:1rem;color:#fff;font-size:.45rem;}
