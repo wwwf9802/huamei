@@ -20,8 +20,11 @@
 		<link rel="stylesheet" type="text/css" href="css/lzr.css">
 	</head>
 	<style>
-		html{background:#fff}
+		html {
+			background: #fff
+		}
 	</style>
+
 	<body>
 		<div class="g-login">
 			<div class="logo">
@@ -61,6 +64,10 @@
 		<script type="text/javascript" src="js/global.js"></script>
 	</body>
 	<script>
+		$("#login").on('tap', function() {
+            init();
+		});
+
 		function init() {
 			mui.ajax(getBaseServerUrl1() + '/system/user/login', {
 				type: 'get', //HTTP请求类型
@@ -73,25 +80,29 @@
 				},
 				success: function(jsonData) {
 					console.log(JSON.stringify(jsonData));
+<<<<<<< HEAD
 					
 					/*if(jsonData.hasOwnProperty("empOrg")) {
+=======
+
+					if(jsonData.hasOwnProperty("empOrg")) {
+>>>>>>> dd9ac856d1b32afc3706e6fa754ddcf0b13c2075
 						localStorage.loginData = JSON.stringify(jsonData);
-						mui.openWindow({
-							url: "index.html",
-							id: "webview_embed.html",
-							createNew: false,
-							show: {
-								autoShow: false, //页面loaded事件发生后自动显示，默认为true
-								aniShow: "fade-in", //页面显示动画，默认为”slide-in-right“；
-								duration: 200 //页面动画持续时间，Android平台默认100毫秒，iOS平台默认200毫秒；
-							},
-							waiting: {
-								autoShow: true,
-								title: '正在加载...',
-							}
-						});
-					}
-					else {
+//						mui.openWindow({
+//							url: "index.html",
+//							id: "webview_embed.html",
+//							createNew: false,
+//							show: {
+//								autoShow: false, //页面loaded事件发生后自动显示，默认为true
+//								aniShow: "fade-in", //页面显示动画，默认为”slide-in-right“；
+//								duration: 200 //页面动画持续时间，Android平台默认100毫秒，iOS平台默认200毫秒；
+//							},
+//							waiting: {
+//								autoShow: true,
+//								title: '正在加载...',
+//							}
+//						});
+					} else {
 						plus.nativeUI.alert(jsonData.errorMsg);
 					}*/
 				},
@@ -123,13 +134,14 @@
 				}
 			});*/
 		});
-		
+
 		if(window.plus) {
 			plusReady()
 		} else {
 			document.addEventListener('plusready', plusReady, false);
 		}
-		function plusReady(){
+
+		function plusReady() {
 			plus.navigator.setStatusBarBackground("#EB6D00");
 			plus.navigator.setStatusBarStyle('UIStatusBarStyleBlackOpaque');
 			getMsg();

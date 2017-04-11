@@ -13,7 +13,7 @@
 .chatList li{border-bottom: 1px solid #eee;}
 	.chatList .head{width: 2rem;height: 1.866rem;float: left;text-align: center;position: relative;}
 	.chatList .head img{margin-top: 0.25rem;width: 1.333rem;height: 1.333rem;}
-	.chatList .head .num{color:white;position: absolute;right: 0.06rem;top: 0.05rem;background-color: #EB4D4B;padding: 0.02rem 0.2rem;border-radius: 0.3rem;}
+	.chatList .head .num{color:white;position: absolute;right: 0.06rem;top: 0.05rem;background-color: #EB4D4B;padding: 0.01rem 0.18rem;border-radius: 0.3rem;}
 	.chatList .content{margin-left: 2rem;height: 1.866rem;padding: 0.3rem 0.3rem;}
 	.chatList .content .title{white-space: nowrap;float: left;width: 5.2rem;text-overflow: ellipsis;overflow: hidden;font-size: 0.42rem;color: black;font-weight: bold;}
 	.chatList .content .time{white-space: nowrap;color: #AAAAAA;}

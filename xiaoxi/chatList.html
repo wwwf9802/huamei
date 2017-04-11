@@ -15,7 +15,8 @@
 	</head>
 
 	<body id="chatList" class="chatList">
-		<div class="header">
+		<div class="mui-bar mui-bar-nav header project-list-head">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			施工群组
 		</div>
 		<section class="g-content">
@@ -23,7 +24,7 @@
 				<li v-for="item in dataArr" v-on:click = "gotoChatGroup(item)">
 					<div class="head">
 						<img src="../images/cheliang.png" />
-						<span v-if="item.unReadNum" class="num">{{item.unReadNum}}</span>
+						<span v-if="item.unReadNum" class="num" style="font-size: 0.45rem;">{{item.unReadNum}}</span>
 					</div>
 					<div class="content">
 						<div class="title">{{item.groupName}}</div>
@@ -61,8 +62,6 @@
 		});
 		
 		function getChaList() {
-			console.log(getBaseServerUrl() + '/app/chatGroup/getChatGroupList');
-			
 			mui.ajax(getBaseServerUrl() + '/app/chatGroup/getChatGroupList', {
 				type: 'get', //HTTP请求类型
 				data: {
@@ -70,8 +69,7 @@
 				},
 				success: function(jsonData) {
 					console.log(JSON.stringify(jsonData));
-					chatListVM.dataArr = jsonData;
-					getUnReadMsgNum();
+					getUnReadMsgNum(jsonData);
 				},
 				error: function(XMLHttpRequest, textStatus, errorThrown) {
 					console.log(XMLHttpRequest.status);
@@ -80,7 +78,7 @@
 				}
 			});
 		}
-		function getUnReadMsgNum() {
+		function getUnReadMsgNum(listArr) {
 			mui.ajax(getBaseServerUrl() + '/app/chatGroup/getMsgNoReadNumber', {
 				type: 'get', //HTTP请求类型
 				data: {
@@ -88,13 +86,14 @@
 				},
 				success: function(jsonData) {
 					chatListVM.unReadNum = jsonData;
-					for (var i = 0; i < chatListVM.dataArr.length; i++) {
+					for (var i = 0; i < listArr.length; i++) {
 						for (var j = 0; j < chatListVM.unReadNum.detail.length; j++) {
-							if(chatListVM.dataArr[i].id == chatListVM.unReadNum.detail[j].groupId){
-								chatListVM.dataArr[i].unReadNum = chatListVM.unReadNum.detail[j].noReadNumber;
+							if(listArr[i].id == chatListVM.unReadNum.detail[j].groupId){
+								listArr[i].unReadNum = chatListVM.unReadNum.detail[j].noReadNumber;
 							}
 						}
 					}
+					chatListVM.dataArr = listArr;
 					console.log(JSON.stringify(chatListVM.dataArr));
 				},
 				error: function(XMLHttpRequest, textStatus, errorThrown) {
