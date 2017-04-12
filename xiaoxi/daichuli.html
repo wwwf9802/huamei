@@ -27,7 +27,7 @@
 
     <div class="g-content g-content-daichuli">
     	<div class="item-daichuli">
-            <a href="renwu-mingxi.html">
+            <a data-url="renwu-mingxi.html">
                 <div class="title">
                      <span class="num">3</span>&nbsp;&nbsp;
                      <span class="shuxian">|</span>&nbsp;&nbsp;
@@ -43,7 +43,7 @@
             </a>
         </div>
         <div class="item-daichuli">
-             <a href="renwu-mingxi.html">
+             <a data-url="renwu-mingxi.html">
                 <div class="title">
                      <span class="num">3</span>&nbsp;&nbsp;
                      <span class="shuxian">|</span>&nbsp;&nbsp;
@@ -59,7 +59,7 @@
             </a>
         </div>
         <div class="item-daichuli">
-             <a href="renwu-mingxi.html">
+             <a data-url="renwu-mingxi.html">
                 <div class="title">
                      <span class="num">3</span>&nbsp;&nbsp;
                      <span class="shuxian">|</span>&nbsp;&nbsp;
@@ -75,11 +75,18 @@
             </a>
         </div>
     </div>
+    <script src="../js/public.js"></script>
 	<script src="../js/zepto1.1.6.min.js" type="text/javascript"></script>
     <script src="../js/flexible.js" type="text/javascript"></script>
     <script src="../js/flexible_css.js" type="text/javascript"></script>
     <script src='../js/swiper-3.3.1.min.js' type="text/javascript"></script>
     <script src='../js/mui.min.js'></script>
     <script src='../js/vue.min.js'></script>
+    <script>
+    	$(".item-daichuli").on("tap","a",function(){
+    		var url=$(this).data("url");
+    		openNew(url);
+    	});
+    </script>
 </body>
 </html>

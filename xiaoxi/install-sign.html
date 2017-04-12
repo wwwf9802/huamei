@@ -33,6 +33,7 @@
 	        
 	    }
 	    
+	    
 	    .swiper-slide>img{display:block;width:1.866rem;height:1.866rem;margin:.5rem auto .15rem;}
 	    .mui-table-view-cell{margin:0;padding: 0;}
 	    .mui-table-view-cell:after{background-color:transparent;}
@@ -40,6 +41,7 @@
 	    .y-qs-list tr{border-bottom:1px solid #ddd;}
 	    .y-qs-list tr>td:first-child{font-size:.4rem;width:7rem;padding:.2rem 0;padding-left:.3rem;line-height:.6rem;color:#666}
 	    .y-qs-list tr>td:last-child{width:3rem;text-align: right;padding-right:.3rem;color:#666}
+	    .c-big-btn:active{opacity: .8;}
 	</style>
 	<body>
 		<header class="mui-bar mui-bar-nav header">
@@ -143,13 +145,15 @@
 			</div>
 			
 			<div class="y-pingjia" style="background:#EFEFF4">
-				<textarea name="" rows="" cols="" placeholder="说点什么吧！"></textarea>
+				<textarea name="" rows="" cols="" placeholder="说点什么吧！" @input="keyup($event);"></textarea>
+				<p style="padding:0 .3rem;"><span v-el:numtips class="right">{{num}}/500</span></p>
 			</div>
 		</section>
 		<div class="c-big-btn">确认签收</div>
 	</body>
 	<script src="../js/swiper-3.3.1.min.js"></script>
 	<script src="../js/mui.min.js"></script>
+	<script src="../js/vue.min.js"></script>
 	<script>
 		 var swiper = new Swiper('.swiper-container', {
 	        pagination: '.swiper-pagination',
@@ -158,5 +162,26 @@
 	        spaceBetween: 0,
 	        freeMode: true
 	    });
+	    
+	    var vm=new Vue({
+         	el:'body',
+         	data:{
+               num:0,
+               panduan:true
+         	},
+         	methods:{
+                keyup:function(e){
+                    var len = e.target.value.length;
+                    if (len <= 500) {
+		                 this.num=len;
+		                 //this.panduan=true;
+		            } else {
+                         this.$els.textarea.className='error_red';
+		                 this.num=500;
+		                 this.panduan=false;
+		            }
+                }
+         	}
+         });
 	</script>
 </html>
