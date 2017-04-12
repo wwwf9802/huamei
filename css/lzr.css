@@ -2273,9 +2273,11 @@
  .g-content-jindu .layout-yichang .jieduan{
   	margin-top: 0.267rem;
   	text-indent: 1em;
+  	padding-bottom: 0.267rem;
+  	border-bottom: 1px solid #dddddd;
  }
-  .g-content-jindu .layout-yichang .jieduan .icon-jieduan{
-  	 width:1.873rem;
+ .g-content-jindu .layout-yichang .jieduan .icon-jieduan{
+  	 width:1.673rem;
   	 height:0.453rem;
   	 line-height: 0.453rem;
   	 display: inline-block;
@@ -2283,6 +2285,25 @@
   	 border-radius: 0.133rem;
   	 margin-left: 0.667rem;
   	 font-size: 0.32rem;
+  	 color:#eb6d00;
+  	 text-indent: 0em;
   	 text-align: center;
  }
-
+ .g-content-jindu .layout-yichang .jieduan .time{
+  	  float:right;
+  	  margin-right: 0.533rem;
+  	  font-size: 0.32rem;
+  	  color:#bfbfbf;
+ }
+.g-content-jindu .layout-yichang .title .done {
+    float: right;
+    margin-right: 0.533rem;
+    font-size: 0.4rem;
+    color: #bfbfbf;
+}
+.g-content-jindu .layout-yichang .title .weidone {
+    float: right;
+    margin-right: 0.533rem;
+    font-size: 0.4rem;
+    color: #eb6d00;
+}
