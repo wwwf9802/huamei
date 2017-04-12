@@ -1783,6 +1783,31 @@
 				],
 				"refer": [],
 				"priority": 0
+			},
+			"xiangmu/xiadan-shuidian.html": {
+				"resources": [
+					"css/base-reset.css",
+					"js/flexible_css.js",
+					"css/common.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"css/yhn.css",
+					"js/flexible.js",
+					"images/icon-deboule-p.png",
+					"images/icon-add.png",
+					"js/vue.min.js",
+					"js/swiper-3.3.1.min.js",
+					"js/zepto1.1.6.min.js",
+					"js/mui.min.js",
+					"images/icon-search.png",
+					"images/icon-gwc.png",
+					"css/swiper-3.3.1.min.css",
+					"images/icon-sub.png",
+					"js/vue2.0.min.js",
+					"js/vue1.js"
+				],
+				"refer": [],
+				"priority": 0
 			}
 		},
 		"idle": {
