@@ -28,16 +28,16 @@
        <div class="item-foot us"><a href="us.html">我的</a></div>
     </div>-->
 		<div class="footer">
-			<div class="item-foot new cur" data-id="news">
+			<div class="item-foot new cur" data-id="news.html">
 				<a>消息</a>
 			</div>
-			<div class="item-foot project" data-id="xiangmu">
+			<div class="item-foot project" data-id="xiangmu.html">
 				<a>项目</a>
 			</div>
-			<div class="item-foot sale" data-id="sale">
+			<div class="item-foot sale" data-id="sale.html">
 				<a>销售</a>
 			</div>
-			<div class="item-foot oa" data-id="oa_index">
+			<div class="item-foot oa" data-id="oa_index.html">
 				<a>OA</a>
 			</div>
 		</div>
@@ -70,10 +70,10 @@
 			}
 
 			function plusReady() {
-				plus.webview.create("news.html", "news", subStyles);
-				plus.webview.create("xiangmu.html", "xiangmu", subStyles);
-				plus.webview.create("sale.html", "sale", subStyles);
-				plus.webview.create("oa_index.html", "oa_index", subStyles);
+				plus.webview.create("news.html", "news.html", subStyles);
+				plus.webview.create("xiangmu.html", "xiangmu.html", subStyles);
+				plus.webview.create("sale.html", "sale.html", subStyles);
+				plus.webview.create("oa_index.html", "oa_index.html", subStyles);
 				mui.openWindow({
 					url: "news.html",
 					id: "news.html",
@@ -95,15 +95,12 @@
 			var lastId = "news";
 
 			$(".item-foot").on("tap", function() {
-
 				$(".item-foot").removeClass("cur");
 				$(this).addClass("cur");
-				
 
 				var id = $(this).data("id");
 				var content = $(this).find("a").text();
 				topContent.innerHTML = content;
-
 				plus.webview.getWebviewById(id).evalJS("init()");
 				plus.webview.getWebviewById(id).show("fade-in", 200);
 				lastId = id;
@@ -113,15 +110,15 @@
 					arr[i].close();
 				}*/
 
-					var array = plus.webview.all();
-			    	/*if(array) {
-			    		console.log("********************");
-						for(var i = 0; i < array.length; i++) {
-							console.log(array[i].getURL());
-						}
-				    }*/
-				   console.log("当前一共有"+array.length+"个webview");
-				   console.log(JSON.stringify(array));
+//					var array = plus.webview.all();
+//			    	/*if(array) {
+//			    		console.log("********************");
+//						for(var i = 0; i < array.length; i++) {
+//							console.log(array[i].getURL());
+//						}
+//				    }*/
+//				   console.log("当前一共有"+array.length+"个webview");
+//				   console.log(JSON.stringify(array));
 
 			});
 		</script>

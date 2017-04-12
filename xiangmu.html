@@ -25,7 +25,7 @@
 			<div class="serach-lay">
 				<form method="post" id="form" action="##">
 					<input v-el:search v-on:focus="onfocus($event)" v-on:blur="blur($event)" debounce="500" class='search' type="search" name="search" id="search" placeholder="电话/地址/业主名称">
-					<div v-show='focusy' id='cancel' class="botton cancel-bottom">取消</div>
+					<div v-show='focusy' id='cancel' class="botton cancel-bottom" v-on:click="cancelSearch()">取消</div>
 				</form>
 			</div>
 			<div v-if='search_cont' class="Gsearch_content">
@@ -147,20 +147,16 @@
 		<script src='js/mui.min.js'></script>
 		<script src='js/vue.min.js'></script>
 		<script type="text/javascript" src="js/global.js"></script>
-		<script type="text/javascript" src="js/public.js" ></script>
+		<script type="text/javascript" src="js/public.js"></script>
 		<script>
 			Vue.filter('DateDif', function(value) {
 				var now = new Date();
-				var num = DateDiff(value,now.getFullYear()+"-"+(now.getMonth()+1)+"-"+now.getDate());
-				if(num > 0){
-					return "延期"+num+"天";
+				var num = DateDiff(value, now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate());
+				if(num > 0) {
+					return "延期" + num + "天";
 				}
 				return "按时完成";
 			})
-			
-		   
-			
-			init();
 
 			function init() {
 				//获取工地信息
@@ -197,7 +193,7 @@
 					dataArr: []
 				},
 				methods: {
-					onfocus(e) {
+					onfocus: function(e) {
 						this.$els.search.className = 'onfocus'
 						this.focusy = true;
 						this.search_cont = true;
@@ -205,13 +201,22 @@
 							showSearchHis();
 						})
 					},
-					blur(e) {
+					blur: function(e) {
 						// this.$els.search.className='left'
 					},
-					toProjectDetail(sitesId){
+					toProjectDetail: function(sitesId) {
 						localStorage.selectSitesId = sitesId;
 						openNew("xiangmu/project-details.html");
+					},
+					cancelSearch: function() {
+						search.value = '';
+						vm.focusy = false;
+						vm.search_cont = false;
+						vm.$els.search.className = 'search'
 					}
+				},
+				ready: function() {
+					init();
 				}
 			});
 
@@ -252,13 +257,6 @@
 					}, "华美乐");
 				}
 			}
-			// 点击取消清空输入框数据
-			$(".cancel-bottom").on('tap', function() {
-				search.value = '';
-				vm.focusy = false;
-				vm.search_cont = false;
-				vm.$els.search.className = 'search'
-			})
 
 			// 点击手机软键盘的搜索框 
 			form.onsubmit = function() {
