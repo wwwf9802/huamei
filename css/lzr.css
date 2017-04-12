@@ -51,6 +51,9 @@
     background-position: 50% 30%;
     background-size: 0.907rem 0.907rem;
 }
+.g-content .item-lists .list:active{
+	background-color: #eee;
+}
 .g-content .item-lists .list.cur{
 	background-color: #eee;
 }
@@ -2003,3 +2006,283 @@
 .g-content-kanban .pianqu-wanchenglv .tr.huizong{
 	  background-color:#4f5a7d;
 }
+
+/*项目进度*/
+/*-------------------------------------------------------------------------------------------------*/
+.g-content-jindu .jiesuan-done {
+    margin-top: 0rem;  
+}
+.g-content-jindu .jiesuan-done span.zhengchang {
+    color:#3eb565;
+}
+.g-content-jindu .jiesuan-done span.tianshu {
+    color:#eb6d00;
+}
+
+.g-content-jindu .gongdi-jindu{
+  padding: 0.4rem;
+  height:7.233rem;
+  width:100%;
+  position: relative;
+  background-color: #ffffff;
+  overflow:hidden;
+}
+.g-content-jindu .gongdi-jindu .jindu-line{
+   height:0.507rem;
+   position: absolute;
+   top:50%;
+   margin-top: -0.253rem;
+   left:0.133rem;
+   width:100%;
+   font-size: 0;
+}
+.g-content-jindu .gongdi-jindu .jindu-line .line{
+   width:1.333rem;
+   height:0.107rem;
+   display: inline-block;
+   background: url(../images/icon-baidian.png) no-repeat;
+   background-size: 0.067rem 0.093rem;
+   background-position: 10% center;
+   background-color: #82c5a2;
+   vertical-align: middle;
+   position: relative;
+}
+.g-content-jindu .gongdi-jindu .jindu-line .tou{
+   width:0.48rem;
+   height:0.48rem;
+   border-radius: 0.24rem;
+   background: url(../images/icon-baidian.png) no-repeat;
+   background-size: 0.087rem 0.103rem;
+   background-position: 50% center;
+   background-color: #3eb565;
+   display: inline-block;
+   vertical-align: middle;
+   position: relative;
+    
+}
+.g-content-jindu .gongdi-jindu .jindu-line .tou .kaigong-wen{
+  position: absolute;
+  left:0px;
+  top:-1.2rem;
+  font-size: 0.373rem;
+  color:#808080;
+} 
+
+.g-content-jindu .gongdi-jindu .jindu-line .hui-tou{
+   background-color: #e8ecea;
+}
+
+.g-content-jindu .gongdi-jindu .jindu-line .weiwancheng-line{
+   width:1.233rem;
+   height:0.213rem;
+   display: inline-block;
+   background: url(../images/icon-dian.png) no-repeat;
+   background-size: 0.087rem 0.103rem;
+   background-position: 95% center;
+   background-color: #e8ecea;
+
+}
+.g-content-jindu .gongdi-jindu .jindu-line .begin-line{
+   width:1.233rem;
+   height:0.213rem;
+   display: inline-block;
+   background: url(../images/icon-baidian.png) no-repeat;
+   background-size: 0.087rem 0.103rem;
+   background-position: 95% center;
+   background-color: #3eb565;
+}
+ 
+.g-content-jindu .gongdi-jindu  .kaigongqian{
+	position: absolute;
+	left:0.62rem;
+	top:0.267rem;
+	font-size: 0.373rem;
+}
+.g-content-jindu .gongdi-jindu  .heng-wen{
+	width:auto;
+	min-width: 1.067rem;
+	display: inline-block;
+	position: absolute;
+	left:-0.213rem;
+	color:#808080;
+}
+.g-content-jindu .gongdi-jindu  .shu-wen{
+	width:0.267rem;
+	display: inline-block;
+	margin-top: 0.267rem;
+}
+.g-content-jindu .gongdi-jindu  .kaigong-one {
+    position: absolute;
+   left:0.32rem;
+   top:0.887rem;
+}
+.g-content-jindu .gongdi-jindu  .kaigong-two {
+    position: absolute;
+  left:0.32rem;
+   top:0.887rem;
+}
+.g-content-jindu .gongdi-jindu .yiwan{
+	color:#aaaaaa;
+}
+.g-content-jindu .gongdi-jindu .now{
+	color:#eb6d00;
+}
+.g-content-jindu .gongdi-jindu .weiwan{
+	color:#252525;
+}
+.g-content-jindu .shengyu-gongqi{
+	position: absolute;
+	left:46%;
+	top:103%;
+	font-size: 0.373rem;
+	color:#808080;
+}
+.g-content-jindu .now-line .tips {
+    position: absolute;
+    left: 0.053rem;
+    top: -2.4rem;
+    font-size: 0.373rem;
+    color: #808080;
+    width: 2.667rem;
+    color:#252525;
+}
+.g-content-jindu .now-line .shuxian {
+    position: absolute !important;
+    left: 1.12rem;
+    top: -1.067rem;
+    width: 0.053rem;
+    height: 1.067rem;
+   background-color: #eb6d00;
+
+}
+.g-content-jindu .now-line .icon-yuanquan{
+	width:0.267rem;
+	height:0.267rem;
+	display: inline-block;
+	position: absolute;
+	left: 1.013rem;
+    top: -1.067rem;
+	background: url(../images/icon-yuanquan.png) no-repeat;
+    background-size: 0.267rem 0.267rem;
+ }
+ .g-content-jindu .gongdi-jindu .jindu-line .tou.jungong .kaigong-wen {
+    position: absolute;
+    left: -0.8rem;
+    top: -1.2rem;
+    font-size: 0.373rem;
+    color: #808080;
+    width:2.133rem;
+}
+ .g-content-jindu .m-xiangmu-jindu{
+ 	background-color: #ffffff;
+ 	overflow:hidden;
+ 	position: relative;
+ }
+ .g-content-jindu .m-xiangmu-jindu .item-jindu{
+ 	height:2.667rem;
+ 	min-height: 100px;
+ 	display: inline-block;
+ 	float:left;
+ 	width:50%;
+ 	position: relative;
+ 	text-align: center;
+ 	border-bottom: 1px solid #dddddd;
+ 	box-sizing: border-box;
+ 	-webkit-box-sizing:border-box;
+ }
+  .g-content-jindu .m-xiangmu-jindu .item-jindu.item-jindut{
+ 	height:2.667rem;
+ 	display: inline-block;
+ 	float:left;
+ 	width:33.333%;
+ 	position: relative;
+ 	text-align: center;
+ 	border-bottom: 1px solid #dddddd;
+ 	box-sizing: border-box;
+ 	-webkit-box-sizing:border-box;
+ }
+
+ .g-content-jindu .m-xiangmu-jindu .line{
+  	width:1px;
+  	height:1.6rem;
+  	background-color: #dddddd;
+  	display: inline-block;
+  	position: absolute;
+  	left:50%;
+  	top:10%;
+ }
+ .g-content-jindu .m-xiangmu-jindu .line.linetwo{
+  	left:32%;
+  	top:59%;
+ }
+  .g-content-jindu .m-xiangmu-jindu .line.linethree{
+  	left:66%;
+  	top:59%;
+ }
+  .g-content-jindu .m-xiangmu-jindu .item-jindu:nth-child(2){
+ 	border-right:none;
+ }
+
+ .g-content-jindu .jindu-head{
+ 	margin-top: 0.4rem;
+ }
+ .g-content-jindu .m-xiangmu-jindu .item-jindu #a_celiang{
+
+ }
+ .g-content-jindu .m-xiangmu-jindu .item-jindu .circle-wen{
+  	position: absolute;
+  	left:44%;
+  	top:35%;
+  	font-size: 0.32rem;
+  	line-height: 0.383rem;
+ }
+  .g-content-jindu .m-xiangmu-jindu .item-jindut .circle-wen{
+  	position: absolute;
+  	left:39%;
+  	top:41%;
+  	font-size: 0.32rem;
+  	line-height: 0.383rem;
+ }
+  .g-content-jindu .m-xiangmu-jindu .item-jindu .circle-wen .wen{
+  	 margin-top: -10px;
+ }
+ .g-content-jindu .m-xiangmu-jindu .item-jindu .circle-wen span{
+  	color:#eb6d00;
+  	font-size: 0.4rem;
+ }
+ .g-content-jindu .layout-yichang{
+ 	padding-top: 0.4rem;
+ 	background-color: #ffffff;
+ 	padding-bottom: 0.4rem;
+ }
+ .g-content-jindu .layout-yichang .icon-yichang{
+   width:2.0rem;
+   height:0.667rem;
+   line-height:0.667rem;
+   background-color: #ffe9e9;
+   border-radius: 0.133rem;
+   color:#eb4d4b;
+   text-align: center;
+   display: inline-block;
+ }
+ .g-content-jindu .layout-yichang .title{
+ 	font-size: 0.4rem;
+ 	text-indent: 1em;
+ 	margin-top: 0.4rem;
+ }
+ .g-content-jindu .layout-yichang .jieduan{
+  	margin-top: 0.267rem;
+  	text-indent: 1em;
+ }
+  .g-content-jindu .layout-yichang .jieduan .icon-jieduan{
+  	 width:1.873rem;
+  	 height:0.453rem;
+  	 line-height: 0.453rem;
+  	 display: inline-block;
+  	 border:1px solid #eb6d00;
+  	 border-radius: 0.133rem;
+  	 margin-left: 0.667rem;
+  	 font-size: 0.32rem;
+  	 text-align: center;
+ }
+
