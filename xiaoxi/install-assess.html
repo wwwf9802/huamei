@@ -19,7 +19,7 @@
 		<link rel="stylesheet" type="text/css" href="../css/yhn.css">
 	</head>
 	<style>
-
+	::-webkit-scrollbar{width:0px;height:0px;}
 	.swiper-container {
 	        width: 100%;
 	        height: 3.333rem;
@@ -114,7 +114,8 @@
 						<li></li>
 					</ul>
 				</div>
-				<textarea name="" rows="" cols="" placeholder="评价一下继续加油努力工作！"></textarea>
+				<textarea name="" rows="" cols="" placeholder="评价一下继续加油努力工作！" maxlength="500" @input="keyup($event);"></textarea>
+				<p style="padding:0 .3rem;"><span v-el:numtips class="right">{{num}}/500</span></p>
 			</div>
 			<div class='y-upload'>
 				<div>
@@ -125,11 +126,11 @@
 			</div>
 			
 		</section>
-
 	</body>
 	<script src="../js/swiper-3.3.1.min.js"></script>
 	<script src="../js/zepto1.1.6.min.js"></script>
 	<script src="../js/mui.min.js"></script>
+	<script src="../js/vue.min.js"></script>
 	<script>
 		var swiper = new Swiper('.swiper-container', {
 	        pagination: '.swiper-pagination',
@@ -146,6 +147,28 @@
 	    		$(".y-starBox>ul>li")[i].className="active";
 	    	}
 	    });
+	    
+	    var vm=new Vue({
+         	el:'body',
+         	data:{
+               num:0,
+               panduan:true
+         	},
+         	methods:{
+                keyup:function(e){
+                    var len = e.target.value.length;
+                    if (len <= 500) {
+		                 this.num=len;
+		                 //this.panduan=true;
+		            } else {
+                         this.$els.textarea.className='error_red';
+		                 this.num=500;
+		                 this.panduan=false;
+		            }
+                }
+         	}
+         });
+         
 	</script>
 
 </html>

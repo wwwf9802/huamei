@@ -18,6 +18,13 @@
 	.chatList .content .title{white-space: nowrap;float: left;width: 5.2rem;text-overflow: ellipsis;overflow: hidden;font-size: 0.42rem;color: black;font-weight: bold;}
 	.chatList .content .time{white-space: nowrap;color: #AAAAAA;}
 	.chatList .content .msg{white-space: nowrap;float: left;color: #7A7A7A;margin-top: 0.12rem;font-size: 0.38rem;}
+	
+	.chatList .menmber li{background: url(../images/icon-oa-check.png) no-repeat;background-position:calc(100% - 0.42rem) 0.63rem;background-size: 0.6rem 0.6rem;position: relative;}
+		.chatList .menmber .title{width: 100%;font-weight: normal;}
+		.chatList .menmber span:first-child{width: 2.2rem;display: inline-block;}
+		.chatList .menmber .line{width: 1px;background-color: #ccc;height: 0.8rem;position: absolute;bottom: 0.58rem;right: 1.5rem;}
+		
+		
 .checkSelect{background-color: white;}
 	.checkSelect .main{}
 	.checkSelect .main>li{position: relative;background-color: white;height: 1.37rem;border-top: 1px solid #eee;line-height: 1.37rem;font-size: 0.45rem;color: black;padding: 0 1.2rem;}
@@ -110,9 +117,41 @@
 .photoList #submitBtn{height: 1.3rem;width: 100%;line-height:1.3rem;text-align: center;color: #EB4D4B;position: fixed;bottom: 0;left: 0;z-index: 999;background-color: white;border-top: 1px solid #eee;font-size:0.48rem}
 .photoList #submitBtn:active{background-color: #ddd;}
 
+.ticket .title{width:100%;height:1.473rem;background: url(../images/icon-deboule-p.png) no-repeat;background-size: 1.093rem 0.907rem;
+	background-position: 3% center;text-indent: 4em;vertical-align: middle;background-color: #ffffff;line-height: 1.473rem;font-size: 0.45rem;}
+	.ticket .box{background-color: white;padding: 0.3rem 0.3rem 0 0.3rem;margin: 0.3rem;border-radius: 0.2rem;border-top: 1px solid #ccc;}
+	.ticket .box .box-title{font-size: 0.45rem;}
+	.ticket .box .box-title span:first-child{width: 1rem;display: inline-block;font-weight: bold;}
+	.ticket .box .time{color: #999;line-height: 0.8rem;}
+	.ticket .box .info{color: #999;font-size: 0.38rem;line-height: 0.9rem;border-bottom: 1px dashed #ccc;}
+	.ticket .box .tab{color: #EA6D01;line-height: 1.4rem;font-size: 0.4rem;}
+	.ticket .box .txt{border-bottom: 1px solid #f5f5f5;line-height: 0.7rem;font-size: 0.4rem;color: #999;padding-bottom: 0.5rem;}
 
-
-
+.projectProgress .mui-scroll-wrapper{background-color: white;height: 1.3rem;}
+   .projectProgress .mui-control-item{height: 1.3rem;line-height: 1.3rem;}
+   .projectProgress .mui-active{color: #EB6D00 !important;border-bottom: 2px solid #EB6D00 !important;font-size: 0.45rem;}
+   .projectProgress .box{margin-top: 0.2rem;background-color: white;}
+   .projectProgress .box .tab{font-size: 0.4rem;color: #999;border-bottom: 1px solid #eee;padding: 0.3rem}
+   .projectProgress .box .tab span:nth-child(1){width: 2.5rem;display: inline-block;}
+   .projectProgress .box .tab span:nth-child(2){width: 3rem;display: inline-block;}
+   .projectProgress .box .tab span:nth-child(3){}
+   .projectProgress .box .itemList{padding: 0.3rem;}
+   .projectProgress .box .item{position: relative;padding: 0.4rem 0;height: 100%;}
+   .projectProgress .box .item .point{width: 0.3rem;height: 0.3rem;background-color: #4EB5E7;display: inline-block;border-radius: 50%;vertical-align: top;margin-top: 0.125rem;}
+   .projectProgress .box .item .line1{width: 1px;height: calc(100% - 0.5rem);background-color: #4EB5E7;display: inline-block;position: absolute;left: 0.08rem;top: 0.82rem;}
+   .projectProgress .box .item .line2{width: 1px;height: calc(100% - 0.5rem);background-color: #4EB5E7;display: inline-block;position: absolute;left: 2.67rem;top: 0.82rem;}
+   .projectProgress .box .item .time{width: 2rem;display: inline-block;margin-left: 0.2rem;vertical-align: top;}
+   .projectProgress .box .item .time:nth-child(6){width: 2.3rem;}
+   .projectProgress .box .item .txt{width: 3.3rem;display: inline-block;}
+   .projectProgress .box .item:last-child .line1{display: none;}
+   .projectProgress .box .item:last-child .line2{display: none;}
+   .projectProgress .btn-status{position: fixed;bottom: 0px;left: 0px;height: 1.333rem;background-color: white;width: 100%;line-height: 1.333rem;text-align: center;font-size: 0.4rem;border-top: 1px solid #eee;}
+   .projectProgress .statu{width: 25%;float: left;box-sizing: border-box;}
+   .projectProgress .btn-status .point{width: 0.4rem;height: 0.4rem;background-color: #4EB5E7;display: inline-block;border-radius: 50%;vertical-align: middle;position: relative;left: -0.15rem;top: -0.05rem;}
+   .projectProgress .btn-status .statu:nth-child(1) .point{background-color: white;border: 1px solid #4EB5E7;}
+   .projectProgress .btn-status .statu:nth-child(2) .point{background-color: #EA6D01;}
+   .projectProgress .btn-status .statu:nth-child(3) .point{background-color: #EB4D4A;}
+   .projectProgress .btn-status .statu:nth-child(4) .point{background-color: #2BBD0E;}
 
 
 
