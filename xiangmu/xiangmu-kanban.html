@@ -113,31 +113,31 @@
 		     	  <div v-for='(index, item) in items' class="tr-lay">
 		     	  	<div class="tr tr-list" @tap.stop='slide(index,$event)'>
 			     	  	<div v-cloak class="td">
-			     	  		{{item.pianqu}}
+			     	  		<span v-cloak>{{item.pianqu}}</span>
 			     	  	</div>
 			     	  	<div v-cloak class="td">
-			     	  		{{item.mubiao}}
+			     	  		<span v-cloak>{{item.mubiao}}</span>
 			     	  	</div>
 			     	  	<div v-cloak class="td">
-			     	  		{{item.yiwancheng}}
+			     	  		<span v-cloak>{{item.yiwancheng}}</span>
 			     	  	</div>
 			     	  	<div v-cloak class="td">
-			     	  		{{item.wanchenglv}}
+			     	  		<span v-cloak>{{item.wanchenglv}}</span>
 			     	  	</div>
 		     	    </div>
 		     	    <div v-show='itemindex == index && boolean' class="tr_child">
 			     	   <div v-for='childitem in item.child' class="tr tr-child">
 			     	  	  <div  v-cloak class="td">
-				     	  		{{childitem.pianqu}}
+				     	  		<span v-cloak>{{childitem.pianqu}}</span>
 				     	  	</div>
 				     	  	<div v-cloak class="td">
-				     	  		{{childitem.mubiao}}
+				     	  		<span v-cloak>{{childitem.mubiao}}</span>
 				     	  	</div>
 				     	  	<div v-cloak class="td">
-				     	  		{{childitem.yiwancheng}}
+				     	  		<span v-cloak>{{childitem.yiwancheng}}</span>
 				     	  	</div>
 				     	  	<div v-cloak class="td">
-				     	  		{{childitem.wanchenglv}}
+				     	  		<span v-cloak>{{childitem.wanchenglv}}</span>
 				     	  	</div>
 			     	  </div>
 		     	    </div>
@@ -148,7 +148,7 @@
 			     	  		汇总
 			     	  	</div>
 			     	  	<div class="td">
-			     	  		200
+			     	  		120
 			     	  	</div>
 			     	  	<div class="td">
 			     	  		100
@@ -170,9 +170,9 @@
 			var kanbanVM=new Vue({
 				el:'body',
 				data:{
-                  weijiesuan:20,
+                  weijiesuan:100,
                   daijiesuan:400,
-                  yijiesuan:100,
+                  yijiesuan:200,
                   itemindex:null,
                   boolean:false,
                   lastIndex:null,
@@ -223,6 +223,7 @@
 				methods:{
 					slide(index,e){
                          this.itemindex=index;
+                         e.stopPropagation();
                          $(".tr-list").removeClass("active");
                          if(this.itemindex != this.lastIndex){
                          	this.boolean=true;
@@ -293,17 +294,56 @@
 	        var max_num=kanbanVM.allcount;
 	        var nzhengchu=max_num % 100;
 
-	        var yiwanchengbaifenbi=kanbanVM.yijiesuan/max_num;
-	        var weijiesuanbaifenbi=kanbanVM.weijiesuan/max_num;
-	        var daijiesuanbaifenbi=kanbanVM.daijiesuan/max_num;
-
-	        var baifenbishu=Math.ceil( yiwanchengbaifenbi*100);
 
 	        if(!nzhengchu == 0){
                   var chushu=Math.floor( max_num/100)+1 ;
                   max_num=chushu*100;
 	        }
-	        var splitNumber=max_num/100;
+
+	        var yiwanchengbaifenbi=kanbanVM.yijiesuan/max_num;
+	        var weijiesuanbaifenbi=kanbanVM.weijiesuan/max_num;
+	        var daijiesuanbaifenbi=kanbanVM.daijiesuan/max_num;
+
+            // 数组从小到大排序
+            var arr=[
+		             {
+                       num:yiwanchengbaifenbi,
+                       color:'#3eb565'
+		             },
+		             {
+                       num:weijiesuanbaifenbi,
+                       color:'#ff4e4e'
+		             },
+		             {
+                       num:daijiesuanbaifenbi,
+                       color:'#eb6d00'
+		             }
+            ]; 
+            var arr2 = arr.slice(0);
+            function paixu(arr2) {
+	            for (var i = 0; i < arr2.length - 1; i++) {
+	                for (var j = i + 1; j < arr2.length; j++) {
+	                    var tempi = arr2[i].num; //获取第一个值，并与后一个值比较
+	                    var tempj = arr2[j].num;
+	                    var zhongjianliang=null;
+	                    if (tempi > tempj) {
+	                        zhongjianliang=arr2[i];
+	                        arr2[i]=arr2[j];
+	                        arr2[j]=zhongjianliang;
+	                        //如果前一个值比后一个值大，那么相互交换
+	                    }
+	                }
+	            }
+	            return arr2;
+	        }
+	        paixu(arr2); 
+	        var baifenbishu=Math.ceil( yiwanchengbaifenbi*100);
+
+	           // if(!nzhengchu == 0){
+              //          var chushu=Math.floor( max_num/100)+1 ;
+             //          max_num=chushu*100;
+	        // }
+ 	        var splitNumber=max_num/100;
 	        // 指定图表的配置项和数据
 	        var option = {
 			    tooltip : {
@@ -332,9 +372,12 @@
 			            axisLine: {            // 坐标轴线
 			                lineStyle: {       // 属性lineStyle控制线条样式
 			                    color: [
-			                        [weijiesuanbaifenbi,'#ff4e4e'],
-				                    [yiwanchengbaifenbi, '#3eb565'],
-				                    [1, '#ec6c00']
+			                        [arr2[0].num,arr2[0].color],
+				                    [arr2[1].num,arr2[1].color],
+				                    [1, arr2[2].color]
+				                    // [yiwanchengbaifenbi, '#3eb565'],
+				                    // [weijiesuanbaifenbi,'#ff4e4e'],
+				                    // [1, '#ec6c00']
 			                    ],
 			                    width: 10,
 			                    shadowColor : '#fff', //默认透明
