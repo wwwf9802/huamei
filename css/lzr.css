@@ -2309,3 +2309,7 @@
     font-size: 0.4rem;
     color: #eb6d00;
 }
+/*工地主页角标*/
+.g-content-oa .item-lists .list{position: relative;}
+.g-content-oa .item-lists .list .num{color:white;position: absolute;right: 0.65rem;top: 0.45rem;background-color: #EB4D4B;padding: 0 0.18rem;border-radius: 0.3rem;}
+    	
