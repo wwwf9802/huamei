@@ -129,7 +129,7 @@
 										{{item.sitesSchedule.planFinishTime | DateDif}}
 									</div>
 									<div class="td td-progress">
-										<div class="mui-progressbar progress" data-progress="80">
+										<div id="demo1" class="mui-progressbar progress" data-progress="80">
 											<span></span>
 										</div>
 										<p class='progress-num'>80%</p>
@@ -181,6 +181,7 @@
                         //用于异步展示进度条
                         setTimeout(function(){
                            jindutiao()
+                           tianshucha(jsonData)
                         },0)
 					},
 					error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -188,6 +189,13 @@
 					}
 				});
 			}
+
+			function tianshucha(){
+				var realstarttime=vm.dataArr.sitesSchedule.realStartTime;
+				console.log(realstarttime);
+
+			}
+
 
 			var vm = new Vue({
 				el: "body",
@@ -219,7 +227,7 @@
 						vm.focusy = false;
 						vm.search_cont = false;
 						vm.$els.search.className = 'search'
-						
+
 						 //用于异步展示进度条
                         setTimeout(function(){
                            jindutiao()
