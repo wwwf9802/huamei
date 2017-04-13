@@ -23,6 +23,10 @@
 		html {
 			background: #fff
 		}
+		
+		.mui-slider-progress-bar{background:transparent !important}
+		.mui-control-item{border-bottom:4px solid transparent !important;}
+		.mui-control-item.active{border-bottom:4px solid #EA6D01 !important;}
 	</style>
 
 	<body>
@@ -33,10 +37,10 @@
 		<div class="g-content g-content-sale mui-content g-content-news-list g-paigong g-gongdi-yichang ">
 			<div id="slider" class="mui-slider">
 				<div class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-					<div class="mui-control-item cur-item" v-on:click="getData(1)" href="#contentDiv">
+					<div class="mui-control-item cur-item" v-on:click="getData(1,$event)" href="#contentDiv">
 						待处理(<span class='num'>{{unDealArrNum}}</span>)
 					</div>
-					<div class="mui-control-item" v-on:click="getData(2)" href="#contentDiv">
+					<div class="mui-control-item" v-on:click="getData(2,$event)" href="#contentDiv">
 						已处理(<span class='num'>{{dealArrNum}}</span>)
 					</div>
 				</div>
@@ -112,7 +116,9 @@
 					dealArrNum: 1
 				},
 				methods: {
-					getData: function(type) {
+					getData: function(type,$event) {
+						$(".mui-control-item").removeClass("active");
+						$($event.target).addClass("active");
 						if(type == 1) {
 							this.dataArr = this.unDealArr;
 						} else {

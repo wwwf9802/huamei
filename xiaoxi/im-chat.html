@@ -354,6 +354,9 @@
 			
 			.addBox img {
 				font-size: 40px;
+				width: 55px;
+				height:55px;
+				border-radius: 5px;
 				display: block;
 				background-color: white;
 				margin: 7px auto;
@@ -526,6 +529,7 @@
 					});
 
 					var bindMsgList = function() {
+						console.log(JSON.stringify(record));
 						chatListVM.dataArr = record;
 						setTimeout(setImageView, 100)
 					};
@@ -619,7 +623,7 @@
 							send({
 								empId: chatListVM.empId,
 								groupId: chatListVM.groupId,
-								msgType: '30',
+								msgType: '10',
 								content: ui.boxMsgText.value.replace(new RegExp('\n', 'gm'), '<br/>')
 							});
 							ui.boxMsgText.value = '';
