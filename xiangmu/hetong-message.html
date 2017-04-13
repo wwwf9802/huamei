@@ -152,10 +152,27 @@
                           yingshou:8000,
                           jindu:75
                         }
-                    ]
+                    ],
+                    contractId:localStorage.selectContractId
+		     	},
+		     	ready:function(){
+		     		mui.ajax(getBaseServerUrl() + '/app/contractInfo/findContractInfo', {
+		                type: 'get', //HTTP请求类型
+		                data: {
+		                	// 合同信息编号
+		                    contractId: this.contractId
+		                },
+		                success: function(jsonData) {
+		                     console.log(jsonData)
+		                },
+		                error: function(XMLHttpRequest, textStatus, errorThrown) {
+		                    console.log(XMLHttpRequest.status);
+		                    console.log(XMLHttpRequest.readyState);
+		                    console.log(textStatus);
+		                }
+		            });
 		     	}
 		     })
-
 		    //进度条展示
 			var progressbar1 = mui('.progress');
 		    var progress_length=progressbar1.length;

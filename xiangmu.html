@@ -41,7 +41,7 @@
 			<div v-else class="item-project" id='item-project'>
 				<div class="item-pro-list" v-for="item in dataArr">
 					<div class="head">
-						<a v-on:click="toProjectDetail(item.sitesSchedule.sitesId)">
+						<a v-on:click="toProjectDetail(item.sitesSchedule.sitesId,item.sitesRecord.contractId)">
 							<div class='fangkuang-num'>1</div> {{item.sitesRecord.sitesAddr}}
 						</a>
 					</div>
@@ -128,8 +128,13 @@
 									<div class="td td-red">
 										{{item.sitesSchedule.planFinishTime | DateDif}}
 									</div>
+<<<<<<< HEAD
 									<!--<div class="td td-progress">
 										<div id="demo1" class="mui-progressbar progress" data-progress="80">
+=======
+									<div class="td td-progress">
+										<div class="mui-progressbar progress" data-progress="80">
+>>>>>>> 3d2ee9cd23222e042740a28162cee22d4f14922d
 											<span></span>
 										</div>
 										<p class='progress-num'>80%</p>
@@ -141,7 +146,6 @@
 				</div>
 			</div>
 		</div>
-
 		<script src="js/zepto1.1.6.min.js" type="text/javascript"></script>
 		<script src='js/swiper-3.3.1.min.js' type="text/javascript"></script>
 		<script src='js/mui.min.js'></script>
@@ -167,7 +171,8 @@
 						searchValue: $("#search").val()
 					},
 					success: function(jsonData) {
-						console.log(jsonData);
+						console.log(JSON.stringify(jsonData));
+
 						vm.dataArr = jsonData;
 						//							var listsearch = [];
 						//							var listnum = res.lists.length;
@@ -177,6 +182,11 @@
 						//							} else {
 						//								$("#search_content").hide();
 						//							}
+                        
+                        //用于异步展示进度条
+                        setTimeout(function(){
+                           jindutiao()
+                        },0)
 					},
 					error: function(XMLHttpRequest, textStatus, errorThrown) {
 						$("#search_content").hide();
@@ -204,15 +214,21 @@
 					blur: function(e) {
 						// this.$els.search.className='left'
 					},
-					toProjectDetail: function(sitesId) {
+					toProjectDetail: function(sitesId,contractId) {
 						localStorage.selectSitesId = sitesId;
-						openNew("xiangmu/project-details.html");
+						localStorage.selectContractId = contractId;
+						openNew("xiangmu/hetong-message.html");
 					},
 					cancelSearch: function() {
 						search.value = '';
 						vm.focusy = false;
 						vm.search_cont = false;
 						vm.$els.search.className = 'search'
+						
+						 //用于异步展示进度条
+                        setTimeout(function(){
+                           jindutiao()
+                        },0)
 					}
 				},
 				ready: function() {
@@ -238,9 +254,21 @@
 			})
 
 			//进度条展示
-			var progressbar1 = mui('.progress');
-			var progress = progressbar1[0];
-			mui(progressbar1).progressbar().setProgress(progress.getAttribute('data-progress'));
+			// var progressbar1 = mui('.progress');
+			// var progress = progressbar1[0];
+			// mui(progressbar1).progressbar().setProgress(progress.getAttribute('data-progress'));
+            function jindutiao(){
+				var progressbar1 = mui('.progress');
+			    var progress_length=progressbar1.length;
+			    for (let i=0;i<progress_length;i++){
+				    var progress_e=progressbar1[i];
+				    var progressnum=progress_e.getAttribute('data-progress');
+				    
+				   	var progress=progressbar1[i];
+				    mui(progress).progressbar().setProgress(progress.getAttribute('data-progress'));
+			    }
+		    }
+
 
 			if(window.plus) {
 				plusReady()
@@ -275,8 +303,8 @@
 					var numhis = 1;
 					vm.his_length = 0;
 					$('.g-content .serach-lay').addClass("inputremovehis");
-				})
-				// input搜索框获取到焦点出现的搜索历史记录
+			})
+			// input搜索框获取到焦点出现的搜索历史记录
 			function showSearchHis() {
 				if($('.g-content .serach-lay').hasClass("inputremovehis")) {
 					$("#his_content").hide();
