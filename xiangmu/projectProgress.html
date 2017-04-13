@@ -43,7 +43,7 @@
 									<span class="point"></span>
 									<span class="line1"></span>
 									<span class="time">{{item.planStartTime | formatDate}}</span>
-									<span class="point"></span>
+									<span class="point" v-bind:class="{'type1':item.state == '10','type2':item.state == '20','type3':item.state =='30' && item.diffDate < 0,'type4':item.state =='30' && item.diffDate >= 0}"></span>
 									<span class="line2"></span>
 									<span class="time">{{item.realStartTime | formatDate}}</span>
 									<span class="txt">{{item.nodeName}}</span>
@@ -53,23 +53,23 @@
 					</div>
 					<div class="swiper-slide">
 						<div class=" head jiesuan-done">
-							工地状态：<span class='zhengchang'>正常</span>&nbsp;&nbsp;无延期
+							工地状态：<span class='zhengchang'>{{detaiData.sitesInfo.stateName}}</span>&nbsp;&nbsp;无延期
 							<span class="rigth-wen">
-			     	  	  <span class="time">工期：<span class='tianshu'>65</span>&nbsp;天</span>
+			     	  	  <span class="time">工期：<span class='tianshu'>{{detaiData.sitesInfo.workDays}}</span>&nbsp;天</span>
 							</span>
 						</div>
 						<div class="gongdi-jindu">
 							<div class="jindu-line">
 								<span class='line'>
 			     	  	 	<span class='kaigongqian'>
-			     	  	   	   <span class='heng-wen'>10天</span><br>
+			     	  	   	   <span class='heng-wen'>{{detaiData.sitesInfo.beforeDays}}天</span><br>
 								<span class='shu-wen yiwan'>开工前</span>
 								</span>
 								</span>
 								<span class="tou">
 			     	  	 	 <span class="kaigong-wen">
 			     	  	 	 	<span>开工</span><br>
-								<span>2017.04.02</span>
+								<span style="white-space: nowrap;">{{detaiData.sitesInfo.startTime}}</span>
 								</span>
 								</span>
 
@@ -84,8 +84,8 @@
 				     	  	   	   <span class='shu-wen now'>泥水</span>
 								</span>
 								<span class='tips'>
-				     	  	   	    <span>21、第四次检查</span>
-								<span>2017-04-02</span>
+				     	  	   	    <span style="white-space: nowrap;">{{detaiData.sitesInfo.nodeName}}</span>
+								<span style="white-space: nowrap;">{{detaiData.sitesInfo.nodeTime}}</span>
 								</span>
 								<span class="shuxian"></span>
 								<span class="icon-yuanquan"></span>
@@ -110,7 +110,7 @@
 								<span class="tou hui-tou jungong">
 			     	  	 	 <span class="kaigong-wen">
 			     	  	 	 	<span>竣工</span><br>
-								<span>2017-05-06</span>
+								<span>{{detaiData.sitesInfo.finishTime}}</span>
 								</span>
 								</span>
 								<span class='line weiwancheng-line'>
@@ -119,7 +119,7 @@
 								</span>
 								</span>
 								<span class="shengyu-gongqi">
-			     	  	 	剩余工期：43 天
+			     	  	 	剩余工期：{{detaiData.sitesInfo.afterDays}} 天
 			     	  	 </span>
 							</div>
 						</div>
@@ -130,34 +130,34 @@
 							<div class="item-jindu">
 								<canvas id="a_celiang" width='100' height='100'></canvas>
 								<span class="circle-wen celiang-wen">
-			     	 	   	  <span>{{celiang}}</span><br> 测量
+			     	 	   	  <span>{{detaiData.sitesInfo.measurenNum}}</span><br> 测量
 								</span>
 							</div>
 							<span class="line"></span>
 							<div class="item-jindu">
 								<canvas id="b_anzhuang" width='100' height='100'></canvas>
 								<span class="circle-wen celiang-wen">
-			     	 	   	  <span>{{anzhuang}}</span><br> 安装
+			     	 	   	  <span>{{detaiData.sitesInfo.installNum}}</span><br> 安装
 								</span>
 							</div>
 							<div class="item-jindu item-jindut">
 								<canvas id="c_songhuo" width='100' height='100'></canvas>
 								<span class="circle-wen celiang-wen">
-			     	 	   	  <span>{{songhuo}}</span><br> 送货
+			     	 	   	  <span>{{detaiData.sitesInfo.deliveryNum}}</span><br> 送货
 								</span>
 							</div>
 							<span class="line linetwo"></span>
 							<div class="item-jindu item-jindut">
 								<canvas id="d_jiancha" width='100' height='100'></canvas>
 								<span class="circle-wen celiang-wen">
-			     	 	   	  <span>{{jiancha}}</span><br> 检查
+			     	 	   	  <span>{{detaiData.sitesInfo.checkNum}}</span><br> 检查
 								</span>
 							</div>
 							<span class="line linethree"></span>
 							<div class="item-jindu item-jindut">
 								<canvas id="e_yanshou" width='100' height='100'></canvas>
 								<span class="circle-wen celiang-wen">
-			     	 	   	  <span>{{yanshou}}</span><br> 验收
+			     	 	   	  <span>{{detaiData.sitesInfo.acceptNum}}</span><br> 验收
 								</span>
 							</div>
 						</div>
@@ -168,24 +168,29 @@
 
 						<div class="layout-yichang">
 							<span class="icon-yichang">进度异常</span>
-							<div class="title">
-								1、门窗测量异常
-							</div>
-							<div class="jieduan">
-								<span class='icon-jieduan'>木工阶段</span>
-								<span class="time">2017-4-12</span>
-							</div>
+							<template v-for="item in detaiData.scheduleException">
+								<div class="title">
+									{{item.taskName}}
+									<!--<span class="time done">已完成</span>-->
+								</div>
+								<div class="jieduan">
+									<span class='icon-jieduan'>{{item.stagesName}}</span>
+									<span class="time">{{item.taskTime}}</span>
+								</div>
+							</template>
 						</div>
 						<div class="layout-yichang">
-							<span class="icon-yichang">施工异常</span>
-							<div class="title">
-								1、门窗测量异常
-								<span class="time done">已完成</span>
-							</div>
-							<div class="jieduan">
-								<span class='icon-jieduan'>木工阶段</span>
-								<span class="time">2017-4-12</span>
-							</div>
+							<template v-for="item in detaiData.workException">
+								<span class="icon-yichang">施工异常</span>
+								<div class="title">
+									{{item.taskName}}
+									<!--<span class="time done">已完成</span>-->
+								</div>
+								<div class="jieduan">
+									<span class='icon-jieduan'>{{item.stagesName}}</span>
+									<span class="time">{{item.taskTime}}</span>
+								</div>
+							</template>
 						</div>
 					</div>
 				</div>
@@ -218,7 +223,8 @@
 					typeArr: [],
 					dataArr: [],
 					selectCode: '',
-					viewIndex: 0
+					viewIndex: 0,
+					detaiData: {}
 				},
 				methods: {
 					selectType: function(code) {
@@ -242,6 +248,9 @@
 							vm.typeArr = new Array();
 							var flag;
 							for(var i = 0; i < jsonData.other.list.length; i++) {
+								if(jsonData.other.list[i].planStartTime && jsonData.other.list[i].realStartTime) {
+									jsonData.other.list[i].diffDate = DateDiff(jsonData.other.list[i].planStartTime, jsonData.other.list[i].realStartTime);
+								}
 								flag = false;
 								for(var j = 0; j < vm.typeArr.length; j++) {
 									if(vm.typeArr[j].code == jsonData.other.list[i].stage) {
@@ -260,6 +269,22 @@
 					},
 					error: function() {}
 				});
+
+				mui.ajax(getBaseServerUrl() + '/sites/sitesSchedule/queryScheduleListBySites', {
+					type: 'get', //HTTP请求类型
+					data: {
+						sitesId: localStorage.selectSitesId
+					},
+					success: function(jsonData) {
+						if(jsonData.status) {
+							vm.detaiData = jsonData.data;
+							setData(jsonData.data.sitesInfo);
+						} else {
+							plus.nativeUI.alert(jsonData.msg);
+						}
+					},
+					error: function() {}
+				});
 			}
 
 			var mySwiper = new Swiper('.swiper-container', {
@@ -272,72 +297,90 @@
 					vm.viewIndex = mySwiper.activeIndex;
 				}
 			});
-			var jinduVM = new Vue({
-				el: 'body',
-				data: {
-					celiang: '4/5',
-					anzhuang: '5/8',
-					songhuo: '2/8',
-					jiancha: '5/8',
-					yanshou: '2/5',
+
+			function setData(obj) {
+				var celiangb;
+				if(obj.measurenNum == "0/0"){
+					celiangb = 0;
+				}else{
+					celiangb = eval(obj.measurenNum);
 				}
-			});
-			var celiangb = eval(jinduVM.celiang);
-			var anzhuangb = eval(jinduVM.anzhuang);
-			var songhuob = eval(jinduVM.songhuo);
-			var jianchab = eval(jinduVM.jiancha);
-			var yanshoub = eval(jinduVM.yanshou);
+				var anzhuangb;
+				if(obj.installNum == "0/0"){
+					anzhuangb = 0;
+				}else{
+					anzhuangb = eval(obj.installNum);
+				}
+				var songhuob;
+				if(obj.deliveryNum == "0/0"){
+					songhuob = 0;
+				}else{
+					songhuob = eval(obj.deliveryNum);
+				}
+				var jianchab;
+				if(obj.checkNum == "0/0"){
+					jianchab = 0;
+				}else{
+					jianchab = eval(obj.checkNum);
+				}
+				var yanshoub;
+				console.log(obj.acceptNum);
+				if(obj.acceptNum == "0/0"){
+					yanshoub = 0;
+				}else{
+					yanshoub = eval(obj.acceptNum);
+				}
+				var circle = new CircleProgress({
+					element: a_celiang,
+					current: 0.23,
+					startAngle: 180,
+					backgroundColor: "#fff3e8",
+					circleColor: '#eb6d00',
+					circleLineWidth: 2
 
-			var circle = new CircleProgress({
-				element: a_celiang,
-				current: 0.23,
-				startAngle: 180,
-				backgroundColor: "#fff3e8",
-				circleColor: '#eb6d00',
-				circleLineWidth: 2
+				})
+				circle.draw(celiangb);
 
-			})
-			circle.draw(celiangb);
+				var circle1 = new CircleProgress({
+					element: b_anzhuang,
+					current: 0.23,
+					startAngle: 180,
+					backgroundColor: "#fff3e8",
+					circleColor: '#eb6d00',
+					circleLineWidth: 2
+				})
+				circle1.draw(anzhuangb);
 
-			var circle1 = new CircleProgress({
-				element: b_anzhuang,
-				current: 0.23,
-				startAngle: 180,
-				backgroundColor: "#fff3e8",
-				circleColor: '#eb6d00',
-				circleLineWidth: 2
-			})
-			circle1.draw(anzhuangb);
+				var circle2 = new CircleProgress({
+					element: c_songhuo,
+					current: 0.23,
+					startAngle: 180,
+					backgroundColor: "#fff3e8",
+					circleColor: '#eb6d00',
+					circleLineWidth: 2
+				})
+				circle2.draw(songhuob)
 
-			var circle2 = new CircleProgress({
-				element: c_songhuo,
-				current: 0.23,
-				startAngle: 180,
-				backgroundColor: "#fff3e8",
-				circleColor: '#eb6d00',
-				circleLineWidth: 2
-			})
-			circle2.draw(songhuob)
+				var circle3 = new CircleProgress({
+					element: d_jiancha,
+					current: 0.23,
+					startAngle: 180,
+					backgroundColor: "#fff3e8",
+					circleColor: '#eb6d00',
+					circleLineWidth: 2
+				})
+				circle3.draw(jianchab)
 
-			var circle3 = new CircleProgress({
-				element: d_jiancha,
-				current: 0.23,
-				startAngle: 180,
-				backgroundColor: "#fff3e8",
-				circleColor: '#eb6d00',
-				circleLineWidth: 2
-			})
-			circle3.draw(jianchab)
-
-			var circle4 = new CircleProgress({
-				element: e_yanshou,
-				current: 0.23,
-				startAngle: 180,
-				backgroundColor: "#fff3e8",
-				circleColor: '#eb6d00',
-				circleLineWidth: 2
-			})
-			circle4.draw(yanshoub)
+				var circle4 = new CircleProgress({
+					element: e_yanshou,
+					current: 0.23,
+					startAngle: 180,
+					backgroundColor: "#fff3e8",
+					circleColor: '#eb6d00',
+					circleLineWidth: 2
+				})
+				circle4.draw(yanshoub)
+			}
 		</script>
 	</body>
 

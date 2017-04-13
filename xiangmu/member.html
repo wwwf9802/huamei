@@ -21,14 +21,15 @@
 		</div>
 		<section class="g-content menmber">
 			<ul>
-				<li v-for="item in dataArr" v-on:click="gotoChatGroup(item)">
+				<li v-for="item in dataArr">
 					<div class="head">
 						<img src="../images/cheliang.png" />
 					</div>
-					<div class="content">
+					<div class="content" >
 						<div class="title"><span>{{item.roleName}}</span><span>{{item.empName}}</span></div>
 						<div class="msg">{{item.empPhone}}</div>
 						<div class="line"></div>
+						<i class="icon-phone" v-on:click="toPhone(item.empPhone)"></i>
 					</div>
 				</li>
 			</ul>
@@ -47,7 +48,11 @@
 			data: {
 				dataArr: []
 			},
-			methods: {},
+			methods: {
+				toPhone:function(num){
+					plus.device.dial(num, false );
+				}
+			},
 			ready: function() {
 				init();
 			}

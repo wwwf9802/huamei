@@ -13,16 +13,17 @@
 .chatList li{border-bottom: 1px solid #eee;}
 	.chatList .head{width: 2rem;height: 1.866rem;float: left;text-align: center;position: relative;}
 	.chatList .head img{margin-top: 0.25rem;width: 1.333rem;height: 1.333rem;}
-	.chatList .head .num{color:white;position: absolute;right: 0.06rem;top: 0.05rem;background-color: #EB4D4B;padding: 0.01rem 0.18rem;border-radius: 0.3rem;}
+	.chatList .head .num{color:white;position: absolute;right: 0.06rem;top: 0.05rem;background-color: #EB4D4B;padding: 0rem 0.18rem;border-radius: 0.3rem;}
 	.chatList .content{margin-left: 2rem;height: 1.866rem;padding: 0.3rem 0.3rem;}
 	.chatList .content .title{white-space: nowrap;float: left;width: 5.2rem;text-overflow: ellipsis;overflow: hidden;font-size: 0.42rem;color: black;font-weight: bold;}
 	.chatList .content .time{white-space: nowrap;color: #AAAAAA;}
 	.chatList .content .msg{white-space: nowrap;float: left;color: #7A7A7A;margin-top: 0.12rem;font-size: 0.38rem;}
 	
-	.chatList .menmber li{background: url(../images/project/icon-phone.png) no-repeat;background-position:calc(100% - 0.42rem) 0.63rem;background-size: 0.6rem 0.6rem;position: relative;}
+	.chatList .menmber li{position: relative;}
 		.chatList .menmber .title{width: 100%;font-weight: normal;}
 		.chatList .menmber span:first-child{width: 2.2rem;display: inline-block;}
 		.chatList .menmber .line{width: 1px;background-color: #ccc;height: 0.8rem;position: absolute;bottom: 0.58rem;right: 1.5rem;}
+		.chatList .menmber .icon-phone{background:url(../images/project/icon-phone.png) no-repeat;background-size: 0.6rem 0.6rem;display: block;width: 0.6rem;height: 0.6rem;position: absolute;bottom: 0.68rem;right: 0.5rem;}
 		
 		
 .checkSelect{background-color: white;}
@@ -139,7 +140,13 @@
    .projectProgress .box .item{position: relative;padding: 0.4rem 0;height: 100%;}
    .projectProgress .box .item .point{width: 0.3rem;height: 0.3rem;background-color: #4EB5E7;display: inline-block;border-radius: 50%;vertical-align: top;margin-top: 0.125rem;}
    .projectProgress .box .item .line1{width: 1px;height: calc(100% - 0.5rem);background-color: #4EB5E7;display: inline-block;position: absolute;left: 0.12rem;top: 0.88rem;}
-   .projectProgress .box .item .line2{width: 1px;height: calc(100% - 0.5rem);background-color: #4EB5E7;display: inline-block;position: absolute;left: 2.8rem;top: 0.88rem;}
+   .projectProgress .box .item .line2{width: 1px;height: calc(100% - 0.5rem);background-color: #ccc;display: inline-block;position: absolute;left: 2.8rem;top: 0.88rem;}
+   
+   .projectProgress .box .item .point.type1{background-color: white;border: 1px solid #4EB5E7;}
+   .projectProgress .box .item .point.type2{background-color: #EA6D01;}
+   .projectProgress .box .item .point.type3{background-color: #EB4D4A;}
+   .projectProgress .box .item .point.type4{background-color: #2BBD0E;}
+   
    .projectProgress .box .item .time{width: 2rem;display: inline-block;margin-left: 0.2rem;vertical-align: top;}
    .projectProgress .box .item .time:nth-child(6){width: 2.3rem;}
    .projectProgress .box .item .txt{width: 3.3rem;display: inline-block;}
