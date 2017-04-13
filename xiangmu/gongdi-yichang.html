@@ -113,7 +113,7 @@
 					unDealArr: [],
 					unDealArrNum: 0,
 					dealArr: [],
-					dealArrNum: 1
+					dealArrNum: 0
 				},
 				methods: {
 					getData: function(type,$event) {
@@ -124,6 +124,7 @@
 						} else {
 							this.dataArr = this.dealArr;
 						};
+						console.log(JSON.stringify(this.dataArr));
 					},
 					closeError: function(type) {
 						close(type)
@@ -151,7 +152,8 @@
 						}
 
 					},
-					error: function(XMLHttpRequest, textStatus, errorThrown) {}
+					error: function(XMLHttpRequest, textStatus, errorThrown) {
+					}
 				});
 				mui.ajax(getBaseServerUrl() + '/sites/sitesTask/queryTaskListForException', {
 					type: 'get', //HTTP请求类型

@@ -31,7 +31,7 @@
 					<div class="swiper-slide">
 						<div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
 							<div class="mui-scroll">
-								<div v-for="item in typeArr" class="mui-control-item" v-bind:class="{'mui-active':$index == 0}" v-on:click="selectType(item.code)">
+								<div v-for="item in typeArr" class="mui-control-item" v-bind:class="{'mui-active':$index == 0}" v-on:tap="selectType(item.code)">
 									{{item.name}}
 								</div>
 							</div>
