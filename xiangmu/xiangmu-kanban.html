@@ -344,6 +344,12 @@
              //          max_num=chushu*100;
 	        // }
  	        var splitNumber=max_num/100;
+
+ 	        // 防止数字过大 而引起 分隔段 太多的情况
+	        if(splitNumber>=10){
+	          splitNumber=10;
+	        }
+
 	        // 指定图表的配置项和数据
 	        var option = {
 			    tooltip : {
@@ -375,9 +381,6 @@
 			                        [arr2[0].num,arr2[0].color],
 				                    [arr2[1].num,arr2[1].color],
 				                    [1, arr2[2].color]
-				                    // [yiwanchengbaifenbi, '#3eb565'],
-				                    // [weijiesuanbaifenbi,'#ff4e4e'],
-				                    // [1, '#ec6c00']
 			                    ],
 			                    width: 10,
 			                    shadowColor : '#fff', //默认透明
