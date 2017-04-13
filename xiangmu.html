@@ -100,7 +100,7 @@
 									<div class="td th">
 										装饰分部
 									</div>
-									<div class="td">
+									<div class="td" style="white-space: nowrap;">
 										{{item.sitesRecord.branchOrgName}}
 									</div>
 								</div>
@@ -231,7 +231,7 @@
 					toProjectDetail: function(sitesId,contractId) {
 						localStorage.selectSitesId = sitesId;
 						localStorage.selectContractId = contractId;
-						openNew("xiangmu/hetong-message.html");
+						openNew("xiangmu/project-details.html");
 					},
 					cancelSearch: function() {
 						search.value = '';
