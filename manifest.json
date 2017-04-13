@@ -1703,7 +1703,9 @@
 					"css/ww.css",
 					"images/addphoto.png",
 					"js/flexible.js",
-					"css/swiper-3.3.1.min.css"
+					"css/swiper-3.3.1.min.css",
+					"js/global.js",
+					"images/icon-jia.png"
 				],
 				"refer": [],
 				"priority": 0
@@ -1807,6 +1809,32 @@
 					"js/vue1.js"
 				],
 				"refer": [],
+				"priority": 0
+			},
+			"xiangmu/paper-manage.html": {
+				"resources": [
+					"css/base-reset.css",
+					"fonts/mui.ttf",
+					"js/public.js",
+					"images/icon-jia.png",
+					"js/vue.min.js",
+					"css/yhn.css",
+					"js/swiper-3.3.1.min.js",
+					"images/house.png",
+					"js/zepto1.1.6.min.js",
+					"js/flexible_css.js",
+					"images/img-shadow.png",
+					"js/mui.min.js",
+					"css/common.css",
+					"css/mui.min.css",
+					"css/mui.picker.all.css",
+					"js/global.js",
+					"js/flexible.js",
+					"css/swiper-3.3.1.min.css"
+				],
+				"refer": [
+					"xiangmu/photoList.html"
+				],
 				"priority": 0
 			}
 		},

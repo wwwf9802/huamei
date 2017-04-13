@@ -3,7 +3,6 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>水电材料下单</title>
-		<!-- Mobile Devices Support @begin -->
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
 		<meta content="yes" name="apple-mobile-web-app-capable">
@@ -11,7 +10,6 @@
 		<meta content="telephone=no,email=no" name="format-detection">
 		<script src="../js/flexible.js" type="text/javascript"></script>
 		<script src="../js/flexible_css.js" type="text/javascript"></script>
-		<!-- Mobile Devices Support @end -->
 		<link rel="stylesheet" href="../css/base-reset.css">
 		<link rel="stylesheet" href="../css/mui.min.css">
 		<link rel="stylesheet" href="../css/swiper-3.3.1.min.css" />
@@ -35,13 +33,10 @@
 		.y-sub-box{position:absolute;width:1rem;height:.6rem;left:-.3rem;}
 		.y-add-box{position:absolute;width:1rem;height:.6rem;right:-.3rem;top:0;}
 		
-		/*.y-sd-icon{width:.5rem;position:absolute;display: block;}
-		.y-sd-add{right:0;top:0;}*/
 		.y-sd-footer{height:1.3rem;background:#fff;border-top:1px solid #ddd;z-index: 999;position:fixed;bottom:0;width:100%;line-height:1.3rem;}
 		.y-sd-footer>img{width:1.3rem;position:absolute;top:-.4rem;left:.4rem;}
 		.y-sd-footer>span{margin-left:2rem;}
 		.y-sd-footer>div{width:3.2rem;height:1.3rem;float:right;background:#EB6D00;color:#fff;text-align: center;font-size:.45rem;}
-		/*.y-sd-box-l{height:100%;width:calc(100% - 1rem);border:1px solid red}*/
 		
 		.serach-lay{
 			height:1.173rem;
@@ -57,8 +52,6 @@
 			position: absolute;
 			top:50%;
 			margin-top:-0.427rem;
-		    /*left:50%;
-			margin-left: -38%;*/
 			right:12%;
 			border:1px solid #dddddd;
 			border-radius: 0.133rem;
@@ -70,9 +63,9 @@
 		
 		
 			transition: width 0.5s;
-			-moz-transition: width 0.5s; /* Firefox 4 */
-			-webkit-transition: width 0.5s; /* Safari 和 Chrome */
-			-o-transition: width 0.5s; /* Opera */
+			-moz-transition: width 0.5s; 
+			-webkit-transition: width 0.5s; 
+			-o-transition: width 0.5s; 
 		}
 		.serach-lay input.onfocus{
 			height:0.853rem;
@@ -81,8 +74,6 @@
 			position: absolute;
 			top:50%;
 			margin-top:-0.427rem;
-		/*	left:50%;
-			margin-left: -38%;*/
 			right:12%;
 			border:1px solid #dddddd;
 			border-radius: 0.133rem;
@@ -94,9 +85,9 @@
 			background-color:#ffffff;
 		
 			transition: width 0.6s;
-			-moz-transition: width 0.6s; /* Firefox 4 */
-			-webkit-transition: width 0.6s; /* Safari 和 Chrome */
-			-o-transition: width 0.6s; /* Opera */
+			-moz-transition: width 0.6s; 
+			-webkit-transition: width 0.6s; 
+			-o-transition: width 0.6s; 
 		}
 		
 		.serach-lay input.left{
@@ -106,8 +97,6 @@
 			position: absolute;
 			top:50%;
 			margin-top:-0.427rem;
-		/*	left:50%;
-			margin-left: -38%;*/
 			right:12%;
 			border:1px solid #dddddd;
 			border-radius: 0.133rem;
@@ -247,6 +236,10 @@
 			<span>已选产品(4)</span>
 			<div>提交</div>
 		</footer>
+		<!--<div v-for="key in arr2">
+			<p>{{key}}</p>
+		</div>
+		<button id="b1"></button>-->
 	</body>
 	<script src="../js/zepto1.1.6.min.js"></script>
 	<script src="../js/swiper-3.3.1.min.js"></script>
@@ -268,8 +261,7 @@
 	        direction: 'vertical'
 	    });
 	    
-	    var array1=[1,1,1,1,1,1,1,1];
-	    var array2=[2,2,2,2,2,2,2,2];
+	    var abc=[1,2,3,4,5,6,7,8,9,10,11];
 	    var vm = new Vue({
 				el: "body",
 				data: {
@@ -277,7 +269,7 @@
 					search_cont: false,
 					his_length: 0,
 					dataArr: [],
-					arr2:array2
+					arr2:[1,2,3]
 				},
 				methods: {
 					onfocus: function(e) {
@@ -336,24 +328,16 @@
 			});
 			
 			$(".swiper1>div").on("tap",function(){
-				console.log(array2);
-				vm.arr2=array1;
-				//changeSwiper();
+				vm.arr2=abc;
+				setTimeout(changeSwiper,500);
 			});
 			
+			/*b1.onclick=function(){
+				vm.arr2=abc;
+			}*/
+			
 			function changeSwiper(){
-			//mySwiper.destroy(false)
-				console.log(swiper1)
-				for(var i=0;i<swiper1.length;i++){
-					swiper1[i].updateSlidesSize();
-				}
-	//			swiper1 =new Swiper('.swiper-container1', {
-	//		        pagination: '.swiper-pagination',
-	//		        slidesPerView: 2.5,
-	//		        paginationClickable: true,
-	//		        spaceBetween: 0,
-	//		        freeMode: true
-	//		    });
+				swiper1.updateSlidesSize();
 			}
 			
 	</script>

@@ -68,29 +68,9 @@
 			</div>
 			<div class="swiper-container">
 				<div class="swiper-wrapper">
-					<div class="swiper-slide y-swiper1">
-						<img src="../images/house.png" alt="" />
-						<p>平面布置图(5)</p>
-					</div>
-					<div class="swiper-slide y-swiper1">
-						<img src="../images/house.png" alt="" />
-						<p>平面布置图(5)</p>
-					</div>
-					<div class="swiper-slide y-swiper1">
-						<img src="../images/house.png" alt="" />
-						<p>平面布置图(5)</p>
-					</div>
-					<div class="swiper-slide y-swiper1">
-						<img src="../images/house.png" alt="" />
-						<p>平面布置图(5)</p>
-					</div>
-					<div class="swiper-slide y-swiper1">
-						<img src="../images/house.png" alt="" />
-						<p>平面布置图(5)</p>
-					</div>
-					<div class="swiper-slide y-swiper1">
-						<img src="../images/house.png" alt="" />
-						<p>平面布置图(5)</p>
+					<div class="swiper-slide y-swiper1" v-for="key in dataArr[0].sitesDrawVoList">
+						<img @tap="goToPath(key)" src="{{key.sitesDrawingList[0].pictureUrl | formatURL}}" alt="" />
+						<p>{{key.drawType}}(5)</p>
 					</div>
 				</div>
 			</div>
@@ -127,6 +107,7 @@
 		</section>
 		<button id="d1">请求数据</button>
 	</body>
+	<script src="../js/public.js"></script>
 	<script src="../js/swiper-3.3.1.min.js"></script>
 	<script src="../js/zepto1.1.6.min.js"></script>
 	<script src="../js/mui.min.js"></script>
@@ -148,7 +129,8 @@
 				arr1:[
 					{name:'橱柜',status:'1',tit:'确认',imgList:[1,2,3,4,5,6]},
 					{name:'衣柜',status:'0',tit:'待确认',imgList:[1,2,3,4,5,6]}
-				]
+				],
+				dataArr:null,
 			},
 			methods: {
 				delImg: function(arr,index) {
@@ -163,9 +145,23 @@
 					this.$nextTick(function(){
 						changeSwiper();
 					});
-				}
+				},
+				goToPath:function(key){
+					console.log(JSON.stringify(key));
+					localStorage.paperSonData=JSON.stringify(key);
+					openNew("photoList.html");
+				},
 			},
 			ready: function() {
+				init()
+			}
+		});
+		
+		Vue.filter('formatURL', function(value) {
+			if(value==null||value===undefined||value==""){
+				return "../images/icon-jia.png"
+			}else{
+				return getBaseImgUrl()+value
 			}
 		});
 		
@@ -203,7 +199,10 @@
 		
 		function changeSwiper(){
 			//mySwiper.destroy(false)
-			console.log(swiper1)
+			console.log(swiper)
+			setTimeout(function(){
+				swiper.updateSlidesSize();
+			},500);
 			for(var i=0;i<swiper1.length;i++){
 				swiper1[i].updateSlidesSize();
 			}
@@ -225,6 +224,11 @@
 					},
 					success: function(jsonData) {
 						console.log(jsonData);
+						if(jsonData.status===true){
+							vm.dataArr =jsonData.other.drawlist;
+						}
+						
+						changeSwiper();
 						//vm.dataArr = jsonData;
 					},
 					error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -236,5 +240,6 @@
 		$(d1).click(function(){
 			init();
 		});
+		
 	</script>
 </html>
