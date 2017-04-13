@@ -42,7 +42,7 @@
 	    .y-swiper2>p{text-align: center;}
 	    .y-swiper2>div{display:none;position:absolute;top:.2rem;right:-.3rem;width:1rem;height:1rem;}
 	    .y-swiper2>div.active{display:block}
-	    .y-imgListBox{height:4rem;border-bottom:1px solid #ddd;background:#fff;}
+	    .y-imgListBox{height:4rem;border-bottom:1px solid #ddd;background:#fff;overflow:hidden}
 	    .y-imgListBox>aside{width:2.4rem;height:}
 	    .y-imgListBox>aside>img{display:block;width:1.5rem;margin:.5rem auto;}
 	    .y-imgListBox>aside>h1{text-align: center;font-size:.45rem;margin-top:.35rem}
@@ -105,7 +105,6 @@
 				</div>
 			</div>
 		</section>
-		<button id="d1">请求数据</button>
 	</body>
 	<script src="../js/public.js"></script>
 	<script src="../js/swiper-3.3.1.min.js"></script>
@@ -232,14 +231,13 @@
 						//vm.dataArr = jsonData;
 					},
 					error: function(XMLHttpRequest, textStatus, errorThrown) {
-						$("#search_content").hide();
 					}
 				});
 			}
 		
-		$(d1).click(function(){
+		/*$(d1).click(function(){
 			init();
-		});
+		});*/
 		
 	</script>
 </html>
