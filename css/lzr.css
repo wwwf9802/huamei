@@ -205,6 +205,9 @@
 .mui-bar-nav{
 	position: relative;
 }
+.mui-bar-nav.mui-bar.header{
+	position: fixed;
+}
 .mui-bar-nav .title{
 	position: absolute;
 	left:45.2%;
@@ -1713,7 +1716,6 @@
 /*项目看板页面*/
 .g-content-kanban{
 	background-color: #f6f6f6;
-	top:0rem;
 }
 .g-content-kanban .head{
 	width: 100%;
