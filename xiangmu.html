@@ -129,10 +129,10 @@
 										{{item.sitesSchedule.planFinishTime | DateDif}}
 									</div>
 									<div class="td td-progress">
-										<div id="demo1" class="mui-progressbar progress" data-progress="80">
+										<div class="mui-progressbar progress" data-rstime='{{item.sitesSchedule.realStartTime}}' data-stime='{{item.sitesRecord.startTime}}' data-ftime='{{item.sitesRecord.finishTime}}' data-progress="a">
 											<span></span>
 										</div>
-										<p class='progress-num'>80%</p>
+										<p class='progress-num'></p>
 									</div>
 								</div>
 							</a>
@@ -148,6 +148,25 @@
 		<script type="text/javascript" src="js/global.js"></script>
 		<script type="text/javascript" src="js/public.js"></script>
 		<script>
+
+		    // 计算进度条百分比
+		    var rstime;
+		    function jindutiaoBaifenbi(){
+			    var progress_length=$('.progress').length;
+			    for(var i=0;i<progress_length;i++){
+			    	rstime=$('.progress').eq(i).attr("data-rstime");
+			    	stime=$('.progress').eq(i).attr("data-stime");
+			    	ftime=$('.progress').eq(i).attr("data-ftime");
+ 			    	var chastime=DateDiff(rstime,stime);
+ 			    	var chartime=DateDiff(ftime,stime);
+ 			    	var baifenbi=Math.ceil( (chastime/chartime) * 100);
+ 			    	$('.progress').eq(i).attr('data-progress',baifenbi)
+			    	$(".progress-num").eq(i).text(baifenbi+'%');
+			    }
+			    // 算好进度条百分比后，再展示进度条
+			    jindutiao()
+		    }
+
 			Vue.filter('DateDif', function(value) {
 				var now = new Date();
 				var num = DateDiff(value, now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate());
@@ -167,7 +186,6 @@
 					},
 					success: function(jsonData) {
 						console.log(JSON.stringify(jsonData));
-
 						vm.dataArr = jsonData;
 						//							var listsearch = [];
 						//							var listnum = res.lists.length;
@@ -180,22 +198,15 @@
                         
                         //用于异步展示进度条
                         setTimeout(function(){
-                           jindutiao()
-                           tianshucha(jsonData)
+                           jindutiaoBaifenbi();
                         },0)
 					},
 					error: function(XMLHttpRequest, textStatus, errorThrown) {
 						$("#search_content").hide();
+
 					}
 				});
 			}
-
-			function tianshucha(){
-				var realstarttime=vm.dataArr.sitesSchedule.realStartTime;
-				console.log(realstarttime);
-
-			}
-
 
 			var vm = new Vue({
 				el: "body",
@@ -224,14 +235,21 @@
 					},
 					cancelSearch: function() {
 						search.value = '';
-						vm.focusy = false;
-						vm.search_cont = false;
-						vm.$els.search.className = 'search'
-
+						this.focusy = false;
+						// this.search_cont = false;
+						this.$els.search.className = 'search'
+                        var that=this;
+                        this.$nextTick(function() {
+						    that.search_cont = false;
+						})
 						 //用于异步展示进度条
                         setTimeout(function(){
-                           jindutiao()
+                           jindutiaoBaifenbi();
                         },0)
+
+                        // 重新请求一次数据，因为input事件执行的是搜索事件
+                        // 点击取消时，再重新请求数据，并把输入框的内容清空
+                        init();
 					}
 				},
 				ready: function() {
@@ -263,7 +281,7 @@
             function jindutiao(){
 				var progressbar1 = mui('.progress');
 			    var progress_length=progressbar1.length;
-			    for (let i=0;i<progress_length;i++){
+			    for (var i=0;i<progress_length;i++){
 				    var progress_e=progressbar1[i];
 				    var progressnum=progress_e.getAttribute('data-progress');
 				    
@@ -271,8 +289,6 @@
 				    mui(progress).progressbar().setProgress(progress.getAttribute('data-progress'));
 			    }
 		    }
-
-
 			if(window.plus) {
 				plusReady()
 			} else {
@@ -390,6 +406,7 @@
 					init();
 				} else {
 					$("#search_content").hide();
+					vm.search_cont = false;
 				}
 			}
 
@@ -411,7 +428,6 @@
 				var value = $(this).find('.sptitle').text();
 				setHistoryData(value);
 				vm.focusy = false;
-				vm.search_cont = false;
 			});
 		</script>
 	</body>
