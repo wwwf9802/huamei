@@ -32,18 +32,16 @@
 		</div>
 		<div class="g-content g-content-sale mui-content g-content-news-list g-paigong g-gongdi-yichang ">
 			<div id="slider" class="mui-slider">
-
-				<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-					<div class="mui-control-item cur-item" v-on:click="getData(1)">
+				<div class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					<div class="mui-control-item cur-item" v-on:click="getData(1)" href="#contentDiv">
 						待处理(<span class='num'>{{unDealArrNum}}</span>)
 					</div>
-					<div class="mui-control-item" v-on:click="getData(2)">
+					<div class="mui-control-item" v-on:click="getData(2)" href="#contentDiv">
 						已处理(<span class='num'>{{dealArrNum}}</span>)
 					</div>
 				</div>
 
 				<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-6"></div>
-				<div class="bg-hui"></div>
 				<div class="mui-slider-group">
 					<div class="mui-slider-item mui-control-content mui-active">
 						<div id="scroll1" class="mui-scroll-wrapper">
@@ -185,40 +183,6 @@
 					error: function(XMLHttpRequest, textStatus, errorThrown) {}
 				});
 			}
-
-			mui.init({
-				swipeBack: false
-			});
-			(function($) {
-				$('.mui-scroll-wrapper').scroll({
-					indicators: true //是否显示滚动条
-				});
-				var item2 = document.getElementById('item2mobile');
-				document.getElementById('slider').addEventListener('slide', function(e) {
-					if(e.detail.slideNumber === 1) {
-						if(item2.querySelector('.mui-loading')) {
-							setTimeout(function() {
-								u2.style.display = "block";
-								item2.querySelector('.mui-loading').style.display = "none"
-							}, 500);
-						}
-					}
-				});
-				var sliderSegmentedControl = document.getElementById('sliderSegmentedControl');
-				$('.mui-input-group').on('change', 'input', function() {
-					if(this.checked) {
-						sliderSegmentedControl.className = 'mui-slider-indicator mui-segmented-control mui-segmented-control-inverted mui-segmented-control-' + this.value;
-						//force repaint
-						sliderProgressBar.setAttribute('style', sliderProgressBar.getAttribute('style'));
-					}
-				});
-			})(mui);
-
-			$(".mui-media").on("tap", "a", function() {
-				var url = $(this).data("url");
-				openNew(url);
-
-			})
 		</script>
 	</body>
 

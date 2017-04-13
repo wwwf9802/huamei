@@ -19,10 +19,11 @@
 	.chatList .content .time{white-space: nowrap;color: #AAAAAA;}
 	.chatList .content .msg{white-space: nowrap;float: left;color: #7A7A7A;margin-top: 0.12rem;font-size: 0.38rem;}
 	
-	.chatList .menmber li{background: url(../images/project/icon-phone.png) no-repeat;background-position:calc(100% - 0.42rem) 0.63rem;background-size: 0.6rem 0.6rem;position: relative;}
+	.chatList .menmber li{position: relative;}
 		.chatList .menmber .title{width: 100%;font-weight: normal;}
 		.chatList .menmber span:first-child{width: 2.2rem;display: inline-block;}
 		.chatList .menmber .line{width: 1px;background-color: #ccc;height: 0.8rem;position: absolute;bottom: 0.58rem;right: 1.5rem;}
+		.chatList .menmber .icon-phone{background:url(../images/project/icon-phone.png) no-repeat;background-size: 0.6rem 0.6rem;display: block;width: 0.6rem;height: 0.6rem;position: absolute;bottom: 0.68rem;right: 0.5rem;}
 		
 		
 .checkSelect{background-color: white;}
