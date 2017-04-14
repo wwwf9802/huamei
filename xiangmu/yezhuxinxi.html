@@ -49,30 +49,61 @@
 				<p class="right"><span></span></p>
 				<img src="../images/userhead.png" alt="" />
 			</div>
-			<h1>张学友<img src="../images/icon-sex1.png" alt="" /></h1>
+			<h1>{{dataArr.customerName}}<img src="../images/icon-sex1.png" alt="" /></h1>
 			<h2>
-				<p>一克拉装饰</p>
-				<p>18525694875</p>
+				<p>{{dataArr.branchOrgName}}</p>
+				<p>{{dataArr.phone}}</p>
 			</h2>
 			<p class="y-yzxx-btn"><img src="../images/icon-phone.png" alt="" />呼叫</p>
 			<h3></h3>
 			<table>
 				<tr>
 					<td>家装卡号</td>
-					<td>JZ10023</td>
+					<td>{{dataArr.carkno}}</td>
 				</tr>
 				<tr>
 					<td>客户编号</td>
-					<td>2017030301</td>
+					<td>{{dataArr.branchOrgId}}</td>
 				</tr>
 				<tr>
 					<td>施工地址</td>
-					<td>东莞南城区南城花园一期A栋2308</td>
+					<td>{{dataArr.sitesAddr}}</td>
 				</tr>
 			</table>
 		</section>
 	</body>
 	<script src="../js/zepto1.1.6.min.js"></script>
+	<script type="text/javascript" src="../js/public.js"></script>
+	<script type="text/javascript" src="../js/global.js" ></script>
 	<script src="../js/mui.min.js"></script>
 	<script src="../js/vue.min.js"></script>
+
+	<script>
+		var yezhuVM=new Vue({
+			el:'body',
+			data:{
+               dataArr:{
+               }
+			},
+			ready(){
+              init()
+			}
+		})
+		function init() {
+            mui.ajax(getBaseServerUrl() + '/app/customerInfo/findCustomerInfo', {
+                type: 'get', //HTTP请求类型
+                data: {
+                    customerInfoId: 1
+                },
+                success: function(jsonData) {
+                    yezhuVM.dataArr = jsonData;
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    console.log(XMLHttpRequest.status);
+                    console.log(XMLHttpRequest.readyState);
+                    console.log(textStatus);
+                }
+            });
+        }
+	</script>
 </html>
