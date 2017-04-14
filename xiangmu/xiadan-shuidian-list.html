@@ -25,37 +25,47 @@
 		.y-sdcl-sec>div>h2{font-size:.35rem;color:#aaa;line-height:.4rem;}
 		.y-sdcl-sec>div>div{position:absolute;width:2rem;height:.73rem;line-height:.73rem;border:1px solid #EA6D01;border-radius:4px;bottom:.6rem;right:.4rem;text-align: center;font-size:.35rem;color:#EA6D01}
 		.y-sdcl-sec>div>div:active{background:#EA6D01;color:#fff}
+		
+		.header-right{top:0 !important;left:2.8rem !important}
 	</style>
 	<body>
 		<header class="mui-bar mui-bar-nav header">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<span class="title">水电材料单</span>
+			<span id="add" class="header-right mui-icon mui-icon-plus"></span>
 		</header>
 		<section class="y-sdcl-sec under-top">
 			<div>
 				<p>SO201704101801 <span class="right">待交易</span></p>
 				<h2>创建日期：2017-4-11</h2>
 				<h2>数量：4</h2>
-				<div>去确认</div>
+				<div class="gotoPath">去确认</div>
 			</div>
 			<div>
 				<p>SO201704101801 <span class="right">待交易</span></p>
 				<h2>创建日期：2017-4-11</h2>
 				<h2>数量：4</h2>
-				<div>去确认</div>
+				<div class="gotoPath">去确认</div>
 			</div>
 			<div>
 				<p>SO201704101801 <span class="right">待交易</span></p>
 				<h2>创建日期：2017-4-11</h2>
 				<h2>数量：4</h2>
-				<div>去确认</div>
+				<div class="gotoPath">去确认</div>
 			</div>
 			<div>
 				<p>SO201704101801 <span class="right">待交易</span></p>
 				<h2>创建日期：2017-4-11</h2>
 				<h2>数量：4</h2>
-				<div>去确认</div>
+				<div class="gotoPath">去确认</div>
 			</div>
 		</section>
 	</body>
+	<script src="../js/public.js"></script>
+	<script src="../js/mui.min.js"></script>
+	<script>
+		add.addEventListener("tap",function(){
+			openNew("xiadan-shuidian.html");
+		});
+	</script>
 </html>

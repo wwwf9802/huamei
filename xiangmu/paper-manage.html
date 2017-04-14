@@ -79,14 +79,14 @@
 				<div class="y-pingjia" style="background:#fff;">
 					<h1>
 						<span></span>
-						定制商品图
+						商品定制图
 						<strong class="right active" id="y-add">新增</strong>
 						<strong class="right active" id="y-edit" style="color:#666">编辑</strong>
 						<strong class="right" id="y-cance" style="color:#666">取消</strong>
 						<strong class="right" id="y-save" style="color:#1D88DC">保存</strong>
 					</h1>
 				</div>
-				<div class="y-imgListBox" v-for="key in arr1">
+				<!--<div class="y-imgListBox" v-for="key in arr1">
 					<aside class="left">
 						<img @tap="addImg(key.imgList)" src="../images/icon-jia.png" alt="" />
 						<h1>{{key.name}}</h1>
@@ -99,6 +99,24 @@
 								<img src="../images/house.png" alt="" />
 								<p>{{item}}</p>
 								<div><span @tap="delImg(key.imgList,index)" class="mui-badge mui-badge-danger">--</span></div>
+							</div>
+						</div>
+					</div>
+				</div>-->
+				
+				<div class="y-imgListBox" v-for="key in dataArr[1].sitesDrawVoList">
+					<aside class="left">
+						<img @tap="addImg(key.sitesDrawingList)" src="../images/icon-jia.png" alt="" />
+						<h1>{{key.drawType}}</h1>
+						<p></p>
+					</aside>
+					
+					<div class="swiper-container1">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide y-swiper2" v-for="(index,item) in key.sitesDrawingList">
+								<img src="../images/house.png" alt="" />
+								<p>{{item.drawingName}}</p>
+								<div><span @tap="delImg(key.sitesDrawingList,index)" class="mui-badge mui-badge-danger">--</span></div>
 							</div>
 						</div>
 					</div>
@@ -121,6 +139,20 @@
 	        freeMode: true
 	    });
 	    
+	    var swiper1=null;
+	    
+	    function makeSwiper(){
+	    	setTimeout(function(){
+		   	 	swiper1 = new Swiper('.swiper-container1', {
+					pagination: '.swiper-pagination',
+					slidesPerView: 2.5,
+					paginationClickable: true,
+					spaceBetween: 0,
+					freeMode: true
+				});
+		   	},10);
+	    }
+	    
 	    
 	    var vm = new Vue({
 			el: 'body',
@@ -133,14 +165,27 @@
 			},
 			methods: {
 				delImg: function(arr,index) {
+					console.log(index);
 					arr.splice(index, 1);
 					this.$nextTick(function(){
 						changeSwiper();
 					});
 				},
 				addImg:function(arr){
+					console.log(arr);
 					var num=arr.length+1
-					arr.push(num);
+					var obj={};
+					obj.drawingName=""+num;
+					obj.createTime="2017-4-13";
+					obj.drawingType=""+num;
+					obj.id=""+num;
+					obj.pictureUrl=""+num;
+					obj.pictureVersion=""+num;
+					obj.sitesId=""+num;
+					obj.state=""+num;
+					obj.stateName=""+num;
+					
+					arr.push(obj);
 					this.$nextTick(function(){
 						changeSwiper();
 					});
@@ -185,16 +230,7 @@
 			$(".y-swiper2>div").removeClass("active");
 		});
 		var swiper1=null;
-		window.onload=function(){
-			swiper1 = new Swiper('.swiper-container1', {
-		        pagination: '.swiper-pagination',
-		        slidesPerView: 2.5,
-		        paginationClickable: true,
-		        spaceBetween: 0,
-		        freeMode: true
-		    });
 		    
-		}
 		
 		function changeSwiper(){
 			//mySwiper.destroy(false)
@@ -205,6 +241,7 @@
 			for(var i=0;i<swiper1.length;i++){
 				swiper1[i].updateSlidesSize();
 			}
+			//swiper1.updateSlidesSize();
 //			swiper1 =new Swiper('.swiper-container1', {
 //		        pagination: '.swiper-pagination',
 //		        slidesPerView: 2.5,
@@ -225,15 +262,17 @@
 						console.log(jsonData);
 						if(jsonData.status===true){
 							vm.dataArr =jsonData.other.drawlist;
+							makeSwiper();
 						}
-						
-						changeSwiper();
+						//changeSwiper();
 						//vm.dataArr = jsonData;
 					},
 					error: function(XMLHttpRequest, textStatus, errorThrown) {
 					}
 				});
 			}
+		
+			
 		
 		/*$(d1).click(function(){
 			init();
