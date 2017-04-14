@@ -91,14 +91,28 @@
 				document.addEventListener('plusready', plusReady, false);
 			}
 
-			function plusReady(){
-				mui.back = function() {
-				    plus.nativeUI.confirm('确认退出？',function(e){
-				    	if(e.index==0){
-				    		plus.runtime.quit();
-				    	}
-				    },"华美乐");
-				}
+			function plusReady() {
+				// mui.back = function() {
+				// 	plus.nativeUI.confirm('确认退出？', function(e) {
+				// 		if(e.index == 0) {
+				// 			plus.runtime.quit();
+				// 		}
+				// 	}, "华美乐");
+				// }
+				var backButtonPress = 0;
+				mui.back = function(event) {
+					backButtonPress++;
+					if (backButtonPress > 1) {
+						plus.runtime.quit();
+					} else {
+						plus.nativeUI.toast('再按一次退出应用');
+					}
+					setTimeout(function() {
+						backButtonPress = 0;
+					}, 1000);
+					return false;
+			    };
+
 			}
 		</script>
 	</body>

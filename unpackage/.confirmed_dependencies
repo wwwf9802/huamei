@@ -1,24 +1,148 @@
 {
-  "xiaoxi/install-assess.html": {
-    "resources": [
-      "css/base-reset.css",
-      "fonts/mui.ttf",
-      "images/icon-jia.png",
-      "images/icon-star2..png",
-      "js/vue.min.js",
-      "css/yhn.css",
-      "js/swiper-3.3.1.min.js",
-      "images/icon-deboule-p.png",
-      "images/house.png",
-      "js/zepto1.1.6.min.js",
-      "js/flexible_css.js",
-      "images/img-shadow.png",
-      "css/common.css",
-      "js/mui.min.js",
-      "css/mui.min.css",
-      "js/flexible.js",
-      "images/icon-star1.png",
-      "css/swiper-3.3.1.min.css"
-    ]
-  }
+	"xiaoxi/install-assess.html": {
+		"resources": [
+			"css/base-reset.css",
+			"fonts/mui.ttf",
+			"images/icon-jia.png",
+			"images/icon-star2..png",
+			"js/vue.min.js",
+			"css/yhn.css",
+			"js/swiper-3.3.1.min.js",
+			"images/icon-deboule-p.png",
+			"images/house.png",
+			"js/zepto1.1.6.min.js",
+			"js/flexible_css.js",
+			"images/img-shadow.png",
+			"css/common.css",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"js/flexible.js",
+			"images/icon-star1.png",
+			"css/swiper-3.3.1.min.css"
+		]
+	},
+	"login.html": {
+		"resources": [
+			"css/base-reset.css",
+			"css/lzr.css",
+			"images/login/user-btn.png",
+			"fonts/mui.ttf",
+			"js/vue.min.js",
+			"js/swiper-3.3.1.min.js",
+			"images/login/logo.png",
+			"js/zepto1.1.6.min.js",
+			"js/flexible_css.js",
+			"css/common.css",
+			"js/mui.min.js",
+			"images/login/user-bg.png",
+			"css/mui.min.css",
+			"images/login/paw-bg.png",
+			"js/global.js",
+			"js/flexible.js",
+			"css/swiper-3.3.1.min.css"
+		],
+		"refer": [
+			"index.html"
+		]
+	},
+	"index.html": {
+		"resources": [
+			"css/lzr.css",
+			"css/base-reset.css",
+			"css/common.css",
+			"images/icon-oa.png",
+			"images/icon-project.png",
+			"css/mui.min.css",
+			"images/icon-new-check.png",
+			"images/icon-sale.png",
+			"images/icon-project-check.png",
+			"images/icon-new.png",
+			"images/icon-sale-check.png",
+			"images/icon-oa-check.png",
+			"js/zepto1.1.6.min.js",
+			"js/flexible_css.js",
+			"js/mui.min.js",
+			"js/flexible.js"
+		],
+		"refer": [
+			"news.html",
+			"oa_index.html",
+			"sale.html",
+			"xiangmu.html"
+		]
+	},
+	"news.html": {
+		"resources": [
+			"images/team-icon.png",
+			"images/wofaqi-icon.png",
+			"images/done-icon.png",
+			"js/public.js",
+			"images/news-icon.png",
+			"images/daichuli-icon.png",
+			"css/base-reset.css",
+			"css/mui.min.css",
+			"css/lzr.css",
+			"css/common.css",
+			"fonts/mui.ttf",
+			"js/global.js"
+		]
+	},
+	"oa_index.html": {
+		"resources": [
+			"images/cheliang.png",
+			"images/yunpan.png",
+			"images/shigong.png",
+			"images/huiyi.png",
+			"images/qiye.png",
+			"images/banner.png",
+			"images/tongzhi.png",
+			"css/swiper-3.3.1.min.css"
+		]
+	},
+	"sale.html": {
+		"resources": [
+			"images/dianmian-gendan.png",
+			"images/kehu-liebiao.png",
+			"images/jiazhuang-gendan.png",
+			"images/lingshou-xiadan.png",
+			"images/shangpin-jiage.png",
+			"images/wuliu-gendan.png"
+		]
+	},
+	"xiangmu.html": {
+		"resources": [
+			"images/icon-juxing.png",
+			"images/icon-search.png",
+			"css/swiper-3.3.1.min.css",
+			"images/icon-jiantou.png",
+			"css/base-reset.css",
+			"css/mui.min.css",
+			"js/vue.min.js",
+			"js/swiper-3.3.1.min.js"
+		],
+		"refer": [
+			"xiangmu/project-details.html"
+		]
+	},
+	"xiangmu/project-details.html": {
+		"resources": [
+			"css/base-reset.css",
+			"images/project/icon-youqi.png",
+			"images/project/icon-yichang.png",
+			"images/project/icon-shangpin.png",
+			"images/project/icon-guke.png",
+			"images/project/icon-hetong.png",
+			"images/project/icon-yusuan.png",
+			"images/project/icon-tuzhi.png",
+			"images/project/icon-chengyuan.png",
+			"images/project/icon-renwu.png",
+			"images/project/icon-yezhu.png",
+			"images/project/icon-shuidian.png",
+			"css/mui.min.css",
+			"images/project/icon-gongdi.png"
+		],
+		"refer": [
+			"xiangmu/gongdi-yichang.html"
+		]
+	}
 }
