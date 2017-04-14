@@ -75,6 +75,8 @@
 			el: '#photoList',
 			data: {
 				addPhoto: false,
+				typeID:null,
+				parentId:null,
 				baseImgUrl:getBaseImgUrl(),
 				imgDataArr:[]
 			},
@@ -84,11 +86,13 @@
 					calNum();
 				},
 				addPhotoFun: function() {
-					if(plus.os.name == "iOS") {
-						$("#uploadphoto").click();
+					addPhoto(photoList.typeID);
+					/*if(plus.os.name == "iOS") {
+						//$("#uploadphoto").click();
+						addPhoto(photoList.typeID);
 					} else {
 						$(".shadow").fadeIn(300);
-					}
+					}*/
 				}
 			},
 			ready:function(){
@@ -99,7 +103,10 @@
 				}
 				//console.log(dataArr.sitesDrawingList);
 				this.imgDataArr=dataArr.sitesDrawingList;
+				this.parentId=dataArr.parentId;
+				this.typeID=dataArr.sitesDrawingList[0].drawingType.id;
 				console.log(this.imgDataArr);
+				console.log(this.typeID);
 			}
 		});
 		
@@ -161,7 +168,7 @@
 			}
 			calNum();
 		});
-
+		
 		var photoImgUrlArr = new Array();
 		var photoDataArr = new Array();
 		$(document).ready(function(e) {
@@ -169,11 +176,31 @@
 				width: 500,
 				quality: 0.4,
 				success: function(result) {
-					photoList.imgDataArr.push({
+					var id=photoList.typeID;
+					addPhoto(id);
+					/*var photoData={
 						pictureUrl: result.base64,
 						selected: false,
-						flag: true
-					});
+						flag: true,
+						//createTime: "2017-04-11",
+			            drawingName:photoList.imgDataArr.length+1 ,
+			            drawingType: {
+			            	id: id,  //决定类别
+			            	isComfirm: "10",  ///
+			                parentId: "2",
+			                    typeLevel: "2",
+			                    typeName: "屏风"
+			            },
+			            id: "",  //决定这张
+			            pictureUrl: "/upload/hulmes/convert/house.png",
+			            pictureVersion: "1",
+			            sitesId: "1",
+			            state: "10",
+			            stateName: "未确认"
+					
+					});*/
+					
+					
 				}
 			});
 		});
@@ -280,7 +307,66 @@
 					url: '../images/logo.png',
 					selected: false,
 					flag: false
-				}]
+				}];
+		function addPhoto(typeID){
+			var parentID=photoList.parentId;
+			var photoData={
+		            //createTime: "2017-04-11",
+		            drawingName: photoList.imgDataArr.length+1,
+		            drawingType: {
+		            	id: typeID,  //决定类别
+		            	isComfirm: "10",  ///
+		                parentId: parentID,
+		                typeLevel: "2",
+		                typeName: "平面布置图"
+		            },
+		            id: "",  //决定这张
+		            pictureUrl: "/upload/hulmes/convert/house.png",
+		            pictureVersion: "1",
+		            sitesId: "1",
+		            state: "10",
+		            stateName: "未确认"
+			}
+			mui.ajax(getBaseServerUrl() + '/sites/sitesDrawing/saveSitesDrawing', {
+					type: 'post', //HTTP请求类型
+					data: photoData,
+					contentType: "application/json",
+					success: function(jsonData) {
+						console.log(JSON.stringify(jsonData));
+						for(var i=0;i<dataArr.sitesDrawingList.length;i++){
+							dataArr.sitesDrawingList[i].selected=false;
+							dataArr.sitesDrawingList[i].flag=false;
+						}
+						/*if(jsonData.status===true){
+							vm.dataArr =jsonData.other.drawlist;
+							makeSwiper();
+						}*/
+						//changeSwiper();
+						//vm.dataArr = jsonData;
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {
+					}
+				});
+		}
+		
+		
+		photoData={
+            createTime: "2017-04-11",
+            drawingName: "hh",
+            drawingType: {
+            	id: "9",  //决定类别
+            	isComfirm: "10",  ///
+                parentId: "2",
+                    typeLevel: "2",
+                    typeName: "屏风"
+            },
+            id: "",  //决定这张
+            pictureUrl: "hh.jpg",
+            pictureVersion: "1",
+            sitesId: "1",
+            state: "10",
+            stateName: "未确认"
+		}
 	</script>
 
 </html>

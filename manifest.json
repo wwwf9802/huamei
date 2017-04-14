@@ -1577,9 +1577,12 @@
 					"js/flexible.js",
 					"images/icon-search.png",
 					"xiangmu.html",
-					"js/more.json"
+					"js/more.json",
+					"js/public.js"
 				],
-				"refer": [],
+				"refer": [
+					"xiangmu/project-details.html"
+				],
 				"priority": 0
 			},
 			"xiaoxi/news-list.html": {
@@ -1625,7 +1628,8 @@
 					"js/flexible.js",
 					"images/icon-shuaixuan.png",
 					"css/swiper-3.3.1.min.css",
-					"xiaoxi/renwu-mingxi.html"
+					"xiaoxi/renwu-mingxi.html",
+					"js/public.js"
 				],
 				"refer": [],
 				"priority": 0
@@ -1835,6 +1839,222 @@
 				"refer": [
 					"xiangmu/photoList.html"
 				],
+				"priority": 0
+			},
+			"xiangmu/project-details.html": {
+				"resources": [
+					"css/base-reset.css",
+					"images/project/icon-youqi.png",
+					"images/project/icon-yichang.png",
+					"images/project/icon-shangpin.png",
+					"images/project/icon-guke.png",
+					"images/project/icon-hetong.png",
+					"images/project/icon-yusuan.png",
+					"images/project/icon-tuzhi.png",
+					"images/project/icon-chengyuan.png",
+					"images/project/icon-renwu.png",
+					"images/project/icon-yezhu.png",
+					"images/project/icon-shuidian.png",
+					"css/mui.min.css",
+					"images/project/icon-gongdi.png",
+					"css/lzr.css",
+					"js/public.js",
+					"js/vue.min.js",
+					"js/zepto1.1.6.min.js",
+					"js/mui.min.js",
+					"css/common.css",
+					"css/swiper-3.3.1.min.css",
+					"fonts/mui.ttf",
+					"js/swiper-3.3.1.min.js",
+					"js/flexible_css.js",
+					"js/global.js",
+					"js/flexible.js"
+				],
+				"refer": [
+					"xiangmu/xiadan-shuidian-list.html",
+					"xiangmu/projectProgress.html",
+					"xiangmu/paper-manage.html",
+					"xiangmu/hetong-message.html",
+					"xiangmu/member.html",
+					"xiangmu/yezhuxinxi.html",
+					"xiangmu/gongdi-yichang.html",
+					"xiangmu/yusuan.html",
+					"xiangmu/xiangmu-kanban.html"
+				],
+				"priority": 0
+			},
+			"xiangmu/xiadan-shuidian-list.html": {
+				"resources": [
+					"css/base-reset.css",
+					"css/mui.min.css",
+					"css/yhn.css",
+					"js/flexible_css.js",
+					"js/mui.min.js",
+					"css/common.css",
+					"fonts/mui.ttf",
+					"js/public.js",
+					"js/flexible.js",
+					"css/swiper-3.3.1.min.css"
+				],
+				"refer": [
+					"xiangmu/xiadan-shuidian.html"
+				],
+				"priority": 0
+			},
+			"xiangmu/projectProgress.html": {
+				"resources": [
+					"js/circleProgress.min.js",
+					"css/base-reset.css",
+					"css/lzr.css",
+					"fonts/mui.ttf",
+					"js/vue.min.js",
+					"js/swiper-3.3.1.min.js",
+					"images/icon-yuanquan.png",
+					"images/icon-baidian.png",
+					"js/zepto1.1.6.min.js",
+					"js/flexible_css.js",
+					"css/common.css",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"css/ww.css",
+					"js/global.js",
+					"js/flexible.js",
+					"images/icon-dian.png",
+					"css/swiper-3.3.1.min.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"xiangmu/hetong-message.html": {
+				"resources": [
+					"css/base-reset.css",
+					"css/lzr.css",
+					"images/icon-yuanjuqing2.png",
+					"images/icon-yuanjuxing3.png",
+					"fonts/mui.ttf",
+					"js/public.js",
+					"js/vue.min.js",
+					"js/swiper-3.3.1.min.js",
+					"images/icon-linetwo.png",
+					"js/zepto1.1.6.min.js",
+					"js/flexible_css.js",
+					"images/icon-lan_yuanjuxing.png",
+					"images/icon-daosanjiao.png",
+					"css/common.css",
+					"js/mui.min.js",
+					"images/icon-lanyuan.png",
+					"css/mui.min.css",
+					"js/global.js",
+					"images/icon-lineone.png",
+					"js/flexible.js",
+					"css/swiper-3.3.1.min.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"xiangmu/member.html": {
+				"resources": [
+					"css/base-reset.css",
+					"fonts/mui.ttf",
+					"js/public.js",
+					"js/vue.min.js",
+					"images/cheliang.png",
+					"js/zepto1.1.6.min.js",
+					"js/flexible_css.js",
+					"css/common.css",
+					"js/mui.min.js",
+					"images/project/icon-phone.png",
+					"css/mui.min.css",
+					"css/ww.css",
+					"js/global.js",
+					"js/flexible.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"xiangmu/yezhuxinxi.html": {
+				"resources": [
+					"css/base-reset.css",
+					"fonts/mui.ttf",
+					"images/icon-sex1.png",
+					"js/vue.min.js",
+					"css/yhn.css",
+					"images/userhead.png",
+					"js/zepto1.1.6.min.js",
+					"js/flexible_css.js",
+					"css/common.css",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"images/icon-phone.png",
+					"js/flexible.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"xiangmu/gongdi-yichang.html": {
+				"resources": [
+					"css/base-reset.css",
+					"css/lzr.css",
+					"fonts/mui.ttf",
+					"js/public.js",
+					"js/vue.min.js",
+					"js/swiper-3.3.1.min.js",
+					"js/zepto1.1.6.min.js",
+					"js/flexible_css.js",
+					"css/common.css",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"js/global.js",
+					"js/flexible.js",
+					"css/swiper-3.3.1.min.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"xiangmu/yusuan.html": {
+				"resources": [
+					"css/base-reset.css",
+					"css/lzr.css",
+					"fonts/mui.ttf",
+					"js/public.js",
+					"images/icon-jiantouup.png",
+					"js/vue.min.js",
+					"js/swiper-3.3.1.min.js",
+					"images/icon-jiantoudown.png",
+					"js/zepto1.1.6.min.js",
+					"js/flexible_css.js",
+					"css/common.css",
+					"js/mui.min.js",
+					"images/icon-banquan.png",
+					"css/mui.min.css",
+					"js/global.js",
+					"js/flexible.js",
+					"css/swiper-3.3.1.min.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"xiangmu/xiangmu-kanban.html": {
+				"resources": [
+					"css/lzr.css",
+					"css/base-reset.css",
+					"js/echarts.min.js",
+					"images/icon-time.png",
+					"css/common.css",
+					"images/icon-jiantouup.png",
+					"css/mui.min.css",
+					"images/icon-jiantouxia.png",
+					"css/swiper-3.3.1.min.css",
+					"images/icon-jiantoudown.png",
+					"js/vue.min.js",
+					"js/swiper-3.3.1.min.js",
+					"js/zepto1.1.6.min.js",
+					"js/flexible_css.js",
+					"js/mui.min.js",
+					"js/flexible.js",
+					"fonts/mui.ttf"
+				],
+				"refer": [],
 				"priority": 0
 			}
 		},
