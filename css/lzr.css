@@ -216,7 +216,7 @@
 .g-content-news-list.mui-content{
 	padding-top: 0;
 }
-.mui-slider .mui-slider-group .mui-slider-item {
+.g-content-news-list .mui-slider .mui-slider-group .mui-slider-item {
     height: calc(100vh - 4.082rem);
     height: -webkit-calc(100vh - 4.082rem);
     height: -moz-calc(100vh - 4.082rem);
@@ -2309,8 +2309,6 @@
     font-size: 0.4rem;
     color: #eb6d00;
 }
-<<<<<<< HEAD
-
 /*-----------------------------------------------------------------------------------------------------------*/
 /*合同信息*/
 .g-hetong-message{
@@ -2319,15 +2317,19 @@
 }
 .g-hetong-message .item-hetong{
 	width:9.333rem;
-	height:4.667rem;
+	min-height:4.667rem;
+	height:auto;
 	border-radius: 0.133rem;
 	margin:0rem auto;
 	margin-top: 0.333rem;
 	position: relative;
+    background-color: #ffffff;
+
 }
 .g-hetong-message .item-hetong .item-bg{
 	width:9.333rem;
-	height:4.667rem;
+	min-height:4.667rem;
+	height:auto;
 	border-radius: 0.133rem;
 	margin:0rem auto;
 	margin-top: 0.533rem;
@@ -2357,7 +2359,7 @@
 	background: url(../images/icon-yuanjuxing3.png) no-repeat;
 	background-size: 9.2rem  9.12rem;
 	background-position: 100% 0%;
-	background-color: #ffffff;
+	
 }
 .g-hetong-message .item-hetong .title{
 	 position: absolute;
@@ -2372,7 +2374,7 @@
     height:0.147rem;
     display: inline-block;
     left: 3%;
-    top: 18px;
+    top: 0.48rem;
     height: 0.027rem;
     background: url(../images/icon-lineone.png) no-repeat;
     background-size: 2.253rem 0.147rem;
@@ -2385,7 +2387,7 @@
     height:0.147rem;
     display: inline-block;
     left: 73%;
-    top: 18px;
+    top: 0.48rem;
     height: 0.027rem;
     background: url(../images/icon-linetwo.png) no-repeat;
     background-size: 2.253rem 0.147rem;
@@ -2394,6 +2396,7 @@
 }
 .g-hetong-message .item-wen{
 	padding-top: 0.853rem;
+	/*background-color: #ffffff;*/
 }
 .g-hetong-message .item-wen .sub-title {
     padding-bottom: 0;
@@ -2405,10 +2408,13 @@
     width: 100%;
     font-size: 0.347rem;
     padding-bottom: 0;
+    background-color: #ffffff;
+    /*padding-bottom: 0.267rem;*/
 }
 .g-hetong-message .item-wen .sub-title span {
     color: #bfbfbf;
     margin-right: 0.467rem;
+    margin-left: 0.373rem;
 }
 .g-hetong-message .jindu-lists{
 	height:2.733rem;
@@ -2416,8 +2422,11 @@
 	position: relative;
 	border-bottom: 1px solid #dddddd;
 	margin-left:1.6rem;
+	background-color: #ffffff;
 }
-
+.g-hetong-message .jindu-lists:last-child{
+	border-bottom:none;
+}
 .g-hetong-message .left-line-icon{
 	position: absolute;
 	left:-1.067rem;
@@ -2522,9 +2531,99 @@
 	background-size:0.16rem 0.107rem;
 
 }
-=======
+ /*----------------------------------------------------------------------------------------------------------------*/
 /*工地主页角标*/
 .g-content-oa .item-lists .list{position: relative;}
 .g-content-oa .item-lists .list .num{color:white;position: absolute;right: 0.65rem;top: 0.45rem;background-color: #EB4D4B;padding: 0 0.18rem;border-radius: 0.3rem;}
     	
->>>>>>> aa1d91554156900752d2b148e840b40a1ddebcd7
+ 
+/*----------------------------------------------------------------------------------------------------------------*/
+/*预算页面*/
+.g-yusuan{
+	background-color:#f6f6f6;
+}
+.g-yusuan .yusuan-lists{
+	margin-top: 0.4rem;
+	background-color:#ffffff;
+}
+.g-yusuan .yusuan-lists .head{
+	height:1.2rem;
+	width:100%;
+	background:url(../images/icon-banquan.png) no-repeat;
+	background-size: 0.613rem 0.613rem;
+	background-position: left top;
+	position: relative;
+	text-indent: 2em;
+	font-size: 0.427rem;
+	line-height: 1.2rem;
+}
+.g-yusuan .yusuan-lists .head span.icon{
+	 width:1.453rem;
+	 height:1.2rem;
+	 display: inline-block;
+	 background: url(../images/icon-jiantoudown.png) no-repeat;
+	 background-size: 0.453rem 0.253rem;
+	 background-position: center center;
+	 position: absolute;
+	 right:0%;
+	 top:50%;
+	 margin-top: -0.6rem;
+}
+.g-yusuan .yusuan-lists .head span.icon.active{
+	 width:1.453rem;
+	 height:1.2rem;
+	 display: inline-block;
+	 background: url(../images/icon-jiantouup.png) no-repeat;
+	 background-size: 0.453rem 0.253rem;
+	 background-position: center center;
+	 position: absolute;
+	 right:0%;
+	 top:50%;
+	 margin-top: -0.6rem;
+}
+
+.g-yusuan .yusuan-lists .head span.index{
+	 width:0.613rem;
+	 height:0.613rem;
+	 line-height: 0.613rem;
+	 text-align: center;
+	 display: inline-block;
+	 position: absolute;
+	 left:-1%;
+	 top:0%;
+	 overflow:hidden;
+	 font-size: 0.4rem;
+	 text-indent: 0rem;
+	 color:white;
+}
+.g-yusuan .yusuan-lists .item-des{
+	padding:0.267rem;
+	border-top:1px solid #dddddd;
+}
+.g-yusuan .yusuan-lists .tr {
+    font-size: 0;
+    color: #252525;
+}
+.g-yusuan .yusuan-lists .tr .th {
+    text-indent: 1em;
+    color: #aaaaaa;
+}
+.g-yusuan .yusuan-lists .tr .td {
+    min-width: 25%;
+}
+.g-yusuan .yusuan-lists .tr div {
+    display: inline-block;
+    font-size: 0.373rem;
+}
+.g-yusuan .yusuan-lists .tr .td-mingcheng{
+ color:#eb6d00;
+}
+.g-yusuan .mui-table-view {
+    background-color: #f6f6f6; 
+}
+.g-yusuan .mui-slider .mui-slider-group .mui-slider-item {
+    min-height: calc(100vh - 2.85rem);
+    min-height: -webkit-calc(100vh - 2.85rem);
+    height:auto !important;
+    overflow-y: auto;
+}
