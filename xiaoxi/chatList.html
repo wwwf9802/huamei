@@ -21,7 +21,7 @@
 		</div>
 		<section class="g-content">
 			<ul>
-				<li v-for="item in dataArr" v-on:click = "gotoChatGroup(item)">
+				<li v-for="item in dataArr" v-on:tap = "gotoChatGroup(item)">
 					<div class="head">
 						<img src="../images/cheliang.png" />
 						<span v-if="item.unReadNum" class="num" style="font-size: 0.45rem;">{{item.unReadNum}}</span>
