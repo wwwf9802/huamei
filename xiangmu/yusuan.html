@@ -1,0 +1,239 @@
+ <!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>预算</title>
+		<!-- Mobile Devices Support @begin -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="yes" name="apple-touch-fullscreen">
+		<meta content="telephone=no,email=no" name="format-detection">
+		<script src="../js/flexible.js" type="text/javascript"></script>
+		<script src="../js/flexible_css.js" type="text/javascript"></script>
+		<!-- Mobile Devices Support @end -->
+		<link rel="stylesheet" href="../css/base-reset.css">
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/swiper-3.3.1.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/common.css">
+		<link rel="stylesheet" type="text/css" href="../css/lzr.css">
+	</head>
+	<style>
+		html {
+			background: #fff
+		}
+		
+		.mui-slider-progress-bar{background:transparent !important}
+		.mui-control-item{border-bottom:4px solid transparent !important;}
+		.mui-control-item.active{border-bottom:4px solid #EA6D01 !important;}
+	</style>
+
+	<body>
+		<div class="mui-bar mui-bar-nav header">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<span class="title">预算</span>
+		</div>
+		<div class="g-content mui-content g-content-news-list g-yusuan">
+			<div id="slider" class="mui-slider">
+				<div class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					<div class="mui-control-item cur-item" v-on:click="getData(1,$event)" href="#contentDiv">
+						材料预算(<span class='num'>{{unDealArrNum}}</span>)
+					</div>
+					<div class="mui-control-item" v-on:click="getData(2,$event)" href="#contentDiv">
+						人工预算(<span class='num'>{{dealArrNum}}</span>)
+					</div>
+				</div>
+
+				<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-6"></div>
+				<div class="mui-slider-group">
+					<div class="mui-slider-item mui-control-content mui-active">
+						<div id="scroll1" class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<div class="mui-table-view" >
+									<div v-for='(index,item) in items' class="yusuan-lists">
+										 <div class="head" @tap='slide(index,$event)'>
+										 	{{item.title}}
+										 	<span class='icon'></span>
+										 	<span class="index">{{index+1}}</span>
+										 </div>
+										 <div v-show='boolean && itemIndex == index' class="item-des">
+										 	<div class="tr">
+							    	 	 	 	<div class="td th">对象名称：</div>
+							    	 	 	 	<div class="td td-mingcheng">{{item.oname}}</div>
+							    	 	 	 	<div class="td th">商品编号：</div>
+							    	 	 	 	<div class="td">{{item.title}}</div>
+							    	 	 	</div>
+							    	 	 	<div class="tr">
+							    	 	 	 	<div class="td th">商品名称：</div>
+							    	 	 	 	<div class="td">{{item.oname}}</div>
+							    	 	 	</div>
+							    	 	 	<div class="tr">
+							    	 	 	 	<div class="td th">材料面积：</div>
+							    	 	 	 	<div class="td">{{item.oname}}</div>
+							    	 	 	 	<div class="td th">预算面积：</div>
+							    	 	 	 	<div class="td">{{item.oname}}</div>
+							    	 	 	</div>
+							    	 	 	<div class="tr">
+							    	 	 	 	<div class="td th">预算数量：</div>
+							    	 	 	 	<div class="td">{{item.oname}}</div>
+							    	 	 	 	<div class="td th">实际售价：</div>
+							    	 	 	 	<div class="td">{{item.oname}}</div>
+							    	 	 	</div>
+							    	 	 	<div class="tr">
+							    	 	 	 	<div class="td th">折扣：</div>
+							    	 	 	 	<div class="td">{{item.oname}}</div>
+							    	 	 	 	<div class="td th">材料金额：</div>
+							    	 	 	 	<div class="td">{{item.oname}}</div>
+							    	 	 	</div>
+										 </div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="../js/zepto1.1.6.min.js" type="text/javascript"></script>
+		<script src='../js/swiper-3.3.1.min.js' type="text/javascript"></script>
+		<script src='../js/mui.min.js'></script>
+		<script src="../js/public.js"></script>
+		<script type="text/javascript" src="../js/global.js"></script>
+		<script type="text/javascript" src="../js/vue.min.js"></script>
+		<script>
+			Vue.filter('formatStatus', function(value) {
+				if(value == '10') {
+					return "待处理";
+				}
+				return "已处理";
+			})
+
+			var vm = new Vue({
+				el: "body",
+				data: {
+					dataArr: [],
+					unDealArr: [],
+					unDealArrNum: 0,
+					dealArr: [],
+					dealArrNum: 1,
+					itemIndex:0,
+					boolean:true,
+					lastIndex:0,
+					items:[
+                        {
+                          title: '天花板部分',
+                          oname: "工程派工"
+                        },
+                        {
+                          title: '天花板部分',
+                          oname: "工程派工"
+                        },
+                        {
+                          title: '天花板部分',
+                          oname: "工程派工"
+                        }
+					]
+				},
+				methods: {
+					getData: function(type,$event) {
+						$(".mui-control-item").removeClass("active");
+						$($event.target).addClass("active");
+						if(type == 1) {
+							this.dataArr = this.unDealArr;
+						} else {
+							this.dataArr = this.dealArr;
+						};
+					},
+					closeError: function(type) {
+						close(type)
+					},
+					slide(index,e){
+						this.itemIndex = index;
+	                    e.stopPropagation();
+	                    $(".g-yusuan .head span.icon").removeClass("active");
+ 	                    // lastIndex是判断是不是点击当前的这个元素还是点击其他的元素
+	                    if (this.itemIndex != this.lastIndex) {
+	                        this.boolean = true;
+	                        this.lastIndex = this.itemIndex;
+	                        e.currentTarget.firstElementChild.classList.add("active");
+	                    } else {
+	                        this.boolean = !this.boolean;
+	                        this.lastIndex = null;
+	                        e.currentTarget.firstElementChild.classList.remove("active");
+	                    }
+					}
+				},
+				ready: function() {
+					init();
+				},
+				created(){
+					this.$nextTick(function() {
+						var height=$(".mui-scroll").height();
+						$(".mui-scroll-wrapper").css({
+							height:height
+						})
+					})
+				}
+			});
+
+			function init() {
+				mui.ajax(getBaseServerUrl() + '/sites/sitesTask/queryTaskListForException', {
+					type: 'get', //HTTP请求类型
+					data: {
+						sitesId: localStorage.selectSitesId,
+						dealType: 1
+					},
+					success: function(jsonData) {
+						if(jsonData.status) {
+							vm.unDealArr = jsonData.other.tasklist;
+							vm.unDealArrNum = jsonData.other.tasklist.length;
+							vm.dataArr = vm.unDealArr;
+						} else {
+							plus.nativeUI.alert(jsonData.msg);
+						}
+
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {}
+				});
+				mui.ajax(getBaseServerUrl() + '/sites/sitesTask/queryTaskListForException', {
+					type: 'get', //HTTP请求类型
+					data: {
+						sitesId: localStorage.selectSitesId,
+						dealType: 2
+					},
+					success: function(jsonData) {
+						if(jsonData.status) {
+							vm.dealArr = jsonData.other.tasklist;
+							vm.dealArrNum = jsonData.other.tasklist.length;
+						} else {
+							plus.nativeUI.alert(jsonData.msg);
+						}
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {}
+				});
+			}
+
+			function close(id) {
+				mui.ajax({
+					url: getBaseServerUrl() + '/sites/sitesTask/saveExceptionClose',
+					dataType: 'json',
+					contentType: "application/json",
+					data: JSON.stringify({
+						id: id,
+					}),
+					type: 'post',
+					success: function(jsonData) {
+						if(jsonData.status) {
+							init();
+						}
+						plus.nativeUI.alert(jsonData.msg);
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {}
+				});
+			}
+		</script>
+	</body>
+
+</html>
