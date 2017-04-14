@@ -37,10 +37,10 @@
 		<div class="g-content mui-content g-content-news-list g-yusuan">
 			<div id="slider" class="mui-slider">
 				<div class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-					<div class="mui-control-item cur-item" v-on:click="getData(1,$event)" href="#contentDiv">
+					<div class="mui-control-item cur-item" v-on:tap="getData(1,$event)" href="#contentDiv">
 						材料预算(<span class='num'>{{unDealArrNum}}</span>)
 					</div>
-					<div class="mui-control-item" v-on:click="getData(2,$event)" href="#contentDiv">
+					<div class="mui-control-item" v-on:tap="getData(2,$event)" href="#contentDiv">
 						人工预算(<span class='num'>{{dealArrNum}}</span>)
 					</div>
 				</div>
