@@ -1519,7 +1519,8 @@
 					"js/flexible_css.js",
 					"js/mui.min.js",
 					"js/flexible.js",
-					"js/public.js"
+					"js/public.js",
+					"js/global.js"
 				],
 				"refer": [
 					"xiaoxi/news-list.html",
@@ -1583,6 +1584,12 @@
 				"refer": [
 					"xiangmu/project-details.html"
 				],
+<<<<<<< HEAD
+=======
+				"refer": [
+					"xiangmu/project-details.html"
+				],
+>>>>>>> 229952e88c0557d1c5c68b18e96a7e1ca82e05e4
 				"priority": 0
 			},
 			"xiaoxi/news-list.html": {
@@ -1790,6 +1797,7 @@
 				"refer": [],
 				"priority": 0
 			},
+<<<<<<< HEAD
 			"xiangmu/xiadan-shuidian.html": {
 				"resources": [
 					"css/base-reset.css",
@@ -1841,6 +1849,8 @@
 				],
 				"priority": 0
 			},
+=======
+>>>>>>> 229952e88c0557d1c5c68b18e96a7e1ca82e05e4
 			"xiangmu/project-details.html": {
 				"resources": [
 					"css/base-reset.css",
@@ -1856,6 +1866,7 @@
 					"images/project/icon-yezhu.png",
 					"images/project/icon-shuidian.png",
 					"css/mui.min.css",
+<<<<<<< HEAD
 					"images/project/icon-gongdi.png",
 					"css/lzr.css",
 					"js/public.js",
@@ -2055,6 +2066,13 @@
 					"fonts/mui.ttf"
 				],
 				"refer": [],
+=======
+					"images/project/icon-gongdi.png"
+				],
+				"refer": [
+					"xiangmu/gongdi-yichang.html"
+				],
+>>>>>>> 229952e88c0557d1c5c68b18e96a7e1ca82e05e4
 				"priority": 0
 			}
 		},
