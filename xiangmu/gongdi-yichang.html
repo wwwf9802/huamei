@@ -24,9 +24,17 @@
 			background: #fff
 		}
 		
-		.mui-slider-progress-bar{background:transparent !important}
-		.mui-control-item{border-bottom:4px solid transparent !important;}
-		.mui-control-item.active{border-bottom:4px solid #EA6D01 !important;}
+		.mui-slider-progress-bar {
+			background: transparent !important
+		}
+		
+		.mui-control-item {
+			border-bottom: 4px solid transparent !important;
+		}
+		
+		.mui-control-item.active {
+			border-bottom: 4px solid #EA6D01 !important;
+		}
 	</style>
 
 	<body>
@@ -37,7 +45,7 @@
 		<div class="g-content g-content-sale mui-content g-content-news-list g-paigong g-gongdi-yichang ">
 			<div id="slider" class="mui-slider">
 				<div class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-					<div class="mui-control-item cur-item" v-on:click="getData(1,$event)" href="#contentDiv">
+					<div class="mui-control-item cur-item active" v-on:click="getData(1,$event)" href="#contentDiv">
 						待处理(<span class='num'>{{unDealArrNum}}</span>)
 					</div>
 					<div class="mui-control-item" v-on:click="getData(2,$event)" href="#contentDiv">
@@ -81,7 +89,7 @@
 										</div>
 										<div class="center-btn" v-if="item.state != '30'">
 											<div class="list" v-on:click="closeError(item.id)" v-if="item.state != '30'">关闭异常</div>
-											<div class="list jiancha" v-if="item.state == '10'">申请检查</div>
+											<div class="list jiancha" v-if="item.state == '10'" v-on:click="applyCheck(item)">申请检查</div>
 										</div>
 									</div>
 								</div>
@@ -116,7 +124,7 @@
 					dealArrNum: 0
 				},
 				methods: {
-					getData: function(type,$event) {
+					getData: function(type, $event) {
 						$(".mui-control-item").removeClass("active");
 						$($event.target).addClass("active");
 						if(type == 1) {
@@ -129,6 +137,9 @@
 					closeError: function(type) {
 						close(type)
 					},
+					applyCheck: function(item) {
+						applyCheckEvent(item)
+					}
 				},
 				ready: function() {
 					init();
@@ -152,8 +163,7 @@
 						}
 
 					},
-					error: function(XMLHttpRequest, textStatus, errorThrown) {
-					}
+					error: function(XMLHttpRequest, textStatus, errorThrown) {}
 				});
 				mui.ajax(getBaseServerUrl() + '/sites/sitesTask/queryTaskListForException', {
 					type: 'get', //HTTP请求类型
@@ -190,6 +200,11 @@
 					},
 					error: function(XMLHttpRequest, textStatus, errorThrown) {}
 				});
+			}
+
+			function applyCheckEvent(item) {
+				localStorage.errorItem = JSON.stringify(item);
+				openNew("errorAppoint.html");
 			}
 		</script>
 	</body>
