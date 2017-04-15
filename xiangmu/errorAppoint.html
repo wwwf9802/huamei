@@ -17,96 +17,29 @@
 		<link rel="stylesheet" href="../css/mui.min.css">
 		<link rel="stylesheet" type="text/css" href="../css/swiper-3.3.1.min.css">
 		<link rel="stylesheet" type="text/css" href="../css/common.css">
-		<link rel="stylesheet" type="text/css" href="../css/lzr.css">
+		<link rel="stylesheet" type="text/css" href="../css/ww.css">
+		<link rel="stylesheet" href="../js/picker/mui.picker.min.css" />
+
 	</head>
-	<style>
-		.errorAppoint .selectItem {
-			height: 1.373rem;
-			line-height: 1.373rem;
-			font-size: 0.4rem;
-			color: #eb6d00;
-			position: relative;
-			background-color: #fff;
-		}
-		
-		.errorAppoint .selectItem i {
-			background: url(../images/icon-jiantou.png) no-repeat;
-			position: absolute;
-			right: 0.15rem;
-			top: 0.42rem;
-			display: block;
-			width: 0.5rem;
-			height: 0.5rem;
-			background-size: contain;
-		}
-		
-		.errorAppoint .selectItem .title {
-			color: #999;
-			width: 3rem;
-			margin-left: 0.5rem;
-		}
-		
-		.errorAppoint .selectItem .item {
-			width: 3rem;
-			text-align: right;
-			margin-right: 1rem;
-			color: black;
-		}
-		
-		.errorAppoint .selectItem.des .item {
-			font-size: 0.3rem;
-			color: #b2b2b2;
-		}
-		
-		.errorAppoint .selectItem.des {
-			border-top: 1px solid #eee;
-		}
-		
-		.errorAppoint textarea {
-			width: 100%;
-			height: 3rem;
-			background-color: #F9F9F9;
-			border-radius: 0;
-			border: none;
-		}
-		
-		.errorAppoint .btn-div {
-			height: 11rem;
-			width: 100%;
-			background-color: #f9f9f9;
-			position: fixed;
-			bottom: 0px;
-			left: 0px;
-			text-align: center;
-			padding-top: 3rem;
-		}
-		
-		.errorAppoint .btn-div .btn {
-			background-color: #FB8F32;
-			color: rgba(255, 255, 255, 0.6);
-			padding: 0.4rem 2.4rem;
-			font-size: 0.5rem;
-		}
-	</style>
 
 	<body class="errorAppoint">
 		<div class="mui-bar mui-bar-nav header">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<span class="title">异常任务指派</span>
 		</div>
-		<div class="g-content-sale mui-content g-content-news-list g-paigong g-gongdi-yichang ">
+		<div class="g-content">
 			<div class="selectItem">
 				<div class="title left">
-					图纸名称
+					指派人
 				</div>
-				<div id="selectProduct" class="item right">
+				<div id="selectUser" class="item right">
 					点击选择
 				</div>
 				<i></i>
 			</div>
 			<div class="selectItem des">
 				<div class="title left">
-					图纸名称
+					任务描述
 				</div>
 				<div class="item right">
 					默认为不合格项目
@@ -124,20 +57,30 @@
 		<script src="../js/public.js"></script>
 		<script type="text/javascript" src="../js/global.js"></script>
 		<script type="text/javascript" src="../js/vue.min.js"></script>
+		<script type="text/javascript" src="../picker/mui.picker.min.js"></script>
 		<script>
 			var item = JSON.parse(localStorage.errorItem);
+			var selectUserId = "";
 			$("#txt").val(item.content);
 
 			init();
 
 			function init() {
 				mui.ajax(getBaseServerUrl() + '/app/sitesEmp/findSitesEmpList', {
-					type: 'get', 
+					type: 'get',
 					data: {
 						sitesRecordId: localStorage.selectSitesId
 					},
 					success: function(jsonData) {
-						console.log(JSON.stringify(jsonData));
+						var arr = new Array();
+						for(var i = 0; i < jsonData.length; i++) {
+							arr.push({
+								value: jsonData[i].empId,
+								text: jsonData[i].empName + "-" + jsonData[i].roleName
+							});
+
+						}
+						setDispatchMember(arr);
 					},
 					error: function() {
 						console.log(1111111);
@@ -145,9 +88,32 @@
 				});
 			}
 
+			function setDispatchMember(arr) {
+				mui.init();
+				if(arr.length > 0){
+					selectUser.innerText = arr[0].text;
+					selectUserId = arr[0].value;
+				}
+				selectUser.addEventListener('tap', function() {
+					var userPicker = new mui.PopPicker({
+						layer: 1,
+					});
+					userPicker.setData(arr);
+					userPicker.show(function(items) {
+						selectUser.innerText = items[0].text;
+						selectUserId = items[0].value;
+						userPicker.dispose();
+					});
+				}, false);
+			}
+
 			sure.addEventListener('tap', function() {
+				if(selectUserId == ""){
+					plus.nativeUI.alert("请选择指派人");
+					return;
+				}
 				mui.ajax({
-					url: getBaseServerUrl() + '/sites/sitesTask/saveExceptionClose',
+					url: getBaseServerUrl() + '/sites/sitesTask/saveExceptionDeal',
 					dataType: 'json',
 					contentType: "application/json",
 					data: JSON.stringify({
@@ -157,12 +123,13 @@
 						"lastTaskId": item.lastTaskId,
 						"empId": "1",
 						"remark": $("#txt").val(),
-						"fromName": '1'
+						"fromName": selectUserId
 					}),
 					type: 'post',
 					success: function(jsonData) {
-						if(jsonData.status) {
-							init();
+						if(jsonData.status == "true") {
+							plus.webview.currentWebview().close();
+						    plus.webview.getWebviewById("gongdi-yichang.html").evalJS("init()");
 						}
 						plus.nativeUI.alert(jsonData.msg);
 					},

@@ -229,10 +229,218 @@
 
 
 
+.errorAppoint .selectItem {
+			height: 1.373rem;
+			line-height: 1.373rem;
+			font-size: 0.4rem;
+			color: #eb6d00;
+			position: relative;
+			background-color: #fff;
+		}
+		
+		.errorAppoint .selectItem i {
+			background: url(../images/icon-jiantou.png) no-repeat;
+			position: absolute;
+			right: 0.15rem;
+			top: 0.42rem;
+			display: block;
+			width: 0.5rem;
+			height: 0.5rem;
+			background-size: contain;
+		}
+		
+		.errorAppoint .selectItem .title {
+			color: #000;
+			width: 3rem;
+			margin-left: 0.5rem;
+		}
+		
+		.errorAppoint .selectItem .item {
+			width: 3rem;
+			text-align: right;
+			margin-right: 1rem;
+			color: black;
+		}
+		
+		.errorAppoint .selectItem.des .item {
+			font-size: 0.3rem;
+			color: #b2b2b2;
+		}
+		
+		.errorAppoint .selectItem.des {
+			border-top: 1px solid #eee;
+		}
+		
+		.errorAppoint textarea {
+			width: 100%;
+			height: 3rem;
+			background-color: #F9F9F9;
+			border-radius: 0;
+			border: none;
+		}
+		
+		.errorAppoint .btn-div {
+			height: 11rem;
+			width: 100%;
+			background-color: #f9f9f9;
+			position: fixed;
+			bottom: 0px;
+			left: 0px;
+			text-align: center;
+			padding-top: 3rem;
+		}
+		
+		.errorAppoint .btn-div .btn {
+			background-color: #FB8F32;
+			color: rgba(255, 255, 255, 0.6);
+			padding: 0.4rem 2.4rem;
+			font-size: 0.5rem;
+		}
 
 
-
-
+.workTask {
+			background-color: red;
+		}
+		
+		.workTask .main {
+			background-color: #f6f6f6;
+		}
+		
+		.workTask .main>li>div {
+			color: #EB6D00;
+			position: relative;
+			background-color: #FAFAFA;
+			height: 1.37rem;
+			border-top: 1px solid #eee;
+			line-height: 1.37rem;
+			font-size: 0.45rem;
+			padding: 0 0.5rem;
+		}
+		
+		.workTask .main>li>div>.arrow {
+			background: url(../images/icon-jiantou.png) no-repeat;
+			width: 0.5rem;
+			height: 0.6rem;
+			display: block;
+			background-size: contain;
+			-webkit-transform: rotate(90deg);
+			position: absolute;
+			right: 0.4rem;
+			top: 0.45rem;
+		}
+		
+		.workTask .main>li>div>.arrow.active {
+			-webkit-transform: rotate(-90deg);
+			position: absolute;
+			right: 0.4rem;
+			top: 0.3rem;
+		}
+		
+		.workTask .branch {
+			background-color: #fff;
+			font-size: 0.4rem;
+			margin-bottom: 0.3rem;
+		}
+		
+		.workTask .branch .item {
+			padding: 0.4rem 0.5rem 0.1rem 1.2rem;
+			border-bottom: 1px solid #eee;
+			padding-bottom: 0.4rem;
+			position: relative;
+		}
+		
+		.workTask .branch .name {
+			margin-bottom: 0.2rem;
+		}
+		
+		.workTask .branch .txt {
+			color: #aaa;
+			font-size: 0.38rem;
+			line-height: 0.7rem;
+		}
+		
+		.workTask .branch i {
+			background: url(../images/icon-lanyuan.png);
+			display: block;
+			width: 0.6rem;
+			height: 0.6rem;
+			background-size: contain;
+			position: absolute;
+			left: 0.2rem;
+			top: 0.4rem;
+		}
+		
+		.workTask .searchDiv {
+			height: 1.8rem;
+			padding-top: 0.4rem;
+			background-color: #F6F6F6;
+			text-align: center;
+		}
+		
+		.workTask .searchDiv input {
+			height: 1rem;
+			border: 1px solid #ccc;
+			border-radius: 0px;
+			width: 9rem;
+			background: url(../images/icon-search.png) no-repeat;
+			background-size: 0.6rem 0.6rem;
+			background-position: 20% 0.2rem;
+			padding: 0px 0.8rem;
+			background-color: white;
+		}
+		
+		.workTask .searchDiv input:focus {
+			background: url(../images/icon-search.png) no-repeat;
+			background-size: 0.6rem 0.6rem;
+			background-position: 0.1rem 0.2rem;
+			background-color: white;
+		}
+		
+		.workTask .nav {
+			height: 1.3rem;
+			width: 100%;
+			background-color: white;
+			position: relative;
+		}
+		
+		.workTask .nav>.tab {
+			position: relative;
+			width: 33.33%;
+			box-sizing: border-box;
+			float: left;
+			text-align: center;
+			line-height: 1.3rem;
+			color: #aaa;
+			font-size: 0.45rem;
+		}
+		
+		.workTask .nav>.tab .angle {
+			width: 0px;
+			height: 0px;
+			border-right: 0.2rem solid white;
+			border-left: 0.2rem solid white;
+			border-top: 0.2rem solid #D0D0D0;
+			position: absolute;
+			bottom: 0.55rem;
+			right: 0.55rem;
+		}
+		
+		.workTask .tip {
+			width: 2rem;
+			position: absolute;
+			top: 1.3rem;
+			z-index: 20;
+			width: 33%;
+			border: 1px solid #ddd;
+			background-color: white;
+		}
+		
+		.workTask .tip .tab2 {
+			text-align: center;
+			border-bottom: 1px solid #eee;
+			height: 01rem;
+			line-height: 1rem;
+		}
 
 
 
