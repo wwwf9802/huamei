@@ -42,7 +42,7 @@
 	    .y-swiper2>p{text-align: center;}
 	    .y-swiper2>div{display:none;position:absolute;top:.2rem;right:-.3rem;width:1rem;height:1rem;}
 	    .y-swiper2>div.active{display:block}
-	    .y-imgListBox{height:4rem;border-bottom:1px solid #ddd;background:#fff;}
+	    .y-imgListBox{height:4rem;border-bottom:1px solid #ddd;background:#fff;overflow:hidden}
 	    .y-imgListBox>aside{width:2.4rem;height:}
 	    .y-imgListBox>aside>img{display:block;width:1.5rem;margin:.5rem auto;}
 	    .y-imgListBox>aside>h1{text-align: center;font-size:.45rem;margin-top:.35rem}
@@ -68,29 +68,9 @@
 			</div>
 			<div class="swiper-container">
 				<div class="swiper-wrapper">
-					<div class="swiper-slide y-swiper1">
-						<img src="../images/house.png" alt="" />
-						<p>平面布置图(5)</p>
-					</div>
-					<div class="swiper-slide y-swiper1">
-						<img src="../images/house.png" alt="" />
-						<p>平面布置图(5)</p>
-					</div>
-					<div class="swiper-slide y-swiper1">
-						<img src="../images/house.png" alt="" />
-						<p>平面布置图(5)</p>
-					</div>
-					<div class="swiper-slide y-swiper1">
-						<img src="../images/house.png" alt="" />
-						<p>平面布置图(5)</p>
-					</div>
-					<div class="swiper-slide y-swiper1">
-						<img src="../images/house.png" alt="" />
-						<p>平面布置图(5)</p>
-					</div>
-					<div class="swiper-slide y-swiper1">
-						<img src="../images/house.png" alt="" />
-						<p>平面布置图(5)</p>
+					<div class="swiper-slide y-swiper1" v-for="key in dataArr[0].sitesDrawVoList">
+						<img @tap="goToPath(key)" src="{{key.sitesDrawingList[0].pictureUrl | formatURL}}" alt="" />
+						<p>{{key.drawType}}(5)</p>
 					</div>
 				</div>
 			</div>
@@ -99,14 +79,14 @@
 				<div class="y-pingjia" style="background:#fff;">
 					<h1>
 						<span></span>
-						定制商品图
+						商品定制图
 						<strong class="right active" id="y-add">新增</strong>
 						<strong class="right active" id="y-edit" style="color:#666">编辑</strong>
 						<strong class="right" id="y-cance" style="color:#666">取消</strong>
 						<strong class="right" id="y-save" style="color:#1D88DC">保存</strong>
 					</h1>
 				</div>
-				<div class="y-imgListBox" v-for="key in arr1">
+				<!--<div class="y-imgListBox" v-for="key in arr1">
 					<aside class="left">
 						<img @tap="addImg(key.imgList)" src="../images/icon-jia.png" alt="" />
 						<h1>{{key.name}}</h1>
@@ -122,11 +102,29 @@
 							</div>
 						</div>
 					</div>
+				</div>-->
+				
+				<div class="y-imgListBox" v-for="key in dataArr[1].sitesDrawVoList">
+					<aside class="left">
+						<img @tap="addImg(key.sitesDrawingList)" src="../images/icon-jia.png" alt="" />
+						<h1>{{key.drawType}}</h1>
+						<p></p>
+					</aside>
+					
+					<div class="swiper-container1">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide y-swiper2" v-for="(index,item) in key.sitesDrawingList">
+								<img src="../images/house.png" alt="" />
+								<p>{{item.drawingName}}</p>
+								<div><span @tap="delImg(key.sitesDrawingList,index)" class="mui-badge mui-badge-danger">--</span></div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</section>
-		<button id="d1">请求数据</button>
 	</body>
+	<script src="../js/public.js"></script>
 	<script src="../js/swiper-3.3.1.min.js"></script>
 	<script src="../js/zepto1.1.6.min.js"></script>
 	<script src="../js/mui.min.js"></script>
@@ -141,6 +139,20 @@
 	        freeMode: true
 	    });
 	    
+	    var swiper1=null;
+	    
+	    function makeSwiper(){
+	    	setTimeout(function(){
+		   	 	swiper1 = new Swiper('.swiper-container1', {
+					pagination: '.swiper-pagination',
+					slidesPerView: 2.5,
+					paginationClickable: true,
+					spaceBetween: 0,
+					freeMode: true
+				});
+		   	},10);
+	    }
+	    
 	    
 	    var vm = new Vue({
 			el: 'body',
@@ -148,24 +160,52 @@
 				arr1:[
 					{name:'橱柜',status:'1',tit:'确认',imgList:[1,2,3,4,5,6]},
 					{name:'衣柜',status:'0',tit:'待确认',imgList:[1,2,3,4,5,6]}
-				]
+				],
+				dataArr:null,
 			},
 			methods: {
 				delImg: function(arr,index) {
+					console.log(index);
 					arr.splice(index, 1);
 					this.$nextTick(function(){
 						changeSwiper();
 					});
 				},
 				addImg:function(arr){
+					console.log(arr);
 					var num=arr.length+1
-					arr.push(num);
+					var obj={};
+					obj.drawingName=""+num;
+					obj.createTime="2017-4-13";
+					obj.drawingType=""+num;
+					obj.id=""+num;
+					obj.pictureUrl=""+num;
+					obj.pictureVersion=""+num;
+					obj.sitesId=""+num;
+					obj.state=""+num;
+					obj.stateName=""+num;
+					
+					arr.push(obj);
 					this.$nextTick(function(){
 						changeSwiper();
 					});
-				}
+				},
+				goToPath:function(key){
+					console.log(JSON.stringify(key));
+					localStorage.paperSonData=JSON.stringify(key);
+					openNew("photoList.html");
+				},
 			},
 			ready: function() {
+				init()
+			}
+		});
+		
+		Vue.filter('formatURL', function(value) {
+			if(value==null||value===undefined||value==""){
+				return "../images/icon-jia.png"
+			}else{
+				return getBaseImgUrl()+value
 			}
 		});
 		
@@ -190,23 +230,18 @@
 			$(".y-swiper2>div").removeClass("active");
 		});
 		var swiper1=null;
-		window.onload=function(){
-			swiper1 = new Swiper('.swiper-container1', {
-		        pagination: '.swiper-pagination',
-		        slidesPerView: 2.5,
-		        paginationClickable: true,
-		        spaceBetween: 0,
-		        freeMode: true
-		    });
 		    
-		}
 		
 		function changeSwiper(){
 			//mySwiper.destroy(false)
-			console.log(swiper1)
+			console.log(swiper)
+			setTimeout(function(){
+				swiper.updateSlidesSize();
+			},500);
 			for(var i=0;i<swiper1.length;i++){
 				swiper1[i].updateSlidesSize();
 			}
+			//swiper1.updateSlidesSize();
 //			swiper1 =new Swiper('.swiper-container1', {
 //		        pagination: '.swiper-pagination',
 //		        slidesPerView: 2.5,
@@ -225,16 +260,23 @@
 					},
 					success: function(jsonData) {
 						console.log(jsonData);
+						if(jsonData.status===true){
+							vm.dataArr =jsonData.other.drawlist;
+							makeSwiper();
+						}
+						//changeSwiper();
 						//vm.dataArr = jsonData;
 					},
 					error: function(XMLHttpRequest, textStatus, errorThrown) {
-						$("#search_content").hide();
 					}
 				});
 			}
 		
-		$(d1).click(function(){
+			
+		
+		/*$(d1).click(function(){
 			init();
-		});
+		});*/
+		
 	</script>
 </html>

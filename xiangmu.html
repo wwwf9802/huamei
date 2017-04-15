@@ -41,7 +41,7 @@
 			<div v-else class="item-project" id='item-project'>
 				<div class="item-pro-list" v-for="item in dataArr">
 					<div class="head">
-						<a v-on:click="toProjectDetail(item.sitesSchedule.sitesId,item.sitesRecord.contractId)">
+						<a v-on:click="toProjectDetail(item.sitesSchedule.sitesId,item.sitesRecord.contractId,item)">
 							<div class='fangkuang-num'>1</div> {{item.sitesRecord.sitesAddr}}
 						</a>
 					</div>
@@ -228,7 +228,8 @@
 					blur: function(e) {
 						// this.$els.search.className='left'
 					},
-					toProjectDetail: function(sitesId,contractId) {
+					toProjectDetail: function(sitesId,contractId,item) {
+						localStorage.xiangmuData=JSON.stringify(item);
 						localStorage.selectSitesId = sitesId;
 						localStorage.selectContractId = contractId;
 						openNew("xiangmu/project-details.html");

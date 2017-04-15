@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>水电材料下单</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="yes" name="apple-touch-fullscreen">
+		<meta content="telephone=no,email=no" name="format-detection">
+		<script src="../js/flexible.js" type="text/javascript"></script>
+		<script src="../js/flexible_css.js" type="text/javascript"></script>
+		<link rel="stylesheet" href="../css/base-reset.css">
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" href="../css/swiper-3.3.1.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/common.css">
+		<link rel="stylesheet" type="text/css" href="../css/yhn.css">
+	</head>
+	<style>
+		section{height:12rem;background:#fff;border-top:1px solid #ddd;}
+		.y-sd-box-l{height:100%;width:2.8rem;}
+		.y-sd-box-r{height:100%;padding-bottom:1rem;width:7.2rem;overflow:hidden}
+		.swiper1{background:#f1f1f1;text-align: center;display:table;}
+		.swiper1:active,.swiper1.active{background:#fff;color:#EB6D00;}
+		.swiper1>div{display:table-cell;vertical-align: middle;font-size:.4rem}
+		.swiper2{background:#fff;padding:.3rem;}
+		.swiper2>h1{border-bottom:1px solid #ddd}
+		.swiper2>div{overflow:hidden}
+		.swiper2>p{font-size:.4rem;color:#000;height:1.2rem;overflow:hidden;}
+		.swiper2>div>span{float:left;font-size:.4rem;}
+		.swiper2>div>div{width:1.8rem;height:.6rem;position:relative;float:right;margin-right:.4rem;line-height:.5rem;text-align: center;}
+		.y-sub-box>img,.y-add-box>img{width:.5rem;}
+		.y-sub-box{position:absolute;width:1rem;height:.6rem;left:-.3rem;}
+		.y-add-box{position:absolute;width:1rem;height:.6rem;right:-.3rem;top:0;}
+		
+		.y-sd-footer{height:1.3rem;background:#fff;border-top:1px solid #ddd;z-index: 999;position:fixed;bottom:0;width:100%;line-height:1.3rem;}
+		.y-sd-footer>img{width:1.3rem;position:absolute;top:-.4rem;left:.4rem;}
+		.y-sd-footer>span{margin-left:2rem;}
+		.y-sd-footer>div{width:3.2rem;height:1.3rem;float:right;background:#EB6D00;color:#fff;text-align: center;font-size:.45rem;}
+		
+		.serach-lay{
+			height:1.173rem;
+			line-height: 1.173rem;
+			vertical-align: middle;
+			background-color: #f6f6f6;
+			position: relative;
+		}
+		.serach-lay input.search{
+			height:0.853rem;
+			line-height: 0.853rem;
+			width:76%;
+			position: absolute;
+			top:50%;
+			margin-top:-0.427rem;
+			right:12%;
+			border:1px solid #dddddd;
+			border-radius: 0.133rem;
+			font-size: 0.347rem;
+			background:url(../images/icon-search.png) no-repeat;
+			background-size:0.36rem 0.373rem;
+			background-position: 24% center;
+			background-color:#ffffff;
+		
+		
+			transition: width 0.5s;
+			-moz-transition: width 0.5s; 
+			-webkit-transition: width 0.5s; 
+			-o-transition: width 0.5s; 
+		}
+		.serach-lay input.onfocus{
+			height:0.853rem;
+			line-height: 0.853rem;
+			width:85%;
+			position: absolute;
+			top:50%;
+			margin-top:-0.427rem;
+			right:12%;
+			border:1px solid #dddddd;
+			border-radius: 0.133rem;
+			font-size: 0.347rem;
+			background:url(../images/icon-search.png) no-repeat;
+			background-size:0.36rem 0.373rem;
+			background-position: 1% center;
+			text-indent: 0.5em;
+			background-color:#ffffff;
+		
+			transition: width 0.6s;
+			-moz-transition: width 0.6s; 
+			-webkit-transition: width 0.6s; 
+			-o-transition: width 0.6s; 
+		}
+		
+		.serach-lay input.left{
+			height:0.853rem;
+			line-height: 0.853rem;
+			width:85%;
+			position: absolute;
+			top:50%;
+			margin-top:-0.427rem;
+			right:12%;
+			border:1px solid #dddddd;
+			border-radius: 0.133rem;
+			font-size: 0.347rem;
+			background:url(../images/icon-search.png) no-repeat;
+			background-size:0.36rem 0.373rem;
+			background-position: 1% center;
+			text-indent: 0.5em;
+			background-color:#ffffff;
+			text-align: left;
+		}
+		
+		.serach-lay .botton{
+			height:0.773rem;
+			line-height: 0.773rem;
+			 position: absolute;
+			 right:5px;
+			 top:8px;
+			 cursor:pointer;
+			 font-size:0.373rem;
+			 color:#7a7a7a;
+		}
+		
+		.Gsearch_content {
+		    height: auto;
+		    background-color: #f1f1f1;
+		    min-height: 0.667rem;
+		}
+		.Gsearch_content .title{
+		   text-indent: 1em;
+		   height:0.933rem;
+		   line-height: 0.933rem;
+		   background-color: #ffffff;
+		   color:#bfbfbf;
+		}
+		.Gsearch_content .title.clear-his{
+		    text-align: center;
+		    color:#bfbfbf;
+		    font-size:0.373rem;
+		    line-height: 0.933rem;
+		}
+	</style>
+	<body>
+		<header class="mui-bar mui-bar-nav header">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<span class="title">水电材料下单</span>
+		</header>
+		<div class="p-box under-top">
+			<div class="p-box-title">东莞南城区南城花园一期A栋2306</div>
+			<div class="p-box-sub-title"><span>业主：</span>李晓<span>&nbsp;&nbsp;|&nbsp; </span> 15627215946</div>
+		</div>
+		<div style="width:100%;height:1.2rem;background:#fff">
+			<div class="serach-lay">
+				<form method="post" id="form" action="##">
+					<input v-el:search v-on:focus="onfocus($event)" v-on:blur="blur($event)" debounce="500" class='search' type="search" name="search" id="search" placeholder="电话/地址/业主名称">
+					<div v-show='focusy' id='cancel' class="botton cancel-bottom" v-on:click="cancelSearch()">取消</div>
+				</form>
+			</div>
+		</div>
+		<div v-if='search_cont' class="Gsearch_content" style="position:absolute;width:100%;z-index: 999;">
+			<div id="his_content_lay" style="height:12rem;overflow-y:auto;">
+				<div  class="title">历史搜索</div>
+				<ul id="his_content" class="mui-table-view">
+					<li class="mui-table-view-cell">Item 1</li>
+				    <li class="mui-table-view-cell">Item 2</li>
+				    <li class="mui-table-view-cell">Item 3</li>
+					<li class="mui-table-view-cell">Item 1</li>
+				    <li class="mui-table-view-cell">Item 2</li>
+				    <li class="mui-table-view-cell">Item 3</li>
+					<li class="mui-table-view-cell">Item 1</li>
+				    <li class="mui-table-view-cell">Item 2</li>
+				    <li class="mui-table-view-cell">Item 3</li>
+					<li class="mui-table-view-cell">Item 1</li>
+				    <li class="mui-table-view-cell">Item 2</li>
+				    <li class="mui-table-view-cell">Item 3</li>
+				</ul>
+			</div>
+			<ul id="search_content" style="display:none;"></ul>
+		</div>
+		<section id="ysdsec" style="border-bottom:1px solid red;">
+			<div class="left y-sd-box-l swiper-container">
+				<div class="swiper-wrapper" style="height:100%;width:100%">
+					<div class="swiper-slide swiper1">
+						<div>
+							通用辅料
+						</div>
+					</div>
+					<div class="swiper-slide swiper1 active">
+						<div >
+							通用辅料
+						</div>
+					</div>
+					<div class="swiper-slide swiper1">
+						<div >
+							通用辅料
+						</div>
+					</div>
+					<div class="swiper-slide swiper1 active">
+						<div >
+							通用辅料
+						</div>
+					</div>
+					<div class="swiper-slide swiper1">
+						<div >
+							通用辅料
+						</div>
+					</div>
+					<div class="swiper-slide swiper1 active">
+						<div >
+							通用辅料
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="right y-sd-box-r swiper-container1">
+				<div class="swiper-wrapper" style="height:100%;width:100%">
+					<div class="swiper-slide swiper2" v-for="key in arr2">
+						<p class="y-sd-title">01106020/卓邦外墙腻子（外墙腻子0kg）(包){{key}}</p>
+						<div>
+							<div>
+								<div class="y-sub-box">
+									<img class="y-sd-icon" src="../images/icon-sub.png" alt="" />
+								</div>
+								<strong>1</strong>
+								<div class="y-add-box">
+									<img class="y-sd-add y-sd-icon" src="../images/icon-add.png" alt="" />
+								</div>
+							</div>
+						</div>
+						<h1></h1>
+					</div>
+				</div>
+			</div>
+		</section>
+		<footer class="y-sd-footer">
+			<img id="shoppingCart" src="../images/icon-gwc.png" alt="" />
+			<span>已选产品(4)</span>
+			<div>提交</div>
+		</footer>
+		<!--<div v-for="key in arr2">
+			<p>{{key}}</p>
+		</div>
+		<button id="b1"></button>-->
+	</body>
+	<script src="../js/zepto1.1.6.min.js"></script>
+	<script src="../js/swiper-3.3.1.min.js"></script>
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/vue.min.js"></script>
+	<script>
+	
+		var swiper = new Swiper('.swiper-container', {
+	        pagination: '.swiper-pagination',
+	        slidesPerView: 7,
+	        freeMode: true,
+	        direction: 'vertical'
+	    });
+	    
+	    var swiper1 = new Swiper('.swiper-container1', {
+	        pagination: '.swiper-pagination',
+	        slidesPerView: 4.2,
+	        freeMode: true,
+	        direction: 'vertical'
+	    });
+	    
+	    var abc=[1,2,3,4,5,6,7,8,9,10,11];
+	    var vm = new Vue({
+				el: "body",
+				data: {
+					focusy: false,
+					search_cont: false,
+					his_length: 0,
+					dataArr: [],
+					arr2:[1,2,3]
+				},
+				methods: {
+					onfocus: function(e) {
+						this.$els.search.className = 'onfocus'
+						this.focusy = true;
+						this.search_cont = true;
+						this.$nextTick(function() {
+							//showSearchHis();
+						})
+					},
+					blur: function(e) {
+						// this.$els.search.className='left'
+					},
+					toProjectDetail: function(sitesId) {
+						//localStorage.selectSitesId = sitesId;
+						//openNew("xiangmu/project-details.html");
+					},
+					cancelSearch: function() {
+						search.value = '';
+						vm.focusy = false;
+						vm.search_cont = false;
+						vm.$els.search.className = 'search'
+					}
+				},
+				ready: function() {
+					//init();
+				}
+			});
+			
+			function shoppingCartAnimate(dom){
+			    var goodsItem = $(dom);
+			    var flyElm = goodsItem.clone();
+			    $('body').append(flyElm);
+			    flyElm.css({
+			        'z-index': 9000,
+			        'display': 'block',
+			        'position': 'absolute',
+			        'top': goodsItem.offset().top +'px',
+			        'left': goodsItem.offset().left +'px',
+			        'width': goodsItem.width() +'px',
+			        'height': goodsItem.height() +'px'
+			    });
+			    flyElm.animate({
+			        top: $('#shoppingCart').offset().top+10,
+			        left: $('#shoppingCart').offset().left+20,
+			        width: 10,
+			        height: 10
+			    }, 400, function() {
+			        flyElm.remove();
+			    });
+			}
+			
+			$(".y-add-box").on("tap",function(){
+				var img=$(this).find("img");
+				shoppingCartAnimate(img);
+			});
+			
+			$(".swiper1>div").on("tap",function(){
+				vm.arr2=abc;
+				setTimeout(changeSwiper,500);
+			});
+			
+			/*b1.onclick=function(){
+				vm.arr2=abc;
+			}*/
+			
+			function changeSwiper(){
+				swiper1.updateSlidesSize();
+			}
+			
+	</script>
+</html>
