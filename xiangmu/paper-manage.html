@@ -190,10 +190,10 @@
 					});
 				},
 				goToPath:function(key,parentInd,arrInd){
-					//console.log(JSON.stringify(key));
+					console.log(JSON.stringify(key));
 					console.log(parentInd);
 					console.log(arrInd);
-					//localStorage.paperSonData=JSON.stringify(key);
+					localStorage.paperSonData=JSON.stringify(key);
 					localStorage.paperParentInd=parentInd;
 					localStorage.paperarrInd=arrInd;
 					openNew("photoList.html");
@@ -278,7 +278,6 @@
 			}
 		
 			
-		
 		/*$(d1).click(function(){
 			init();
 		});*/

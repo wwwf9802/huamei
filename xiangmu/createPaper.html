@@ -14,42 +14,44 @@
 		<link rel="stylesheet" type="text/css" href="../css/common.css">
 		<link rel="stylesheet" type="text/css" href="../css/lzr.css">
 		<link rel="stylesheet" href="../css/ww.css" />
-		<link rel="stylesheet" href="../js/picker/mui.picker.min.css" />
-		<link rel="stylesheet" href="../js/picker/mui.poppicker.css" />
+		<link rel="stylesheet" href="../css/yhn.css" />
 	</head>
 
 	<body class="createPaper">
 		<div class="mui-bar mui-bar-nav header project-list-head">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			新增图纸
+			<span id="submitBtn" class="header-right">完成</span>
 		</div>
 		<div class="loading" style="display: none;">
 			<span class="mui-spinner"></span>	
 		</div>
+		
 		<div id="createPaper" class="g-content g-content-daichuli g-renwu-mingxi">
 			<div class="selectItem">
 				<div class="title left">
 					图纸名称
 				</div>
 				<div class="item right">
-					<input type="text" style="height:1rem;position:relative;top:.15rem;width:3rem" placeholder="请输入" />
+					<input v-model="photoName" type="text" style="height:1rem;position:relative;top:.15rem;width:3rem" placeholder="请输入" />
 				</div>
 				<i></i>
 			</div>
 			<div class="item">
 				<div>
 					<input type="file" id="uploadphoto" name="uploadfile" accept="image/*" style="display: none;" />
-					<div v-for="item in imgDataArr" class="photo-div">
-						<img src="{{item}}" class="uploadPic" />
-						<img src="../images/check-close.png" class="close" v-on:tap="close($index)" />
+					<div v-if="photoUrl" class="photo-div">
+						<img src="{{photoUrl}}" class="uploadPic" />
+						<img src="../images/check-close.png" class="close" v-on:tap="close()" />
 					</div>
-					<div class="photo-div">
+					<div v-else class="photo-div">
 						<img id="upploadImg" src="../images/addphoto.png" class="uploadPic" />
 					</div>
 					<div style="clear: both;"></div>
 				</div>
 			</div>
 		</div>
+		
 		<div class="shadow" style="display: none;">
 			<div class="photeUpDiv">
 				<div class="item" id="getCamera">拍照</div>
@@ -75,12 +77,14 @@
 		var createPaperVM = new Vue({
 			el: '#createPaper',
 			data: {
-				imgDataArr: {}
+				photoUrl:"",
+				photoBase64:"",
+				photoName:"",
 			},
 			methods: {
-				close: function(index) {
-					photoDataArr.splice(index, 1);
-					photoImgUrlArr.splice(index, 1);
+				close: function() {
+					this.photoUrl="",
+					this.photoBase64=""
 				}
 			}
 		});
@@ -91,11 +95,10 @@
 				width: 500,
 				quality: 0.4,
 				success: function(result) {
-					if(photoImgUrlArr.indexOf(result.base64) == -1) {
-						photoImgUrlArr.push(result.base64);
-						photoDataArr.push(result.clearBase64);
-						createPaperVM.imgDataArr = photoImgUrlArr;
-					}
+					createPaperVM.photoBase64=result.clearBase64;
+					createPaperVM.photoUrl=result.base64;
+					var photoName=createPaperVM.photoName;
+					//plus.webview.getWebviewById().evalJS("addPhoto("+createPaperVM.photoName+"")");
 				}
 			});
 		});
@@ -175,15 +178,20 @@
 
 				var base64 = canvas.toDataURL('image/jpeg', 0.4 || 0.4); //1最清晰，越低越模糊。有一点不清楚这里明明设置的是jpeg。弹出 base64 开头的一段 data：image/png;却是png。哎开心就好，开心就好
 				var clearBase64 = base64.substring(base64.indexOf("base64,") + 7, base64.length);
-				if(photoImgUrlArr.indexOf(base64) == -1) {
-					photoImgUrlArr.push(base64);
-					photoDataArr.push(clearBase64);
-					createPaperVM.imgDataArr = photoImgUrlArr;
-				}
+					createPaperVM.photoBase64=base64;
+					createPaperVM.photoUrl=clearBase64;
+				var photoName=createPaperVM.photoName;
+				alert(photoName);
 				$(".loading").css('display', 'none');
 			}
 		}
 		
+		$("#submitBtn").on("tap",function(){
+			plus.webview.getWebviewById("photoList.html").evalJS("addPhoto("+"'"+createPaperVM.photoName+"'"+")");
+			plus.webview.currentWebview().opener().opener().evalJS("init()");
+			alert(123);
+			//plus.webview.getTopWebview.evalJS("init()");
+		});
 	</script>
 
 </html>
