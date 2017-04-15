@@ -68,9 +68,9 @@
 			</div>
 			<div class="swiper-container">
 				<div class="swiper-wrapper">
-					<div class="swiper-slide y-swiper1" v-for="key in dataArr[0].sitesDrawVoList">
-						<img @tap="goToPath(key)" src="{{key.sitesDrawingList[0].pictureUrl | formatURL}}" alt="" />
-						<p>{{key.drawType}}(5)</p>
+					<div class="swiper-slide y-swiper1" v-for="(index,key) in dataArr[0].sitesDrawVoList">
+						<img @tap="goToPath(key,'0',index)" src="{{key.sitesDrawingList[0].pictureUrl | formatURL}}" alt="" />
+						<p>{{key.drawType}}{{key.sitesDrawingList.length}}</p>
 					</div>
 				</div>
 			</div>
@@ -81,7 +81,7 @@
 						<span></span>
 						商品定制图
 						<strong class="right active" id="y-add">新增</strong>
-						<strong class="right active" id="y-edit" style="color:#666">编辑</strong>
+						<!--<strong class="right active" id="y-edit" style="color:#666">编辑</strong>-->
 						<strong class="right" id="y-cance" style="color:#666">取消</strong>
 						<strong class="right" id="y-save" style="color:#1D88DC">保存</strong>
 					</h1>
@@ -104,19 +104,18 @@
 					</div>
 				</div>-->
 				
-				<div class="y-imgListBox" v-for="key in dataArr[1].sitesDrawVoList">
+				<div class="y-imgListBox" v-for="(index,key) in dataArr[1].sitesDrawVoList">
 					<aside class="left">
-						<img @tap="addImg(key.sitesDrawingList)" src="../images/icon-jia.png" alt="" />
+						<img src="../images/icon-jia.png" alt="" />
 						<h1>{{key.drawType}}</h1>
 						<p></p>
 					</aside>
 					
-					<div class="swiper-container1">
+					<div class="swiper-container1" @tap="goToPath(key,'1',index)">
 						<div class="swiper-wrapper">
-							<div class="swiper-slide y-swiper2" v-for="(index,item) in key.sitesDrawingList">
-								<img src="../images/house.png" alt="" />
+							<div class="swiper-slide y-swiper2" v-for="item in key.sitesDrawingList">
+								<img src="{{item.pictureUrl|formatURL}}" alt="" />
 								<p>{{item.drawingName}}</p>
-								<div><span @tap="delImg(key.sitesDrawingList,index)" class="mui-badge mui-badge-danger">--</span></div>
 							</div>
 						</div>
 					</div>
@@ -190,9 +189,13 @@
 						changeSwiper();
 					});
 				},
-				goToPath:function(key){
-					console.log(JSON.stringify(key));
-					localStorage.paperSonData=JSON.stringify(key);
+				goToPath:function(key,parentInd,arrInd){
+					//console.log(JSON.stringify(key));
+					console.log(parentInd);
+					console.log(arrInd);
+					//localStorage.paperSonData=JSON.stringify(key);
+					localStorage.paperParentInd=parentInd;
+					localStorage.paperarrInd=arrInd;
 					openNew("photoList.html");
 				},
 			},
@@ -264,7 +267,9 @@
 							vm.dataArr =jsonData.other.drawlist;
 							makeSwiper();
 						}
-						//changeSwiper();
+						setTimeout(function(){
+							swiper.updateSlidesSize();
+						},500);
 						//vm.dataArr = jsonData;
 					},
 					error: function(XMLHttpRequest, textStatus, errorThrown) {

@@ -112,7 +112,8 @@
 .photoList .item .photo-div .uploadPic{width:90%;height: 2.7rem;margin: o auto;position: absolute;bottom: 0;left: 5%;border-radius: 0.2rem;}
 .photoList .item .photo-div.active .picShadow{display: none;}
 .photoList .item .photo-div .picShadow{width:90%;height: 2.7rem;margin: o auto;background-color: rgba(0,0,0,0.2);position: absolute;bottom: 0;left: 5%;border-radius: 0.3rem;}
-.photoList .item .photo-div .close{display: block;position: absolute;right: 0.25rem;top: 0.15rem;width: 0.5rem;background: url(../images/check-close.png); width: 0.6rem;height: 0.6rem;background-size: contain;}
+.photoList .item .photo-div .close{display: block;position: absolute;right: 0.25rem;top: 0.15rem;width: 0.5rem;background: url(../images/icon-select.png); width: 0.6rem;height: 0.6rem;background-size: contain;}
+.photoList .item .photo-div .close.active{background: url(../images/icon-select1.png);background-size:100% 100%;}
 .photoList .item .photo-div.active .close{display: block;position: absolute;right: 0.25rem;top: 0.15rem;width: 0.5rem;background: url(../images/icon-red.png); width: 0.6rem;height: 0.6rem;background-size: contain;}
 .photoList .item .photo-div.flag .close{display: none;}
 .photoList #submitBtn{height: 1.3rem;width: 100%;line-height:1.3rem;text-align: center;color: #EB4D4B;position: fixed;bottom: 0;left: 0;z-index: 999;background-color: white;border-top: 1px solid #eee;font-size:0.48rem}

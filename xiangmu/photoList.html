@@ -37,10 +37,10 @@
 					<div v-if="addPhoto" class="photo-div" v-on:tap="addPhotoFun()">
 						<img id="upploadImg" src="../images/addphoto.png" class="uploadPic" />
 					</div>
-					<div v-for="item in imgDataArr" class="photo-div" v-bind:class="{active:!item.selected,flag:!item.flag}">
+					<div v-for="item in imgDataArr" class="photo-div">
 						<img  src="{{item.pictureUrl|formatURL}}" class="uploadPic" />
 						<div class="picShadow"></div>
-						<i class="close" v-on:tap="selectPic(item)"></i>
+						<i class="close" v-on:tap="delPhototFun(item.id,$event)" data-flag="false" style="display:none"></i>
 					</div>
 					<div style="clear: both;"></div>
 				</div>
@@ -78,13 +78,10 @@
 				typeID:null,
 				parentId:null,
 				baseImgUrl:getBaseImgUrl(),
-				imgDataArr:[]
+				imgDataArr:[],
+				delArr:[],
 			},
 			methods: {
-				selectPic: function(item) {
-					item.selected = !item.selected;
-					calNum();
-				},
 				addPhotoFun: function() {
 					addPhoto(photoList.typeID);
 					/*if(plus.os.name == "iOS") {
@@ -93,20 +90,38 @@
 					} else {
 						$(".shadow").fadeIn(300);
 					}*/
+				},
+				delPhototFun:function(id,e){
+					var id=id;
+					var flag=$(e.target).data("flag");
+						
+					if(!flag){
+						$(e.target).data("flag",true);
+						$(e.target).addClass("active");
+						if(this.delArr.indexOf(id)==-1){
+							this.delArr.push(id);
+							calNum();
+							console.log(this.delArr);
+						}
+					}else{
+							$(e.target).data("flag",false);
+							$(e.target).removeClass("active");
+							var index=this.delArr.indexOf(id);
+							console.log(index);
+							var arr=this.delArr;
+							//if(index==-1){return}
+							arr.splice(index,1);
+							this.delArr=arr;
+							calNum();
+							console.log(arr);
+						
+					}
+					
+					
 				}
 			},
 			ready:function(){
-				for(var i=0;i<dataArr.sitesDrawingList.length;i++){
-					dataArr.sitesDrawingList[i].selected=false;
-					dataArr.sitesDrawingList[i].flag=false;
-					
-				}
-				//console.log(dataArr.sitesDrawingList);
-				this.imgDataArr=dataArr.sitesDrawingList;
-				this.parentId=dataArr.parentId;
-				this.typeID=dataArr.sitesDrawingList[0].drawingType.id;
-				console.log(this.imgDataArr);
-				console.log(this.typeID);
+				init();
 			}
 		});
 		
@@ -124,35 +139,25 @@
 		$("#initSelect").on('tap', function() {
 			if($(this).data('status') == '0') {
 				$(this).data('status', '1');
-				$(this).text('取消');
+				$(this).text('完成');
+				$(".close").css("display","block");
 				startSelectPic();
 			} else {
 				$(this).data('status', '0');
 				$(this).text('编辑');
+				$(".close").css("display","none");
 				endSelectPic();
 			}
 		});
 		var startSelectPic = function() {
-			for(var i = 0; i < photoList.imgDataArr.length; i++) {
-				photoList.imgDataArr[i].flag = true;
-				photoList.imgDataArr[i].selected = false;
-			}
+			
 			photoList.addPhoto = true;
 		}
 		var endSelectPic = function() {
-			for(var i = 0; i < photoList.imgDataArr.length; i++) {
-				photoList.imgDataArr[i].flag = false;
-				photoList.imgDataArr[i].selected = false;
-			}
 			photoList.addPhoto = false;
 		}
 		var calNum = function() {
-			var num = 0;
-			for(var i = 0; i < photoList.imgDataArr.length; i++) {
-				if(photoList.imgDataArr[i].selected) {
-					num++;
-				}
-			}
+			var num = photoList.delArr.length;
 			if(num == 0) {
 				$("#submitBtn").text("删除");
 			} else {
@@ -161,16 +166,30 @@
 
 		}
 		$("#submitBtn").on('tap', function() {
-			for(var i = photoList.imgDataArr.length - 1; i >= 0; i--) {
-				if(photoList.imgDataArr[i].selected) {
-					photoList.imgDataArr.splice(i, 1);
-				}
-			}
-			calNum();
+			var data=photoList.delArr;
+			mui.ajax(getBaseServerUrl() + '/sites/sitesDrawing/deleteSitesDrawing', {
+					type: 'post', //HTTP请求类型
+					data: data,
+					contentType: "application/json",
+					success: function(jsonData) {
+						console.log(JSON.stringify(jsonData));
+						calNum();
+						init();
+						//plus.webview.getWebviewById("paper-manage.html").evalJS("init()");
+						/*if(jsonData.status===true){
+							vm.dataArr =jsonData.other.drawlist;
+							makeSwiper();
+						}*/
+						//changeSwiper();
+						//vm.dataArr = jsonData;
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {
+					}
+			});
 		});
 		
-		var photoImgUrlArr = new Array();
-		var photoDataArr = new Array();
+		//var photoImgUrlArr = new Array();
+		//var photoDataArr = new Array();
 		$(document).ready(function(e) {
 			$('#uploadphoto').localResizeIMG({
 				width: 500,
@@ -283,31 +302,6 @@
 		}
 		
 		
-		var arrar111=[{
-					url: '../images/logo.png',
-					selected: false,
-					flag: false
-				}, {
-					url: '../images/logo.png',
-					selected: false,
-					flag: false
-				}, {
-					url: '../images/logo.png',
-					selected: false,
-					flag: false
-				}, {
-					url: '../images/logo.png',
-					selected: false,
-					flag: false
-				}, {
-					url: '../images/logo.png',
-					selected: false,
-					flag: false
-				}, {
-					url: '../images/logo.png',
-					selected: false,
-					flag: false
-				}];
 		function addPhoto(typeID){
 			var parentID=photoList.parentId;
 			var photoData={
@@ -333,10 +327,8 @@
 					contentType: "application/json",
 					success: function(jsonData) {
 						console.log(JSON.stringify(jsonData));
-						for(var i=0;i<dataArr.sitesDrawingList.length;i++){
-							dataArr.sitesDrawingList[i].selected=false;
-							dataArr.sitesDrawingList[i].flag=false;
-						}
+						init();
+						//plus.webview.getWebviewById("paper-manage.html").evalJS("init()");
 						/*if(jsonData.status===true){
 							vm.dataArr =jsonData.other.drawlist;
 							makeSwiper();
@@ -368,9 +360,33 @@
             stateName: "未确认"
 		}*/
 		
-		function init(){
-			
-		}
+		function init() {
+				//获取工地信息
+				mui.ajax(getBaseServerUrl() + '/sites/sitesDrawing/querySitesDrawingAll', {
+					type: 'get', //HTTP请求类型
+					data: {
+						sitesId:'1',
+					},
+					success: function(jsonData) {
+						console.log(jsonData);
+						if(jsonData.status===true){
+							photoList.imgDataArr =jsonData.other.drawlist[localStorage.paperParentInd].sitesDrawVoList[localStorage.paperarrInd].sitesDrawingList;
+							photoList.typeID=jsonData.other.drawlist[localStorage.paperParentInd].sitesDrawVoList[localStorage.paperarrInd].sitesDrawingList[0].drawingType.id;
+							photoList.parentId=jsonData.other.drawlist[localStorage.paperParentInd].sitesDrawVoList[localStorage.paperarrInd].sitesDrawingList[0].drawingType.parentId;
+							console.log(JSON.stringify(photoList.imgDataArr));
+						}
+						/*setTimeout(function(){
+							swiper.updateSlidesSize();
+						},500);*/
+						//vm.dataArr = jsonData;
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {
+					}
+				});
+			}
+		
+		
+		
 	</script>
 
 </html>
