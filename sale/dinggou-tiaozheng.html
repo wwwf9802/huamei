@@ -1,0 +1,390 @@
+ <!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>订购调整单</title>
+		<!-- Mobile Devices Support @begin -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="yes" name="apple-touch-fullscreen">
+		<meta content="telephone=no,email=no" name="format-detection">
+		<script src="../js/flexible.js" type="text/javascript"></script>
+		<script src="../js/flexible_css.js" type="text/javascript"></script>
+		<!-- Mobile Devices Support @end -->
+		<link rel="stylesheet" href="../css/base-reset.css">
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/swiper-3.3.1.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/common.css">
+		<link rel="stylesheet" type="text/css" href="../css/lzr.css">
+	</head>
+
+	<body>
+	    <div class="mui-bar mui-bar-nav header header-details">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<span class="title">订购调整单
+              <span class='jiahao'>+</span>
+			</span>
+
+		</div>
+		<div class="g-content g-content-project-list g-jiazhuang-gendan g-yuandingdan">
+			<div class="serach-lay m-tiaozheng-dinggou">
+				<form method="post" id="form" action="##">
+					<input v-el:search v-on:focus="onfocus($event)" v-on:blur="blur($event)" debounce="500" class='search' type="search" name="search" id="search" placeholder="TL单号/业主电话/地址">
+					<div v-show='focusy' id='cancel' class="botton cancel-bottom" v-on:click="cancelSearch()">取消</div>
+				</form>
+			</div>
+			<div v-if='search_cont' class="Gsearch_content">
+				<div id="his_content_lay">
+					<div v-show='his_length' class="title">历史搜索</div>
+					<ul id="his_content">
+
+					</ul>
+					<div v-show='his_length' class="title clear-his">清空搜索记录</div>
+				</div>
+				<ul id="search_content" style="display:none;"></ul>
+			</div>
+			<div v-else class="item-project m-dinggou-tiaozheng" id='item-project'>
+				<div class="item-pro-list">
+					<div class="list-qingdan daishenhe">
+						<div class="list-qingdan-box">
+							<div class="tr">
+								<div class="td th">
+									[变更单]
+									<span class='danhao'>调整单号：121231231231231</span>
+								</div>
+								<div class="td td-shenhe">
+									 待审核
+								</div>
+							</div>
+							<div class="tr">									 
+								<div class="td td-address">
+									订购单号：1212121212
+								</div>
+							</div>
+						</div>
+						<div class="list-qingdan-box">
+							<div class="tr">
+								<div class="td td-address">
+									 张小兰&nbsp;&nbsp;<span class='shuxian'>|</span>&nbsp; 185167134
+								</div>
+							</div>
+							<div class="tr">									 
+								<div class="td td-address">
+									地址地址
+								</div>
+							</div>
+						</div>
+						<div class="list-qingdan-box">
+							<div class="tr tr-heng">
+								<div class="td td-address">
+									 制单人：
+								</div>
+								<div class="td td-address">
+									 赵小五
+								</div>
+								<div class="td td-address">
+									 制单日期：
+								</div>
+								<div class="td td-address">
+									 2017-6-5
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="list-qingdan daishenhe">
+						<div class="list-qingdan-box">
+							<div class="tr">
+								<div class="td th">
+									[追加单]
+									<span class='danhao'>调整单号：121231231231231</span>
+								</div>
+								<div class="td td-shenhe">
+									 待审核
+								</div>
+							</div>
+							<div class="tr">									 
+								<div class="td td-address">
+									订购单号：1212121212
+								</div>
+							</div>
+						</div>
+						<div class="list-qingdan-box">
+							<div class="tr">
+								<div class="td td-address">
+									 张小兰&nbsp;&nbsp;<span class='shuxian'>|</span>&nbsp; 185167134
+								</div>
+							</div>
+							<div class="tr">									 
+								<div class="td td-address">
+									地址地址
+								</div>
+							</div>
+						</div>
+						<div class="list-qingdan-box">
+							<div class="tr tr-heng">
+								<div class="td td-address">
+									 制单人：
+								</div>
+								<div class="td td-address">
+									 赵小五
+								</div>
+								<div class="td td-address">
+									 制单日期：
+								</div>
+								<div class="td td-address">
+									 2017-6-5
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="list-qingdan yishenhe">
+						<div class="list-qingdan-box">
+							<div class="tr">
+								<div class="td th">
+									[追加单]
+									<span class='danhao'>调整单号：121231231231231</span>
+								</div>
+							</div>
+							<div class="tr">									 
+								<div class="td td-address">
+									订购单号：1212121212
+								</div>
+							</div>
+						</div>
+						<div class="list-qingdan-box">
+							<div class="tr">
+								<div class="td td-address">
+									 张小兰&nbsp;&nbsp;<span class='shuxian'>|</span>&nbsp; 185167134
+								</div>
+							</div>
+							<div class="tr">									 
+								<div class="td td-address">
+									地址地址
+								</div>
+							</div>
+						</div>
+						<div class="list-qingdan-box">
+							<div class="tr tr-heng">
+								<div class="td td-address">
+									 制单人：
+								</div>
+								<div class="td td-address">
+									 赵小五
+								</div>
+								<div class="td td-address">
+									 制单日期：
+								</div>
+								<div class="td td-address">
+									 2017-6-5
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="../js/zepto1.1.6.min.js" type="text/javascript"></script>
+		<script src='../js/swiper-3.3.1.min.js' type="text/javascript"></script>
+		<script src='../js/mui.min.js'></script>
+		<script src='../js/vue.min.js'></script>
+		<script type="text/javascript" src="../js/global.js"></script>
+		<script type="text/javascript" src="../js/public.js"></script>
+		<script>
+
+		     
+			// function init() {
+			// 	//获取工地信息
+			// 	mui.ajax(getBaseServerUrl() + '/app/order/findSiteList',{
+			// 		type: 'get', //HTTP请求类型
+			// 		data: {
+			// 			empId:'admin',
+			// 			query: $("#search").val()
+			// 		},
+			// 		success: function(jsonData) {
+			// 			console.log(JSON.stringify(jsonData));
+			// 			vm.dataArr = jsonData;
+						 
+			// 		},
+			// 		error: function(XMLHttpRequest, textStatus, errorThrown) {
+			// 			$("#search_content").hide();
+			// 			console.log('error')
+			// 		}
+			// 	});
+			// }
+
+			var vm = new Vue({
+				el: "body",
+				data: {
+					focusy: false,
+					search_cont: false,
+					his_length: 0,
+					dataArr: []
+				},
+				methods: {
+					onfocus: function(e) {
+						this.$els.search.className = 'onfocus'
+						this.focusy = true;
+						this.search_cont = true;
+						this.$nextTick(function() {
+							showSearchHis();
+						})
+					},
+					blur: function(e) {
+						// this.$els.search.className='left'
+					},
+					toProjectDetail: function(sitesId,contractId,item) {
+						localStorage.xiangmuData=JSON.stringify(item);
+						localStorage.selectSitesId = sitesId;
+						localStorage.selectContractId = contractId;
+						openNew("xiangmu/project-details.html");
+					},
+					cancelSearch: function() {
+						search.value = '';
+						this.focusy = false;
+						// this.search_cont = false;
+						this.$els.search.className = 'search'
+                        var that=this;
+                        this.$nextTick(function() {
+						    that.search_cont = false;
+						})
+
+                        // 重新请求一次数据，因为input事件执行的是搜索事件
+                        // 点击取消时，再重新请求数据，并把输入框的内容清空
+                        // init();
+					}
+				},
+				ready: function() {
+					// init();
+				}
+			});
+
+			// 点击手机软键盘的搜索框 
+			form.onsubmit = function() {
+				var search_value = search.value;
+				setHistoryData(search_value);
+				vm.focusy = false;
+				vm.search_cont = false;
+				return false;
+			};
+
+			// 清空搜索记录 
+			$(".g-content").on('tap', '.clear-his', function() {
+					$("#his_content").hide();
+					$(".g-content-project-list .Gsearch_content").hide();
+					localStorage.removeItem("historyString");
+					var numhis = 1;
+					vm.his_length = 0;
+					$('.g-content .serach-lay').addClass("inputremovehis");
+			})
+			// input搜索框获取到焦点出现的搜索历史记录
+			function showSearchHis() {
+				if($('.g-content .serach-lay').hasClass("inputremovehis")) {
+					$("#his_content").hide();
+					$(".g-content-project-list .Gsearch_content").hide();
+				} else {
+					$("#his_content").show();
+					$(".g-content-project-list .Gsearch_content").show();
+				}
+
+				$("html,body").css({
+					'overflow': 'hidden'
+				})
+
+				if(localStorage.getItem("historyString")) {
+					//  获取localStorage历史记录并赋值给数组historyArray
+					var historyArray = localStorage.getItem("historyString").split(";");
+					historyArray.reverse(); //数组反转
+
+					if(historyArray.length > 10) {
+						var listnum = 10
+					} else {
+						var listnum = historyArray.length;
+					}
+					var listhistory = [];
+					for(var i = 0; i < listnum; i++) {
+						listhistory[i] = '<li><a href="?iRegionID=0&iPriceID=0&iLayoutID=0&sKeyword=' + historyArray[i] + '&iFeatureID=">' + historyArray[i] + '</a></li>';
+					}
+					vm.his_length = listhistory.length;
+					$("#his_content").html(listhistory.join(""));
+				}
+
+			};
+
+			// 点击搜索按钮实现记录localStorage(历史搜索记录)以及跳转
+			function setHistoryData(value) {
+				$("html,body").css({
+					'overflow': 'visible'
+				})
+				$('.g-content .serach-lay').removeClass("inputremovehis");
+				if(localStorage.getItem("historyString")) {
+					var historyArray = localStorage.getItem("historyString").split(";");
+				} else {
+					var historyArray = []
+				}
+				var searchcontent = value;
+				if($.trim(searchcontent) != "") {
+					searchcontent = jsXss(searchcontent);
+					if(historyArray.indexOf(searchcontent) != -1) {
+						historyArray.splice(historyArray.indexOf(searchcontent), 1)
+					}
+					historyArray.push(searchcontent);
+					// 设定locanStorage本地历史记录的值
+					localStorage.setItem("historyString", historyArray.join(";"))
+				}
+				window.location.href = '?iRegionID=0&iPriceID=0&iLayoutID=0&sKeyword=' + searchcontent + '&iFeatureID=';
+			};
+
+			function jsXss(s) {
+				{
+					var pattern = new RegExp("[%--`~!@#$^&*()=|{}':;',\\[\\].<>/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？]");
+					var rs = "";
+					for(var i = 0; i < s.length; i++) {
+						rs = rs + s.substr(i, 1).replace(pattern, '');
+					}
+					return rs;
+				}
+			}
+
+			// 监听input事件，实现模糊搜索
+			search.addEventListener('input', mohuSearchData);
+
+			function mohuSearchData(e) {
+				$("html,body").css({
+					'overflow': 'hidden'
+				})
+				$("#his_content_lay").hide();
+				var skeyword = e.target.value;
+				var skeyword = trim(skeyword);
+				if($.trim(skeyword) != "") {
+					init();
+				} else {
+					$("#search_content").hide();
+					vm.search_cont = false;
+				}
+			}
+
+			// 去除搜索关键字字符串中的空值。
+			// function trim(str){
+			//     return str.replace(/[ ]/g,""); //去除字符串中的空格
+			// }
+			function trim(text) {
+				if(typeof(text) == "string") {
+					return text.replace(/^\s*|\s*$/g, "");
+				} else {
+					return text;
+				}
+			}
+
+			// 点击 模糊搜索出来的数据,也是执行 setHistoryData 这个方法
+			$(".g-content").on("tap", "li", function(e) {
+				e.stopPropagation();
+				var value = $(this).find('.sptitle').text();
+				setHistoryData(value);
+				vm.focusy = false;
+			});
+		</script>
+	</body>
+
+</html>

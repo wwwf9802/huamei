@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>家装跟单详情</title>
+		<!-- Mobile Devices Support @begin -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="yes" name="apple-touch-fullscreen">
+		<meta content="telephone=no,email=no" name="format-detection">
+		<script src="../js/flexible.js" type="text/javascript"></script>
+		<script src="../js/flexible_css.js" type="text/javascript"></script>
+		<!-- Mobile Devices Support @end -->
+		<link rel="stylesheet" href="../css/base-reset.css">
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/swiper-3.3.1.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/common.css">
+		<link rel="stylesheet" type="text/css" href="../css/lzr.css">
+	</head>
+
+	<body>
+	    <div class="mui-bar mui-bar-nav header header-details">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<span class="title">家装跟单详情</span>
+		</div>
+		<div class="g-content g-content-project-list g-gendan g-jiazhuang-gendan">
+			 
+			<div class="item-project m-gendan-details" id='item-project'>
+
+				<div class="item-pro-list">
+					<div class="head">
+					     <div class="head-center">基本信息</div>
+					</div>
+					<div class="list-qingdan">
+						<div class="list-qingdan-box">
+							<a href="##">
+							    <div class="tr">
+							    	<td>
+							    		<span class='icon-jieduan'>工地阶段</span>
+							    	</td>
+							    </div>
+								<div class="tr">
+									<div class="td th">
+										开工日期
+									</div>
+									<div class="td">
+										 2017-03-12
+									</div>
+									<div class="td th">
+										合同日期
+									</div>
+									<div class="td">
+										 2017-03-12
+									</div>
+								</div>
+								<div class="tr">
+									<div class="td th">
+										项目经理
+									</div>
+									<div class="td">
+										xxx
+									</div>
+								</div>
+								<div class="tr tr-jieduan">
+									<div class="td th">
+										项目阶段
+									</div>
+									<div class="td td-jieduan">
+										 泥水阶段
+									</div>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="item-pro-list">
+					<div class="head">
+						<a v-on:click="toProjectDetail(item.sitesSchedule.sitesId,item.sitesRecord.contractId,item)">
+							<div class="head-center">跟单信息</div>
+							<span class="see-more">查看更多跟单信息</span>
+						</a>
+					</div>
+
+					<div class="list-qingdan">
+						 <div class="item-gendan weigou">
+						 	 <div class="gendan-list">
+						 	 	 <div class="list ">
+						 	 	 	<span class="name">
+						 	 	 		蹲厕马桶
+						 	 	 	</span>
+						 	 	 	<span class="goumai-detail">
+						 	 	 		未购
+						 	 	 	</span>
+						 	 	 </div>
+						 	 	 <div class="list time">
+						 	 	 	<div class="wen">计划采购日期</div>
+						 	 	 	<div class="time-num">2017-03-10</div>
+						 	 	 </div>
+						 	 </div>
+						 </div>
+						 <div class="item-gendan weigou">
+						 	 <div class="gendan-list">
+						 	 	 <div class="list ">
+						 	 	 	<span class="name">
+						 	 	 		蹲厕马桶
+						 	 	 	</span>
+						 	 	 	<span class="goumai-detail">
+						 	 	 		未购
+						 	 	 	</span>
+						 	 	 </div>
+						 	 	 <div class="list time">
+						 	 	 	<div class="wen">计划采购日期</div>
+						 	 	 	<div class="time-num">2017-03-10</div>
+						 	 	 </div>
+						 	 </div>
+						 </div>
+						 <div class="item-gendan weigou">
+						 	 <div class="gendan-list">
+						 	 	 <div class="list ">
+						 	 	 	<span class="name">
+						 	 	 		蹲厕马桶
+						 	 	 	</span>
+						 	 	 	<span class="goumai-detail">
+						 	 	 		未购
+						 	 	 	</span>
+						 	 	 </div>
+						 	 	 <div class="list time">
+						 	 	 	<div class="wen">计划采购日期</div>
+						 	 	 	<div class="time-num">2017-03-10</div>
+						 	 	 </div>
+						 	 </div>
+						 </div>
+						 <div class="item-gendan weigou yi_ngou">
+						 	 <div class="gendan-list">
+						 	 	 <div class="list ">
+						 	 	 	<span class="name">
+						 	 	 		蹲厕马桶
+						 	 	 	</span>
+						 	 	 	<span class="goumai-detail">
+						 	 	 		已内购
+						 	 	 	</span>
+						 	 	 </div>
+						 	 	 <div class="list time">
+						 	 	 	<div class="wen">计划采购日期</div>
+						 	 	 	<div class="time-num">2017-03-10</div>
+						 	 	 </div>
+						 	 </div>
+						 </div>
+					</div>
+				</div>
+				<div class="item-pro-list">
+					<div class="head">
+					     <div class="head-center">跟单记录</div>
+					</div>
+					<div class="list-qingdan">
+						<div class="list-qingdan-box gendan-jilu">
+							<div class="tr">
+								<div class="td td-input">
+									<input type="text" name="" id="shuru" placeholder="输入备注信息">
+								</div>
+								<div class="td td-tijiao" @tap='tijiao'>
+									 提交
+								</div>
+							</div>
+							<div v-show='boolean' class="beizhu-msg">
+								<div v-for= 'item in items' class="tr">
+									<div class="td th">
+										备注：
+									</div>
+									<div class="td td-nsg">
+										{{item.msg}}
+									</div>
+									<div class="td td-address">
+										{{item.time}}
+									</div>
+								</div>
+								<div v-show='items.length>=2' class="chakan-more">
+									查看更多跟单记录
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<script src="../js/zepto1.1.6.min.js" type="text/javascript"></script>
+		<script src='../js/swiper-3.3.1.min.js' type="text/javascript"></script>
+		<script src='../js/mui.min.js'></script>
+		<script src='../js/vue.min.js'></script>
+		<script type="text/javascript" src="../js/global.js"></script>
+		<script type="text/javascript" src="../js/public.js"></script>
+		<script>
+             // 得到当前的日期
+		    function formatTime(){
+		    	var now = new Date();
+                var time =  now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate();
+                return time
+		    }
+		    function isBlank(_value) {
+	            if (_value == null || _value == "" || _value == undefined) {
+	                return true;
+	            }
+	            return false;
+            }   
+			var gendanVM=new Vue({
+				el:'body',
+				data:{
+                     items:[
+                     ],
+                     boolean:false
+				},
+				methods:{
+                   tijiao(){
+                   	  var value=shuru.value;
+                   	  if( !isBlank(value) ){
+                   	  	  var time=formatTime();
+	                      this.boolean=true;
+	                      var list={
+	                      	msg:value,
+	                      	time:time
+	                      }
+	                      this.items.push(list)
+	                      shuru.value='';
+                   	  }
+                   }
+				},
+				ready(){
+				}
+			})
+		</script>
+	</body>
+</html>
