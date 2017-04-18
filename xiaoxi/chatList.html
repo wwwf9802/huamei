@@ -21,7 +21,7 @@
 		</div>
 		<section class="g-content">
 			<ul>
-				<li v-for="item in dataArr" v-on:tap = "gotoChatGroup(item)">
+				<li v-for="item in dataArr" v-on:tap="gotoChatGroup(item)">
 					<div class="head">
 						<img src="../images/cheliang.png" />
 						<span v-if="item.unReadNum" class="num" style="font-size: 0.45rem;">{{item.unReadNum}}</span>
@@ -39,37 +39,40 @@
 	<script src="../js/flexible.js" type="text/javascript"></script>
 	<script src="../js/flexible_css.js" type="text/javascript"></script>
 	<script src='../js/mui.min.js'></script>
-	<script type="text/javascript" src="../js/vue.min.js" ></script>
-	<script type="text/javascript" src="../js/global.js" ></script>
-	<script type="text/javascript" src="../js/public.js" ></script>
+	<script type="text/javascript" src="../js/vue.min.js"></script>
+	<script type="text/javascript" src="../js/global.js"></script>
+	<script type="text/javascript" src="../js/public.js"></script>
 	<script>
-	    var chatListVM = new Vue({
+		var chatListVM = new Vue({
 			el: '#chatList',
 			data: {
-				dataArr: [],
-			    unReadNum:{}
+				dataArr: []
 			},
 			methods: {
 				gotoChatGroup: function(item) {
 					localStorage.groupId = item.id;
-					localStorage.empId = 'M001';
+					localStorage.empId = 'admin';
 					openNew("im-chat.html");
 				}
 			},
-			ready:function(){
+			ready: function() {
 				getChaList();
 			}
 		});
-		
+
 		function getChaList() {
 			mui.ajax(getBaseServerUrl() + '/app/chatGroup/getChatGroupList', {
 				type: 'get', //HTTP请求类型
 				data: {
-					empId: 'M001'
+					empId: 'admin'
 				},
 				success: function(jsonData) {
 					console.log(JSON.stringify(jsonData));
-					getUnReadMsgNum(jsonData);
+					if(jsonData.status == "true") {
+						getUnReadMsgNum(jsonData.data);
+					} else {
+						plus.nativeUI.alert(jsonData.msg);
+					}
 				},
 				error: function(XMLHttpRequest, textStatus, errorThrown) {
 					console.log(XMLHttpRequest.status);
@@ -78,23 +81,27 @@
 				}
 			});
 		}
+
 		function getUnReadMsgNum(listArr) {
 			mui.ajax(getBaseServerUrl() + '/app/chatGroup/getMsgNoReadNumber', {
 				type: 'get', //HTTP请求类型
 				data: {
-					empId: 'M001'
+					empId: 'admin'
 				},
 				success: function(jsonData) {
-					chatListVM.unReadNum = jsonData;
-					for (var i = 0; i < listArr.length; i++) {
-						for (var j = 0; j < chatListVM.unReadNum.detail.length; j++) {
-							if(listArr[i].id == chatListVM.unReadNum.detail[j].groupId){
-								listArr[i].unReadNum = chatListVM.unReadNum.detail[j].noReadNumber;
+					console.log(JSON.stringify(jsonData));
+					if(jsonData.status == "true") {
+						for(var i = 0; i < listArr.length; i++) {
+							for(var j = 0; j < jsonData.data.detail.length; j++) {
+								if(listArr[i].id == jsonData.data.detail[j].groupId) {
+									listArr[i].unReadNum = jsonData.data.detail[j].noReadNumber;
+								}
 							}
 						}
+						chatListVM.dataArr = listArr;
+					} else {
+						plus.nativeUI.alert(jsonData.msg);
 					}
-					chatListVM.dataArr = listArr;
-					console.log(JSON.stringify(chatListVM.dataArr));
 				},
 				error: function(XMLHttpRequest, textStatus, errorThrown) {
 					console.log(XMLHttpRequest.status);
