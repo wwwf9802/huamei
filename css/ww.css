@@ -443,16 +443,82 @@
 			line-height: 1rem;
 		}
 
+.dispatchHistory .title{color: #000;
+			position: relative;
+			background-color: #fff;
+			height: 1.37rem;
+			border-top: 1px solid #eee;
+			line-height: 1.37rem;
+			font-size: 0.45rem;
+			padding: 0 0.5rem;}
+		.dispatchHistory .title span:nth-child(1){font-weight: bold;}
+		.dispatchHistory .title span:nth-child(2){color: #EB6D00;}
+		.dispatchHistory .main .item {
+			padding: 0.1rem 0.5rem 0.1rem 2rem;
+			border-bottom: 1px solid #eee;
+			padding-bottom: 0.4rem;
+			position: relative;
+			font-size: 0.42rem;
+		}
+		.dispatchHistory .main .item .car {
+			background: url(../images/dispatch-car.png);
+			display: block;
+			width: 1rem;
+			height: 1rem;
+			background-size: contain;
+			position: absolute;
+			left: 0.4rem;
+			top: 0.9rem;
+		}
+		.dispatchHistory .main .item .address {
+			background: url(../images/dispatch-address.png);
+			display: block;
+			width: 1rem;
+			height: 1rem;
+			background-size: contain;
+			position: absolute;
+			left: 0.4rem;
+			top: 3.7rem;
+		}
+		.dispatchHistory .main .item .txt{margin-top: 0.2rem;}
+		.dispatchHistory .main .item .txt span:nth-child(1){width: 2.2rem;display: inline-block;color: #b2b2b2;}
+		.dispatchHistory .main .item .txt span:nth-child(2){color: #b2b2b2;}
+		.dispatchHistory .main .item .line{width: 100%;height: 0.6rem;border-bottom: 1px dashed #ccc;margin-bottom: 0.6rem;}
 
 
+.orderChangeDetail{}
+		.orderChangeDetail .order-info{padding: 0.4rem;font-size: 0.45rem;}
+		.orderChangeDetail .order-info .tip{color: red;font-size: 0.4rem;}
+		.orderChangeDetail .order-info .status{color: #eb6d00}
+		.orderChangeDetail .order-info .oldOrder{color: #b2b2b2;font-size: 0.4rem;margin-top: 0.1rem;}
+		.orderChangeDetail .order-info .info{margin-top: 0.2rem;}
+		.orderChangeDetail .order-info .info div{width: 50%;box-sizing: border-box;font-size: 0.4rem;margin-top: 0.1rem;text-overflow: ellipsis;white-space: nowrap;}
+		.orderChangeDetail .order-info .info div span{color: #b2b2b2;width: 2.1rem;display: inline-block;}
+	    .orderChangeDetail .chang-detail .title{height: 1.1rem;background-color: #F6F6F6;line-height: 1.1rem;padding-left: 0.4rem;color: #aaa;font-size: 0.4rem;}
+	    .orderChangeDetail .chang-detail .title-detail{position:relative;height: 1.2rem;background-color: #fff;line-height: 1.2rem;padding-left: 0.4rem;color: #000;font-size: 0.45rem;}
+	    .orderChangeDetail .chang-detail .title-detail .line{position: absolute;width: 0.1rem;height: 0.6rem;background-color: #eb6d00;left: 0px;top: 0.27rem;}
+	.orderChangeDetail .chang-detail .item-list {padding-left: 2rem;}
+		.orderChangeDetail .chang-detail .item-list .item{padding:0.2rem 0.4rem;font-size: 0.38rem;}
+		.orderChangeDetail .chang-detail .item-list .item .type{color: #b2b2b2;font-size: 0.35rem;margin-top: 0.1rem;}
+		.orderChangeDetail .chang-detail .item-list .change{position: relative;border-bottom: 1px solid #eee;}
+		.orderChangeDetail .chang-detail .item-list .change .btn-div{color:#888EA4;position: absolute;left: -1.5rem;top: 2rem;text-align: center;}
+		.orderChangeDetail .chang-detail .item-list .edit .btn-div{color:#888EA4;position: absolute;left: -1.5rem;top: 0.3rem;}
+	    .orderChangeDetail .chang-detail .item-list .change .btn-div img{width: 0.8rem;height: 0.8rem;}
+    .orderChangeDetail .chang-detail{margin-top: 0.2rem;}
+	.orderChangeDetail .chang-detail .item-list-nochange {font-size: 0.38rem;}
+	.orderChangeDetail .chang-detail .item-list-nochange .item{border-bottom: 1px solid #eee;padding: 0.2rem;}
+    .orderChangeDetail .chang-detail .item-list-nochange .item .name{line-height: 0.8rem;}
+    .orderChangeDetail .chang-detail .item-list-nochange .item .type{color: #b2b2b2;margin-top: 0.1rem;line-height: 0.5rem;}
+	.orderChangeDetail .submitDiv{height: 1.3rem;width: 100%;position: fixed;bottom: 0px;left: 0px;background-color: #fff;z-index: 100;line-height: 1.3rem;border-top: 1px solid #eee;text-align: center;font-size: 0.45rem;}
+	.orderChangeDetail .submitDiv div:nth-child(1){width: 44%;background-color: #fff;float: left;position: relative;line-height: 1.6rem;}
+	.orderChangeDetail .submitDiv div:nth-child(1)>span:first-child{color: #EB4D4A;}
+	.orderChangeDetail .submitDiv div:nth-child(1) .tip{position: absolute;left: 0.3rem;top: -0.4rem;font-size: 0.35rem;color: #b2b2b2;}
+	.orderChangeDetail .submitDiv div:nth-child(1)>span>span{font-size: 0.7rem;}
+	.orderChangeDetail .submitDiv div:nth-child(2){width: 28%;background-color: #ECECEC;float: left;color: #EB6D00;}
+	.orderChangeDetail .submitDiv div:nth-child(3){width: 28%;background-color: #EB6D00;float: left;color: #fff;}
 
 
-
-
-
-
-
-
+.orderDetail{}
 
 
 
