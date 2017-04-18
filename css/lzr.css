@@ -3432,7 +3432,30 @@
 	display: inline-block;
 	height:auto;
 	float:left;
+	margin-top: 0.4rem;
 }
 .g-jiazhuang-gendan .m-pro-biangeng .biangeng-list .right-des .biangeng-qian{
 
+}
+.g-jiazhuang-gendan .m-pro-biangeng .list-qingdan-box{
+	font-size: 0.4rem;
+}
+.g-jiazhuang-gendan .m-pro-biangeng .biangeng-qian .th {
+	color:#aaaaaa;
+	font-size: 0.4rem;
+}
+.g-jiazhuang-gendan .m-pro-biangeng .biangeng-qian .th span{
+	color:#4f5a7d;
+}
+.g-jiazhuang-gendan .m-pro-biangeng .right-des .tr{
+	font-size: 0;margin-bottom: 0.133rem;
+}
+.g-jiazhuang-gendan .m-pro-biangeng .td-address {
+	color:#aaaaaa !important;font-size: 0.347rem;
+	max-width: 70%;
+	display:inline-block;
+	margin-right: 0.267rem;
+}
+.g-jiazhuang-gendan .m-pro-biangeng .list-qingdan-box {
+    margin-top: 0rem !important;
 }
