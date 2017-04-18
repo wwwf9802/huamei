@@ -1558,7 +1558,10 @@
 					"fonts/mui.ttf",
 					"css/mui.min.css"
 				],
-				"refer": [],
+				"refer": [
+					"xiaoxi/deliverScan.html",
+					"sale/jiazhuang-gendan.html"
+				],
 				"priority": 0
 			},
 			"xiangmu.html": {
@@ -1584,12 +1587,6 @@
 				"refer": [
 					"xiangmu/project-details.html"
 				],
-<<<<<<< HEAD
-=======
-				"refer": [
-					"xiangmu/project-details.html"
-				],
->>>>>>> 229952e88c0557d1c5c68b18e96a7e1ca82e05e4
 				"priority": 0
 			},
 			"xiaoxi/news-list.html": {
@@ -1689,7 +1686,10 @@
 					"images/addphoto.png",
 					"js/flexible.js",
 					"css/swiper-3.3.1.min.css",
-					"js/fx.js"
+					"js/fx.js",
+					"js/picker/mui.poppicker.js",
+					"js/picker/mui.picker.min.js",
+					"css/yhn.css"
 				],
 				"refer": [],
 				"priority": 0
@@ -1716,9 +1716,16 @@
 					"js/flexible.js",
 					"css/swiper-3.3.1.min.css",
 					"js/global.js",
-					"images/icon-jia.png"
+					"images/icon-jia.png",
+					"js/mui.zoom.js",
+					"js/mui.previewimage.js",
+					"images/icon-select.png",
+					"js/public.js",
+					"images/icon-select1.png"
 				],
-				"refer": [],
+				"refer": [
+					"xiangmu/createPaper.html"
+				],
 				"priority": 0
 			},
 			"xiaoxi/chatList.html": {
@@ -1797,7 +1804,6 @@
 				"refer": [],
 				"priority": 0
 			},
-<<<<<<< HEAD
 			"xiangmu/xiadan-shuidian.html": {
 				"resources": [
 					"css/base-reset.css",
@@ -1849,8 +1855,6 @@
 				],
 				"priority": 0
 			},
-=======
->>>>>>> 229952e88c0557d1c5c68b18e96a7e1ca82e05e4
 			"xiangmu/project-details.html": {
 				"resources": [
 					"css/base-reset.css",
@@ -1866,7 +1870,6 @@
 					"images/project/icon-yezhu.png",
 					"images/project/icon-shuidian.png",
 					"css/mui.min.css",
-<<<<<<< HEAD
 					"images/project/icon-gongdi.png",
 					"css/lzr.css",
 					"js/public.js",
@@ -1997,7 +2000,9 @@
 					"js/mui.min.js",
 					"css/mui.min.css",
 					"images/icon-phone.png",
-					"js/flexible.js"
+					"js/flexible.js",
+					"js/public.js",
+					"js/global.js"
 				],
 				"refer": [],
 				"priority": 0
@@ -2065,14 +2070,50 @@
 					"js/flexible.js",
 					"fonts/mui.ttf"
 				],
-				"refer": [],
-=======
-					"images/project/icon-gongdi.png"
-				],
 				"refer": [
 					"xiangmu/gongdi-yichang.html"
 				],
->>>>>>> 229952e88c0557d1c5c68b18e96a7e1ca82e05e4
+				"priority": 0
+			},
+			"xiaoxi/deliverScan.html": {
+				"resources": [
+					"images/scan-code.png",
+					"css/ww.css",
+					"css/base-reset.css",
+					"fonts/mui.ttf",
+					"js/public.js",
+					"js/vue.min.js",
+					"js/zepto1.1.6.min.js",
+					"js/flexible_css.js",
+					"css/common.css",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"js/global.js",
+					"js/flexible.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"sale/jiazhuang-gendan.html": {
+				"resources": [
+					"css/base-reset.css",
+					"css/lzr.css",
+					"images/icon-jiantou.png",
+					"fonts/mui.ttf",
+					"js/public.js",
+					"js/vue.min.js",
+					"js/swiper-3.3.1.min.js",
+					"js/zepto1.1.6.min.js",
+					"js/flexible_css.js",
+					"css/common.css",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"images/icon-search.png",
+					"js/global.js",
+					"js/flexible.js",
+					"css/swiper-3.3.1.min.css"
+				],
+				"refer": [],
 				"priority": 0
 			}
 		},
