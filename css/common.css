@@ -4,6 +4,10 @@ body{
 }
 
 /*头部样式代码*/
+.col6{color:#EA6D01}
+.cola{color:#aaa}
+.col333{color:#333 !important}
+.bg6{background:#EA6D01}
 .header {
 	height:1.5rem;
 	line-height: 2rem;
