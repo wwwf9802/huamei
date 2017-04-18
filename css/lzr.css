@@ -3190,12 +3190,25 @@
 	 font-size: 0.4rem;
 }
 
-.g-sale .m-biangeng-mingxi .item-list.peisong{
+.g-sale .m-biangeng-mingxi .item-list.startDate{
 	 background: url(../images/icon-jiantou.png) no-repeat;
 	 background-size: 0.253rem 0.453rem;
 	 background-position: 96% center;
 	 background-color: #ffffff;
 }
+.g-sale .m-biangeng-mingxi .item-list.songhuo_sy{
+	 background: url(../images/icon-jiantou.png) no-repeat;
+	 background-size: 0.253rem 0.453rem;
+	 background-position: 96% center;
+	 background-color: #ffffff;
+}
+.g-sale .m-biangeng-mingxi .item-list.sehao{
+	 background: url(../images/icon-jiantou.png) no-repeat;
+	 background-size: 0.253rem 0.453rem;
+	 background-position: 96% center;
+	 background-color: #ffffff;
+}
+
 .g-sale .m-biangeng-mingxi .switch-kaiguan{
 	font-size: 0;
 	padding-left:0rem;
@@ -3259,4 +3272,167 @@
 	border:none;
 	font-size: 0.4rem;
 	white-space: nowrap;
+}
+.g-sale .m-content-genghuan{
+	margin-top: 0 !important;
+}
+.g-sale .m-content-genghuan .heade{
+	height:1.2rem;line-height: 1.2rem;
+	text-indent: 1em;
+	background-color: #f6f6f6;
+	font-size: 0.4rem;
+}
+.g-sale .m-content-genghuan .list-qingdan-box{
+	border-bottom:none;
+    width: 100%;
+    padding-bottom: 0.133rem;
+    padding-top: 0.267rem;
+    background-color: #f6f6f6;
+    border-top: 1px solid #dddddd;
+}
+.g-sale .m-content-genghuan .list-qingdan-box .tr {
+    height: 0.8rem;
+    line-height: 0.8rem;
+    display: inline-block;
+    font-size: 0;
+    width: 100%;
+}    
+.g-sale .m-content-genghuan .list-qingdan-box .tr .td {
+    display: inline-block;
+    font-size: 0.373rem;
+    max-width: 55%;
+    min-width: 20%;
+    text-indent: 1em;
+}
+.g-sale .m-content-genghuan .list-qingdan-box .tr .td-address {
+    color: #aaaaaa !important;
+    text-indent: 1em;
+}
+.g-sale .m-content-genghuan  .item-list{
+	height:1.2rem;
+	line-height: 1.2rem;
+	border-top: 1px solid #dddddd;
+	background-color: #ffffff;
+}
+.g-sale .m-content-genghuan  .item-list .gongneng-list{
+	width:33.33%;
+	display: inline-block;
+	float:left;
+	height:100%;
+	position: relative;
+}
+.g-sale .m-content-genghuan  .item-list .gongneng-list span{
+	display: inline-block;
+	position: absolute;
+	width:1.6rem;
+	height:0.6rem;
+	border-radius: 0.133rem;border:1px solid #dddddd;
+	text-align: center;line-height: 0.6rem;
+	text-indent: 0em;
+	top:50%;
+	left:50%;margin-left: -0.8rem;
+	margin-top: -0.3rem;font-size: 0.4rem;
+	color:#aaaaaa;
+}
+.g-sale .m-content-genghuan  .item-list .gongneng-list span.active{
+	color:#eb6d00;
+	border:1px solid #eb6d00;
+}
+.g-sale .m-content-genghuan  .item-indent{
+	text-indent: 1em;font-size: 0.4rem;
+}
+.g-sale .m-content-genghuan  .item-indent span{
+	color:#aaaaaa;
+}
+.g-sale .m-content-genghuan .item-list{
+	border-bottom:none;
+	position: relative;
+}
+.g-sale .m-content-genghuan .item-list.item-pri-show span{
+	display: inline-block;
+	position: absolute;
+	width:100%;
+	height:0.6rem;
+	border-radius: 0.133rem;border:none;
+	text-align: center;line-height: 0.6rem;
+	text-indent: 2em;
+	top:50%;
+	left:0%;
+	margin-top: -0.3rem;font-size: 0.4rem;
+	color:#aaaaaa;
+}
+.g-sale .m-content-genghuan .item-list.item-pri-show span em{
+	color:#252525;
+}
+.g-sale .m-content-genghuan .item-list.item-pri-show span strong{
+	color:#f07a78;
+	font-weight: bold;
+	font-size: 0.427rem;
+}
+.g-sale .m-content-genghuan .genghuan-head{
+	margin-top: 0.4rem;
+	text-indent: 1em;
+	height:1.2rem;
+	line-height: 1.2rem;
+	position: relative;
+	background-color: #ffffff;
+	border-bottom: 1px solid #dddddd;
+}
+.g-sale .m-content-genghuan .genghuan-head .head-c{
+	 height:0.8rem;
+	 line-height: 0.8rem;
+	 position: absolute;
+	 margin-top:-0.4rem;
+	 top:50%;
+	 border-left:0.107rem solid #eb6d00;
+	 color:#252525;
+	 font-size: 0.427rem;
+}
+.g-sale .serach-lay input.search {
+    background-position: 11% center;
+}
+.g-sale .serach-lay input.search:focus {
+    background-position: 0.1% center;
+}
+.g-yuandingdan .shangpin-biangeng input.search {
+    background-position: 35% center;
+}
+
+.g-jiazhuang-gendan .m-pro-biangeng .genghuan-head {
+    margin-top: 0rem;
+    text-indent: 1em;
+    height: 1.2rem;
+    line-height: 1.2rem;
+    position: relative;
+    background-color: #ffffff;
+    border-bottom: 1px solid #dddddd;
+}
+.g-jiazhuang-gendan .m-pro-biangeng .genghuan-head .head-c {
+    height: 0.6rem;
+    line-height: 0.6rem;
+    position: absolute;
+    margin-top: -0.3rem;
+    top: 50%;
+    border-left: 0.107rem solid #eb6d00;
+    color: #252525;
+    font-size: 0.427rem;
+}
+.g-jiazhuang-gendan .m-pro-biangeng .biangeng-list{
+	overflow:hidden;
+}
+.g-jiazhuang-gendan .m-pro-biangeng .biangeng-list .left-icon{
+	width:20%;
+	display: inline-block;
+	height:auto;
+	min-height:1.333rem;
+	float:left;
+}
+.g-jiazhuang-gendan .m-pro-biangeng .biangeng-list .right-des{
+	width:80%;
+	display: inline-block;
+	height:auto;
+	float:left;
+}
+.g-jiazhuang-gendan .m-pro-biangeng .biangeng-list .right-des .biangeng-qian{
+
 }

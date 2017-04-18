@@ -27,14 +27,14 @@
 			<span class="title">变更明细 </span>
 			<span class='baocun'>保存</span>
 		</div>
-		<div class="g-content mui-content g-sale">
+		<div class="g-content mui-content g-content-project-list g-sale">
 			 <div class="m-biangeng-mingxi">
 			 	 <div class="nav-list">
 			 	 	 <div class="list active" @tap='changeNav($event)'>商品编辑</div>
 			 	 	 <div class="list" @tap='changeNav($event)'>商品更换</div>
 			 	 </div>
-			 	 <div v-show='itemIndex == 1' class="content">
-			 	 	 <div class="item">
+			 	 <div v-show='itemIndex == 1' class="content m-content-edit">
+			 	 	<div class="item">
 			 	 	 	<div class="left">
 			 	 	 		 <div class="pro-name">
 			 	 	 		 	{{productChange.name}}
@@ -64,17 +64,17 @@
 			 	 		  	  <div class="num"><strong>￥{{productChange.num * productChange.salePrice }}</strong></div>
 			 	 		  </div>
 			 	 	</div>
-			 	 	<div id='songhuo_sy' class="item-list peisong">
+			 	 	<div class="item-list peisong songhuo_sy">
 			 	 		 送货方式
-			 	 		 <span id='show_value0' class="show-value"></span>
+			 	 		 <span class="show-value show_value0"></span>
 			 	 	</div>
-			 	 	<div id='sehao' class="item-list peisong">
+			 	 	<div   class="item-list sehao">
 			 	 		 色号：
-			 	 		 <span id='show_value1' class="show-value"></span>
+			 	 		 <span class="show-value show_value1"></span>
 			 	 	</div>
-			 	 	<div id='startDate' class="item-list peisong">
+			 	 	<div   class="item-list startDate">
 			 	 		 发货日期
-			 	 		 <span id='show_value2' class="show-value"></span>
+			 	 		 <span class="show-value show_value2"></span>
 			 	 	</div>
 			 	 	<div class="item-list switch-kaiguan">
 			 	 		 <!-- 开关打开状态，多了一个.mui-active类 -->
@@ -101,7 +101,137 @@
 			 	 		 <input type="text" name="" id="" placeholder="备注：说点什么吧">
 			 	 	</div>
 			 	</div>
-			 	<div v-show='itemIndex == 2' class="content">
+			 	<div v-show='itemIndex == 2' class="content m-content-genghuan">
+			 	     <div class="heade">
+			 	     	变更前
+			 	     </div>
+			 	     <div class="item">
+			 	 	 	<div class="left">
+			 	 	 		 <div class="pro-name">所得税是多少 </div>
+			 	 	 		 <div class="pro-guige">规格:	搜索说点</div>
+			 	 	 	</div>
+			 	 	</div>
+			 	 	<div class="list-qingdan-box">
+						<div class="tr">
+							<div class="td td-address">
+								 送货方式
+							</div>
+							<div class="td">
+								 配送
+							</div>
+						</div>
+						<div class="tr">									 
+							<div class="td td-address">
+								色号
+							</div>
+							<div class="td">
+								0124
+							</div>
+						</div>
+						<div class="tr">									 
+							<div class="td td-address">
+								发货日期
+							</div>
+							<div class="td">
+								2017-04-17
+							</div>
+						</div>
+						<div class="item-list">
+							 <div class="gongneng-list"><span class='active'>安装</span></div>
+							 <div class="gongneng-list"><span>测量</span></div>
+							 <div class="gongneng-list"><span>赠送</span></div>
+						</div>
+						<div class="item-list item-indent">
+							  <span>备注：</span>此商品为易碎品，请注意！
+						</div>
+						<div class="item-list item-pri-show">
+							 <div class="gongneng-list">
+							     <span>
+							        <em>￥20</em> x 1
+							     </span>
+							  </div>
+							 <div class="gongneng-list"><span><em>折扣率：</em>0.80</span></div>
+							 <div class="gongneng-list"><span><em>小计：</em><strong>￥20</strong></span></div>
+						</div>
+						<div class="genghuan-head">
+							 <div class="head-c">
+							 	更换商品
+							 </div>
+						</div>
+						<div class="serach-lay m-tiaozheng-dinggou">
+							<form method="post" id="form" action="##">
+								<input v-on:focus="onfocus($event)" class="search" type="search" name="search" id="search" placeholder="输入要更换的产品编号/名称/类别">
+								<div v-show='focusy' id='cancel' class="botton cancel-bottom" v-on:click="cancelSearch()">取消</div>
+							</form>
+						</div>
+						<div class="item">
+				 	 	 	<div class="left">
+				 	 	 		 <div class="pro-name">
+				 	 	 		 	{{productChange2.name}}
+				 	 	 		 </div>
+				 	 	 		 <div class="pro-guige">
+				 	 	 		 	规格:	{{productChange2.guige}}
+				 	 	 		 </div>
+				 	 	 	</div>
+				 	 	 	<div class="right">
+				 	 	 		<span class="count jianhao"  @click='changeCount2(-1)'><img src="../images/icon-jian.png" alt=""></span>
+				 	 	 		 &nbsp;<span class='num'>{{productChange2.num}}</span>&nbsp; 
+				 	 	 		<span class="count jiahao" @click='changeCount2(1)'><img src="../images/icon-jiahao.png" alt=""></span>
+				 	 	 	</div>
+				 	 	</div>
+				 	 	<div class="shoujia">系统售价：	{{productChange2.oldPrice}}</div>
+				 	 	<div class="price-show">
+				 	 		  <div class="price-list">
+				 	 		  	  <div class="wen">折价<span>（折后）</span></div>
+				 	 		  	  <div class="num">￥ {{productChange2.salePrice}}</div>
+				 	 		  </div>
+				 	 		  <div class="price-list">
+				 	 		  	  <div class="wen">折扣率</div>
+				 	 		  	  <div class="num">0.80</div>
+				 	 		  </div>
+				 	 		  <div class="price-list">
+				 	 		  	  <div class="wen">小计：</div>
+				 	 		  	  <div class="num"><strong>￥{{productChange2.num * productChange2.salePrice }}</strong></div>
+				 	 		  </div>
+				 	 	</div>
+				 	 	<div class="item-list peisong songhuo_sy">
+				 	 		 送货方式
+				 	 		 <span class="show-value show_value0"></span>
+				 	 	</div>
+				 	 	<div   class="item-list sehao">
+				 	 		 色号：
+				 	 		 <span class="show-value show_value1"></span>
+				 	 	</div>
+				 	 	<div   class="item-list startDate">
+				 	 		 发货日期
+				 	 		 <span class="show-value show_value2"></span>
+				 	 	</div>
+				 	 	<div class="item-list switch-kaiguan">
+				 	 		 <!-- 开关打开状态，多了一个.mui-active类 -->
+				 	 		<div class="list">
+					 	 		<div class="wen">安装</div>
+								<div class="mui-switch mui-active">
+									<div class="mui-switch-handle"></div>
+								</div>
+							</div>
+							<div class="list">
+					 	 		<div class="wen">测量</div>
+								<div class="mui-switch mui-active">
+									<div class="mui-switch-handle"></div>
+								</div>
+							</div>
+							<div class="list">
+					 	 		<div class="wen">赠送</div>
+								<div class="mui-switch mui-active">
+									<div class="mui-switch-handle"></div>
+								</div>
+							</div>
+				 	 	</div>
+				 	 	<div class="item-list beizhu">
+				 	 		 <input type="text" name="" id="" placeholder="备注：说点什么吧">
+				 	 	</div>
+
+					</div>
 			 	</div>
 			</div>
 		</div>
@@ -124,34 +254,62 @@
 	            var optionsJson = '{"type":"date","beginYear":' + (now.getFullYear() - 1) + ',"endYear":' + (now.getFullYear() + 1) + '}';
 				var options = JSON.parse(optionsJson);
 					
-				startDate.addEventListener('tap', function() {
+				$('.m-content-edit .startDate')[0].addEventListener('tap', function() {
 					var picker = new $.DtPicker(options);
 					picker.show(function(rs) {
-						show_value2.innerText = rs.text;
+						$('.m-content-edit .startDate .show_value2')[0].innerText = rs.text;
+						picker.dispose();
+					});
+				}, false);
+
+				$('.m-content-genghuan .startDate')[0].addEventListener('tap', function() {
+					var picker = new $.DtPicker(options);
+					picker.show(function(rs) {
+						$('.m-content-genghuan .startDate .show_value2')[0].innerText = rs.text;
 						picker.dispose();
 					});
 				}, false);
 				
 				
 				var arr = [{text:"配送"},{text:"配送"},{text:"配送"}];
-				songhuo_sy.addEventListener('tap', function() {
+				$('.m-content-edit .songhuo_sy')[0].addEventListener('tap', function() {
 					var cardPicker = new $.PopPicker({
 						layer: 1
 					});
 					cardPicker.setData(arr);
 					cardPicker.show(function(items) {
-						show_value0.innerText = items[0].text;;
+						$('.m-content-edit .songhuo_sy .show_value0')[0].innerText = items[0].text;;
+						cardPicker.dispose();
+					});
+				}, false);
+				$('.m-content-genghuan .songhuo_sy')[0].addEventListener('tap', function() {
+					var cardPicker = new $.PopPicker({
+						layer: 1
+					});
+					cardPicker.setData(arr);
+					cardPicker.show(function(items) {
+						$('.m-content-genghuan .songhuo_sy .show_value0')[0].innerText = items[0].text;;
 						cardPicker.dispose();
 					});
 				}, false);
 				
-				sehao.addEventListener('tap', function() {
+				$('.m-content-edit .sehao')[0].addEventListener('tap', function() {
 					var cardPicker = new $.PopPicker({
 						layer: 1,
 					});
 					cardPicker.setData(arr);
 					cardPicker.show(function(items) {
-						show_value1.innerText = items[0].text;;
+						$('.m-content-edit .sehao .show_value1')[0].innerText = items[0].text;;
+						cardPicker.dispose();
+					});
+				}, false);
+				$('.m-content-genghuan .sehao')[0].addEventListener('tap', function() {
+					var cardPicker = new $.PopPicker({
+						layer: 1,
+					});
+					cardPicker.setData(arr);
+					cardPicker.show(function(items) {
+						$('.m-content-genghuan .sehao .show_value1')[0].innerText = items[0].text;;
 						cardPicker.dispose();
 					});
 				}, false);
@@ -175,7 +333,15 @@
                         salePrice:800,
                         num:1
 					},
-					itemIndex:1
+					productChange2:{
+                        name:'所得税是多少2222',
+                        guige:'搜索说点s222222',
+                        oldPrice:1000,
+                        salePrice:800,
+                        num:1
+					},
+					itemIndex:1,
+					focusy:false
 				},
 				methods:{
 					changeCount(m){
@@ -189,6 +355,17 @@
 							}
 						}
 					},
+					changeCount2(m){
+						if (m >= 1) {
+							this.productChange2.num++
+						} else {
+							if (this.productChange2.num == 1) {
+								this.productChange2.num = 1;
+							} else {
+								this.productChange2.num--;
+							}
+						}
+					},
 					changeNav(e){
 						$('.g-sale .m-biangeng-mingxi .nav-list .list').removeClass("active")
                         e.target.classList.add('active');
@@ -199,8 +376,21 @@
                         	this.itemIndex=1
                         }
                         
+					},
+					onfocus(){
+                       this.focusy=true;
+					},
+					cancelSearch(){
+						search.value=''
+						this.focusy=false;
 					}
 				}
+			})
+			$(".g-sale .m-content-genghuan .item-list .gongneng-list span").each(function(){
+				$(this).on('tap',function(){
+					$(this).parent().parent().find('span').removeClass('active')
+					$(this).addClass("active");
+				})
 			})
 		</script>
 	</body>
