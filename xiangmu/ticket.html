@@ -30,7 +30,7 @@
 			</div>
 			<div class="box" v-for="item in dataArr">
 				<div class="box-title"><span>{{item.sitesTask.id}}</span><span>{{item.sitesTask.taskName}}</span></div>
-				<div class="time">{{item.ticketTime}}</div>
+				<div class="time">{{item.ticketTime | formatTime}}</div>
 				<div class="info">
 					<span>单号：{{item.id}}</span><span class="right">项目经理：{{item.empName}}</span>
 				</div>
@@ -45,6 +45,12 @@
 		<script src='../js/vue.min.js'></script>
 		<script type="text/javascript" src="../js/global.js" ></script>
 		<script>
+		    Vue.filter('formatTime',function(value){
+		    	var dataTime = new Date(value);
+		    	return dataTime.getFullYear()+"-"+formatStr((dataTime.getMonth()+1).toString())+"-"+formatStr((dataTime.getDate()).toString());
+		    });
+		    
+		    
 			var vm = new Vue({
 				el: 'body',
 				data: {

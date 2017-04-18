@@ -17,6 +17,7 @@
 		<link rel="stylesheet" href="../css/mui.min.css">
 		<link rel="stylesheet" type="text/css" href="../css/swiper-3.3.1.min.css">
 		<link rel="stylesheet" type="text/css" href="../css/common.css">
+		<link rel="stylesheet" href="../css/ww.css">
 		<link rel="stylesheet" type="text/css" href="../css/lzr.css">
 	</head>
 
@@ -43,41 +44,86 @@
 				</div>
 				<ul id="search_content" style="display:none;"></ul>
 			</div>
-			<div v-else class="item-project m-pro-biangeng" id='item-project'>
-				<div class="item-pro-list">
-					<div class="genghuan-head">
-						 <div class="head-c">
-						 	变更商品
-						 </div>
-				    </div>
-				    <div class="item-biangeng">
-				    	 <div class="biangeng-list">
-				    	 	 <div class="left-icon">
-				    	 	 	
-				    	 	 </div>
-				    	 	 <div class="right-des">
-				    	 	 	    <div class="biangeng-qian">
-						 	 	 		<div class="list-qingdan-box">
-											<div class="tr">
-												<div class="td th">
-													[变更单]
-													<span class="danhao">调整单号：121231231231231</span>
-												</div>
-												<div class="td td-shenhe">
-													 待审核
-												</div>
-											</div>
-											<div class="tr">									 
-												<div class="td td-address">
-													订购单号：1212121212
-												</div>
-											</div>
-										</div>
-					 	 	 	    </div>
-				    	 	 </div>
-				    	 </div>
-				    </div>
+			<div v-else class="item-project orderChangeDetail  m-pro-biangeng" id='item-project'>
+				<div class="item-pro-list chang-detail">
+					<div class="chang-detail">
+						<div class="title-detail">
+							变更商品
+							<span class="line"></span>
+						</div>
+						<div class="item-list">
+							<div class="change">
+								<div class="item" style="background-color: #F9F9F9;">
+									<div>[变更前]01106020/卓棒外墙腻子（外墙腻子0kg）（包）</div>
+									<div class="type">规格：J503+BQ035_100S-3301</div>
+									<div class="type">数量：1 发货日期：2017-09-20</div>
+								</div>
+								<div class="item">
+									<div>01106020/卓棒外墙腻子（外墙腻子0kg）（包）</div>
+									<div class="type">规格：J503+BQ035_100S-3301</div>
+									<div class="type">数量：1 发货日期：2017-09-20</div>
+								</div>
+								<div class="btn-div">
+									<img src="../images/orderDetail-change.png" />
+									<div>更换商品</div>
+								</div>
+							</div>
+							<div class="change edit">
+								<div class="item">
+									<div>01106020/卓棒外墙腻子（外墙腻子0kg）（包）</div>
+									<div class="type">规格：J503+BQ035_100S-3301</div>
+									<div class="type">数量：1 发货日期：2017-09-20</div>
+								</div>
+								<div class="btn-div">
+									<img src="../images/orderDetail-edit.png" />
+									<div>编辑商品</div>
+								</div>
+							</div>
+							<div class="change edit delete">
+								<div class="item">
+									<div>01106020/卓棒外墙腻子（外墙腻子0kg）（包）</div>
+									<div class="type">规格：J503+BQ035_100S-3301</div>
+									<div class="type">数量：1 发货日期：2017-09-20</div>
+								</div>
+								<div class="btn-div">
+									<img src="../images/orderDetail-del.png" />
+									<div>移除商品</div>
+								</div>
+								<div class="huifu">
+									 恢复
+								</div>
+							</div>
+						</div>
+					</div>
 
+					<div class="chang-detail pro-list">
+						<div class="title-detail">
+							商品列表
+							<span class="line"></span>
+						</div>
+						<div class="item-list">
+							<div class="pro-liebiao">
+				 	 	 		 <div class="pro-name">所得税是多少 </div>
+				 	 	 		 <div class="pro-guige">规格:	搜索说点</div>
+				 	 	 		 <div class="pro-guige">数量：1 发货日期：2017-09-20</div>
+					 	 	</div>
+					 	 	<div class="caozuo-list">
+								<div class="list"><div class="list-center">变更</div></div>
+								<div class="list yichu"><div class="list-center">移除</div></div>
+							</div>
+						</div>
+						<div class="item-list">
+							<div class="pro-liebiao">
+				 	 	 		 <div class="pro-name">所得税是多少 </div>
+				 	 	 		 <div class="pro-guige">规格:	搜索说点</div>
+				 	 	 		 <div class="pro-guige">数量：1 发货日期：2017-09-20</div>
+					 	 	</div>
+					 	 	<div class="caozuo-list">
+								<div class="list"><div class="list-center">变更</div></div>
+								<div class="list yichu"><div class="list-center">移除</div></div>
+							</div>
+						</div>
+					</div>
 				</div> 
 			</div>
 		</div>

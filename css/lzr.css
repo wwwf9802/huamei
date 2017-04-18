@@ -3432,7 +3432,187 @@
 	display: inline-block;
 	height:auto;
 	float:left;
+	margin-top: 0.4rem;
 }
 .g-jiazhuang-gendan .m-pro-biangeng .biangeng-list .right-des .biangeng-qian{
 
+}
+.g-jiazhuang-gendan .m-pro-biangeng .list-qingdan-box{
+	font-size: 0.4rem;
+}
+.g-jiazhuang-gendan .m-pro-biangeng .biangeng-qian .th {
+	color:#aaaaaa;
+	font-size: 0.4rem;
+}
+.g-jiazhuang-gendan .m-pro-biangeng .biangeng-qian .th span{
+	color:#4f5a7d;
+}
+.g-jiazhuang-gendan .m-pro-biangeng .right-des .tr{
+	font-size: 0;margin-bottom: 0.133rem;
+}
+.g-jiazhuang-gendan .m-pro-biangeng .td-address {
+	color:#aaaaaa !important;font-size: 0.347rem;
+	max-width: 70%;
+	display:inline-block;
+	margin-right: 0.267rem;
+}
+.g-jiazhuang-gendan .m-pro-biangeng .list-qingdan-box {
+    margin-top: 0rem !important;
+}
+
+.orderChangeDetail .chang-detail .item-list .change .huifu{
+	position: absolute;
+	right:0.317rem;
+	bottom:0.773rem;
+   width:1.653rem;
+   height:0.853rem;
+   line-height: 0.853rem;
+   text-align: center;
+   color:#0a984d;
+   border: 1px solid #0a984d;
+   display: inline-block;
+   border-radius: 0.107rem;
+   font-size: 0.4rem;
+}
+.orderChangeDetail .chang-detail .title-detail{
+	border-bottom: 1px solid #dddddd;
+}
+.orderChangeDetail .chang-detail .item-list{
+	padding-top: 0.267rem;
+}
+.g-content-project-list .chang-detail{
+	background-color: #f6f6f6 !important;
+}
+.g-content-project-list .chang-detail .chang-detail{
+	background-color: #ffffff !important;
+}
+.g-content-project-list .chang-detail .chang-detail.pro-list{
+  margin-top: 0.4rem;
+}
+.g-jiazhuang-gendan .orderChangeDetail .pro-list .item-list {
+    padding-left: 0rem;
+}
+.g-jiazhuang-gendan .pro-list .pro-liebiao .pro-name {
+    font-size: 0.40rem;
+    color: #252525;
+    text-indent: 1em;
+    margin-bottom: 0.133rem;
+}
+.g-jiazhuang-gendan .pro-list .pro-liebiao .pro-guige {
+    font-size: 0.35rem;
+    color: #aaaaaa;
+    text-indent: 1em;
+    margin-bottom: 0.133rem;
+}
+.g-jiazhuang-gendan .pro-list .caozuo-list{
+	height:1.2rem;
+	line-height: 1.2rem;
+	width:100%;
+	border-top: 1px solid #dddddd;
+	border-bottom: 1px solid #dddddd;
+}
+.g-jiazhuang-gendan .pro-list .caozuo-list .list{
+	height:1.2rem;
+	line-height: 1.2rem;
+	width:50%;
+	display: inline-block;
+	float:left;
+	position: relative;
+}
+.g-jiazhuang-gendan .pro-list .caozuo-list .list.yichu .list-center{
+	color:#eb4d4b;
+}
+
+.g-jiazhuang-gendan .pro-list .caozuo-list .list .list-center{
+	height:0.8rem;
+	line-height: 0.8rem;
+	text-align: center;
+	width:100%;
+	border-right: 1px solid #dddddd;
+	position: absolute;
+	top:50%;
+	margin-top: -0.4rem;
+	font-size: 0.427rem;
+	color:#4f5a7d;
+}
+.g-jiazhuang-gendan .pro-list .caozuo-list .list:last-child .list-center{
+	border-right:none;
+}
+.g-sale .m-kucun #saomiao{
+	background:url(../images/icon-saomiao.png) no-repeat;
+	background-size: 0.533rem 0.533rem;
+	width:0.533rem;
+	height:0.533rem;
+}
+.g-sale .m-kucun .botton {
+    height: 0.773rem;
+    line-height: 0.773rem;
+    position: absolute;
+    right: 0.32rem;
+    top: 0.32rem;
+    cursor: pointer;
+    font-size: 0.373rem;
+    color: #7a7a7a;
+}
+.g-sale  .m-kucun-content{
+	width:100%;
+	min-height: calc(100vh - 2.673rem);
+    min-height: -webkit-calc(100vh - 2.673rem);
+    min-height: -moz-calc(100vh - 2.673rem);
+    min-height: -o-calc(100vh - 2.673rem);
+    min-height: -ms-calc(100vh - 2.673rem);
+    background-color: #ffffff;
+}
+.g-sale  .m-kucun-content.noProduct{
+    background:url(../images/icon-chaxunkucun.png) no-repeat;
+    background-size:3.947rem 4.653rem;
+    background-position: center 40%;
+    background-color: #ffffff;
+}
+.g-sale  .m-kucun-content .pro-des{
+	padding:0.267rem;
+}
+.g-sale  .m-kucun-content .pro-des .tr{
+	 margin-bottom: 0.333rem;
+}
+.g-sale  .m-kucun-content .pro-des .tr.tr-name{
+	  color:#252525;
+	  font-size: 0.45rem;
+}
+.g-sale  .m-kucun-content .pro-des .tr.tr-guige{
+	  color:#aaaaaa;
+	  font-size: 0.40rem;
+}
+.g-sale  .m-kucun-content  .kongxi{
+	background-color: #f6f6f6;
+	height:0.4rem;width:100%;
+}
+.g-sale  .m-kucun-content .item-kucun .item-list{
+	padding-top: 0.4rem;
+	padding-bottom: 0.2rem;
+	border-bottom: 1px solid #dddddd;
+}
+.g-sale  .m-kucun-content .item-kucun .item-list .headk{
+	border-left:0.107rem solid #eb6d00;
+	text-indent: 1em;
+	height:0.5rem;
+	line-height: 0.5rem;font-size: 0.4rem;
+	width:100%;margin-bottom: 0.133rem;
+}
+.g-sale  .m-kucun-content .item-kucun .item-list .trk{
+	text-indent: 1.3em;
+	height:0.8rem;
+	line-height: 0.8rem;font-size: 0.4rem;
+	width:100%;
+}
+.g-sale  .m-kucun-content .item-kucun .item-list .trk .td{
+	 float:left;
+	 display: inline-block;	 font-size: 0.4rem;
+}
+.g-sale  .m-kucun-content .item-kucun .item-list .trk .td.td-all span{
+	  color:#eb6d00;
+	  font-size: 0.4rem
+}
+.g-sale  .m-kucun-content .item-kucun .item-list .trk .td.td-anquan{
+	color:#aaaaaa;margin-left: 0.8rem;
 }

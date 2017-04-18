@@ -355,7 +355,7 @@
 			.addBox img {
 				font-size: 40px;
 				width: 55px;
-				height:55px;
+				height: 55px;
 				border-radius: 5px;
 				display: block;
 				background-color: white;
@@ -488,17 +488,21 @@
 								groupId: chatListVM.groupId
 							},
 							success: function(jsonData) {
-								for(var i = 0; i < jsonData.length; i++) {
-									record.push({
-										empId: jsonData[i].groupMemberId,
-										groupId: jsonData[i].groupId,
-										msgType: jsonData[i].msgType,
-										content: jsonData[i].content,
-										logo: '../images/logo.png'
-									});
-								}
-								bindMsgList();
 								console.log(JSON.stringify(jsonData));
+								if(jsonData.status == "true") {
+									for(var i = 0; i < jsonData.data.length; i++) {
+										record.push({
+											empId: jsonData.data[i].groupMemberId,
+											groupId: jsonData.data[i].groupId,
+											msgType: jsonData.data[i].msgType,
+											content: jsonData.data[i].content,
+											logo: '../images/logo.png'
+										});
+									}
+									bindMsgList();
+								} else {
+									plus.nativeUI.alert(jsonData.msg);
+								}
 							},
 							error: function(XMLHttpRequest, textStatus, errorThrown) {
 								console.log(XMLHttpRequest.status);
@@ -508,6 +512,7 @@
 						});
 					}
 					var sendMsg = function sendMsg(record) {
+						console.log(JSON.stringify(record));
 						mui.ajax({
 							url: getBaseServerUrl() + '/app/chatGroup/sendMessage',
 							dataType: 'json',
@@ -529,7 +534,6 @@
 					});
 
 					var bindMsgList = function() {
-						console.log(JSON.stringify(record));
 						chatListVM.dataArr = record;
 						setTimeout(setImageView, 100)
 					};
@@ -707,7 +711,7 @@
 						startTimestamp = (new Date()).getTime();
 						recorder.record({
 							filename: "_doc/audio/",
-							format:"amr" 
+							format: "amr"
 						}, function(path) {
 							if(recordCancel) return;
 							Audio2dataURL(path);
@@ -737,7 +741,7 @@
 
 					var dataURL2Audio = function(base64Str, callback) {
 						var base64Str = base64Str.replace('data:audio/amr;base64,', '');
-						var audioName =  "_doc/audio/" + (new Date()).valueOf() + '.amr';
+						var audioName = "_doc/audio/" + (new Date()).valueOf() + '.amr';
 						plus.io.requestFileSystem(plus.io.PRIVATE_DOC, function(fs) {
 							fs.root.getFile(audioName, {
 								create: true
@@ -772,7 +776,7 @@
 									// 回调
 									callback && callback(entry);
 								}
-							},function(e){
+							}, function(e) {
 								console.log(e.message);
 							})
 						})

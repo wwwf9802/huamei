@@ -2070,6 +2070,7 @@
 					"js/flexible.js",
 					"fonts/mui.ttf"
 				],
+<<<<<<< HEAD
 				"refer": [
 					"xiangmu/gongdi-yichang.html"
 				],
@@ -2113,6 +2114,8 @@
 					"js/flexible.js",
 					"css/swiper-3.3.1.min.css"
 				],
+=======
+>>>>>>> a83d5f04355d757006faf023c129aaf55973fd7b
 				"refer": [],
 				"priority": 0
 			}

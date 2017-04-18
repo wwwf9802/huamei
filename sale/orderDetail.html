@@ -117,8 +117,7 @@
 		});
 		
 		$(".dispatchType").on('tap','.btn',function(){
-            $(this).siblings().removeClass('active');
-			$(this).addClass('active');
+            $(".dispatchType .btn").eq($(this).index()).addClass('active').siblings().removeClass('active');
 		});
 	</script>
 
