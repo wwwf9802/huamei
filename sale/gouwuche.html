@@ -31,6 +31,8 @@
 		.addBox>span{display:block;height:.45rem;position:absolute;top:.3rem;margin-left;border-left:.15rem solid #EB6D00;}
 		.addBox>h1{font-size:.4rem;padding:0 .4rem;line-height:.6rem;margin-top:.2rem;width:6.4rem}
 		.addBox>p{padding:0 .4rem;position:relative;top:.35rem;}
+		.addBox>h2{font-size:.4rem;height:.85rem;width:2rem;line-height:.85rem;text-align: center;color:#505A7E;border:1px solid #505A7E;border-radius:4px;position:absolute;top:1rem;right:.5rem}
+		.addBox>h2:active{background:#505A7E;color:#fff;}
 		
 		.addBox>div{width:1.8rem;height:.6rem;position:absolute;float:right;right:.4rem;top:1.2rem;line-height:.5rem;text-align: center;}
 		.y-sub-box>img,.y-add-box>img{width:.5rem;}
@@ -75,6 +77,29 @@
 		.mui-switch{float:left;margin-top:.2rem}
 		.gwc-choice>div>span{display:block;height:1.3rem;line-height:1.3rem;font-size:.4rem;margin:0 .2rem;margin-left:.4rem}
 		.gwc-beizhu{background:#fff;height:1.2rem;margin-top:.3rem;}
+		.y-btn{width:9.2rem;height:1rem;line-height:1rem;color:#EA6D01;border:1px solid #EA6D01;border-radius:6px;margin:.2rem auto;text-align: center;font-size:.45rem;}
+		.y-btn:active{background:#EA6D01;color:#fff}
+		
+		.gwc-table tr>td{height:.8rem;line-height:.8rem;background:#fff;font-size:.4rem;}
+		.gwc-table tr>td:first-child{color:#aaa;width:4rem;padding-left:.4rem}
+		.gwc-table tr>td:last-child{color:#333;width:6rem;}
+		.gwc-table tr:last-child{border-bottom:1px solid #ddd}
+		
+		.gwc-btnGroup{height:1.2rem;}
+		.gwc-btnGroup>div{width:33.33%;height:1.2rem;border-bottom:1px solid #ddd;float:left;background:#fff;overflow: hidden;}
+		.gwc-btnGroup>div>div{width:1.6rem;height:.5rem;border-radius:.5rem;border:1px solid #666;color:#666;line-height:.5rem;text-align: center;margin:.4rem auto;}
+		.gwc-btnGroup>div>div.active{border:1px solid #EA6D01;color:#EA6D01;}
+		.gwc-btnGroup>div>div:active{background:#EA6D01;color:#fff;border:1px solid #EA6D01}
+		
+		.gwc-total>li{width:33.33%;float:left;height:1.2rem;text-align: center;line-height:1.2rem;font-size:.4rem;background:#fff}
+		.gwc-total>li>strong{color:red;font-weight: bold;}
+		.gwc-total>li>span{color:#999}
+		
+		
+		.gwc-foot>div:first-child{width:6.8rem;height:1.2rem;background:#fff;float:left;line-height:1.2rem;text-align: right;padding-right:.4rem;font-size:.4rem;}
+		.gwc-foot>div:first-child>b{color:red;}
+		.gwc-foot>div:last-child{width:3.2rem;height:1.2rem;font-size:.4rem;line-height:1.2rem;text-align: center;color:#fff;background:#EA6D01;float:right;}
+		.gwc-foot>div:active{opacity: .8;}
 	</style>
 	<body>
 		<header class="mui-bar mui-bar-nav header">
@@ -172,7 +197,67 @@
 					</a>
 				</li>
 			</ul>
+			
+			<div class="y-btn">
+				完成
+			</div>
+			
+			<div class="addBox">
+				<span></span>
+				<h1>01106020/卓邦外墙腻子（外墙腻子0kg）(包)</h1>
+				<h2>编辑</h2>
+				<p>规格:J503+BQ608+100S-3031</p>
+				<h3 style="border-bottom:1px solid #ddd;margin-top:.5rem;"></h3>
+			</div>
+			
+			<div class="gwc-table">
+				<table>
+					<tr>
+						<td>送货方式：</td>
+						<td>配送</td>
+					</tr>
+					<tr>
+						<td>色号：</td>
+						<td>01245：</td>
+					</tr>
+					<tr>
+						<td>发货日期：</td>
+						<td>2017-3-20</td>
+					</tr>
+				</table>
+			</div>
+			
+			<div class="gwc-btnGroup">
+				<div>
+					<div>安装</div>
+				</div>
+				<div>
+					<div>测量</div>
+				</div>
+				<div>
+					<div>赠送</div>
+				</div>
+			</div>
+			
+			<ul class="mui-table-view" style="margin-top:.3rem">
+				<li class="mui-table-view-cell">
+					<a data-arr="arr2" class="a-choice mui-navigate-right">
+						<input style="width:6rem" class="right" value="次商品为易碎品，请注意！">备注</span>
+					</a>
+				</li>
+			</ul>
+			
+			<ul class="gwc-total">
+				<li>¥20 <span>x1</span></li>
+				<li><span>折扣率:</span>0.8</li>
+				<li>小计: <strong>¥20</strong></li>
+			</ul>
 		</section>
+		
+		<footer class="gwc-foot">
+			<div>总计：<b>¥800</b></div>
+			<div>下一步</div>
+		</footer>
 	</body>
 	<script src="../js/mui.min.js"></script>
 	<script>
