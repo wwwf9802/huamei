@@ -1263,6 +1263,18 @@
 	vertical-align: middle;
 	background-color: #ffffff;
 }
+.g-renwu-mingxi .user-info.m-shuidian-detail{
+	background:none;
+	text-indent: 1em;
+	margin-top:0.267rem;
+	height:auto;
+}
+.g-renwu-mingxi .user-info.m-shuidian-detail .sub-title{
+	padding-top: 0rem;
+	font-size: 0.38rem;
+	color:#252525;
+	margin-bottom: 0rem;
+}
 .g-renwu-mingxi .user-info .title{
 	padding-top: 0.347rem;
 	font-size: 0.427rem;
