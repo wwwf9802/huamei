@@ -53,9 +53,9 @@
 								<div class="mui-table-view" >
 									<div v-for='(index,item) in dataArr' class="yusuan-lists">
 										 <div class="head" @tap='slide(index,$event)'>
-										 	{{dataArr.name}}
+										 	{{item.name}}
 										 	<span class='icon'></span>
-										 	<span class="index">{{dataArr.id}}</span>
+										 	<span class="index">{{item.id}}</span>
 										 </div>
 										 <div v-show='boolean && itemIndex == index' class="item-des">
 										 	<div class="tr">
@@ -186,7 +186,6 @@
 						} else {
 							plus.nativeUI.alert(jsonData.msg);
 						}
-
 					},
 					error: function(XMLHttpRequest, textStatus, errorThrown) {}
 				});
