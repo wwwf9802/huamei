@@ -14,3 +14,12 @@ function openNew(url) {
 		});
 	}
 }
+
+function alertMsg(msg){
+	if(!mui.os.plus) {
+		alert(msg);
+		return;
+	}else{
+		plus.nativeUI.alert(msg,null,"华美乐");
+	}
+}
