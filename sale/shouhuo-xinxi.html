@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<title>安装评价</title>
@@ -17,16 +18,49 @@
 		<link rel="stylesheet" type="text/css" href="../css/swiper-3.3.1.min.css">
 		<link rel="stylesheet" type="text/css" href="../css/common.css">
 		<link rel="stylesheet" type="text/css" href="../css/yhn.css">
+		<link rel="stylesheet" href="../js/picker/mui.picker.min.css" />
+		<link rel="stylesheet" href="../js/picker/mui.poppicker.css" />
 	</head>
 	<style>
+		.mui-table-view {
+			font-size: .4rem
+		}
 		
-		.mui-table-view{font-size:.4rem}
-		.mui-table-view-cell span{color:red}
-		.mui-table-view-cell>input{width:6rem;float:right;padding:0;margin:0;border:none;height:0.6rem;font-size:.4rem}
-		.addrs{font-size:.4rem;border:none}
-		.beizhu{padding:0 .4rem;height:1.3rem;line-height:1.3rem;background:#fff}
-		.beizhu>input{width:7rem;border:none;background:none;font-size:.4rem;height:1.3rem;}
+		.mui-table-view-cell span {
+			color: red
+		}
+		
+		.mui-table-view-cell>input {
+			width: 6rem;
+			float: right;
+			padding: 0;
+			margin: 0;
+			border: none;
+			height: 0.6rem;
+			font-size: .4rem
+		}
+		
+		.addrs {
+			font-size: .4rem;
+			border: none
+		}
+		
+		.beizhu {
+			padding: 0 .4rem;
+			height: 1.3rem;
+			line-height: 1.3rem;
+			background: #fff
+		}
+		
+		.beizhu>input {
+			width: 7rem;
+			border: none;
+			background: none;
+			font-size: .4rem;
+			height: 1.3rem;
+		}
 	</style>
+
 	<body>
 		<header class="mui-bar mui-bar-nav header">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
@@ -37,24 +71,29 @@
 				<input debounce="500" type="search" placeholder="电话/地址/业主名称">
 			</div>
 			<ul class="mui-table-view">
-				 <li class="mui-table-view-cell"><span>*</span>收货人<input type="text" placeholder="请输入"/></li>
-		         <li class="mui-table-view-cell"><span>*</span>收货电话<input type="number" placeholder="请输入" /></li>
-		         <li class="mui-table-view-cell">
-					<a class="mui-navigate-right">
+				<li class="mui-table-view-cell">
+					<a id="user" class="mui-navigate-right">
+						<span>*</span>收货人
+						<strong class="right"></strong>
+					</a>
+				</li>
+				<li class="mui-table-view-cell"><span>*</span>收货电话<input type="number" placeholder="请输入" /></li>
+				<li class="mui-table-view-cell">
+					<a id="address" class="mui-navigate-right">
 						<span>*</span>收货地址
 						<strong class="right"></strong>
 					</a>
 				</li>
 				<li class="mui-table-view-cell">
-					<a class="mui-navigate-right">
+					<a id="building" class="mui-navigate-right">
 						<span>*</span>楼盘
 						<strong class="right"></strong>
 					</a>
 				</li>
 			</ul>
-			
+
 			<textarea class="addrs" name="" rows="" cols="" placeholder="请填写详细地址"></textarea>
-			
+
 			<ul class="mui-table-view">
 				<li class="mui-table-view-cell">
 					<a class="mui-navigate-right">
@@ -63,11 +102,136 @@
 					</a>
 				</li>
 			</ul>
-			
+
 			<p class="beizhu">
 				<span class="left">备注:</span>
 				<input class="left" placeholder="说点什么吧" type="text" />
 			</p>
 		</section>
 	</body>
+	<script src="../js/zepto1.1.6.min.js" type="text/javascript"></script>
+	<script src='../js/mui.min.js'></script>
+	<script type="text/javascript" src="../js/public.js"></script>
+	<script type="text/javascript" src="../js/global.js"></script>
+	<script type="text/javascript" src="../js/vue.min.js"></script>
+	<script type="text/javascript" src="../js/picker/mui.picker.min.js"></script>
+	<script type="text/javascript" src="../js/picker/mui.poppicker.js"></script>
+	<script>
+		var vm = new Vue({
+			el: "body",
+			data: {
+				dataArr: []
+			},
+			methods: {},
+			ready: function() {
+				init();
+			}
+		});
+
+		function init() {
+			mui.ajax(getBaseServerUrl() + '/app/order/getRegion', {
+				type: 'get', //HTTP请求类型
+				data: {
+					empId: 'admin'
+				},
+				success: function(jsonData) {
+					if(jsonData.status) {
+						setData(jsonData.data)
+						setAddress(jsonData.data);
+					} else {
+						plus.nativeUI.alert(jsonData.msg);
+					}
+
+				},
+				error: function(XMLHttpRequest, textStatus, errorThrown) {}
+			});
+			mui.ajax(getBaseServerUrl() + '/app/order/getVillageList', {
+				type: 'get', //HTTP请求类型
+				data: {
+					id: '44190003'
+				},
+				success: function(jsonData) {
+					if(jsonData.status) {
+						for (var i = 0; i < jsonData.data.length; i++) {
+							jsonData.data[i].text = jsonData.data[i].name;
+						}
+						setBuilding(jsonData.data);
+					} else {
+						plus.nativeUI.alert(jsonData.msg);
+					}
+
+				},
+				error: function(XMLHttpRequest, textStatus, errorThrown) {}
+			});
+			mui.ajax(getBaseServerUrl() + '/app/order/findCustomer', {
+				type: 'get', //HTTP请求类型
+				data: {
+					empId: 'admin',
+					query: 'A2016'
+				},
+				success: function(jsonData) {
+					if(jsonData.status) {
+						for (var i = 0; i < jsonData.data.length; i++) {
+							jsonData.data[i].text = jsonData.data[i].customerName;
+						}
+						setUser(jsonData.data);
+					} else {
+						plus.nativeUI.alert(jsonData.msg);
+					}
+
+				},
+				error: function(XMLHttpRequest, textStatus, errorThrown) {}
+			});
+		}
+
+		function setData(arr) {
+			for(var i = 0; i < arr.length; i++) {
+				arr[i].text = arr[i].name;
+				arr[i].children = arr[i].detail;
+				arr[i].detail = "";
+				setData(arr[i].children);
+			}
+		}
+
+		function setAddress(dataArr) {
+			mui.init();
+			address.addEventListener('tap', function() {
+				var addressPicker = new mui.PopPicker({
+					layer: 4,
+				});
+				addressPicker.setData(dataArr);
+				addressPicker.show(function(items) {
+					address.innerText = items[0].text;
+					addressPicker.dispose();
+				});
+			}, false);
+		}
+		function setBuilding(dataArr) {
+			mui.init();
+			building.addEventListener('tap', function() {
+				var buildingPicker = new mui.PopPicker({
+					layer: 1,
+				});
+				buildingPicker.setData(dataArr);
+				buildingPicker.show(function(items) {
+					building.innerText = items[0].text;
+					buildingPicker.dispose();
+				});
+			}, false);
+		}
+		function setUser(dataArr) {
+			mui.init();
+			user.addEventListener('tap', function() {
+				var userPicker = new mui.PopPicker({
+					layer: 1,
+				});
+				userPicker.setData(dataArr);
+				userPicker.show(function(items) {
+					user.innerText = items[0].text;
+					userPicker.dispose();
+				});
+			}, false);
+		}
+	</script>
+
 </html>

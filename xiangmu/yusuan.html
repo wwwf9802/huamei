@@ -37,7 +37,7 @@
 		<div class="g-content mui-content g-content-news-list g-yusuan">
 			<div id="slider" class="mui-slider">
 				<div class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-					<div class="mui-control-item cur-item" v-on:tap="getData(1,$event)" href="#contentDiv">
+					<div class="mui-control-item cur-item active" v-on:tap="getData(1,$event)" href="#contentDiv">
 						材料预算(<span class='num'>{{unDealArrNum}}</span>)
 					</div>
 					<div class="mui-control-item" v-on:tap="getData(2,$event)" href="#contentDiv">
@@ -103,20 +103,13 @@
 		<script type="text/javascript" src="../js/global.js"></script>
 		<script type="text/javascript" src="../js/vue.min.js"></script>
 		<script>
-			Vue.filter('formatStatus', function(value) {
-				if(value == '10') {
-					return "待处理";
-				}
-				return "已处理";
-			})
-
 			var vm = new Vue({
 				el: "body",
 				data: {
 					dataArr: [],
-					unDealArr: [],
+					cailiaoArr: [],
 					unDealArrNum: 0,
-					dealArr: [],
+					rengongArr: [],
 					dealArrNum: 1,
 					itemIndex:0,
 					boolean:true,
@@ -141,9 +134,9 @@
 						$(".mui-control-item").removeClass("active");
 						$($event.target).addClass("active");
 						if(type == 1) {
-							this.dataArr = this.unDealArr;
+							this.dataArr = this.cailiaoArr;
 						} else {
-							this.dataArr = this.dealArr;
+							this.dataArr = this.rengongArr;
 						};
 					},
 					closeError: function(type) {

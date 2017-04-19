@@ -19,78 +19,109 @@
 		<link rel="stylesheet" type="text/css" href="../css/common.css">
 		<link rel="stylesheet" type="text/css" href="../css/lzr.css">
 	</head>
+
 	<body>
 		<div class="mui-bar mui-bar-nav header header-details">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<span class="title">商品库存查询</span>
 		</div>
-		<div class="g-content g-content-project-list g-sale"> 
+		<div class="g-content g-content-project-list g-sale">
 			<div class="serach-lay m-kucun">
 				<form method="post" id="form" action="##">
 					<input v-el:search v-on:focus="onfocus($event)" v-on:blur="blur($event)" debounce="500" class='search' type="search" name="search" id="search" placeholder="扫码或输入商品编号/名称">
-					<div id='saomiao' class="botton cancel-bottom"></div>
+					<div id="scan" class="botton cancel-bottom"></div>
 				</form>
 			</div>
 			<div class="m-kucun-content">
-                <div class="pro-des">
-                	<div class="tr tr-name">
-                		所得税的搜索
-                	</div>
-                	<div class="tr tr-guige">
-                		规格(单位)：所得税是
-                	</div>
-                	<div class="tr tr-guige">
-                		色号：1111
-                	</div>
-                </div>
-                <div class="kongxi"></div>
-                <div class="item-kucun">
-                	<div class="item-list">
-                		 <div class="headk">
-                		 	南城仓库
-                		 </div>
-                		 <div class="trk">
-                		 	<div class="td td-all">总库存量： <span>210</span></div>
-                		 	<div class="td td-anquan">安全库存量：200</div>
-                		 </div>
-                	</div>
-
-                	<div class="item-list">
-                		 <div class="headk">
-                		 	南城仓库
-                		 </div>
-                		 <div class="trk">
-                		 	<div class="td td-all">总库存量： <span>210</span></div>
-                		 	<div class="td td-anquan">安全库存量：200</div>
-                		 </div>
-                	</div>
-
-                	<div class="item-list">
-                		 <div class="headk">
-                		 	南城仓库
-                		 </div>
-                		 <div class="trk">
-                		 	<div class="td td-all">总库存量： <span>210</span></div>
-                		 	<div class="td td-anquan">安全库存量：200</div>
-                		 </div>
-                	</div>
-                </div>
+				<div class="pro-des">
+					<div class="tr tr-name">
+						{{dataArr.productName}}
+					</div>
+					<div class="tr tr-guige">
+						规格(单位)：{{dataArr.productSpec}}
+					</div>
+					<div class="tr tr-guige">
+						色号：{{dataArr.productName}}
+					</div>
+				</div>
+				<div class="kongxi"></div>
+				<div class="item-kucun">
+					<div class="item-list">
+						<div class="headk">
+							{{dataArr.warehouseName}}
+						</div>
+						<div class="trk">
+							<div class="td td-all">总库存量： <span>{{dataArr.totalQty}}</span></div>
+							<div class="td td-anquan">安全库存量：{{dataArr.lowerQty}}</div>
+						</div>
+					</div>
+				</div>
 			</div>
 
 			<!--  无库存信息的时候显示这个块  -->
 			<div class="m-kucun-content noProduct" style='display:none'>
 			</div>
 		</div>
-		 
 
 		<script src="../js/zepto1.1.6.min.js" type="text/javascript"></script>
-		<script src='../js/swiper-3.3.1.min.js' type="text/javascript"></script>
 		<script src='../js/mui.min.js'></script>
 		<script type="text/javascript" src="../js/public.js"></script>
-		<script type="text/javascript" src="../js/global.js" ></script>
-		<script type="text/javascript" src="../js/vue.min.js" ></script>
-		
-		 
+		<script type="text/javascript" src="../js/global.js"></script>
+		<script type="text/javascript" src="../js/vue.min.js"></script>
+		<script>
+			var vm = new Vue({
+				el: "body",
+				data: {
+					dataArr: []
+				},
+				methods: {},
+				ready: function() {
+					init('01093205');
+				}
+			});
+
+			function init(productId) {
+				mui.ajax(getBaseServerUrl() + '/app/order/findProductInventory', {
+					type: 'get', //HTTP请求类型
+					data: {
+						empId: 'admin',
+						productId: productId
+					},
+					success: function(jsonData) {
+						if(jsonData.status) {
+							vm.dataArr = jsonData.data;
+						} else {
+							plus.nativeUI.alert(jsonData.msg);
+						}
+
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {}
+				});
+			}
+
+			//扫描二维码
+			var scanType;
+			//二维码扫描结果传参
+			function scaned(t, str, r) {
+				init(str);
+			}
+
+			scan.addEventListener("tap", function(e) {
+				e.stopPropagation();
+				mui.openWindow({
+					url: '../scan/barcode_scan.html',
+					id: 'barcode_scan',
+					show: {
+						autoShow: true,
+						aniShow: 'pop-in',
+						duration: 300
+					},
+					waiting: {
+						autoShow: false
+					}
+				});
+			});
+		</script>
 	</body>
 
 </html>
