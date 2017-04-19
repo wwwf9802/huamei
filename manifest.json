@@ -1558,7 +1558,10 @@
 					"fonts/mui.ttf",
 					"css/mui.min.css"
 				],
-				"refer": [],
+				"refer": [
+					"xiaoxi/deliverScan.html",
+					"sale/jiazhuang-gendan.html"
+				],
 				"priority": 0
 			},
 			"xiangmu.html": {
@@ -1683,7 +1686,10 @@
 					"images/addphoto.png",
 					"js/flexible.js",
 					"css/swiper-3.3.1.min.css",
-					"js/fx.js"
+					"js/fx.js",
+					"js/picker/mui.poppicker.js",
+					"js/picker/mui.picker.min.js",
+					"css/yhn.css"
 				],
 				"refer": [],
 				"priority": 0
@@ -1710,9 +1716,16 @@
 					"js/flexible.js",
 					"css/swiper-3.3.1.min.css",
 					"js/global.js",
-					"images/icon-jia.png"
+					"images/icon-jia.png",
+					"js/mui.zoom.js",
+					"js/mui.previewimage.js",
+					"images/icon-select.png",
+					"js/public.js",
+					"images/icon-select1.png"
 				],
-				"refer": [],
+				"refer": [
+					"xiangmu/createPaper.html"
+				],
 				"priority": 0
 			},
 			"xiaoxi/chatList.html": {
@@ -1987,7 +2000,9 @@
 					"js/mui.min.js",
 					"css/mui.min.css",
 					"images/icon-phone.png",
-					"js/flexible.js"
+					"js/flexible.js",
+					"js/public.js",
+					"js/global.js"
 				],
 				"refer": [],
 				"priority": 0
@@ -2055,6 +2070,52 @@
 					"js/flexible.js",
 					"fonts/mui.ttf"
 				],
+<<<<<<< HEAD
+				"refer": [
+					"xiangmu/gongdi-yichang.html"
+				],
+				"priority": 0
+			},
+			"xiaoxi/deliverScan.html": {
+				"resources": [
+					"images/scan-code.png",
+					"css/ww.css",
+					"css/base-reset.css",
+					"fonts/mui.ttf",
+					"js/public.js",
+					"js/vue.min.js",
+					"js/zepto1.1.6.min.js",
+					"js/flexible_css.js",
+					"css/common.css",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"js/global.js",
+					"js/flexible.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"sale/jiazhuang-gendan.html": {
+				"resources": [
+					"css/base-reset.css",
+					"css/lzr.css",
+					"images/icon-jiantou.png",
+					"fonts/mui.ttf",
+					"js/public.js",
+					"js/vue.min.js",
+					"js/swiper-3.3.1.min.js",
+					"js/zepto1.1.6.min.js",
+					"js/flexible_css.js",
+					"css/common.css",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"images/icon-search.png",
+					"js/global.js",
+					"js/flexible.js",
+					"css/swiper-3.3.1.min.css"
+				],
+=======
+>>>>>>> a83d5f04355d757006faf023c129aaf55973fd7b
 				"refer": [],
 				"priority": 0
 			}
