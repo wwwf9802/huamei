@@ -20,7 +20,8 @@
 		.y-sdcl-sec{background:#f6f6f6;width:100%;overflow:hidden}
 		.y-sdcl-sec>div{position:relative;height:2.7rem;background:#fff;margin-top:.3rem;padding:.3rem .4rem;font-size:.4rem}
 		.y-sdcl-sec>div>p{color:#333;margin-bottom:.4rem;}
-		.y-sdcl-sec>div>p>span{color:#EA6D01}
+		.y-sdcl-sec>div>p>span{color:#EA6D01;}
+		.y-sdcl-sec>div>p>span.sure{color:#aaaaaa;}
 		
 		.y-sdcl-sec>div>h2{font-size:.35rem;color:#aaa;line-height:.4rem;}
 		.y-sdcl-sec>div>div{position:absolute;width:2rem;height:.73rem;line-height:.73rem;border:1px solid #EA6D01;border-radius:4px;bottom:.6rem;right:.4rem;text-align: center;font-size:.35rem;color:#EA6D01}
@@ -35,37 +36,66 @@
 			<span id="add" class="header-right mui-icon mui-icon-plus"></span>
 		</header>
 		<section class="y-sdcl-sec under-top">
-			<div>
-				<p>SO201704101801 <span class="right">待交易</span></p>
-				<h2>创建日期：2017-4-11</h2>
-				<h2>数量：4</h2>
-				<div class="gotoPath">去确认</div>
+
+			<div v-for="(index,item) in dataArr">
+				<p>{{item.id}} <span class="right" :class="{'sure':!item.status == 10}">{{item.status | formatWen}}</span></p>
+				<h2>创建日期：{{item.createTime}} </h2>
+				<h2>数量：{{item.qty}} </h2>
+ 				<div v-show='item.status == 10' class="gotoPath">去确认</div>
 			</div>
-			<div>
-				<p>SO201704101801 <span class="right">待交易</span></p>
-				<h2>创建日期：2017-4-11</h2>
-				<h2>数量：4</h2>
-				<div class="gotoPath">去确认</div>
-			</div>
-			<div>
-				<p>SO201704101801 <span class="right">待交易</span></p>
-				<h2>创建日期：2017-4-11</h2>
-				<h2>数量：4</h2>
-				<div class="gotoPath">去确认</div>
-			</div>
-			<div>
-				<p>SO201704101801 <span class="right">待交易</span></p>
-				<h2>创建日期：2017-4-11</h2>
-				<h2>数量：4</h2>
-				<div class="gotoPath">去确认</div>
-			</div>
+
 		</section>
 	</body>
-	<script src="../js/public.js"></script>
-	<script src="../js/mui.min.js"></script>
+	<script src="../js/zepto1.1.6.min.js" type="text/javascript"></script>
+	<script src='../js/swiper-3.3.1.min.js' type="text/javascript"></script>
+	<script src='../js/mui.min.js'></script>
+	<script type="text/javascript" src="../js/public.js"></script>
+	<script type="text/javascript" src="../js/global.js" ></script>
+	<script type="text/javascript" src="../js/vue.min.js" ></script>
 	<script>
-		add.addEventListener("tap",function(){
+	     
+        var vm = new Vue({
+            el: 'body',
+            data: {
+                dataArr: []
+            },
+            methods: {
+            },
+            filters:{
+            	formatWen:function(value){
+			          if(value==10){
+			          	return '待确认'
+			          }
+			          else{			          	 
+			          	return '已确认'
+			          }
+            	}
+            },
+            ready: function() {
+                init();
+            }
+        });
+
+        function init() {
+            mui.ajax(getBaseServerUrl() + '/app/order/findMaterialOrder', {
+                type: 'get', //HTTP请求类型
+                data: {
+                    empId: 'admin',
+                    siteId:1
+                },
+                success: function(jsonData) {
+                    vm.dataArr = jsonData.data;
+                    console.log(vm.dataArr)
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    console.log(XMLHttpRequest.status);
+                    console.log(XMLHttpRequest.readyState);
+                    console.log(textStatus);
+                }
+            });
+        }
+        add.addEventListener("tap",function(){
 			openNew("xiadan-shuidian.html");
 		});
-	</script>
+    </script>
 </html>
