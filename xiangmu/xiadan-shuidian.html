@@ -139,6 +139,7 @@
 		<header class="mui-bar mui-bar-nav header">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<span class="title">水电材料下单</span>
+			<button id="d1">点击123</button>
 		</header>
 		<div class="p-box under-top">
 			<div class="p-box-title">东莞南城区南城花园一期A栋2306</div>
@@ -406,7 +407,7 @@
 		function initPostData() {
 			vm.postData = {
 					empId: "admin",
-					siteId: "1",
+					siteId: "2",
 					type: "10",
 					remark: "测试水电油气下单",
 					detail: [],
@@ -446,22 +447,25 @@
 				contentType: "application/json",
 				data: {
 					 "empId": "admin",
-					 "orderNo": "SO-201704150032" 
+					 "orderNo": "SO-201704150034" 
 				},
 				success: function(jsonData) {
 					console.log(jsonData);
-					if(jsonData.status=="false"){
+					/*if(jsonData.status=="false"){
 						alertMsg(jsonData.msg);
 					}else{
 						alertMsg(jsonData.msg);
 						setTimeout(function(){mui.back()},1000);
-					}
+					}*/
 				},
 				error: function(XMLHttpRequest, textStatus, errorThrown) {}
 			});
 			
 		}
 		
+		$(d1).click(function(){
+			delOrder();
+		});
 //		function initPostData(empId,siteId,type,productId,productName,productSpec,productUnit,qty,productClass,productClassName) {
 //			vm.postData = {
 //					"empId": "admin",
