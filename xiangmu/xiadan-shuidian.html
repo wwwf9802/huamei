@@ -282,7 +282,7 @@
 						this.nums++;
 						$(ele).parent().prev().text(num);
 						shoppingCartAnimate(ele);
-						obj={
+						obj1={
 	                       productId: key.id,
 	                       productName: key.materialName,
 	                       productSpec: "01",
@@ -291,6 +291,19 @@
 	                       productClass: key.productClass,
 	                       productClassName:key.productClassName
                     	};
+                    	
+                    	var obj={
+		                       "productId": "01093205",
+		                       "productName": "欧盛家俱拉手OLS-LS-5706-96-PA",
+		                       "brand": "000084",
+		                       "productSpec": "OLS-LS-5706-96-PA",
+		                       "productUnit": "zhi",
+		                       "qty": "11",
+		                       "isColor": "0", 
+		                       "isCustomized": "0",
+		                       "productClass": "03060101",
+		                       "productClassName": "水电材料"
+		                    }
                     	
                     	
                     	for(var i=0;i<vm.postData.detail.length;i++){
@@ -311,6 +324,8 @@
 						var ele=e.target;
 						var num=$(ele).parent().next().text();
 						console.log(num);
+						console.log(1111111111111);
+						console.log(key);
 						/*if(num>0){
 							num--;
 						}*/
@@ -318,7 +333,7 @@
 						
 						//this.nums--:this.nums=0;
 						$(ele).parent().next().text(num);
-						obj={
+						var obj1={
 	                       productId: key.id,
 	                       productName: key.materialName,
 	                       productSpec: "01",
@@ -327,6 +342,19 @@
 	                       productClass: key.productClass,
 	                       productClassName:key.productClassName
                     	};
+                    	
+                    	var obj={
+		                       "productId": "01093205",
+		                       "productName": "欧盛家俱拉手OLS-LS-5706-96-PA",
+		                       "brand": "000084",
+		                       "productSpec": "OLS-LS-5706-96-PA",
+		                       "productUnit": "zhi",
+		                       "qty": "11",
+		                       "isColor": "0", 
+		                       "isCustomized": "0",
+		                       "productClass": "03060101",
+		                       "productClassName": "水电材料"
+		                    }
                     	for(var i=0;i<vm.postData.detail.length;i++){
                     		if(vm.postData.detail[i].productId==key.id){
                     			//console.log(num);
@@ -419,6 +447,7 @@
 			if (vm.postData.detail.length===0){return;alertMsg("购物车不能为空~")}
 			var postData=vm.postData;
 			postData.qty=vm.nums.toString();
+			console.log(JSON.stringify(postData));
 			mui.ajax(getBaseServerUrl() + '/app/order/createMaterialOrder', {
 				type: 'post', //HTTP请求类型
 				contentType: "application/json",
