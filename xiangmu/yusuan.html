@@ -51,11 +51,11 @@
 						<div id="scroll1" class="mui-scroll-wrapper">
 							<div class="mui-scroll">
 								<div class="mui-table-view" >
-									<div v-for='(index,item) in items' class="yusuan-lists">
+									<div v-for='(index,item) in dataArr' class="yusuan-lists">
 										 <div class="head" @tap='slide(index,$event)'>
-										 	{{item.title}}
+										 	{{dataArr.name}}
 										 	<span class='icon'></span>
-										 	<span class="index">{{index+1}}</span>
+										 	<span class="index">{{dataArr.id}}</span>
 										 </div>
 										 <div v-show='boolean && itemIndex == index' class="item-des">
 										 	<div class="tr">
@@ -172,17 +172,17 @@
 			});
 
 			function init() {
-				mui.ajax(getBaseServerUrl() + '/sites/sitesTask/queryTaskListForException', {
+				mui.ajax(getBaseServerUrl() + '/app/budget/findMaterialBudgetList', {
 					type: 'get', //HTTP请求类型
 					data: {
-						sitesId: localStorage.selectSitesId,
-						dealType: 1
+						ckNo:''
 					},
 					success: function(jsonData) {
 						if(jsonData.status) {
-							vm.unDealArr = jsonData.other.tasklist;
-							vm.unDealArrNum = jsonData.other.tasklist.length;
-							vm.dataArr = vm.unDealArr;
+                             console.log(jsonData.data)
+							 vm.cailiaoArr = jsonData.data;
+							 vm.dataArr = vm.cailiaoArr;
+
 						} else {
 							plus.nativeUI.alert(jsonData.msg);
 						}
@@ -198,7 +198,7 @@
 					},
 					success: function(jsonData) {
 						if(jsonData.status) {
-							vm.dealArr = jsonData.other.tasklist;
+							vm.rengongArr = jsonData.other.tasklist;
 							vm.dealArrNum = jsonData.other.tasklist.length;
 						} else {
 							plus.nativeUI.alert(jsonData.msg);
