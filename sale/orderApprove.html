@@ -95,21 +95,19 @@
 	<script type="text/javascript" src="../js/vue.min.js"></script>
 	<script type="text/javascript" src="../js/global.js"></script>
 	<script>
+
 		var vm = new Vue({
 			el: 'body',
 			data: {
-				dataArr: [{},{}]
+				dataArr: [
+				]
 			},
 			methods: {},
 			ready: function() {
-				init();
+				// init();
 			}
 		});
 
-		function init() {
-
-		}
-		
 		$(".header-right").on('tap',function(){
 			$('.shadow').css('display','block');
 		});

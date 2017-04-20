@@ -14,8 +14,6 @@ function getBaseImgUrl() {
 	return "http://192.168.1.144:8081";
 }*/
 
-
-
 /*function getBaseServerUrl1()
 {
 	return "http://192.168.1.146:8081/eidpws";
