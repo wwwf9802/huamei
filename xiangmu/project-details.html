@@ -78,12 +78,12 @@
 						预算
 					</a>
 				</div>
-				<div class="list shuidian" data-page="xiadan-shuidian-list.html">
+				<div class="list shuidian" id="sdxiadan">
 					<a>
 						水电材料下单
 					</a>
 				</div>
-				<div class="list youqi" data-page="xiadan-youqi-list.html">
+				<div class="list youqi" id="yqxiadan">
 					<a>
 						油漆辅料下单
 					</a>
@@ -144,6 +144,7 @@
 				});
 			}
 			$(".item-lists").on('tap', '.list', function() {
+				if(!$(this).data('page')){return}
 				openNew($(this).data('page'));
 			});
 
@@ -162,6 +163,17 @@
 				spaceBetween: 0,
 				centeredSlides: true,
 				autoplayDisableOnInteraction: false
+			})
+			
+			$("#sdxiadan").on("tap",function(){
+				localStorage.sdyqTypeId="10";
+				openNew("xiadan-shuidian-list.html");
+				
+			})
+			$("#yqxiadan").on("tap",function(){
+				localStorage.sdyqTypeId="20";
+				openNew("xiadan-shuidian-list.html");
+				
 			})
 		</script>
 	</body>

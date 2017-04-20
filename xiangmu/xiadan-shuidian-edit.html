@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>水电材料下单</title>
+		<title>水电材料单编辑</title>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
 		<meta content="yes" name="apple-mobile-web-app-capable">
@@ -16,15 +16,6 @@
 		<link rel="stylesheet" type="text/css" href="../css/common.css">
 		<link rel="stylesheet" type="text/css" href="../css/yhn.css">
 	</head>
-	<script>
-		var sdyqTypeId=localStorage.sdyqTypeId;
-		var content=null;
-		if(sdyqTypeId=="10"){
-			content="水电材料下单";
-		}else{
-			content="油漆材料下单";
-		}
-	</script>
 	<style>
 		section{height:12rem;background:#fff;border-top:1px solid #ddd;}
 		.y-sd-box-l{height:100%;width:2.8rem;}
@@ -147,7 +138,7 @@
 	<body>
 		<header class="mui-bar mui-bar-nav header">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<span class="title">{{cont}}</span>
+			<span class="title">水电材料单编辑</span>
 			<button id="d1">点击123</button>
 		</header>
 		<div class="p-box under-top">
@@ -201,7 +192,7 @@
 								<div class="y-sub-box">
 									<img @tap="subToshop(key,$event)" class="y-sd-icon" src="../images/icon-sub.png" alt="" />
 								</div>
-								<strong>0</strong>
+								<strong>{{key.qty |isNull}}</strong>
 								<div class="y-add-box">
 									<img @tap="addToshop(key,$event)" class="y-sd-add y-sd-icon" src="../images/icon-add.png" alt="" />
 								</div>
@@ -215,7 +206,7 @@
 		<footer class="y-sd-footer">
 			<img id="shoppingCart" src="../images/icon-gwc.png" alt="" />
 			<span>已选产品({{nums}})</span>
-			<div id="submit">提交</div>
+			<div id="submit">保存</div>
 		</footer>
 		<!--<div v-for="key in arr2">
 			<p>{{key}}</p>
@@ -229,6 +220,13 @@
 	<script src="../js/mui.min.js"></script>
 	<script src="../js/vue.min.js"></script>
 	<script>
+	    var data=JSON.parse(localStorage.cailiaomingxiData);
+	    var nums=null;
+	    for(var i=0;i<data.data.length;i++){
+	    	nums+=data.data[i].qty;
+	    }
+	    console.log(data);
+	   	
 	
 		var swiper = new Swiper('.swiper-container', {
 	        pagination: '.swiper-pagination',
@@ -244,6 +242,7 @@
 	        direction: 'vertical'
 	    });
 	    
+	    var abc=[1,2,3,4,5,6,7,8,9,10,11];
 	    var vm = new Vue({
 				el: "body",
 				data: {
@@ -252,11 +251,10 @@
 					his_length: 0,
 					dataArr: [],
 					arr1:[],
-					arr2:[1,2,3],
-					nums:0,
+					arr2:[],
+					nums:nums,
 					postData:{},
 					signData:{},
-					cont:content,
 				},
 				methods: {
 					onfocus: function(e) {
@@ -285,18 +283,21 @@
 						setTimeout(changeSwiper,500);
 					},
 					addToshop:function(key,e){
+					console.log(key)
 						var ele=e.target;
-						var num=$(ele).parent().prev().text();
-						num++;
+						key.qty++;
+						//var num=$(ele).parent().prev().text();
+						//num++;
 						this.nums++;
-						$(ele).parent().prev().text(num);
+						//$(ele).parent().prev().text(num);
+						
 						shoppingCartAnimate(ele);
 						var obj={
 	                       productId: key.id,
 	                       productName: key.materialName,
 	                       productSpec: "01",
 	                       productUnit: "33KG",
-	                       qty: num,
+	                       qty: key.qty,
 	                       productClass: key.productClass,
 	                       productClassName:key.productClassName
                     	};
@@ -338,36 +339,36 @@
 						/*if(num>0){
 							num--;
 						}*/
-						num>0?num--&&this.nums--:num=0;
+						key.qty>0?key.qty--&&this.nums--:key.qty=0;
 						
 						//this.nums--:this.nums=0;
-						$(ele).parent().next().text(num);
+						//$(ele).parent().next().text(num);
 						var obj={
 	                       productId: key.id,
 	                       productName: key.materialName,
 	                       productSpec: "01",
 	                       productUnit: "33KG",
-	                       qty: num,
+	                       qty: key.qty,
 	                       productClass: key.productClass,
 	                       productClassName:key.productClassName
                     	};
                     	
-//                  	var obj={
-//		                       "productId": "01093205",
-//		                       "productName": "欧盛家俱拉手OLS-LS-5706-96-PA",
-//		                       "brand": "000084",
-//		                       "productSpec": "OLS-LS-5706-96-PA",
-//		                       "productUnit": "zhi",
-//		                       "qty": "11",
-//		                       "isColor": "0", 
-//		                       "isCustomized": "0",
-//		                       "productClass": "03060101",
-//		                       "productClassName": "水电材料"
-//		                    }
+                    	/*var obj={
+		                       "productId": "01093205",
+		                       "productName": "欧盛家俱拉手OLS-LS-5706-96-PA",
+		                       "brand": "000084",
+		                       "productSpec": "OLS-LS-5706-96-PA",
+		                       "productUnit": "zhi",
+		                       "qty": "11",
+		                       "isColor": "0", 
+		                       "isCustomized": "0",
+		                       "productClass": "03060101",
+		                       "productClassName": "水电材料"
+		                    }*/
                     	for(var i=0;i<vm.postData.detail.length;i++){
                     		if(vm.postData.detail[i].productId==key.id){
                     			//console.log(num);
-                    			num>0?vm.postData.detail[i]=obj:vm.postData.detail.splice(i, 1);
+                    			key.qty>0?vm.postData.detail[i]=obj:vm.postData.detail.splice(i, 1);
                     		}
                     	}
                     	
@@ -380,6 +381,15 @@
 					init();
 				}
 			});
+			
+			Vue.filter('isNull', function(value) {
+				if(value===null||value===undefined){
+					return 0;
+				}
+				
+				return value;
+			});
+			
 			
 			function shoppingCartAnimate(dom){
 			    var goodsItem = $(dom);
@@ -425,14 +435,26 @@
 				type: 'get', //HTTP请求类型
 				data: {
 					empId: "admin",
-					tempLateType: sdyqTypeId,
+					tempLateType: "10"
 				},
 				success: function(jsonData) {
 					console.log(jsonData);
 					if(jsonData.code === "0000") {
 						vm.arr1 = jsonData.data;
-						vm.arr2 = jsonData.data[0].detail;
+						console.log(111111111111111111111111);
+						console.log(jsonData);
 						initPostData();
+						for(var i=0;i<vm.arr1.length;i++){
+							for(var k=0;k<vm.arr1[i].detail.length;k++){
+								for(var j=0;j<data.data.length;j++){
+									console.log(111);
+									if(vm.arr1[i].detail[k].id==data.data[j].productId){
+										vm.arr1[i].detail[k].qty=data.data[j].qty;
+									}
+								}
+							}
+						}
+						vm.arr2 = vm.arr1[0].detail;
 						setTimeout(changeSwiper, 500);
 		
 					}
@@ -445,11 +467,12 @@
 			vm.postData = {
 					empId: "admin",
 					siteId: "2",
-					type: sdyqTypeId,
+					type: "10",
 					remark: "测试水电油气下单",
 					detail: [],
 				}
-			console.log(vm.postData);
+			vm.postData.detail=data.data;
+			console.log(vm.postData.detail);
 		}
 		
 		function deal(){
@@ -457,7 +480,7 @@
 			var postData=vm.postData;
 			postData.qty=vm.nums.toString();
 			console.log(JSON.stringify(postData));
-			mui.ajax(getBaseServerUrl() + '/app/order/createMaterialOrder', {
+			mui.ajax(getBaseServerUrl() + '/app/order/updateMaterialOrder', {
 				type: 'post', //HTTP请求类型
 				contentType: "application/json",
 				data: postData,
@@ -485,7 +508,7 @@
 				contentType: "application/json",
 				data: {
 					 "empId": "admin",
-					 "orderNo": "SO-201704200001" 
+					 "orderNo": "SO-201704150034" 
 				},
 				success: function(jsonData) {
 					console.log(jsonData);
