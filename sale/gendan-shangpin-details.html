@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<title>安装评价</title>
@@ -19,72 +20,75 @@
 		<link rel="stylesheet" type="text/css" href="../css/yhn.css">
 	</head>
 	<style>
-	body{font-size:.4rem}
+		body {
+			font-size: .4rem
+		}
 	</style>
+
 	<body>
 		<header class="mui-bar mui-bar-nav header">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<span class="title">商品跟单详情</span>
 		</header>
-		
+
 		<section class="under-top" style="overflow:hidden">
 			<div class="y-gendan-card">
-				<p><b>TL20170307</b></p>
+				<p><b>{{item.tlNo}}</b></p>
 				<table>
 					<tr>
 						<td>收货人</td>
-						<td>张小兰  138959554545</td>
+						<td>{{item.customerName}} {{item.phone}}</td>
 					</tr>
 					<tr>
 						<td>收货地址</td>
-						<td>东莞市犀利县无敌镇牛逼村0001号</td>
+						<td>{{item.address}}</td>
 					</tr>
 				</table>
 			</div>
-			
+
 			<div class="y-gendan-card2">
-				<h2>01102010、桌板外墙腻子（外墙腻子0KG）（包）</h2>
+				<h2>{{item.productId}}{{item.productName}}</h2>
 				<div>
-					<span class="left">数量:12</span>
-					<span class="">物流中心仓</span>
+					<span class="left">数量:{{item.qty}}</span>
+					<span class="">{{item.warehouseName}}</span>
 					<span class="right">入库</span>
 				</div>
 				<table>
 					<tr>
 						<td>TL单日期</td>
-						<td>2017-03-20</td>
+						<td>{{item.TLDate}}</td>
 						<td>开单人</td>
-						<td>张晓</td>
+						<td>{{item.createEmpName}}</td>
 					</tr>
 					<tr>
 						<td>送货日期</td>
-						<td>2017-03-20</td>
+						<td>{{item.sendDate}}</td>
 						<td></td>
 						<td></td>
 					</tr>
 					<tr>
 						<td>商品类型</td>
-						<td>订制品</td>
+						<td>{{item.status | formatType}}</td>
 						<td>品牌</td>
-						<td>卓邦</td>
+						<td>{{item.brand}}</td>
 					</tr>
 				</table>
 			</div>
-			
+
 			<div class="y-pingjia" style="margin-top:.2rem;">
 				<h1>
 					<span></span>
 					跟单记录
 				</h1>
 			</div>
-			
+
 			<div class="gendan-inpBox">
 				<div class="mui-input-row left">
-					<input type="text" class="mui-input-clear" placeholder="还有三件商品未购">
+					<input id="sendInfo" type="text" class="mui-input-clear" placeholder="还有三件商品未购">
 				</div>
-				<span class="right">提交</span>
+				<span v-on:tap="sure(item)" class="right">提交</span>
 			</div>
-			
+
 			<div class="gendan-beizhu">
 				<span>备注:</span>
 				<b>还有三件商品未购。</b>
@@ -103,9 +107,57 @@
 				<strong class="right">2017-2-30 12:30</strong>
 				<h1></h1>
 			</div>
-			
+
 			<div class="gendan-more">查看更多跟单记录<img src="../images/icon-jiantoudown.png" alt="" /></div>
 		</section>
 	</body>
-	<script src="../js/mui.min.js"></script>
+	<script src="../js/zepto1.1.6.min.js" type="text/javascript"></script>
+	<script src="../js/flexible.js" type="text/javascript"></script>
+	<script src="../js/flexible_css.js" type="text/javascript"></script>
+	<script src='../js/mui.min.js'></script>
+	<script type="text/javascript" src="../js/fx.js"></script>
+	<script type="text/javascript" src="../js/zeptoSlide.js"></script>
+	<script type="text/javascript" src="../js/vue.min.js"></script>
+	<script type="text/javascript" src="../js/global.js"></script>
+	<script type="text/javascript" src="../js/public.js"></script>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el: 'body',
+			data: {
+				item: JSON.parse(localStorage.storeOrderDetail)
+			},
+			methods: {
+				sure: function(item) {
+					submitInfo(item);
+				}
+			},
+			ready: function() {}
+		});
+
+		function submitInfo(item) {
+			if($("#sendInfo").val().trimRight() == ""){
+				plus.nativeUI.alert("请填写备注");
+				return;
+			}
+			mui.ajax({
+				url: getBaseServerUrl() + '/app/order/createStoreNoticeRecord',
+				dataType: 'json',
+				contentType: "application/json",
+				data: JSON.stringify({
+					empId: localStorage.empId,
+					id: item.tlNo,
+					ckNo: item.ckCardNo,
+					productId: item.productId,
+					remark: $("#sendInfo").val().trimRight()
+				}),
+				type: 'post',
+				success: function(jsonData) {
+					$("#sendInfo").val("");
+					alertMsg(jsonData.msg);
+				},
+				error: function(XMLHttpRequest, textStatus, errorThrown) {}
+			});
+		}
+	</script>
+
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 	<head>
 		<meta charset="UTF-8">
 		<title>店面商品跟单</title>
@@ -14,105 +15,96 @@
 		<link rel="stylesheet" href="../css/yhn.css" />
 	</head>
 	<style>
-		.y-gendan-card2{height:auto;margin-top:-.4rem}
-		.y-gendan-card2:first-child{height:auto;margin-top:0;}
-		.y-gendan-card2>p{height:1rem;line-height:1rem;border-top:1px solid #ddd;background-color:transparent}
-		.y-gendan-card2>p>span{color:#333}
-		.searchDiv input{font-size: 0.4rem;}
+		.y-gendan-card2 {
+			height: auto;
+			margin-top: -.4rem
+		}
+		
+		.y-gendan-card2:first-child {
+			height: auto;
+			margin-top: 0;
+		}
+		
+		.y-gendan-card2>p {
+			height: 1rem;
+			line-height: 1rem;
+			border-top: 1px solid #ddd;
+			background-color: transparent
+		}
+		
+		.y-gendan-card2>p>span {
+			color: #333
+		}
+		
+		.searchDiv input {
+			font-size: 0.4rem;
+		}
+		
 		.workTask .searchDiv input {
-		    background-size: 0.4rem 0.4rem;
-		    background-position: 26% 0.3rem;
+			background-size: 0.4rem 0.4rem;
+			background-position: 26% 0.3rem;
 		}
-		.workTask .searchDiv input:focus{
-		    background-size: 0.4rem 0.4rem;
-		    background-position: 0.1rem 0.3rem;
+		
+		.workTask .searchDiv input:focus {
+			background-size: 0.4rem 0.4rem;
+			background-position: 0.1rem 0.3rem;
 		}
+		
 		.g-yuandingdan .m-dinggou-tiaozheng .yishenhe .list-qingdan-box:first-child {
-    background: url(../images/icon-yishenhe.png) no-repeat;
-    background-position: 8.2rem 0.107rem;
-    background-size: contain;
-}
+			background: url(../images/icon-yishenhe.png) no-repeat;
+			background-position: 8.2rem 0.107rem;
+			background-size: contain;
+		}
 	</style>
 
 	<body class="workTask">
-		<div class="header">
-			店面商品跟单
-		</div>
+		<header class="mui-bar mui-bar-nav header">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<span class="title">店面商品跟单</span>
+		</header>
 		<div class="w-content">
 			<div class="searchDiv">
 				<input debounce="500" type="search" placeholder="电话/地址/业主名称">
 			</div>
 			<div class="nav">
-				<div class="tab" name='1'>节点<span class="angle"></span></div>
-				<div class="tab" name='2'>类型<span class="angle"></span></div>
-				<div class="tab" name='3'>阶段<span class="angle"></span></div>
+				<div class="tab" name='1'>商品类型<span class="angle" style="left: 2.7rem;"></span></div>
+				<div class="tab" name='2'>商品状态<span class="angle" style="left: 2.7rem;"></span></div>
+				<div class="tab" name='3'>欠款状态<span class="angle" style="left: 2.7rem;"></span></div>
 				<div class="tip" style="display: none;">
-					<div v-for="item in selectArr" name="{{item}}" class="tab2">{{item | formatType}}</div>
+					<div v-for="item in selectArr" name="{{item}}" class="tab2">{{item | formatStatus}}</div>
 				</div>
 			</div>
 		</div>
 		<section style="margin-top:4.2rem;background:#fff">
-			<div class="y-gendan-card2">
-				<h2>01102010、桌板外墙腻子（外墙腻子0KG）（包）</h2>
+			<div class="y-gendan-card2" v-on:tap="goToDetail(item)"  v-for="item in dataArr" v-if="filterType == '' || filterVal == '' || (filterType == '1' && filterVal == item.productType) || (filterType == '2' && filterVal == item.status)">
+				<h2>{{item.productId}}{{item.productName}}</h2>
 				<div>
-					<span class="left">数量:12</span>
-					<span class="">物流中心仓</span>
+					<span class="left">数量:{{item.qty}}</span>
+					<span class="">{{item.warehouseName}}</span>
 					<span class="right">入库</span>
 				</div>
 				<table>
 					<tr>
 						<td>TL单日期</td>
-						<td>2017-03-20</td>
+						<td>{{item.TLDate}}</td>
 						<td>开单人</td>
-						<td>张晓</td>
+						<td>{{item.createEmpName}}</td>
 					</tr>
 					<tr>
 						<td>送货日期</td>
-						<td>2017-03-20</td>
+						<td>{{item.sendDate}}</td>
 						<td></td>
 						<td></td>
 					</tr>
 					<tr>
 						<td>商品类型</td>
-						<td>订制品</td>
+						<td>{{item.status | formatType}}</td>
 						<td>品牌</td>
-						<td>卓邦</td>
+						<td>{{item.brand}}</td>
 					</tr>
 				</table>
-				<p>备注：<span>斯蒂芬李会计师的</span></p>
+				<p>备注：<span>{{item.remark}}</span></p>
 			</div>
-			
-			<div class="y-gendan-card2">
-				<h2>01102010、桌板外墙腻子（外墙腻子0KG）（包）</h2>
-				<div>
-					<span class="left">数量:12</span>
-					<span class="">物流中心仓</span>
-					<span class="right">入库</span>
-				</div>
-				<table>
-					<tr>
-						<td>TL单日期</td>
-						<td>2017-03-20</td>
-						<td>开单人</td>
-						<td>张晓</td>
-					</tr>
-					<tr>
-						<td>送货日期</td>
-						<td>2017-03-20</td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>商品类型</td>
-						<td>订制品</td>
-						<td>品牌</td>
-						<td>卓邦</td>
-					</tr>
-				</table>
-				<p>备注：<span>斯蒂芬李会计师的</span></p>
-			</div>
-			
-			
 		</section>
 	</body>
 	<script src="../js/zepto1.1.6.min.js" type="text/javascript"></script>
@@ -123,36 +115,120 @@
 	<script type="text/javascript" src="../js/zeptoSlide.js"></script>
 	<script type="text/javascript" src="../js/vue.min.js"></script>
 	<script type="text/javascript" src="../js/global.js"></script>
-    <script>
-			var vm = new Vue({
-				el: "body",
+	<script type="text/javascript" src="../js/public.js"></script>
+	<script>
+		
+		Vue.filter('formatStatus', function(value) {
+			if(value == '0') {
+				if(vm.filterType == '1'){
+					return '定制品';
+				}
+				return '意向';
+			} else if(value == '1') {
+				if(vm.filterType == '1'){
+					return '非定制品';
+				}
+				return '已产生订单';
+			} else if(value == '2') {
+				return '已下单';
+			} else if(value == '3') {
+				return '已入库';
+			} else if(value == '4') {
+				return '待送货';
+			} else if(value == '5') {
+				return '送货中';
+			} else if(value == '6') {
+				return '已送货(未销售)';
+			} else if(value == '7') {
+				return '已送货(已销售)';
+			} else if(value == '8') {
+				return '部分送货';
+			}else if(value == '9') {
+				return '已发加工';
+			}else if(value == '10') {
+				return '部分送货';
+			}
+			return value;
+		})
+		Vue.filter('formatType', function(value) {
+			if(value == '0') {
+				return '定制品';
+			} else if(value == '1') {
+				return '非定制';
+			}
+			return value;
+		})
+
+		var vm = new Vue({
+			el: 'body',
+			data: {
+				dataArr: [],
+				productType: [0,1],
+				productStatus: [],
+				debtArr: [],
+				selectArr: [],
+				filterType: "",
+				filterVal: ""
+			},
+			methods: {
+				goToDetail: function(item) {
+					localStorage.storeOrderDetail = JSON.stringify(item);
+					openNew('gendan-shangpin-details.html');
+				}
+			},
+			ready: function() {
+				init();
+			}
+		});
+
+		function init() {
+			mui.ajax(getBaseServerUrl() + '/app/order/findStoreOrder', {
+				type: 'get', //HTTP请求类型
 				data: {
-					items: []
+					empId: 'admin',
+					query: 'SO-201704190025',
+					goodsType: '',
+					goodsStatus: '',
+					debtStatus: ''
 				},
-				methods: {
-					 
+				success: function(jsonData) {
+					vm.dataArr = jsonData.data;
+					for(var i = 0; i < vm.dataArr.length; i++) {
+						if(vm.productStatus.indexOf(vm.dataArr[i].status) == -1) {
+							vm.productStatus.push(vm.dataArr[i].status);
+						}
+					}
+
 				},
-				ready: function() {
-					init();
+				error: function() {}
+			});
+		}
+		$(function() {
+			$(".nav").on('tap', '.tab', function() {
+				$('.tip').css('display', 'block');
+				$('.tip').css('left', $(this).position().left);
+				if($(this).attr('name') == '1') {
+					vm.filterType = '1';
+					vm.selectArr = vm.productType;
+				} else if($(this).attr('name') == '2') {
+					vm.filterType = '2';
+					vm.selectArr = vm.productStatus;
+				} else if($(this).attr('name') == '3') {
+					vm.filterType = '3';
+					vm.selectArr = vm.debtArr;
 				}
 			});
 
-			function init() {
-				mui.ajax(getBaseServerUrl() + '/app/order/findStoreOrder', {
-					type: 'get', //HTTP请求类型
-					data: {
-						empId:'admin',
-						query:'',
-						goodsType:'',
-						goodsStatus:'',
-						debtStatus:''
-					},
-					success: function(jsonData) {
-						console.log(jsonData)
-						
-					},
-					error: function(XMLHttpRequest, textStatus, errorThrown) {}
-				});
-			}
-		</script>
+			$(".tip").on('tap', '.tab2', function() {
+				vm.filterVal = $(this).attr('name');
+			});
+
+			document.addEventListener('tap', function(e) {
+				if($(e.target).attr('class') != 'tab') {
+					$('.tip').css('display', 'none');
+				}
+			})
+		});
+	</script>
+
 </html>
