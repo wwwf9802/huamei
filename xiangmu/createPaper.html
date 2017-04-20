@@ -189,7 +189,6 @@
 		$("#submitBtn").on("tap",function(){
 			plus.webview.getWebviewById("photoList.html").evalJS("addPhoto("+"'"+createPaperVM.photoName+"'"+")");
 			plus.webview.currentWebview().opener().opener().evalJS("init()");
-			alert(123);
 			//plus.webview.getTopWebview.evalJS("init()");
 		});
 	</script>
