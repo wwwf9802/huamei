@@ -18,6 +18,20 @@
 		.y-gendan-card2:first-child{height:auto;margin-top:0;}
 		.y-gendan-card2>p{height:1rem;line-height:1rem;border-top:1px solid #ddd;background-color:transparent}
 		.y-gendan-card2>p>span{color:#333}
+		.searchDiv input{font-size: 0.4rem;}
+		.workTask .searchDiv input {
+		    background-size: 0.4rem 0.4rem;
+		    background-position: 26% 0.3rem;
+		}
+		.workTask .searchDiv input:focus{
+		    background-size: 0.4rem 0.4rem;
+		    background-position: 0.1rem 0.3rem;
+		}
+		.g-yuandingdan .m-dinggou-tiaozheng .yishenhe .list-qingdan-box:first-child {
+    background: url(../images/icon-yishenhe.png) no-repeat;
+    background-position: 8.2rem 0.107rem;
+    background-size: contain;
+}
 	</style>
 
 	<body class="workTask">
@@ -109,5 +123,36 @@
 	<script type="text/javascript" src="../js/zeptoSlide.js"></script>
 	<script type="text/javascript" src="../js/vue.min.js"></script>
 	<script type="text/javascript" src="../js/global.js"></script>
+    <script>
+			var vm = new Vue({
+				el: "body",
+				data: {
+					items: []
+				},
+				methods: {
+					 
+				},
+				ready: function() {
+					init();
+				}
+			});
 
+			function init() {
+				mui.ajax(getBaseServerUrl() + '/app/order/findStoreOrder', {
+					type: 'get', //HTTP请求类型
+					data: {
+						empId:'admin',
+						query:'',
+						goodsType:'',
+						goodsStatus:'',
+						debtStatus:''
+					},
+					success: function(jsonData) {
+						console.log(jsonData)
+						
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {}
+				});
+			}
+		</script>
 </html>

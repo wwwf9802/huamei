@@ -46,13 +46,13 @@
 										开工日期
 									</div>
 									<div class="td">
-										 2017-03-12
+										 {{dataArr.siteSchedule.startDate}}
 									</div>
 									<div class="td th">
 										合同日期
 									</div>
 									<div class="td">
-										 2017-03-12
+										 {{dataArr.siteSchedule.contractDate}}
 									</div>
 								</div>
 								<div class="tr">
@@ -60,7 +60,7 @@
 										项目经理
 									</div>
 									<div class="td">
-										xxx
+										 {{dataArr.customer.customerName}}
 									</div>
 								</div>
 								<div class="tr tr-jieduan">
@@ -68,7 +68,7 @@
 										项目阶段
 									</div>
 									<div class="td td-jieduan">
-										 泥水阶段
+										  {{dataArr.siteSchedule.stageName}}
 									</div>
 								</div>
 							</a>
@@ -77,74 +77,25 @@
 				</div>
 				<div class="item-pro-list">
 					<div class="head">
-						<a v-on:click="toProjectDetail(item.sitesSchedule.sitesId,item.sitesRecord.contractId,item)">
+						<a>
 							<div class="head-center">跟单信息</div>
 							<span class="see-more">查看更多跟单信息</span>
 						</a>
 					</div>
-
 					<div class="list-qingdan">
-						 <div class="item-gendan weigou">
+						  <div v-for='item in dataArr.notice'  class="item-gendan weigou" :class="{'yi_ngou':item.purchaseType == 20}">
 						 	 <div class="gendan-list">
 						 	 	 <div class="list ">
 						 	 	 	<span class="name">
-						 	 	 		蹲厕马桶
+						 	 	 		{{item.goodsType}}
 						 	 	 	</span>
 						 	 	 	<span class="goumai-detail">
-						 	 	 		未购
+						 	 	 		{{item.purchaseType | formatGou }}
 						 	 	 	</span>
 						 	 	 </div>
 						 	 	 <div class="list time">
 						 	 	 	<div class="wen">计划采购日期</div>
-						 	 	 	<div class="time-num">2017-03-10</div>
-						 	 	 </div>
-						 	 </div>
-						 </div>
-						 <div class="item-gendan weigou">
-						 	 <div class="gendan-list">
-						 	 	 <div class="list ">
-						 	 	 	<span class="name">
-						 	 	 		蹲厕马桶
-						 	 	 	</span>
-						 	 	 	<span class="goumai-detail">
-						 	 	 		未购
-						 	 	 	</span>
-						 	 	 </div>
-						 	 	 <div class="list time">
-						 	 	 	<div class="wen">计划采购日期</div>
-						 	 	 	<div class="time-num">2017-03-10</div>
-						 	 	 </div>
-						 	 </div>
-						 </div>
-						 <div class="item-gendan weigou">
-						 	 <div class="gendan-list">
-						 	 	 <div class="list ">
-						 	 	 	<span class="name">
-						 	 	 		蹲厕马桶
-						 	 	 	</span>
-						 	 	 	<span class="goumai-detail">
-						 	 	 		未购
-						 	 	 	</span>
-						 	 	 </div>
-						 	 	 <div class="list time">
-						 	 	 	<div class="wen">计划采购日期</div>
-						 	 	 	<div class="time-num">2017-03-10</div>
-						 	 	 </div>
-						 	 </div>
-						 </div>
-						 <div class="item-gendan weigou yi_ngou">
-						 	 <div class="gendan-list">
-						 	 	 <div class="list ">
-						 	 	 	<span class="name">
-						 	 	 		蹲厕马桶
-						 	 	 	</span>
-						 	 	 	<span class="goumai-detail">
-						 	 	 		已内购
-						 	 	 	</span>
-						 	 	 </div>
-						 	 	 <div class="list time">
-						 	 	 	<div class="wen">计划采购日期</div>
-						 	 	 	<div class="time-num">2017-03-10</div>
+						 	 	 	<div class="time-num">{{item.purchaseTime}}</div>
 						 	 	 </div>
 						 	 </div>
 						 </div>
@@ -204,13 +155,23 @@
 	                return true;
 	            }
 	            return false;
-            }   
+            } 
+            Vue.filter('formatGou',function(value){
+                if(value == 10){
+                	return '未购'
+                }else{
+                	return '已购'
+                }
+            })  
 			var gendanVM=new Vue({
 				el:'body',
 				data:{
                      items:[
                      ],
-                     boolean:false
+                     boolean:false,
+                     dataArr:{
+
+                     }           
 				},
 				methods:{
                    tijiao(){
@@ -228,8 +189,27 @@
                    }
 				},
 				ready(){
+					init()
 				}
 			})
+			function init() {
+				//获取工地信息
+				mui.ajax(getBaseServerUrl() + '/app/order/findHomeOrderDetail',{
+					type: 'get', //HTTP请求类型
+					data: {
+						empId:'admin',
+						siteId:localStorage.selectSitesId,
+						customerId:localStorage.selectcustomerId 
+					},
+					success: function(jsonData) {
+						gendanVM.dataArr = jsonData.data;
+						console.log(JSON.stringify( gendanVM.dataArr));
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {
+						console.log('error')
+					}
+				});
+			}
 		</script>
 	</body>
 </html>
