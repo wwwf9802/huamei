@@ -79,6 +79,8 @@
 					esn: ''
 				},
 				success: function(jsonData) {
+					localStorage.empId = jsonData.id;
+					localStorage.empName = jsonData.empName;
 					console.log(JSON.stringify(jsonData));
 					
 					/*if(jsonData.hasOwnProperty("empOrg")) {

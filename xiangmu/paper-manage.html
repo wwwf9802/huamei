@@ -259,7 +259,7 @@
 				mui.ajax(getBaseServerUrl() + '/sites/sitesDrawing/querySitesDrawingAll', {
 					type: 'get', //HTTP请求类型
 					data: {
-						sitesId:'1',
+						sitesId:localStorage.selectSitesId,
 					},
 					success: function(jsonData) {
 						console.log(jsonData);

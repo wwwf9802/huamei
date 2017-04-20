@@ -232,6 +232,7 @@
 						localStorage.xiangmuData=JSON.stringify(item);
 						localStorage.selectSitesId = sitesId;
 						localStorage.selectContractId = contractId;
+						localStorage.customerId = item.sitesRecord.customerId;
 						openNew("xiangmu/project-details.html");
 					},
 					cancelSearch: function() {
