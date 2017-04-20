@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>安装评价</title>
+		<title>添加商品</title>
 		<!-- Mobile Devices Support @begin -->
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
@@ -58,11 +58,11 @@
 				<h1>{{dataArr.id}}/{{dataArr.productName}}</h1>
 				<div>
 					<span></span>
-					<div class="y-sub-box">
+					<div @click='changeCount(-1)' class="y-sub-box">
 						<img class="y-sd-icon" src="../images/icon-sub.png" alt="" />
 					</div>
-					<strong>1</strong>						
-					<div class="y-add-box">
+					<strong>{{m}}</strong>						
+					<div @click='changeCount(1)' class="y-add-box">
 						<img class="y-sd-add y-sd-icon" src="../images/icon-add.png" alt="" />
 					</div>
 				</div>
@@ -84,7 +84,7 @@
 				</div>
 				<div>
 					<p>小计：</p>
-					<p><b>¥800</b></p>
+					<p><b>¥{{dataArr.price * m}}</b></p>
 				</div>
 			</div>
 			
@@ -97,7 +97,8 @@
 				</li>
 				<li class="mui-table-view-cell">
 					<a data-arr="arr2" class="a-choice mui-navigate-right">
-						<input class="right" placeholder="输入色号">点击选择</span>
+					    色号:
+						<input class="right" placeholder="输入色号"></span>
 					</a>
 				</li>
 				<li class="mui-table-view-cell">
@@ -139,7 +140,7 @@
 		
 		<footer class="y-sd-footer">
 			<img id="shoppingCart" src="../images/icon-gwc.png" alt="" />
-			<span>已选产品(4)</span>
+			<span>已选产品({{m}})</span>
 			<div>提交</div>
 		</footer>
 	</body>
@@ -152,9 +153,22 @@
 			var vm = new Vue({
 				el: "body",
 				data: {
-					dataArr: []
+					dataArr: [],
+					m:1
 				},
-				methods: {},
+				methods: {
+					changeCount(m){
+						if (m >= 1) {
+							this.m++
+						} else {
+							if (this.m == 1) {
+								this.m = 1;
+							} else {
+								this.m--;
+							}
+						}
+					}
+				},
 				ready: function() {
 					init('01093205');
 				}
@@ -168,8 +182,10 @@
 						productId: productId
 					},
 					success: function(jsonData) {
+						 
 						if(jsonData.status) {
 							vm.dataArr = jsonData.data;
+							console.log(vm.dataArr)
 						} else {
 							plus.nativeUI.alert(jsonData.msg);
 						}
