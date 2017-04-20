@@ -1266,8 +1266,48 @@
 .g-renwu-mingxi .user-info.m-shuidian-detail{
 	background:none;
 	text-indent: 1em;
-	margin-top:0.267rem;
+	margin-top:0rem;
 	height:auto;
+	background-color: #ffffff;
+	padding-bottom: 0.267rem;
+}
+.g-renwu-mingxi .user-info.m-shuidian-detail:first-child{
+	margin-top:0.267rem;
+	padding-top: 0.267rem;
+}
+.g-renwu-mingxi .user-info.m-shuidian-detail .name{
+	 color:#fb8f32;
+}
+.g-renwu-mingxi .user-info.m-shuidian-detail .daiqueren{
+	 color:#fb8f32;
+}
+.g-renwu-mingxi .item-pro-details-shuidian .info-paigong .list{
+	margin-top: 0rem;
+	font-size: 0.4rem;
+	height:1.2rem;
+	line-height: 1.2rem;
+	border-bottom: 1px solid #dddddd;
+}
+
+.g-renwu-mingxi .item-pro-details-shuidian .info-paigong {
+     padding-top: 0rem !important; 
+}
+.g-renwu-mingxi .item-pro-details-shuidian .info-paigong .list .pro-des{
+	 float:left;
+	 display: inline-block;
+	 width:70%;
+	 text-align: left;
+	 text-indent: 1em;
+}
+.g-renwu-mingxi .item-pro-details-shuidian .info-paigong .list .pro-num{
+	 float:right;
+	 display: inline-block;
+	 width:30%;
+	 text-align: left;
+	 text-indent: 2em;
+}
+.g-renwu-mingxi .item-pro-details-shuidian .info-paigong .list .pro-num span{
+	 color:red;
 }
 .g-renwu-mingxi .user-info.m-shuidian-detail .sub-title{
 	padding-top: 0rem;
