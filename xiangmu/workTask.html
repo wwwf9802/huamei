@@ -13,11 +13,15 @@
 		<link rel="stylesheet" type="text/css" href="../css/common.css">
 		<link rel="stylesheet" type="text/css" href="../css/ww.css">
 	</head>
-
+    <style>
+    	.header-right{top:0 !important;left:2.8rem !important}
+    </style>
 	<body class="workTask">
-		<div class="header">
-			工地任务
-		</div>
+		<header class="mui-bar mui-bar-nav header">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<span class="title">工地任务</span>
+			<span id="add" class="header-right mui-icon mui-icon-plus"></span>
+		</header>
 		<div class="w-content">
 			<div class="searchDiv">
 				<input debounce="500" type="search" placeholder="电话/地址/业主名称">
@@ -36,7 +40,7 @@
 						<!--<i name=".item1" class="arrow"></i>-->
 					</div>
 					<ul class="branch item1" style="height: auto;">
-						<li v-for="item in dataArr" v-if="filterType == '' || filterVal == '' || (filterType == '1' && filterVal == item.scheduleName) || (filterType == '2' && filterVal == item.taskCategory) || (filterType == '3' && filterVal == item.scheduleStage)">
+						<li v-for="item in dataArr" v-on:tap="toDetail(item)" v-if="filterType == '' || filterVal == '' || (filterType == '1' && filterVal == item.scheduleName) || (filterType == '2' && filterVal == item.taskCategory) || (filterType == '3' && filterVal == item.scheduleStage)">
 							<div class="item">
 								<div class="name"><span>{{item.taskName}}</span><span class="right">{{item.state | formatStatus}}</span></div>
 								<div class="txt">
@@ -61,6 +65,7 @@
 	<script type="text/javascript" src="../js/zeptoSlide.js"></script>
 	<script type="text/javascript" src="../js/vue.min.js"></script>
 	<script type="text/javascript" src="../js/global.js"></script>
+	<script type="text/javascript" src="../js/public.js" ></script>
 	<script>
 		Vue.filter('formatStatus', function(value) {
 			if(value == '10'){
@@ -95,7 +100,12 @@
 				filterType:"",
 				filterVal:""
 			},
-			methods: {},
+			methods: {
+				toDetail :function(item){
+					localStorage.taskId = item.id;
+					openNew('renwu-paigong.html');
+				}
+			},
 			ready: function() {
 				init();
 			}
@@ -126,6 +136,10 @@
 				error: function() {}
 			});
 		}
+		
+		$("#add").on('tap',function(){
+			openNew('creat-task.html');
+		});
 		$(function() {
 //			$(".arrow").on('tap', function() {
 //				$(this).toggleClass('active');

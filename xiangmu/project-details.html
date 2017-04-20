@@ -31,7 +31,7 @@
 						工地进度
 					</a>
 				</div>
-				<div class="list renwu" data-page="xiangmu-kanban.html">
+				<div class="list renwu" data-page="workTask.html">
 					<a>
 						工地任务
 					</a>
@@ -93,6 +93,11 @@
 						项目看板
 					</a>
 				</div>
+				<div class="list youqi" data-page="ticket.html">
+					<a>
+						罚款单
+					</a>
+				</div>
 
 			</div>
 		</div>
@@ -129,8 +134,8 @@
 				mui.ajax(getBaseServerUrl() + '/sites/sitesTask/queryTaskNum', {
 					type: 'get', 
 					data: {
-						empId:1,
-						empName:'aa',
+						empId:localStorage.empId,
+						empName:localStorage.empName,
 						sitesId: localStorage.selectSitesId
 					},
 					success: function(jsonData) {

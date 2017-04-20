@@ -93,7 +93,7 @@
             mui.ajax(getBaseServerUrl() + '/app/customerInfo/findCustomerInfo', {
                 type: 'get', //HTTP请求类型
                 data: {
-                    customerInfoId: 1
+                    customerInfoId: localStorage.customerId
                 },
                 success: function(jsonData) {
                     yezhuVM.dataArr = jsonData;

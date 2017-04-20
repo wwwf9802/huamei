@@ -34,6 +34,9 @@
 			color: #333
 		}
 		.mui-btn-blue{background-color:#EB6D00 !important;border:1px solid #EB6D00 !important}
+		.btn-div{background-color: white;text-align: center;height: 1.6rem;border-top: 1px solid #eee;}
+.btn-div span{background-color:#EB6D00;color: white;padding: 0.3rem 3.3rem;line-height: 1.6rem;font-size: 0.45rem;border-radius: 0.15rem;}
+.btn-div span:active{background-color:#c96d00;}
 	</style>
 
 	<body>
@@ -44,25 +47,19 @@
 		<section class="under-top">
 			<ul class="mui-table-view">
 				<li class="mui-table-view-cell">
-					<a data-arr="arr1" class="a-choice mui-navigate-right">
+					<a data-arr="taskArr" class="a-choice mui-navigate-right">
 						任务类型
 						<span class="right">点击选择</span>
 					</a>
 				</li>
 				<li class="mui-table-view-cell">
-					<a data-arr="arr2" class="a-choice mui-navigate-right">
+					<a data-arr="nodeArr" class="a-choice mui-navigate-right">
 						所属节点
 						<span class="right">点击选择</span>
 					</a>
 				</li>
 				<li class="mui-table-view-cell">
-					<a data-arr="arr2" class="a-choice mui-navigate-right">
-						任务说明
-						<span class="right">点击选择</span>
-					</a>
-				</li>
-				<li class="mui-table-view-cell">
-					<a data-arr="arr2" class="a-choice mui-navigate-right">
+					<a data-arr="userArr" class="a-choice mui-navigate-right">
 						接收人
 						<span class="right">点击选择</span>
 					</a>
@@ -73,7 +70,14 @@
 						<span class="right">点击选择</span>
 					</a>
 				</li>
+				<li class="mui-table-view-cell" style="font-size: 0.4rem;">
+					 任务说明
+					<textarea id="txt" style="margin-top: 0.2rem;"></textarea>
+				</li>
 			</ul>
+			<div class="btn-div">
+				<span id="sure" class="btn">申请</span>
+			</div>
 		</section>
 	</body>
 	<script src="../js/zepto1.1.6.min.js"></script>
@@ -81,80 +85,103 @@
 	<script src="../js/picker/mui.picker.min.js"></script>
 	<script src="../js/picker/mui.poppicker.js"></script>
 	<script src="../js/vue.min.js"></script>
+	<script type="text/javascript" src="../js/global.js" ></script>
 	<script>
 		var arr = [];
 		var vm = new Vue({
-			el: '#goodsList',
+			el: 'body',
 			data: {
-				arr1: [{
-					valu: 'ywj',
-					text: '董事长 叶文洁'
+				taskArr: [{
+					value: '10',
+					text: '通知消息类'
 				}, {
-					valu: 'aaa',
-					text: '总经理 艾AA'
-				}, {
-					valu: 'lj',
-					text: '罗辑'
-				}, {
-					valu: 'ymt',
-					text: '云天明'
-				}, {
-					valu: 'shq',
-					text: '史强'
-				}, {
-					valu: 'zhbh',
-					text: '章北海'
-				}, {
-					valu: 'zhy',
-					text: '庄颜'
-				}, {
-					valu: 'gyf',
-					text: '关一帆'
-				}, {
-					valu: 'zhz',
-					text: '智子'
-				}, {
-					valu: 'gezh',
-					text: '歌者'
+					value: '20',
+					text: '执行任务类'
 				}],
-				arr2: [{
-					valu: 'ywj',
-					text: '董事长 2叶文洁'
-				}, {
-					valu: 'aaa',
-					text: '总经理 2艾AA'
-				}, {
-					valu: 'lj',
-					text: '2罗辑'
-				}, {
-					valu: 'ymt',
-					text: '2云天明'
-				}, {
-					valu: 'shq',
-					text: '2史强'
-				}, {
-					valu: 'zhbh',
-					text: '2章北海'
-				}, {
-					valu: 'zhy',
-					text: '2庄颜'
-				}, {
-					valu: 'gyf',
-					text: '2关一帆'
-				}, {
-					valu: 'zhz',
-					text: '2智子'
-				}, {
-					valu: 'gezh',
-					text: '2歌者'
-				}],
+				nodeArr:[],
+				userArr:[],
+				taskCategory:'',
+				scheduleId :'',
+				user :'',
+				userName :'',
+				endDate:''
 			},
 			methods: {
-				changeArr: function(e) {}
 			},
 			ready: function() {
-				getCarMessage();
+				init();
 			}
+		});
+		
+		function init() {
+			mui.ajax(getBaseServerUrl() + '/sites/sitesSchedule/queryScheduleNodeListBySites', {
+				type: 'get', //HTTP请求类型
+				data: {
+					sitesId: '1'
+				},
+				success: function(jsonData) {
+					for (var i = 0; i < jsonData.data.length; i++) {
+						vm.nodeArr.push({text:jsonData.data[i].nodeName,value:jsonData.data[i].id});
+					}
+				},
+				error: function() {}
+			});
+			mui.ajax(getBaseServerUrl() + '/app/sitesEmp/findSitesEmpList', {
+				type: 'get', //HTTP请求类型
+				data: {
+					sitesRecordId: localStorage.selectSitesId
+				},
+				success: function(jsonData) {
+					for (var i = 0; i < jsonData.data.length; i++) {
+						vm.userArr.push({text:jsonData.data[i].empName,value:jsonData.data[i].empId});
+					}
+				},
+				error: function() {}
+			});
+		}
+		
+		$("#sure").on('tap',function(){
+			if(vm.taskCategory == ""){
+				plus.nativeUI.alert("请选择任务类型");
+				return;
+			}
+			if(vm.scheduleId == ""){
+				plus.nativeUI.alert("请选择所属节点");
+				return;
+			}
+			if(vm.receive == ""){
+				plus.nativeUI.alert("请选择接收人");
+				return;
+			}
+			if(vm.planFinishTime == ""){
+				plus.nativeUI.alert("请选择完成时间");
+				return;
+			}
+			if($("#txt").val().trim() == ""){
+				plus.nativeUI.alert("请输入任务说明");
+				return;
+			}
+			mui.ajax({
+					url: getBaseServerUrl() + '/sites/sitesTask/saveTask',
+					dataType: 'json',
+					contentType: "application/json",
+					data: JSON.stringify({
+						sitesId:localStorage.selectSitesId,
+						froms : 'admin',
+						fromsEmpId : "admin",
+						receiveEmpId : vm.user,
+						receive: vm.userName,
+						taskCategory: vm.taskCategory,
+						scheduleId: vm.scheduleId,
+						planFinishTime: vm.endDate,
+						content: $("#txt").val()
+					}),
+					type: 'post',
+					success: function(jsonData) {
+						plus.nativeUI.alert(jsonData.msg);
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {}
+				});
 		});
 
 		(function($, doc, Zepto) {
@@ -168,8 +195,17 @@
 					var index = Zepto(this).data("arr");
 					var arr = vm[index];
 					userPicker.setData(arr);
+					userPicker.type = index;
 					userPicker.show(function(items) {
 						Zepto(that).find("span").addClass("active").html(items[0].text);
+						if(userPicker.type === "taskArr"){
+							vm.taskCategory = items[0].value;
+						}else if(userPicker.type === "nodeArr"){
+							vm.scheduleId = items[0].value;
+						}else if(userPicker.type === "userArr"){
+							vm.user = items[0].value;
+							vm.userName = items[0].text;
+						}
 						//返回 false 可以阻止选择框的关闭
 						//return false;
 					});
@@ -188,28 +224,8 @@
 				 */
 				var picker = new $.DtPicker(options);
 				picker.show(function(rs) {
-					/*
-					 * rs.value 拼合后的 value
-					 * rs.text 拼合后的 text
-					 * rs.y 年，可以通过 rs.y.vaue 和 rs.y.text 获取值和文本
-					 * rs.m 月，用法同年
-					 * rs.d 日，用法同年
-					 * rs.h 时，用法同年
-					 * rs.i 分（minutes 的第二个字母），用法同年
-					 */
 					Zepto(that).find("span").addClass("active").html(rs.text);
-					//result.innerText = '选择结果: ' + rs.text;
-					/* 
-					 * 返回 false 可以阻止选择框的关闭
-					 * return false;
-					 */
-					/*
-					 * 释放组件资源，释放后将将不能再操作组件
-					 * 通常情况下，不需要示放组件，new DtPicker(options) 后，可以一直使用。
-					 * 当前示例，因为内容较多，如不进行资原释放，在某些设备上会较慢。
-					 * 所以每次用完便立即调用 dispose 进行释放，下次用时再创建新实例。
-					 */
-					//picker.dispose();
+					vm.endDate = rs.text;
 				});
 			}, false);
 		})(mui, document, Zepto);

@@ -61,15 +61,15 @@
 		<script src='js/swiper-3.3.1.min.js' type="text/javascript"></script>
 		<script src='js/mui.min.js'></script>
 		<script src='js/vue.min.js'></script>
-		<script type="text/javascript" src="js/global.js"></script>
+		<script type="text/javascript" src="js/global.js" ></script>
 	</body>
 	<script>
 		$("#login").on('tap', function() {
             init();
 		});
-
+        init();
 		function init() {
-			mui.ajax(getBaseServerUrl1() + '/system/user/login', {
+			mui.ajax(getBaseServerUrl() + '/system/user/login', {
 				type: 'get', //HTTP请求类型
 				data: {
 					tenantId: 'humello',
@@ -79,6 +79,8 @@
 					esn: ''
 				},
 				success: function(jsonData) {
+					localStorage.empId = jsonData.id;
+					localStorage.empName = jsonData.empName;
 					console.log(JSON.stringify(jsonData));
 					
 					/*if(jsonData.hasOwnProperty("empOrg")) {
