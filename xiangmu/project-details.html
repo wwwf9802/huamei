@@ -31,7 +31,7 @@
 						工地进度
 					</a>
 				</div>
-				<div class="list renwu" data-page="xiangmu-kanban.html">
+				<div class="list renwu" data-page="workTask.html">
 					<a>
 						工地任务
 					</a>
@@ -78,12 +78,12 @@
 						预算
 					</a>
 				</div>
-				<div class="list shuidian" data-page="xiadan-shuidian-list.html">
+				<div class="list shuidian" id="sdxiadan">
 					<a>
 						水电材料下单
 					</a>
 				</div>
-				<div class="list youqi" data-page="xiadan-youqi-list.html">
+				<div class="list youqi" id="yqxiadan">
 					<a>
 						油漆辅料下单
 					</a>
@@ -91,6 +91,11 @@
 				<div class="list youqi" data-page="xiangmu-kanban.html">
 					<a>
 						项目看板
+					</a>
+				</div>
+				<div class="list youqi" data-page="ticket.html">
+					<a>
+						罚款单
 					</a>
 				</div>
 
@@ -129,8 +134,8 @@
 				mui.ajax(getBaseServerUrl() + '/sites/sitesTask/queryTaskNum', {
 					type: 'get', 
 					data: {
-						empId:1,
-						empName:'aa',
+						empId:localStorage.empId,
+						empName:localStorage.empName,
 						sitesId: localStorage.selectSitesId
 					},
 					success: function(jsonData) {
@@ -144,6 +149,7 @@
 				});
 			}
 			$(".item-lists").on('tap', '.list', function() {
+				if(!$(this).data('page')){return}
 				openNew($(this).data('page'));
 			});
 
@@ -162,6 +168,17 @@
 				spaceBetween: 0,
 				centeredSlides: true,
 				autoplayDisableOnInteraction: false
+			})
+			
+			$("#sdxiadan").on("tap",function(){
+				localStorage.sdyqTypeId="10";
+				openNew("xiadan-shuidian-list.html");
+				
+			})
+			$("#yqxiadan").on("tap",function(){
+				localStorage.sdyqTypeId="20";
+				openNew("xiadan-shuidian-list.html");
+				
 			})
 		</script>
 	</body>

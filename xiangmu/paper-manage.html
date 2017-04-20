@@ -63,14 +63,14 @@
 				<h1>
 					<span></span>
 					设计图
-					<strong class="right" style="display:block">新增</strong>
+					<strong id="addclass1" class="right" style="display:block">新增</strong>
 				</h1>
 			</div>
 			<div class="swiper-container">
 				<div class="swiper-wrapper">
 					<div class="swiper-slide y-swiper1" v-for="(index,key) in dataArr[0].sitesDrawVoList">
 						<img @tap="goToPath(key,'0',index)" src="{{key.sitesDrawingList[0].pictureUrl | formatURL}}" alt="" />
-						<p>{{key.drawType}}{{key.sitesDrawingList.length}}</p>
+						<p>{{key.drawType}}({{key.sitesDrawingList.length}})</p>
 					</div>
 				</div>
 			</div>
@@ -80,7 +80,7 @@
 					<h1>
 						<span></span>
 						商品定制图
-						<strong class="right active" id="y-add">新增</strong>
+						<strong class="right active" id="addclass2">新增</strong>
 						<!--<strong class="right active" id="y-edit" style="color:#666">编辑</strong>-->
 						<strong class="right" id="y-cance" style="color:#666">取消</strong>
 						<strong class="right" id="y-save" style="color:#1D88DC">保存</strong>
@@ -106,8 +106,8 @@
 				
 				<div class="y-imgListBox" v-for="(index,key) in dataArr[1].sitesDrawVoList">
 					<aside class="left">
-						<img src="../images/icon-jia.png" alt="" />
-						<h1>{{key.drawType}}</h1>
+						<!--<img src="../images/icon-jia.png" alt="" />-->
+						<h1 style="margin-top:1.6rem">{{key.drawType}}</h1>
 						<p></p>
 					</aside>
 					
@@ -259,7 +259,7 @@
 				mui.ajax(getBaseServerUrl() + '/sites/sitesDrawing/querySitesDrawingAll', {
 					type: 'get', //HTTP请求类型
 					data: {
-						sitesId:'1',
+						sitesId:localStorage.selectSitesId,
 					},
 					success: function(jsonData) {
 						console.log(jsonData);
@@ -277,7 +277,15 @@
 				});
 			}
 		
+			$(addclass1).on("tap",function(){
+				localStorage.addClassID=1;
+				openNew("createPaperClass.html");
+			});
 			
+			$(addclass2).on("tap",function(){
+				localStorage.addClassID=2;
+				openNew("createPaperClass.html");
+			});
 		/*$(d1).click(function(){
 			init();
 		});*/

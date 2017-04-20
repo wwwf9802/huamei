@@ -41,7 +41,7 @@
 				<p>{{item.id}} <span class="right" :class="{'sure':!item.status == 10}">{{item.status | formatWen}}</span></p>
 				<h2>创建日期：{{item.createTime}} </h2>
 				<h2>数量：{{item.qty}} </h2>
- 				<div v-show='item.status == 10' class="gotoPath">去确认</div>
+ 				<div @tap.stop.prevent="goToSonPage(item)" v-show='item.status == 10' >去确认</div>
 			</div>
 
 		</section>
@@ -51,7 +51,6 @@
 	<script src="../js/mui.min.js"></script>
 	<script src="../js/zepto1.1.6.min.js"></script>
 	<script src="../js/vue.min.js"></script>
-	<script src='../js/mui.min.js'></script>
 	<script>
 	     
         var vm = new Vue({
@@ -60,6 +59,10 @@
                 dataArr: []
             },
             methods: {
+            	goToSonPage:function(item){
+            		localStorage.cailiaoData=JSON.stringify(item);
+            		openNew("xiadan-shuidian-details.html");
+            	}
             },
             filters:{
             	formatWen:function(value){
@@ -95,9 +98,10 @@
                 }
             });
         }
-        add.addEventListener("tap",function(){
+		
+		
+		$("#add").on("tap",function(){
 			openNew("xiadan-shuidian.html");
 		});
-		
 	</script>
 </html>
