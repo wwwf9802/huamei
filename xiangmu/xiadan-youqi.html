@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>水电材料下单</title>
+		<title>油漆材料下单</title>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
 		<meta content="yes" name="apple-mobile-web-app-capable">
@@ -138,8 +138,7 @@
 	<body>
 		<header class="mui-bar mui-bar-nav header">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<span class="title">水电材料下单</span>
-			<button id="d1">点击123</button>
+			<span class="title">油漆材料下单</span>
 		</header>
 		<div class="p-box under-top">
 			<div class="p-box-title">东莞南城区南城花园一期A栋2306</div>
@@ -282,7 +281,7 @@
 						this.nums++;
 						$(ele).parent().prev().text(num);
 						shoppingCartAnimate(ele);
-						obj1={
+						obj={
 	                       productId: key.id,
 	                       productName: key.materialName,
 	                       productSpec: "01",
@@ -291,19 +290,6 @@
 	                       productClass: key.productClass,
 	                       productClassName:key.productClassName
                     	};
-                    	
-                    	var obj={
-		                       "productId": "01093205",
-		                       "productName": "欧盛家俱拉手OLS-LS-5706-96-PA",
-		                       "brand": "000084",
-		                       "productSpec": "OLS-LS-5706-96-PA",
-		                       "productUnit": "zhi",
-		                       "qty": "11",
-		                       "isColor": "0", 
-		                       "isCustomized": "0",
-		                       "productClass": "03060101",
-		                       "productClassName": "水电材料"
-		                    }
                     	
                     	
                     	for(var i=0;i<vm.postData.detail.length;i++){
@@ -324,8 +310,6 @@
 						var ele=e.target;
 						var num=$(ele).parent().next().text();
 						console.log(num);
-						console.log(1111111111111);
-						console.log(key);
 						/*if(num>0){
 							num--;
 						}*/
@@ -333,7 +317,7 @@
 						
 						//this.nums--:this.nums=0;
 						$(ele).parent().next().text(num);
-						var obj1={
+						obj={
 	                       productId: key.id,
 	                       productName: key.materialName,
 	                       productSpec: "01",
@@ -342,19 +326,6 @@
 	                       productClass: key.productClass,
 	                       productClassName:key.productClassName
                     	};
-                    	
-                    	var obj={
-		                       "productId": "01093205",
-		                       "productName": "欧盛家俱拉手OLS-LS-5706-96-PA",
-		                       "brand": "000084",
-		                       "productSpec": "OLS-LS-5706-96-PA",
-		                       "productUnit": "zhi",
-		                       "qty": "11",
-		                       "isColor": "0", 
-		                       "isCustomized": "0",
-		                       "productClass": "03060101",
-		                       "productClassName": "水电材料"
-		                    }
                     	for(var i=0;i<vm.postData.detail.length;i++){
                     		if(vm.postData.detail[i].productId==key.id){
                     			//console.log(num);
@@ -416,7 +387,7 @@
 				type: 'get', //HTTP请求类型
 				data: {
 					empId: "admin",
-					tempLateType: "10"
+					tempLateType: "20"
 				},
 				success: function(jsonData) {
 					console.log(jsonData);
@@ -435,7 +406,7 @@
 		function initPostData() {
 			vm.postData = {
 					empId: "admin",
-					siteId: "2",
+					siteId: "1",
 					type: "10",
 					remark: "测试水电油气下单",
 					detail: [],
@@ -447,7 +418,7 @@
 			if (vm.postData.detail.length===0){return;alertMsg("购物车不能为空~")}
 			var postData=vm.postData;
 			postData.qty=vm.nums.toString();
-			console.log(JSON.stringify(postData));
+			console.log(postData);
 			mui.ajax(getBaseServerUrl() + '/app/order/createMaterialOrder', {
 				type: 'post', //HTTP请求类型
 				contentType: "application/json",
@@ -470,31 +441,6 @@
 			deal();
 		});
 		
-		function delOrder(){
-			mui.ajax(getBaseServerUrl() + '/app/order/deleteMaterialOrder', {
-				type: 'post', //HTTP请求类型
-				contentType: "application/json",
-				data: {
-					 "empId": "admin",
-					 "orderNo": "SO-201704150034" 
-				},
-				success: function(jsonData) {
-					console.log(jsonData);
-					/*if(jsonData.status=="false"){
-						alertMsg(jsonData.msg);
-					}else{
-						alertMsg(jsonData.msg);
-						setTimeout(function(){mui.back()},1000);
-					}*/
-				},
-				error: function(XMLHttpRequest, textStatus, errorThrown) {}
-			});
-			
-		}
-		
-		$(d1).click(function(){
-			delOrder();
-		});
 //		function initPostData(empId,siteId,type,productId,productName,productSpec,productUnit,qty,productClass,productClassName) {
 //			vm.postData = {
 //					"empId": "admin",

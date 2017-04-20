@@ -37,54 +37,85 @@
 		<div class="g-content mui-content g-content-news-list g-yusuan">
 			<div id="slider" class="mui-slider">
 				<div class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-					<div class="mui-control-item cur-item" v-on:tap="getData(1,$event)" href="#contentDiv">
-						材料预算(<span class='num'>{{unDealArrNum}}</span>)
+					<div class="mui-control-item cur-item active" v-on:tap="getData(1,$event)" href="#contentDiv">
+						材料预算 
 					</div>
 					<div class="mui-control-item" v-on:tap="getData(2,$event)" href="#contentDiv">
-						人工预算(<span class='num'>{{dealArrNum}}</span>)
+						人工预算 
 					</div>
 				</div>
 
 				<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-6"></div>
 				<div class="mui-slider-group">
 					<div class="mui-slider-item mui-control-content mui-active">
-						<div id="scroll1" class="mui-scroll-wrapper">
+						<div v-show='flag' id="scroll1" class="mui-scroll-wrapper">
 							<div class="mui-scroll">
 								<div class="mui-table-view" >
-									<div v-for='(index,item) in items' class="yusuan-lists">
+									<div v-for='(index,item) in dataArr' class="yusuan-lists">
 										 <div class="head" @tap='slide(index,$event)'>
-										 	{{item.title}}
+										 	{{item.name}}
 										 	<span class='icon'></span>
-										 	<span class="index">{{index+1}}</span>
+										 	<span class="index">{{item.id}}</span>
 										 </div>
-										 <div v-show='boolean && itemIndex == index' class="item-des">
+										 <div v-for='childitem in item.details' v-show='boolean && itemIndex == index' class="item-des">
 										 	<div class="tr">
 							    	 	 	 	<div class="td th">对象名称：</div>
-							    	 	 	 	<div class="td td-mingcheng">{{item.oname}}</div>
+							    	 	 	 	<div class="td td-mingcheng">{{childitem.name}}</div>
 							    	 	 	 	<div class="td th">商品编号：</div>
-							    	 	 	 	<div class="td">{{item.title}}</div>
+							    	 	 	 	<div class="td">{{childitem.proId}}</div>
 							    	 	 	</div>
 							    	 	 	<div class="tr">
 							    	 	 	 	<div class="td th">商品名称：</div>
-							    	 	 	 	<div class="td">{{item.oname}}</div>
+							    	 	 	 	<div class="td">{{childitem.proName}}</div>
 							    	 	 	</div>
 							    	 	 	<div class="tr">
 							    	 	 	 	<div class="td th">材料面积：</div>
-							    	 	 	 	<div class="td">{{item.oname}}</div>
+							    	 	 	 	<div class="td">{{childitem.stuffArea}}</div>
 							    	 	 	 	<div class="td th">预算面积：</div>
-							    	 	 	 	<div class="td">{{item.oname}}</div>
+							    	 	 	 	<div class="td">{{childitem.area}}</div>
 							    	 	 	</div>
 							    	 	 	<div class="tr">
 							    	 	 	 	<div class="td th">预算数量：</div>
-							    	 	 	 	<div class="td">{{item.oname}}</div>
+							    	 	 	 	<div class="td">{{childitem.qty}}</div>
 							    	 	 	 	<div class="td th">实际售价：</div>
-							    	 	 	 	<div class="td">{{item.oname}}</div>
+							    	 	 	 	<div class="td">{{childitem.realPrice}}</div>
 							    	 	 	</div>
 							    	 	 	<div class="tr">
 							    	 	 	 	<div class="td th">折扣：</div>
-							    	 	 	 	<div class="td">{{item.oname}}</div>
+							    	 	 	 	<div class="td">{{childitem.discount}}</div>
 							    	 	 	 	<div class="td th">材料金额：</div>
-							    	 	 	 	<div class="td">{{item.oname}}</div>
+							    	 	 	 	<div class="td">{{childitem.materialPrice}}</div>
+							    	 	 	</div>
+										 </div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div v-else id="scroll2" class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<div class="mui-table-view" >
+									<div v-for='(index,item) in dataArr' class="yusuan-lists">
+										 <div class="head" @tap='slide(index,$event)'>
+										 	{{item.name}}
+										 	<span class='icon'></span>
+										 	<span class="index">{{item.id}}</span>
+										 </div>
+										 <div v-for='childitem in item.details' v-show='boolean && itemIndex == index' class="item-des">
+										 	<div class="tr">
+							    	 	 	 	<div class="td th">对象名称：</div>
+							    	 	 	 	<div class="td td-mingcheng">{{childitem.name}}</div>
+							    	 	 	 	<div class="td th">单价：</div>
+							    	 	 	 	<div class="td">{{childitem.price}}</div>
+							    	 	 	</div>
+							    	 	 	<div class="tr">
+							    	 	 	 	<div class="td th">数量：</div>
+							    	 	 	 	<div class="td">{{childitem.qty}}</div>
+							    	 	 	</div>
+							    	 	 	<div class="tr">
+							    	 	 	 	<div class="td th">总金额：</div>
+							    	 	 	 	<div class="td">{{childitem.totalPrice}}</div>
+							    	 	 	 	<div class="td th">单位：</div>
+							    	 	 	 	<div class="td">{{childitem.unit}}</div>
 							    	 	 	</div>
 										 </div>
 									</div>
@@ -103,51 +134,30 @@
 		<script type="text/javascript" src="../js/global.js"></script>
 		<script type="text/javascript" src="../js/vue.min.js"></script>
 		<script>
-			Vue.filter('formatStatus', function(value) {
-				if(value == '10') {
-					return "待处理";
-				}
-				return "已处理";
-			})
-
 			var vm = new Vue({
 				el: "body",
 				data: {
 					dataArr: [],
-					unDealArr: [],
+					cailiaoArr: [],
 					unDealArrNum: 0,
-					dealArr: [],
+					rengongArr: [],
 					dealArrNum: 1,
 					itemIndex:0,
 					boolean:true,
 					lastIndex:0,
-					items:[
-                        {
-                          title: '天花板部分',
-                          oname: "工程派工"
-                        },
-                        {
-                          title: '天花板部分',
-                          oname: "工程派工"
-                        },
-                        {
-                          title: '天花板部分',
-                          oname: "工程派工"
-                        }
-					]
+					flag:true
 				},
 				methods: {
 					getData: function(type,$event) {
 						$(".mui-control-item").removeClass("active");
 						$($event.target).addClass("active");
 						if(type == 1) {
-							this.dataArr = this.unDealArr;
+							this.dataArr = this.cailiaoArr;
+							this.flag=true;
 						} else {
-							this.dataArr = this.dealArr;
+							this.dataArr = this.rengongArr;
+							this.flag=false;
 						};
-					},
-					closeError: function(type) {
-						close(type)
 					},
 					slide(index,e){
 						this.itemIndex = index;
@@ -169,66 +179,43 @@
 					init();
 				},
 				created(){
-					this.$nextTick(function() {
-						var height=$(".mui-scroll").height();
-						$(".mui-scroll-wrapper").css({
-							height:height
-						})
-					})
+					// this.$nextTick(function() {
+					// 	var height=$(".mui-scroll").height();
+					// 	$(".mui-scroll-wrapper").css({
+					// 		height:height
+					// 	})
+					// })
 				}
 			});
 
 			function init() {
-				mui.ajax(getBaseServerUrl() + '/sites/sitesTask/queryTaskListForException', {
+				mui.ajax(getBaseServerUrl() + '/app/budget/findMaterialBudgetList', {
 					type: 'get', //HTTP请求类型
 					data: {
-						sitesId: localStorage.selectSitesId,
-						dealType: 1
+						ckNo:''
 					},
 					success: function(jsonData) {
 						if(jsonData.status) {
-							vm.unDealArr = jsonData.other.tasklist;
-							vm.unDealArrNum = jsonData.other.tasklist.length;
-							vm.dataArr = vm.unDealArr;
-						} else {
-							plus.nativeUI.alert(jsonData.msg);
-						}
-
-					},
-					error: function(XMLHttpRequest, textStatus, errorThrown) {}
-				});
-				mui.ajax(getBaseServerUrl() + '/sites/sitesTask/queryTaskListForException', {
-					type: 'get', //HTTP请求类型
-					data: {
-						sitesId: localStorage.selectSitesId,
-						dealType: 2
-					},
-					success: function(jsonData) {
-						if(jsonData.status) {
-							vm.dealArr = jsonData.other.tasklist;
-							vm.dealArrNum = jsonData.other.tasklist.length;
+							 vm.cailiaoArr = jsonData.data;
+							 vm.dataArr = vm.cailiaoArr;
 						} else {
 							plus.nativeUI.alert(jsonData.msg);
 						}
 					},
 					error: function(XMLHttpRequest, textStatus, errorThrown) {}
 				});
-			}
 
-			function close(id) {
-				mui.ajax({
-					url: getBaseServerUrl() + '/sites/sitesTask/saveExceptionClose',
-					dataType: 'json',
-					contentType: "application/json",
-					data: JSON.stringify({
-						id: id,
-					}),
-					type: 'post',
+				mui.ajax(getBaseServerUrl() + '/app/budget/findManualBudgetList', {
+					type: 'get', //HTTP请求类型
+					data: {
+						ckNo:''
+					},
 					success: function(jsonData) {
 						if(jsonData.status) {
-							init();
+							vm.rengongArr = jsonData.data;
+						} else {
+							plus.nativeUI.alert(jsonData.msg);
 						}
-						plus.nativeUI.alert(jsonData.msg);
 					},
 					error: function(XMLHttpRequest, textStatus, errorThrown) {}
 				});

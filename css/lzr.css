@@ -1263,6 +1263,18 @@
 	vertical-align: middle;
 	background-color: #ffffff;
 }
+.g-renwu-mingxi .user-info.m-shuidian-detail{
+	background:none;
+	text-indent: 1em;
+	margin-top:0.267rem;
+	height:auto;
+}
+.g-renwu-mingxi .user-info.m-shuidian-detail .sub-title{
+	padding-top: 0rem;
+	font-size: 0.38rem;
+	color:#252525;
+	margin-bottom: 0rem;
+}
 .g-renwu-mingxi .user-info .title{
 	padding-top: 0.347rem;
 	font-size: 0.427rem;
@@ -1871,12 +1883,37 @@
 	 background-color:#3eb565;
 }
 .g-content-kanban .gongqi{
-	font-size: 0.4rem;
-	background:url(../images/icon-time.png) no-repeat;
-	background-size: 0.507rem 0.52rem;
-	background-position: 30% center;
+	font-size: 0.35rem;
 	background-color: #ffffff;
 	border-top: 1px solid #dddddd;
+	overflow:hidden;
+	margin-top: 0.267rem;
+}
+.g-content-kanban .gongqi span{
+	font-size: 0.40rem !important;
+}
+.g-content-kanban .gongqi.jiesuan-gongqi .jiesuan{
+  display: inline-block;
+  float:left;
+  margin-left: 0.4rem;
+   color:#252525;
+}
+.g-content-kanban .gongqi.jiesuan-gongqi .jiesuan strong{
+   color:#3eb565;
+}
+.g-content-kanban .gongqi.jiesuan-gongqi .gongqi{
+    background:url(../images/icon-time.png) no-repeat;
+	background-size: 0.507rem 0.52rem;
+	background-position: 0% center;
+	background-color: #ffffff; 
+	display: inline-block;
+  float:right;
+  margin-right: 0.267rem;
+  width:4.0rem;
+  text-indent: 1em;
+  color:#252525;
+  border-top:none;
+  margin-top: 0;
 }
 .g-content-kanban .gongqi span{
 	font-size: 0.45rem;
@@ -2345,7 +2382,7 @@
 }
 .g-hetong-message .item-jindukuan{
 	width:9.333rem;
-	min-height:9.12rem;
+	/*min-height:9.12rem;*/
 	height:auto;
 	border-radius: 0.133rem;
 	margin:0rem auto;
@@ -2354,7 +2391,7 @@
 }
 .g-hetong-message .item-jindukuan .item-bg{
 	width:9.333rem;
-	min-height:9.12rem;
+	/*min-height:9.12rem;*/
 	height:auto;
 	background: url(../images/icon-yuanjuxing3.png) no-repeat;
 	background-size: 9.2rem  9.12rem;
@@ -2425,7 +2462,7 @@
 	background-color: #ffffff;
 }
 .g-hetong-message .jindu-lists:last-child{
-	border-bottom:none;
+	/*border-bottom:none;*/
 }
 .g-hetong-message .left-line-icon{
 	position: absolute;
