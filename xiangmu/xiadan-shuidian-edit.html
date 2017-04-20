@@ -226,6 +226,8 @@
 	    	nums+=data.data[i].qty;
 	    }
 	    console.log(data);
+	    
+	    var id1=localStorage.caliaomingxiId;
 	   	
 	
 		var swiper = new Swiper('.swiper-container', {
@@ -283,23 +285,27 @@
 						setTimeout(changeSwiper,500);
 					},
 					addToshop:function(key,e){
-					console.log(key)
 						var ele=e.target;
 						key.qty++;
 						//var num=$(ele).parent().prev().text();
 						//num++;
 						this.nums++;
-						//$(ele).parent().prev().text(num);
-						
 						shoppingCartAnimate(ele);
 						var obj={
-	                       productId: key.id,
-	                       productName: key.materialName,
-	                       productSpec: "01",
-	                       productUnit: "33KG",
+	                       id: key.id,
+	                       materialName: key.materialName,
+	                       materialType: key.materialType,
+	                       materialTypeName:key.materialTypeName,
 	                       qty: key.qty,
+	                       pnModel:key.pnModel,
 	                       productClass: key.productClass,
-	                       productClassName:key.productClassName
+	                       productClassName:key.productClassName,
+	                       band:"0",
+	                       isColor:"0",
+	                       isCustomized:"0",
+	                       tempLateType:key.tempLateType,
+	                       unitName:key.unitName
+	                       
                     	};
                     	
                     	/*var obj={
@@ -315,15 +321,13 @@
 		                       "productClassName": "水电材料"
 		                    }*/
                     	
-                    	
                     	for(var i=0;i<vm.postData.detail.length;i++){
-                    		if(vm.postData.detail[i].productId==key.id){
+                    		if(vm.postData.detail[i].id==key.id){
                     			vm.postData.detail[i]=obj;
-                    			return;
+                    			//return;
                     		}
                     	}
                     	
-                    	vm.postData.detail.push(obj);
                     	console.log(vm.postData.detail);
                     	
                     	
@@ -332,8 +336,6 @@
 					},
 					subToshop:function(key,e){
 						var ele=e.target;
-						var num=$(ele).parent().next().text();
-						console.log(num);
 						console.log(1111111111111);
 						console.log(key);
 						/*if(num>0){
@@ -342,33 +344,25 @@
 						key.qty>0?key.qty--&&this.nums--:key.qty=0;
 						
 						//this.nums--:this.nums=0;
-						//$(ele).parent().next().text(num);
 						var obj={
-	                       productId: key.id,
-	                       productName: key.materialName,
-	                       productSpec: "01",
-	                       productUnit: "33KG",
+	                       id: key.id,
+	                       materialName: key.materialName,
+	                       materialType: key.materialType,
+	                       materialTypeName:key.materialTypeName,
 	                       qty: key.qty,
+	                       pnModel:key.pnModel,
 	                       productClass: key.productClass,
-	                       productClassName:key.productClassName
+	                       productClassName:key.productClassName,
+	                       band:"0",
+	                       isColor:"0",
+	                       isCustomized:"0",
+	                       tempLateType:key.tempLateType,
+	                       unitName:key.unitName
+	                       
                     	};
-                    	
-                    	/*var obj={
-		                       "productId": "01093205",
-		                       "productName": "欧盛家俱拉手OLS-LS-5706-96-PA",
-		                       "brand": "000084",
-		                       "productSpec": "OLS-LS-5706-96-PA",
-		                       "productUnit": "zhi",
-		                       "qty": "11",
-		                       "isColor": "0", 
-		                       "isCustomized": "0",
-		                       "productClass": "03060101",
-		                       "productClassName": "水电材料"
-		                    }*/
                     	for(var i=0;i<vm.postData.detail.length;i++){
-                    		if(vm.postData.detail[i].productId==key.id){
-                    			//console.log(num);
-                    			key.qty>0?vm.postData.detail[i]=obj:vm.postData.detail.splice(i, 1);
+                    		if(vm.postData.detail[i].id==key.id){
+                    			key.qty>=0?vm.postData.detail[i]=obj:null;
                     		}
                     	}
                     	
@@ -384,7 +378,7 @@
 			
 			Vue.filter('isNull', function(value) {
 				if(value===null||value===undefined){
-					return 0;
+					return "0";
 				}
 				
 				return value;
@@ -466,12 +460,28 @@
 		function initPostData() {
 			vm.postData = {
 					empId: "admin",
+					id:id1,
 					siteId: "2",
 					type: "10",
 					remark: "测试水电油气下单",
 					detail: [],
 				}
-			vm.postData.detail=data.data;
+			
+			for(var i=0;i<vm.arr1.length;i++ ){
+				for(var k=0;k<vm.arr1[i].detail.length;k++){
+					vm.arr1[i].detail[k].qty="0";
+					vm.postData.detail.push(vm.arr1[i].detail[k]);
+				}
+			}
+			
+			for(var x=0;x<vm.postData.detail.length;x++){
+				for(var c=0;c<data.data.length;c++){
+					if(data.data[c].productId==vm.postData.detail[x].id){
+						vm.postData.detail[x].qty=data.data[c].qty;
+					}
+				}
+			}
+			
 			console.log(vm.postData.detail);
 		}
 		
