@@ -85,6 +85,10 @@
 		<script type="text/javascript" src="../js/layer-m/layer.js" ></script>
 
 		<script>
+		var data1=JSON.parse(localStorage.LZRproduMsg);
+		console.log(localStorage.LZRproduMsg);
+		
+		
 			function init() {
 				//获取工地信息
 				mui.ajax(getBaseServerUrl() + '/app/order/findSiteList',{

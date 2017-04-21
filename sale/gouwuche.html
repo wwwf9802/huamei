@@ -80,171 +80,175 @@
 		}
 	</style>
 	<body>
-		<header class="mui-bar mui-bar-nav header">
-			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<span class="title">购物车(4)</span>
-			<span class="header-right mui-icon mui-icon-plus"></span>
-		</header>
-		<section class="under-top">
-			<div class="gouwuche-top">
-				<p>制单人：<span>赵小五</span></p>
-				<p>家装顾问：<span>张小兰</span></p>
-			</div>
-			<div class='abc gouwuche-edit' style="display:none">
-					<p class="gwc-title">
-					商品信息(4)
-				</p>
-				<div class="addBox">
+	<header class="mui-bar mui-bar-nav header">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<span class="title">购物车({{dataArr.detail.length}})</span>
+		<span id="gotoADD" class="header-right mui-icon mui-icon-plus"></span>
+	</header>
+	<section class="under-top">
+		<div class="gouwuche-top">
+			<p>制单人：<span>赵小五</span></p>
+			<p>家装顾问：<span>张小兰</span></p>
+		</div>
+		<p class="gwc-title">
+			商品信息({{dataArr.detail.length}})
+		</p>
+		<div class='abc gouwuche-edit' style="display:none">
+			<div class="addBox">
+				<span></span>
+				<h1>01106020/卓邦外墙腻子（外墙腻子0kg）(包)</h1>
+				<div>
 					<span></span>
-					<h1>01106020/卓邦外墙腻子（外墙腻子0kg）(包)</h1>
-					<div>
-						<span></span>
-						<div class="y-sub-box">
-							<img class="y-sd-icon" src="../images/icon-sub.png" alt="" />
-						</div>
-						<strong>1</strong>						
-						<div class="y-add-box">
-							<img class="y-sd-add y-sd-icon" src="../images/icon-add.png" alt="" />
-						</div>
+					<div class="y-sub-box">
+						<img class="y-sd-icon" src="../images/icon-sub.png" alt="" />
 					</div>
-					<p>规格:J503+BQ608+100S-3031</p>
-				</div>
-				
-				<p class="gwc-title">
-					销售价格 1000
-				</p>
-				
-				<div class="price-box">
-					<div>
-						<p>单价<span>(折后)</span></p>
-						<p>¥800</p>
-					</div>
-					<div>
-						<p>折扣率</p>
-						<p>0.8</p>
-					</div>
-					<div>
-						<p>小计：</p>
-						<p><b>¥800</b></p>
+					<strong>1</strong>
+					<div class="y-add-box">
+						<img class="y-sd-add y-sd-icon" src="../images/icon-add.png" alt="" />
 					</div>
 				</div>
-				
-				<ul class="mui-table-view" style="margin-top:.3rem">
-					<li class="mui-table-view-cell">
-						<a data-arr="arr1" class="a-choice mui-navigate-right">
-							送货方式
-							<span class="right">点击选择</span>
-						</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a data-arr="arr2" class="a-choice mui-navigate-right">
-							<input class="right" placeholder="输入色号">点击选择</span>
-						</a>
-					</li>
-					<li class="mui-table-view-cell">
-						<a data-arr="arr2" class="a-choice mui-navigate-right">
-							发货日期
-							<span class="right">点击选择</span>
-						</a>
-					</li>
-				</ul>
-				<div class="gwc-choice">
-					<div>
-						<span class="left">安装</span>
-						<div class="mui-switch mui-switch-mini mui-active ">
-							<div class="mui-switch-handle"></div>
-						</div>
-					</div>
-					<div>
-						<span class="left">测量</span>
-						<div class="mui-switch mui-switch-mini mui-active ">
-							<div class="mui-switch-handle"></div>
-						</div>
-					</div>
-					<div>
-						<span class="left">赠送</span>
-						<div class="mui-switch mui-switch-mini mui-active ">
-							<div class="mui-switch-handle"></div>
-						</div>
+				<p>规格:J503+BQ608+100S-3031</p>
+			</div>
+
+			<p class="gwc-title">
+				销售价格 1000
+			</p>
+
+			<div class="price-box">
+				<div>
+					<p>单价<span>(折后)</span></p>
+					<p>¥800</p>
+				</div>
+				<div>
+					<p>折扣率</p>
+					<p>0.8</p>
+				</div>
+				<div>
+					<p>小计：</p>
+					<p><b>¥800</b></p>
+				</div>
+			</div>
+
+			<ul class="mui-table-view" style="margin-top:.3rem">
+				<li class="mui-table-view-cell">
+					<a data-arr="arr1" class="a-choice mui-navigate-right">
+						送货方式
+						<span class="right">点击选择</span>
+					</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a data-arr="arr2" class="a-choice mui-navigate-right">
+						<input class="right" placeholder="输入色号">点击选择</span>
+					</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a data-arr="arr2" class="a-choice mui-navigate-right">
+						发货日期
+						<span class="right">点击选择</span>
+					</a>
+				</li>
+			</ul>
+			<div class="gwc-choice">
+				<div>
+					<span class="left">安装</span>
+					<div class="mui-switch mui-switch-mini mui-active ">
+						<div class="mui-switch-handle"></div>
 					</div>
 				</div>
-				
-				<ul class="mui-table-view" style="margin-top:.3rem">
-					<li class="mui-table-view-cell">
-						<a data-arr="arr2" class="a-choice mui-navigate-right">
-							<input style="width:6rem" class="right" placeholder="说点什么吧">备注</span>
-						</a>
-					</li>
-				</ul>
-				
-				<div class="y-btn">
+				<div>
+					<span class="left">测量</span>
+					<div class="mui-switch mui-switch-mini mui-active ">
+						<div class="mui-switch-handle"></div>
+					</div>
+				</div>
+				<div>
+					<span class="left">赠送</span>
+					<div class="mui-switch mui-switch-mini mui-active ">
+						<div class="mui-switch-handle"></div>
+					</div>
+				</div>
+			</div>
+
+			<ul class="mui-table-view" style="margin-top:.3rem">
+				<li class="mui-table-view-cell">
+					<a data-arr="arr2" class="a-choice mui-navigate-right">
+						<input style="width:6rem" class="right" placeholder="说点什么吧">备注</span>
+					</a>
+				</li>
+			</ul>
+
+			<div style="background:#fff;padding:.2rem 0;">
+				<div class="y-btn" style="margin:0 auto;">
 					完成
 				</div>
 			</div>
-			
-			<div class="bcd gouwuche-msg">
-				<div class="addBox">
+		</div>
+
+		<div class="bcd gouwuche-msg" v-for="key in dataArr.detail">
+			<div class="addBox">
 				<span></span>
-				<h1>01106020/卓邦外墙腻子（外墙腻子0kg）(包)</h1>
-				<h2>编辑</h2>
-				<p>规格:J503+BQ608+100S-3031</p>
+				<h1>{{key.productName}}</h1>
+				<h2 class="bianji">编辑</h2>
+				<p>规格:{{key.productSpec}}</p>
 				<h3 style="border-bottom:1px solid #ddd;margin-top:.5rem;"></h3>
 			</div>
-			
+
 			<div class="gwc-table">
 				<table>
 					<tr>
 						<td>送货方式：</td>
-						<td>配送</td>
+						<td>{{key.deliverType | formatdeliverType}}</td>
 					</tr>
-					<tr>
+					<tr v-show="key.isColor==1">
 						<td>色号：</td>
-						<td>01245：</td>
+						<td>{{key.colorNum}}</td>
 					</tr>
 					<tr>
 						<td>发货日期：</td>
-						<td>2017-3-20</td>
+						<td>{{key.deliverDate}}</td>
 					</tr>
 				</table>
 			</div>
-			
+
 			<div class="gwc-btnGroup">
 				<div>
-					<div>安装</div>
+					<div :class="{'active':key.isInstall == 1}">安装</div>
 				</div>
 				<div>
-					<div>测量</div>
+					<div :class="{'active':key.isMeasure == 1}">测量</div>
 				</div>
 				<div>
-					<div>赠送</div>
+					<div :class="{'active':key.isGiving == 1}">赠送</div>
 				</div>
 			</div>
-			
+
 			<ul class="mui-table-view" style="margin-top:.3rem">
 				<li class="mui-table-view-cell">
 					<a data-arr="arr2" class="a-choice mui-navigate-right">
-						<input style="width:6rem" class="right" value="次商品为易碎品，请注意！">备注</span>
+						<input style="width:6rem" class="right" value="{{key.remark}}">备注</span>
 					</a>
 				</li>
 			</ul>
-			
+
 			<ul class="gwc-total">
-				<li>¥20 <span>x1</span></li>
-				<li><span>折扣率:</span>0.8</li>
-				<li>小计: <strong>¥20</strong></li>
+				<li>¥{{key.price}} <span>x{{key.qty}}</span></li>
+				<li><span>折扣率:</span>{{key.discount}}</li>
+				<li>小计: <strong>¥{{key.price*key.qty}}</strong></li>
 			</ul>
 
-			</div>
-		</section>
-		
-		
-		<footer class="gwc-foot">
-			<div>总计：<b>¥800</b></div>
-			<div>下一步</div>
-		</footer>
-			
-	</body>
+		</div>
+	</section>
+
+	<footer class="gwc-foot">
+		<div>总计：<b>¥{{totalMoney}}</b></div>
+		<div id="nextPage">下一步</div>
+	</footer>
+
+</body>
+	<script src="../js/public.js"></script>
 	<script src="../js/mui.min.js"></script>
+	<script src="../js/zepto1.1.6.min.js"></script>
+	<script src="../js/vue.min.js"></script>
 	<script>
 		mui.init({
 				swipeBack:true //启用右滑关闭功能
@@ -260,5 +264,60 @@
 					this.parentNode.querySelector('span').innerText = '状态：' + (event.detail.isActive ? 'true' : 'false');
 				});
 			});
+			
+		
+		var data1=JSON.parse(localStorage.LZRproduMsg);
+		console.log(localStorage.LZRproduMsg);
+		
+		$(".bianji").on("tap",function(){
+			$(".gouwuche-msg").fadeOut(150);
+			$(".gwc-foot").fadeOut(150);
+			$(".gouwuche-edit").fadeIn(150);
+			
+		});
+		
+		$(".y-btn").on("tap",function(){
+			$(".gouwuche-msg").fadeIn(150);
+			$(".gwc-foot").fadeIn(150);
+			$(".gouwuche-edit").fadeOut(150);
+		});	
+		
+		$("#gotoADD").on("tap",function(){
+			openNew("add-shangpin.html");
+		});
+		
+		 Vue.filter('formatdeliverType',function(value){
+          if(value== 0){
+          	return '自提'
+          }
+          else if(value == 1){
+          	return '配送'
+          }else{
+          	return '厂送'
+          }
+	    });
+		
+		
+		var vm=new Vue({
+			el:"body",
+			data:{
+				dataArr:data1,
+				totalMoney:""
+			}
+		});
+		
+		 
+		 function calcTotalMoney(){
+		 	for(var i=0;i<vm.dataArr.detail.length;i++){
+		 	  vm.totalMoney+=vm.dataArr.detail[i].price*vm.dataArr.detail[i].qty;
+		 	}
+		 }
+		 
+		 calcTotalMoney();
+		 
+		 $("#nextPage").on("tap",function(){
+		 	localStorage.LZRproduMsg=JSON.stringify(vm.dataArr);
+		 	openNew("xuanze-jiaz_kehu.html");
+		 });
 	</script>
 </html>
