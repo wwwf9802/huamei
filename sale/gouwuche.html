@@ -72,6 +72,12 @@
 		.gwc-foot>div:first-child>b{color:red;}
 		.gwc-foot>div:last-child{width:3.2rem;height:1.2rem;font-size:.4rem;line-height:1.2rem;text-align: center;color:#fff;background:#EA6D01;float:right;}
 		.gwc-foot>div:active{opacity: .8;}
+		.gwc-foot{
+			position: absolute;bottom:0;left:0;right:0;
+		}
+		.under-top {
+		    overflow: hidden;
+		}
 	</style>
 	<body>
 		<header class="mui-bar mui-bar-nav header">
@@ -84,97 +90,100 @@
 				<p>制单人：<span>赵小五</span></p>
 				<p>家装顾问：<span>张小兰</span></p>
 			</div>
-			<p class="gwc-title">
-				商品信息(4)
-			</p>
-			<div class="addBox">
-				<span></span>
-				<h1>01106020/卓邦外墙腻子（外墙腻子0kg）(包)</h1>
-				<div>
+			<div class='abc gouwuche-edit' style="display:none">
+					<p class="gwc-title">
+					商品信息(4)
+				</p>
+				<div class="addBox">
 					<span></span>
-					<div class="y-sub-box">
-						<img class="y-sd-icon" src="../images/icon-sub.png" alt="" />
+					<h1>01106020/卓邦外墙腻子（外墙腻子0kg）(包)</h1>
+					<div>
+						<span></span>
+						<div class="y-sub-box">
+							<img class="y-sd-icon" src="../images/icon-sub.png" alt="" />
+						</div>
+						<strong>1</strong>						
+						<div class="y-add-box">
+							<img class="y-sd-add y-sd-icon" src="../images/icon-add.png" alt="" />
+						</div>
 					</div>
-					<strong>1</strong>						
-					<div class="y-add-box">
-						<img class="y-sd-add y-sd-icon" src="../images/icon-add.png" alt="" />
+					<p>规格:J503+BQ608+100S-3031</p>
+				</div>
+				
+				<p class="gwc-title">
+					销售价格 1000
+				</p>
+				
+				<div class="price-box">
+					<div>
+						<p>单价<span>(折后)</span></p>
+						<p>¥800</p>
+					</div>
+					<div>
+						<p>折扣率</p>
+						<p>0.8</p>
+					</div>
+					<div>
+						<p>小计：</p>
+						<p><b>¥800</b></p>
 					</div>
 				</div>
-				<p>规格:J503+BQ608+100S-3031</p>
+				
+				<ul class="mui-table-view" style="margin-top:.3rem">
+					<li class="mui-table-view-cell">
+						<a data-arr="arr1" class="a-choice mui-navigate-right">
+							送货方式
+							<span class="right">点击选择</span>
+						</a>
+					</li>
+					<li class="mui-table-view-cell">
+						<a data-arr="arr2" class="a-choice mui-navigate-right">
+							<input class="right" placeholder="输入色号">点击选择</span>
+						</a>
+					</li>
+					<li class="mui-table-view-cell">
+						<a data-arr="arr2" class="a-choice mui-navigate-right">
+							发货日期
+							<span class="right">点击选择</span>
+						</a>
+					</li>
+				</ul>
+				<div class="gwc-choice">
+					<div>
+						<span class="left">安装</span>
+						<div class="mui-switch mui-switch-mini mui-active ">
+							<div class="mui-switch-handle"></div>
+						</div>
+					</div>
+					<div>
+						<span class="left">测量</span>
+						<div class="mui-switch mui-switch-mini mui-active ">
+							<div class="mui-switch-handle"></div>
+						</div>
+					</div>
+					<div>
+						<span class="left">赠送</span>
+						<div class="mui-switch mui-switch-mini mui-active ">
+							<div class="mui-switch-handle"></div>
+						</div>
+					</div>
+				</div>
+				
+				<ul class="mui-table-view" style="margin-top:.3rem">
+					<li class="mui-table-view-cell">
+						<a data-arr="arr2" class="a-choice mui-navigate-right">
+							<input style="width:6rem" class="right" placeholder="说点什么吧">备注</span>
+						</a>
+					</li>
+				</ul>
+				
+				<div class="y-btn">
+					完成
+				</div>
 			</div>
 			
-			<p class="gwc-title">
-				销售价格 1000
-			</p>
-			
-			<div class="price-box">
-				<div>
-					<p>单价<span>(折后)</span></p>
-					<p>¥800</p>
-				</div>
-				<div>
-					<p>折扣率</p>
-					<p>0.8</p>
-				</div>
-				<div>
-					<p>小计：</p>
-					<p><b>¥800</b></p>
-				</div>
-			</div>
-			
-			<ul class="mui-table-view" style="margin-top:.3rem">
-				<li class="mui-table-view-cell">
-					<a data-arr="arr1" class="a-choice mui-navigate-right">
-						送货方式
-						<span class="right">点击选择</span>
-					</a>
-				</li>
-				<li class="mui-table-view-cell">
-					<a data-arr="arr2" class="a-choice mui-navigate-right">
-						<input class="right" placeholder="输入色号">点击选择</span>
-					</a>
-				</li>
-				<li class="mui-table-view-cell">
-					<a data-arr="arr2" class="a-choice mui-navigate-right">
-						发货日期
-						<span class="right">点击选择</span>
-					</a>
-				</li>
-			</ul>
-			<div class="gwc-choice">
-				<div>
-					<span class="left">安装</span>
-					<div class="mui-switch mui-switch-mini mui-active ">
-						<div class="mui-switch-handle"></div>
-					</div>
-				</div>
-				<div>
-					<span class="left">测量</span>
-					<div class="mui-switch mui-switch-mini mui-active ">
-						<div class="mui-switch-handle"></div>
-					</div>
-				</div>
-				<div>
-					<span class="left">赠送</span>
-					<div class="mui-switch mui-switch-mini mui-active ">
-						<div class="mui-switch-handle"></div>
-					</div>
-				</div>
-			</div>
-			
-			<ul class="mui-table-view" style="margin-top:.3rem">
-				<li class="mui-table-view-cell">
-					<a data-arr="arr2" class="a-choice mui-navigate-right">
-						<input style="width:6rem" class="right" placeholder="说点什么吧">备注</span>
-					</a>
-				</li>
-			</ul>
-			
-			<div class="y-btn">
-				完成
-			</div>
-			
-			<div class="addBox">
+			<div class="bcd gouwuche-msg">
+				<div class="addBox">
 				<span></span>
 				<h1>01106020/卓邦外墙腻子（外墙腻子0kg）(包)</h1>
 				<h2>编辑</h2>
@@ -224,12 +233,16 @@
 				<li><span>折扣率:</span>0.8</li>
 				<li>小计: <strong>¥20</strong></li>
 			</ul>
+
+			</div>
 		</section>
+		
 		
 		<footer class="gwc-foot">
 			<div>总计：<b>¥800</b></div>
 			<div>下一步</div>
 		</footer>
+			
 	</body>
 	<script src="../js/mui.min.js"></script>
 	<script>

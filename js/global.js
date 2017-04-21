@@ -1,9 +1,9 @@
 function getBaseServerUrl() {
-	return "http://192.168.1.117:8090/eidpws";
+	return "http://192.168.1.119:8090/eidpws";
 }
 
 function getBaseImgUrl() {
-	return "http://192.168.1.117:8090";
+	return "http://192.168.1.119:8090";
 }
 
 /*function getBaseServerUrl() {
