@@ -82,15 +82,15 @@
 	<body>
 		<header class="mui-bar mui-bar-nav header">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<span class="title">购物车(4)</span>
+			<span class="title">购物车({{payPromsg.detail[0].qty}})</span>
 			<span class="header-right mui-icon mui-icon-plus"></span>
 		</header>
 		<section class="under-top">
 			<div class="gouwuche-top">
-				<p>制单人：<span>赵小五</span></p>
-				<p>家装顾问：<span>张小兰</span></p>
+				<p>制单人：<span>{{payPromsg.createrId}}</span></p>
+				<p>家装顾问：<span>{{payPromsg.detail[0].salesmanName}}</span></p>
 			</div>
-			<div class='abc gouwuche-edit' style="display:none">
+			<div v-show='flag' class='abc gouwuche-edit'>
 					<p class="gwc-title">
 					商品信息(4)
 				</p>
@@ -182,12 +182,12 @@
 				</div>
 			</div>
 			
-			<div class="bcd gouwuche-msg">
+			<div v-else class="bcd gouwuche-msg">
 				<div class="addBox">
 				<span></span>
-				<h1>01106020/卓邦外墙腻子（外墙腻子0kg）(包)</h1>
-				<h2>编辑</h2>
-				<p>规格:J503+BQ608+100S-3031</p>
+				<h1>{{payPromsg.detail[0].id}}/{{payPromsg.detail[0].productName}}</h1>
+				<h2 @tap='gouwuche_edit'>编辑</h2>
+				<p>规格:{{payPromsg.detail[0].productSpec}}</p>
 				<h3 style="border-bottom:1px solid #ddd;margin-top:.5rem;"></h3>
 			</div>
 			
@@ -195,57 +195,98 @@
 				<table>
 					<tr>
 						<td>送货方式：</td>
-						<td>配送</td>
+						<td>{{payPromsg.detail[0].deliverType | formatdeliverType}}</td>
 					</tr>
-					<tr>
+					<tr v-show='sehaoFlag == 1'>
 						<td>色号：</td>
-						<td>01245：</td>
+						<td>{{payPromsg.detail[0].colorNum}}</td>
 					</tr>
 					<tr>
 						<td>发货日期：</td>
-						<td>2017-3-20</td>
+						<td>{{payPromsg.detail[0].deliverDate}}</td>
 					</tr>
 				</table>
 			</div>
 			
 			<div class="gwc-btnGroup">
 				<div>
-					<div>安装</div>
+					<div :class="{'active':flagInstall == 1}">安装</div>
 				</div>
 				<div>
-					<div>测量</div>
+					<div :class="{'active':flagMeasure == 1}">测量</div>
 				</div>
 				<div>
-					<div>赠送</div>
+					<div :class="{'active':flagGiving == 1}">赠送</div>
 				</div>
 			</div>
 			
 			<ul class="mui-table-view" style="margin-top:.3rem">
 				<li class="mui-table-view-cell">
 					<a data-arr="arr2" class="a-choice mui-navigate-right">
-						<input style="width:6rem" class="right" value="次商品为易碎品，请注意！">备注</span>
+						<input style="width:6rem" class="right" value="{{payPromsg.detail[0].remark}}">备注</span>
 					</a>
 				</li>
 			</ul>
 			
 			<ul class="gwc-total">
-				<li>¥20 <span>x1</span></li>
-				<li><span>折扣率:</span>0.8</li>
-				<li>小计: <strong>¥20</strong></li>
+				<li>¥{{payPromsg.detail[0].price}} <span>x{{payPromsg.detail[0].qty}}</span></li>
+				<li><span>折扣率:</span>{{payPromsg.detail[0].discount}}</li>
+				<li>小计: <strong>¥{{payPromsg.totalMoney}}</strong></li>
 			</ul>
 
 			</div>
 		</section>
 		
 		
-		<footer class="gwc-foot">
+		<footer v-show='!flag' class="gwc-foot">
 			<div>总计：<b>¥800</b></div>
 			<div>下一步</div>
 		</footer>
 			
 	</body>
-	<script src="../js/mui.min.js"></script>
+	<script src="../js/zepto1.1.6.min.js" type="text/javascript"></script>
+	<script src='../js/mui.min.js'></script>
+	<script type="text/javascript" src="../js/public.js"></script>
+	<script type="text/javascript" src="../js/global.js"></script>
+	<script type="text/javascript" src="../js/vue.min.js"></script>
+	<script type="text/javascript" src="../picker/mui.picker.min.js"></script>
+    <script type="text/javascript" src="../picker/mui.poppicker.js"></script>
 	<script>
+	    Vue.filter('formatdeliverType',function(value){
+          if(value== 0){
+          	return '自提'
+          }
+          else if(value == 1){
+          	return '配送'
+          }else{
+          	return '厂送'
+          }
+	    })
+	    var payCar=new Vue({
+	    	el:'body',
+	    	data:{
+               flag:false,
+               payPromsg:'',
+               sehaoFlag:'',
+               flagInstall:'',
+               flagMeasure:'',
+               flagGiving:''
+	    	},
+	    	methods:{
+	    		gouwuche_edit(){
+                  this.flag=true;
+	    		}
+	    	},
+	    	ready(){
+                this.payPromsg=JSON.parse(localStorage.LZRproduMsg);
+                this.sehaoFlag=this.payPromsg.detail[0].isColor;
+
+                this.flagInstall=this.payPromsg.detail[0].isInstall;
+                this.flagMeasure=this.payPromsg.detail[0].isMeasure;
+                this.flagGiving=this.payPromsg.detail[0].isGiving;
+                console.log(JSON.stringify( this.payPromsg) )
+	    	}
+	    })
 		mui.init({
 				swipeBack:true //启用右滑关闭功能
 			});
@@ -259,6 +300,6 @@
 					//event.detail.isActive 可直接获取当前状态
 					this.parentNode.querySelector('span').innerText = '状态：' + (event.detail.isActive ? 'true' : 'false');
 				});
-			});
+		});
 	</script>
 </html>
