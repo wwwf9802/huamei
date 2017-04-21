@@ -74,8 +74,10 @@
 		
 		<section class="under-top">
 			<div class="searchDiv">
-				<input debounce="500" type="search" placeholder="产品编号/名称/类别">
+				<input @input="inpblur()" v-model="inpValue" debounce="500" type="search" placeholder="产品编号/名称/类别">
 			</div>
+			
+			<div v-show="flag">
 			<div class="addBox">
 				<span></span>
 				<h1>{{dataArr.id}}/{{dataArr.productName}}</h1>
@@ -159,6 +161,7 @@
 					</a>
 				</li>
 			</ul>
+			</div>
 		</section>
 		
 		<footer class="y-sd-footer">
@@ -288,7 +291,9 @@
 					isInstall:'',
 					isMeasure:'',
 					isGiving:'',
-					say_something:''
+					say_something:'',
+					inpValue:"",
+					flag:true,
 				},
 				watch: {
 					salePrice: function() {
@@ -362,6 +367,12 @@
 						 else{
 						 	this.productMsg.detail[0].isGiving=0;
 						 }
+					},
+					inpblur:function(){
+						console.log(this.inpValue);
+						setTimeout(function(){
+							init(vm.inpValue)
+						},500);
 					}
 				},
 				ready: function() {
@@ -398,10 +409,11 @@
 						productId: productId
 					},
 					success: function(jsonData) {
-						 
-						if(jsonData.status) {
+						 console.log(jsonData);
+						if(jsonData.status==="true") {
 							 
 							vm.dataArr = jsonData.data;
+							vm.dataArr.payRate="0";
 							vm.mprice=jsonData.data.mprice;
 							vm.iscolor=jsonData.data.isColor;
 							vm.isInstall=jsonData.data.isInstall;
@@ -415,6 +427,7 @@
                             pro_detail = Object.assign({},pro_detail,vm.dataArr);
 
                             vm.productMsg.detail[0]=pro_detail;
+                            vm.flag=true;
 
 							// console.log(JSON.stringify( vm.productMsg.detail[0]) )
 							// var produMsg = Object.assign({}, vm.dataArr, {});
@@ -422,7 +435,9 @@
 							// console.log(JSON.stringify(vm.produMsg))
 
 						} else {
-							plus.nativeUI.alert(jsonData.msg);
+							//alertMsg(jsonData.msg);
+							vm.flag=false;
+							
 						}
 
 					},
