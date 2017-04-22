@@ -46,7 +46,8 @@
 		}
 		.mui-btn-blue{background-color:#EB6D00 !important;border:1px solid #EB6D00 !important}
 		.price-box input{
-			width:0.8rem;
+			min-width:0.8rem;
+			max-width: 1.2rem;
 			height:0.8rem;
 			padding:0;margin:0;
 			/*border:none;*/
@@ -101,11 +102,11 @@
 			<div class="price-box">
 				<div>
 					<p>单价<span>(折后)</span></p>
-					<p>¥<input type="text" :value='dataArr.price'  v-model='salePrice' ></p>
+					<p>¥<input type="number" :value='dataArr.price'  v-model='salePrice' ></p>
 				</div>
 				<div>
 					<p>折扣率</p>
-					<p><input type="text" v-model='zhekoulv'></p>
+					<p><input type="number" v-model='zhekoulv'></p>
 				</div>
 				<div>
 					<p>小计：</p>
@@ -282,7 +283,7 @@
 				el: "body",
 				data: {
 					dataArr: [],
-					salePrice:"",
+					salePrice:'',
 					m:1,
 					mprice:'',
 					zhekoulv:1,
@@ -298,19 +299,24 @@
 				watch: {
 					salePrice: function() {
 						if (this.salePrice <= this.mprice) {
-							var zhekoulv = this.salePrice / this.mprice;
-							this.zhekoulv = zhekoulv;
+							var salePrice=Number(this.salePrice);
+							salePrice=salePrice;
+							console.log(salePrice)
+							this.salePrice=salePrice;
+							var zhekoulv = this.salePrice/ this.mprice;
+							this.zhekoulv = zhekoulv.toFixed(2);
+
 						} else {
-							this.salePrice = this.mprice
+							this.salePrice = this.mprice;
 						}
 						this.productMsg.detail[0].price=this.salePrice;
 					},
 					zhekoulv: function() {
 						if (this.zhekoulv > 1 || this.zhekoulv <= 0) {
-							this.zhekoulv = 1;
+							this.zhekoulv = 1.00;
 						} else {
 							var salePrice = this.zhekoulv * this.mprice;
-							this.salePrice = salePrice
+							this.salePrice = salePrice;
 						}
 						this.productMsg.detail[0].discount=this.zhekoulv;
 					},
@@ -321,6 +327,7 @@
 				computed:{
 					totalMoney:function(){
 						var allMoney=this.salePrice * this.m
+						allMoney=allMoney.toFixed(2);
 						this.productMsg.totalMoney= allMoney;
 						return allMoney
 					}

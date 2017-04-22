@@ -99,11 +99,11 @@
 			<div class="price-box">
 				<div>
 					<p>单价<span>(折后)</span></p>
-					<p>¥<input type="text" :value='dataArr.price'  v-model='salePrice' ></p>
+					<p>¥<input type="number" :value='dataArr.price'  v-model='salePrice' ></p>
 				</div>
 				<div>
 					<p>折扣率</p>
-					<p><input type="text" v-model='zhekoulv'></p>
+					<p><input type="number" v-model='zhekoulv'></p>
 				</div>
 				<div>
 					<p>小计：</p>
@@ -175,115 +175,96 @@
 		<script type="text/javascript" src="../picker/mui.picker.min.js"></script>
 	    <script type="text/javascript" src="../picker/mui.poppicker.js"></script>
 		<script>
-		   (function($) {
-				$.init();
-				var now = new Date();
-	            var optionsJson = '{"type":"date","beginYear":' + (now.getFullYear() - 1) + ',"endYear":' + (now.getFullYear() + 1) + '}';
-				var options = JSON.parse(optionsJson);
+		    function chose(){
+			   (function($) {
+					$.init();
+					var now = new Date();
+		            var optionsJson = '{"type":"date","beginYear":' + (now.getFullYear() - 1) + ',"endYear":' + (now.getFullYear() + 1) + '}';
+					var options = JSON.parse(optionsJson);
 
-                // 发货日期 默认是今天
-			    $('.under-top .startDate .show_value2')[0].innerText = now.getFullYear() + "-" + formatMonth((now.getMonth() + 1).toString()) + "-" + formatMonth(now.getDate().toString());
+	                // 发货日期 默认是今天
+				    $('.under-top .startDate .show_value2')[0].innerText = now.getFullYear() + "-" + formatMonth((now.getMonth() + 1).toString()) + "-" + formatMonth(now.getDate().toString());
 
-				$('.under-top .startDate')[0].addEventListener('tap', function() {
-					var picker = new $.DtPicker(options);
-					picker.show(function(rs) {
-						$('.under-top .startDate .show_value2')[0].innerText = rs.text;
-						picker.dispose();
-						deliverdate()
-					});
-				}, false);
+					$('.under-top .startDate')[0].addEventListener('tap', function() {
+						var picker = new $.DtPicker(options);
+						picker.show(function(rs) {
+							$('.under-top .startDate .show_value2')[0].innerText = rs.text;
+							picker.dispose();
+							deliverdate()
+						});
+					}, false);
 
-				var arr = [{index:0,text:"自提"},{index:1,text:"配送"},{index:2,text:"厂送"}];
+					var arr = [{index:0,text:"自提"},{index:1,text:"配送"},{index:2,text:"厂送"}];
 
-				// 默认是配送
-				$('.under-top .songhuo_sy .show_value0')[0].innerText=arr[1].text;
-				$('.under-top .songhuo_sy')[0].addEventListener('tap', function() {
-					var cardPicker = new $.PopPicker({
-						layer: 1
-					});
-					cardPicker.setData(arr);
-					cardPicker.show(function(items) {
-						$('.under-top .songhuo_sy .show_value0')[0].innerText = items[0].text;
-						$('.under-top .songhuo_sy')[0].setAttribute('data-index',items[0].index)
-						cardPicker.dispose();
-						deliverType()
+					// 默认是配送
+					$('.under-top .songhuo_sy .show_value0')[0].innerText=arr[1].text;
+					$('.under-top .songhuo_sy')[0].addEventListener('tap', function() {
+						var cardPicker = new $.PopPicker({
+							layer: 1
+						});
+						cardPicker.setData(arr);
+						cardPicker.show(function(items) {
+							$('.under-top .songhuo_sy .show_value0')[0].innerText = items[0].text;
+							$('.under-top .songhuo_sy')[0].setAttribute('data-index',items[0].index)
+							cardPicker.dispose();
+							deliverType()
 
-					});
-				}, false);
+						});
+					}, false);
 
-			})(mui);
-			var productMsg={
-				    "empId": "admin",
-				    "type": "10",
-				    "id": "",
-				    "customerId": "2017030301",
-				    "customerName": "李天",
-				    "customerTel": "18923822188",
-				    "customerAddress": "东莞南城区南城花园一期A栋2308",
-				    "ckNo": "JZ10023",
-				    "provinceId": "44",
-				    "provinceName": "广东省",
-				    "cityId": "4419",
-				    "cityName": "东莞市",
-				    "areaId": "441900",
-				    "areaName": "市辖区",
-				    "townId": "44190003",
-				    "townName": "东城区",
-				    "viliageId": "0004",
-				    "viliageName": "卫光花园",
-				    "viliageAddr": "东莞市东城区卫光花园",
-				    "warehouseId": "0001",
-				    "totalMoney": "40",
-				    "createrId": "40",
-				    "createDate": "2017-04-18 00:00:00",
-				    "detail": [
-				        {
-				            "id": "",
-				            "no": "",
-				            "productId": "01093205",
-				            "productName": "欧盛家俱拉手OLS-LS-5706-96-PA",
-				            "productSpec": "OLS-LS-5706-96-PA",
-				            "productClassId": "03060101",
-				            "productBrandId": "000084",
-				            "productUnit": "支",
-				            "isColor": "0",
-				            "colorNum": "",
-				            "isCustom": "0",
-				            "isInstall": "0",
-				            "isMeasure": "0",
-				            "isGiving": "0",
-				            "deliverType": "1",
-				            "deliverDate": "2017-04-18 00:00:00",
-				            "salePeople": "admin",
-				            "salePeopleName": "系统管理",
-				            "salesman": "10004",
-				            "salesmanName": "张三",
-				            "ppId": "",
-				            "ppType": "",
-				            "isSpecial": "0",
-				            "payRate": "0",
-				            "qty": "2",
-				            "mprice": "20",
-				            "price": "20",
-				            "lprice": "20",
-				            "discount": "1.00",
-				            "totalMoney": "40.00",
-				            "payStatus": "0",
-				            "status": "0",
-				            "remark":''
-				        }
-				    ]
-			}
+				})(mui);
+		    }
+		    var morennow = new Date();
+            var morendate=morennow.getFullYear() + "-" + formatMonth((morennow.getMonth() + 1).toString()) + "-" + formatMonth(morennow.getDate().toString());
+			var proMorenmsg={
+	            "id": "",
+	            "no": "",
+	            "productId": "01093205",
+	            "productName": "欧盛家俱拉手OLS-LS-5706-96-PA",
+	            "productSpec": "OLS-LS-5706-96-PA",
+	            "productClassId": "03060101",
+	            "productBrandId": "000084",
+	            "productUnit": "支",
+	            "isColor": "0",
+	            "colorNum": "",
+	            "isCustom": "0",
+	            "isInstall": "0",
+	            "isMeasure": "0",
+	            "isGiving": "0",
+	            "deliverType": "1",
+	            "deliverDate": morendate,
+	            "salePeople": "admin",
+	            "salePeopleName": "系统管理",
+	            "salesman": "10004",
+	            "salesmanName": "张三",
+	            "ppId": "",
+	            "ppType": "",
+	            "isSpecial": "0",
+	            "payRate": "0",
+	            "qty": "1",
+	            "mprice": "20",
+	            "price": "20",
+	            "lprice": "20",
+	            "discount": "1.00",
+	            "totalMoney": "40.00",
+	            "payStatus": "0",
+	            "status": "0",
+	            "remark":''
+			};
+
+			var productMsg=JSON.parse(localStorage.LZRproduMsg);
 
 			var vm = new Vue({
 				el: "body",
 				data: {
-					dataArr: [],
+					dataArr:{
+					},
 					salePrice:"",
 					m:1,
 					mprice:'',
 					zhekoulv:1,
-					productMsg:productMsg,
+					addproMsg:{
+					},
 					iscolor:'',
 					isInstall:'',
 					isMeasure:'',
@@ -298,7 +279,7 @@
 						} else {
 							this.salePrice = this.mprice
 						}
-						this.productMsg.detail[0].price=this.salePrice;
+						this.addproMsg.price=this.salePrice;
 					},
 					zhekoulv: function() {
 						if (this.zhekoulv > 1 || this.zhekoulv <= 0) {
@@ -307,16 +288,16 @@
 							var salePrice = this.zhekoulv * this.mprice;
 							this.salePrice = salePrice
 						}
-						this.productMsg.detail[0].discount=this.zhekoulv;
+						this.addproMsg.discount=this.zhekoulv;
 					},
 					say_something:function(){
-						this.productMsg.detail[0].remark=this.say_something;
+						this.addproMsg.remark=this.say_something;
 					}
 				},
 				computed:{
 					totalMoney:function(){
 						var allMoney=this.salePrice * this.m
-						this.productMsg.totalMoney= allMoney;
+						this.addproMsg.totalMoney= allMoney;
 						return allMoney
 					}
 				},
@@ -331,36 +312,47 @@
 								this.m--;
 							}
 						}
-						this.productMsg.detail[0].qty=this.m;
+						this.addproMsg.qty=this.m;
 					},
 					tijiao(){
-						// console.log(JSON.stringify( this.productMsg) )
-						localStorage.LZRproduMsg=JSON.stringify(this.productMsg );
+						var promsg=productMsg;
+
+						var arr=promsg.detail;
+
+						var obj=this.addproMsg;
+						var length=arr.push(obj);
+
+						productMsg.detail=arr;
+
+						console.log(productMsg)
+						localStorage.LZRproduMsg=JSON.stringify(productMsg)
+
+						// console.log(arr)
+						// console.log(promsg.detail)
 						openNew("gouwuche.html");
-						console.log( localStorage.LZRproduMsg );
 					},
 					switchInstall(e){
 						 if( e.currentTarget.className.indexOf('active') > -1){
-						 	 this.productMsg.detail[0].isInstall=1;
+						 	 this.addproMsg.isInstall=1;
 						 }
 						 else{
-						 	this.productMsg.detail[0].isInstall=0;
+						 	this.addproMsg.isInstall=0;
 						 }
 					},
 					switchMeasure(e){
 						 if( e.currentTarget.className.indexOf('active') > -1){
-						 	 this.productMsg.detail[0].isMeasure=1;
+						 	 this.addproMsg.isMeasure=1;
 						 }
 						 else{
-						 	this.productMsg.detail[0].isMeasure=0;
+						 	this.addproMsg.isMeasure=0;
 						 }
 					},
 					switchGiving(e){
 						 if( e.currentTarget.className.indexOf('active') > -1){
-						 	 this.productMsg.detail[0].isGiving=1;
+						 	 this.addproMsg.isGiving=1;
 						 }
 						 else{
-						 	this.productMsg.detail[0].isGiving=0;
+						 	this.addproMsg.isGiving=0;
 						 }
 					}
 				},
@@ -377,17 +369,17 @@
 			}
 
 			var deliverType_index=$('.under-top .songhuo_sy').data('index');
-			vm.productMsg.detail[0].deliverType=deliverType_index;
+			vm.addproMsg.deliverType=deliverType_index;
 			function deliverType(){
 				deliverType_index=$('.under-top .songhuo_sy').data('index');
-				vm.productMsg.detail[0].deliverType=deliverType_index;
+				vm.addproMsg.deliverType=deliverType_index;
 			}
-			var deliverDate=$('.under-top .startDate .show_value2').html();
-			vm.productMsg.detail[0].deliverDate=deliverDate;
 
+			var deliverDate=$('.under-top .startDate .show_value2').html();
+			vm.addproMsg.deliverDate=deliverDate;
 			function deliverdate(){
 				deliverDate=$('.under-top .startDate .show_value2').html();
-			    vm.productMsg.detail[0].deliverDate=deliverDate;
+			    vm.addproMsg.deliverDate=deliverDate;
 			}
 
 			function init(productId) {
@@ -398,29 +390,15 @@
 						productId: productId
 					},
 					success: function(jsonData) {
-						 
 						if(jsonData.status) {
-							 
 							vm.dataArr = jsonData.data;
 							vm.mprice=jsonData.data.mprice;
 							vm.iscolor=jsonData.data.isColor;
 							vm.isInstall=jsonData.data.isInstall;
 							vm.isMeasure=jsonData.data.isMeasure;
 							vm.isGiving=jsonData.data.isGiving;
-                            
-                            var pro_detail= vm.productMsg.detail[0];
-
-                            // pro_detail = $.extend(true,pro_detail, vm.dataArr);
-
-                            pro_detail = Object.assign({},pro_detail,vm.dataArr);
-
-                            vm.productMsg.detail[0]=pro_detail;
-
-							// console.log(JSON.stringify( vm.productMsg.detail[0]) )
-							// var produMsg = Object.assign({}, vm.dataArr, {});
-							// vm.produMsg=produMsg;
-							// console.log(JSON.stringify(vm.produMsg))
-
+                            vm.addproMsg = Object.assign({},proMorenmsg,vm.dataArr);
+                            chose();
 						} else {
 							plus.nativeUI.alert(jsonData.msg);
 						}
