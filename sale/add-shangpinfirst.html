@@ -84,11 +84,11 @@
 				<h1>{{dataArr.id}}/{{dataArr.productName}}</h1>
 				<div>
 					<span></span>
-					<div @click='changeCount(-1)' class="y-sub-box">
+					<div @tap='changeCount(-1)' class="y-sub-box">
 						<img class="y-sd-icon" src="../images/icon-sub.png" alt="" />
 					</div>
 					<strong>{{m}}</strong>						
-					<div @click='changeCount(1)' class="y-add-box">
+					<div @tap='changeCount(1)' class="y-add-box">
 						<img class="y-sd-add y-sd-icon" src="../images/icon-add.png" alt="" />
 					</div>
 				</div>
@@ -179,6 +179,17 @@
 		<script type="text/javascript" src="../picker/mui.picker.min.js"></script>
 	    <script type="text/javascript" src="../picker/mui.poppicker.js"></script>
 		<script>
+		var type1=localStorage.yhnjzOrls;
+		var title1=null;
+		var typeNum=null;
+		if(type1=="jzxd"){
+			title1="家装下单";
+			typeNum="10";
+		}else{
+			title1="零售下单";
+			typeNum="20";
+		}
+		
 		   (function($) {
 				$.init();
 				var now = new Date();
@@ -218,7 +229,7 @@
 			})(mui);
 			var productMsg={
 				    "empId": "admin",
-				    "type": "10",
+				    "type": typeNum,
 				    "id": "",
 				    "customerId": "2017030301",
 				    "customerName": "李天",

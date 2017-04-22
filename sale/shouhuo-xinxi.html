@@ -59,6 +59,10 @@
 			font-size: .4rem;
 			height: 1.3rem;
 		}
+		
+		.footer{width:9.2rem;height:1.1rem;text-align: center; line-height:1.1rem;background:#EA6D01;border-radius: 6px;font-size:.4rem;margin:0 auto;color:#fff}
+		.footer:active{opacity: .8;}
+		/*.mui-btn{background:#EA6D01;border-color:#EA6D01}*/
 	</style>
 
 	<body>
@@ -74,31 +78,31 @@
 				<li class="mui-table-view-cell">
 					<a id="user" class="mui-navigate-right">
 						<span>*</span>收货人
-						<strong class="right"></strong>
+						<strong id="userName" class="right">{{customerName}}</strong>
 					</a>
 				</li>
-				<li class="mui-table-view-cell"><span>*</span>收货电话<input type="number" placeholder="请输入" /></li>
+				<li class="mui-table-view-cell"><span>*</span>收货电话<input type="number" v-model="customerTel" placeholder="请输入" style="text-align: right;" /></li>
 				<li class="mui-table-view-cell">
 					<a id="address" class="mui-navigate-right">
-						<span>*</span>收货地址
-						<strong class="right"></strong>
+						<span>*</span>省市区
+						<strong id="ssq" class="right">{{provinceName}}&nbsp;{{cityName}}&nbsp;{{areaName}}&nbsp;{{townName}}</strong>
 					</a>
 				</li>
 				<li class="mui-table-view-cell">
 					<a id="building" class="mui-navigate-right">
 						<span>*</span>楼盘
-						<strong class="right"></strong>
+						<strong id="loupan" class="right">{{viliageAddr}}</strong>
 					</a>
 				</li>
 			</ul>
 
-			<textarea class="addrs" name="" rows="" cols="" placeholder="请填写详细地址"></textarea>
+			<textarea class="addrs" v-model="customerAddress" name="" rows="" cols="" placeholder="请填写详细地址"></textarea>
 
 			<ul class="mui-table-view">
 				<li class="mui-table-view-cell">
-					<a class="mui-navigate-right">
+					<a id="datapicBtn" id="datapicBtn" data-options='{"type":"date"}' class="mui-navigate-right">
 						<span>*</span>预约送货日期
-						<strong class="right"></strong>
+						<strong id="dateVal" class="right"></strong>
 					</a>
 				</li>
 			</ul>
@@ -108,6 +112,9 @@
 				<input class="left" placeholder="说点什么吧" type="text" />
 			</p>
 		</section>
+		<footer>
+			<div class="footer" id="submit">提交</div>
+		</footer>
 	</body>
 	<script src="../js/zepto1.1.6.min.js" type="text/javascript"></script>
 	<script src='../js/mui.min.js'></script>
@@ -117,10 +124,29 @@
 	<script type="text/javascript" src="../js/picker/mui.picker.min.js"></script>
 	<script type="text/javascript" src="../js/picker/mui.poppicker.js"></script>
 	<script>
+		var data1=JSON.parse(localStorage.LZRproduMsg);
+		console.log(data1);
+	
+	
 		var vm = new Vue({
 			el: "body",
 			data: {
-				dataArr: []
+				dataArr: [],
+				customerName:"",
+				customerTel:"",
+				provinceId:"",
+				provinceName:"",
+				townId:"",
+				townName:"",
+				areaId:"",
+				areaName:"",
+				cityId:"",
+				cityName:"",
+				customerAddress:"",
+				viliageId:"",
+				viliageName:"",
+				viliageAddr:"",
+				
 			},
 			methods: {},
 			ready: function() {
@@ -201,7 +227,26 @@
 				});
 				addressPicker.setData(dataArr);
 				addressPicker.show(function(items) {
-					address.innerText = items[0].text;
+					var txt=null;
+					for(var i=0;i<items.length;i++){
+						if(!items[i].text){
+							items[i].text="";
+						}
+						if(!items[i].id){
+							items[i].id="";
+						}
+					}
+					console.log(items);
+					vm.provinceName = items[0].text;
+					vm.provinceId=items[0].id;
+					vm.cityName = items[1].text;
+					vm.cityId=items[1].id;
+					vm.areaName = items[2].text;
+					vm.areaId=items[2].id;
+					vm.townName = items[3].text;
+					vm.townId=items[3].id;
+					
+//					+items[1].text+" "+items[2].text+" "+items[3].text;
 					addressPicker.dispose();
 				});
 			}, false);
@@ -214,7 +259,10 @@
 				});
 				buildingPicker.setData(dataArr);
 				buildingPicker.show(function(items) {
-					building.innerText = items[0].text;
+					console.log(items);
+					vm.viliageAddr=items[0].address;
+					vm.viliageName=items[0].text;
+					vm.viliageId=items[0].id;
 					buildingPicker.dispose();
 				});
 			}, false);
@@ -227,11 +275,81 @@
 				});
 				userPicker.setData(dataArr);
 				userPicker.show(function(items) {
-					user.innerText = items[0].text;
+					vm.customerName = items[0].text;
 					userPicker.dispose();
 				});
 			}, false);
 		}
+		
+		(function($, doc, Zepto) {
+			$.init();
+			datapicBtn.addEventListener('tap', function() {
+				var that=this
+				var optionsJson = this.getAttribute('data-options') || '{}';
+				var options = JSON.parse(optionsJson);
+				var id = this.getAttribute('id');
+				/*
+				 * 首次显示时实例化组件
+				 * 示例为了简洁，将 options 放在了按钮的 dom 上
+				 * 也可以直接通过代码声明 optinos 用于实例化 DtPicker
+				 */
+				var picker = new $.DtPicker(options);
+				picker.show(function(rs) {
+					console.log(rs.text);
+					dateVal.innerText=rs.text;
+				});
+			}, false);
+		})(mui, document, Zepto);
+		
+		function submitData(){
+			data1.customerName=vm.customerName;
+			data1.customerTel=vm.customerTel;
+			data1.provinceId=vm.provinceId;
+			data1.provinceName=vm.provinceName;
+			data1.townId=vm.townId;
+			data1.townName=vm.townName;
+			data1.areaId=vm.areaId;
+			data1.areaName=vm.areaName;
+			data1.cityId=vm.cityId;
+			data1.cityName=vm.cityName;
+			data1.customerAddress=vm.customerAddress;
+			data1.viliageId=vm.viliageId;
+			data1.viliageName=vm.viliageName;
+			data1.viliageAddr=vm.viliageAddr;
+			
+			console.log(JSON.stringify(data1));
+			
+			mui.ajax(getBaseServerUrl() + '/app/order/createOrder', {
+					type: 'post', //HTTP请求类型
+					contentType: "application/json",
+					data: data1,
+					success: function(jsonData) {
+						console.log(jsonData);
+						if(jsonData.status==="true"){
+							plus.webview.getWebviewById("add-shangpinfirst.html").close();
+							plus.webview.getWebviewById("gouwuche.html").close();
+							if(plus.webview.getWebviewById("add-shangpin.html")){
+								plus.webview.getWebviewById("add-shangpin.html").close();
+							}
+							plus.webview.currentWebview().close();	
+						}else{
+							alertMsg(jsonData.msg);
+						}
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {}
+				});
+				
+				
+			
+			
+			
+			
+			
+		}
+		
+		$("#submit").on("tap",function(){
+			submitData();
+		})
 	</script>
 
 </html>

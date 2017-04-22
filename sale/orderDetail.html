@@ -33,46 +33,44 @@
 		</div>
 		<section class="content">
 			<div class="orderInfoDiv">
-				<div class="orderNum">订单号：TL20160302<span class="right">待审批</span></div>
+				<div class="orderNum">订单号：{{info.id}}<span class="right">{{info.statusName}}</span></div>
 				<div class="orderInfo">
-					<div><span>制单人</span>赵小吴</div>
-					<div><span>制单机构</span>南城装饰</div>
-					<div><span>销售顾问</span>南城装饰</div>
-					<div><span>制单日期</span>2017-02014</div>
+					<div><span>制单人</span>{{info.createrName}}</div>
+					<div><span>制单机构</span>{{info.orgName}}</div>
+					<div><span>销售顾问</span>{{info.orgName}}</div>
+					<div><span>制单日期</span>{{info.createDate}}</div>
 				</div>
 			</div>
-			<div class="userAddress">
+			<!--<div class="userAddress">
 				<div class="user">张小郎           13923758455</div>
 				<div class="address">东王南城区南城花园一期A栋2308</div>
 				<i></i>
-			</div>
+			</div>-->
 			<div class="title-goods-info">
-				商品信息（4）
+				商品信息（{{info.details.length}}）
 			</div>
-			<div class="item-list">
-				<div class="item">
-					<div class="name">01102010、桌板外墙腻子（外墙腻子0KG）（包）<span class="line"></span></div>
-					<div class="spec">规格：J503_BQ608_100S-3031</div>
+			<template v-for="item in info.details">
+				<div class="item-list">
+					<div class="item">
+						<div class="name">{{item.proId}}\{{item.proName}}）<span class="line"></span></div>
+						<div class="spec">规格：{{item.proSpec}}</div>
+					</div>
 				</div>
-				<div class="item">
-					<div class="name">01102010、桌板外墙腻子（外墙腻子0KG）（包）<span class="line"></span></div>
-					<div class="spec">规格：J503_BQ608_100S-3031</div>
+				<div class="dispatchType">
+					<div class="item"><span>送货方式：</span>{{item.deliverTypeName}}</div>
+					<div class="item"><span>色号：</span>{{item.colorNum}}</div>
+					<div class="item"><span>发货日期：</span>{{item.deliverDate}}</div>
 				</div>
-			</div>
-			<div class="dispatchType">
-				<div class="item"><span>送货方式：</span>配送</div>
-				<div class="item"><span>色号：</span>01254</div>
-				<div class="item"><span>发货日期：</span>2017-03-20</div>
-			</div>
-			<div class="dispatchType">
-				<div class="btn active"><span>安装</span></div>
-				<div class="btn"><span>测量</span></div>
-				<div class="btn"><span>赠送</span></div>
-			</div>
+				<div class="dispatchType">
+					<div class="btn" v-bind:class="{active:item.isInstall==1}"><span>安装</span></div>
+					<div class="btn" v-bind:class="{active:item.isMeasure==1}"><span>测量</span></div>
+					<div class="btn" v-bind:class="{active:item.isGiving==1}"><span>赠送</span></div>
+				</div>
+				<div class="remark">
+					<span>备注：</span>{{item.remark}}
+				</div>
+			</template>
 			<div class="remark">
-				<span>备注：</span>此商品为易碎品，请注意！
-			</div>
-			<div class="remark" >
 				<span class="unitPrice">￥20</span><span class="num">x1</span>
 				<span class="discountTxt">折扣率：</span><span class="unitPrice">0.80</span>
 				<span class="totalNum right">20</span>
@@ -94,12 +92,12 @@
 	<script type="text/javascript" src="../js/vue.min.js"></script>
 	<script type="text/javascript" src="../js/global.js"></script>
 	<script>
-	var tlid=localStorage.yhntlid;
-	
+		var tlid = localStorage.yhntlid;
+
 		var vm = new Vue({
 			el: 'body',
 			data: {
-				dataArr: [{},{}]
+				info: []
 			},
 			methods: {},
 			ready: function() {
@@ -108,6 +106,7 @@
 		});
 
 		function init() {
+<<<<<<< HEAD
 			console.log(tlid);
 			mui.ajax(getBaseServerUrl() + '/app/order/findTLDetail',{
 					type: 'get', //HTTP请求类型
@@ -123,18 +122,33 @@
 						console.log('error')
 					}
 				});
+=======
+			mui.ajax(getBaseServerUrl() + '/app/orderAdjust/editAppendOrder', {
+				type: 'get', //HTTP请求类型
+				data: {
+					id: localStorage.orderDetailIdFromDGTZ
+				},
+				success: function(jsonData) {
+					vm.info = jsonData.data;
+				},
+				error: function(XMLHttpRequest, textStatus, errorThrown) {
+					$("#search_content").hide();
+					console.log('error')
+				}
+			});
+>>>>>>> 22f0eb1e2ab3363a56724762b3a4299a3968f30e
 		}
-		
-		$(".header-right").on('tap',function(){
-			$('.shadow').css('display','block');
+
+		$(".header-right").on('tap', function() {
+			$('.shadow').css('display', 'block');
 		});
-		$(".shadow").on('tap',function(){
-			$('.shadow').css('display','none');
+		$(".shadow").on('tap', function() {
+			$('.shadow').css('display', 'none');
 		});
-		
-		$(".dispatchType").on('tap','.btn',function(){
-            $(".dispatchType .btn").eq($(this).index()).addClass('active').siblings().removeClass('active');
-		});
+
+//		$(".dispatchType").on('tap', '.btn', function() {
+//			$(".dispatchType .btn").eq($(this).index()).addClass('active').siblings().removeClass('active');
+//		});
 	</script>
 
 </html>

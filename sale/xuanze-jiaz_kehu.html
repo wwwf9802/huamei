@@ -343,7 +343,16 @@
 					data: data,
 					success: function(jsonData) {
 						console.log(jsonData);
-						console.log(111111111);
+						if(jsonData.status==="true"){
+							plus.webview.getWebviewById("add-shangpinfirst.html").close();
+							plus.webview.getWebviewById("gouwuche.html").close();
+							if(plus.webview.getWebviewById("add-shangpin.html")){
+								plus.webview.getWebviewById("add-shangpin.html").close();
+							}
+							plus.webview.currentWebview().close();	
+						}else{
+							alertMsg(jsonData.msg);
+						}
 					},
 					error: function(XMLHttpRequest, textStatus, errorThrown) {}
 				});

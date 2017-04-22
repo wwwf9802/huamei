@@ -74,8 +74,10 @@
 		
 		<section class="under-top">
 			<div class="searchDiv">
-				<input debounce="500" type="search" placeholder="产品编号/名称/类别">
+				<input @input="inpblur()" v-model="inpValue" debounce="500" type="search" placeholder="产品编号/名称/类别">
 			</div>
+			
+			<div v-show="flag">
 			<div class="addBox">
 				<span></span>
 				<h1>{{dataArr.id}}/{{dataArr.productName}}</h1>
@@ -159,6 +161,7 @@
 					</a>
 				</li>
 			</ul>
+			</div>
 		</section>
 		
 		<footer class="y-sd-footer">
@@ -269,7 +272,9 @@
 					isInstall:'',
 					isMeasure:'',
 					isGiving:'',
-					say_something:''
+					say_something:'',
+					inpValue:"",
+					flag:true,
 				},
 				watch: {
 					salePrice: function() {
@@ -326,10 +331,10 @@
 
 						console.log(productMsg)
 						localStorage.LZRproduMsg=JSON.stringify(productMsg)
-
+						plus.webview.currentWebview().opener().evalJS("init()");
 						// console.log(arr)
 						// console.log(promsg.detail)
-						openNew("gouwuche.html");
+						mui.back();
 					},
 					switchInstall(e){
 						 if( e.currentTarget.className.indexOf('active') > -1){
@@ -354,6 +359,12 @@
 						 else{
 						 	this.addproMsg.isGiving=0;
 						 }
+					},
+					inpblur:function(){
+						console.log(this.inpValue);
+						setTimeout(function(){
+							init(vm.inpValue)
+						},500);
 					}
 				},
 				ready: function() {
@@ -390,7 +401,7 @@
 						productId: productId
 					},
 					success: function(jsonData) {
-						if(jsonData.status) {
+						if(jsonData.status==="true") {
 							vm.dataArr = jsonData.data;
 							vm.mprice=jsonData.data.mprice;
 							vm.iscolor=jsonData.data.isColor;
@@ -399,8 +410,11 @@
 							vm.isGiving=jsonData.data.isGiving;
                             vm.addproMsg = Object.assign({},proMorenmsg,vm.dataArr);
                             chose();
+                            
+                            vm.flag=true;
 						} else {
-							plus.nativeUI.alert(jsonData.msg);
+							vm.flag=false;
+							//alertMsg(jsonData.msg);
 						}
 
 					},

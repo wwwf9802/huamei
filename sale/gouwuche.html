@@ -271,6 +271,16 @@
 	<script type="text/javascript" src="../picker/mui.picker.min.js"></script>
     <script type="text/javascript" src="../picker/mui.poppicker.js"></script>
 	<script>
+		var type1=localStorage.yhnjzOrls;
+		var title1=null;
+		var typeNum=null;
+		if(type1=="jzxd"){
+			title1="家装下单";
+			typeNum="10";
+		}else{
+			title1="零售下单";
+			typeNum="20";
+		}
 
 		mui.init({
 				swipeBack:true //启用右滑关闭功能
@@ -509,8 +519,19 @@
 		}
 		 
 		$("#nextPage").on("tap",function(){
+			
 		 	localStorage.LZRproduMsg=JSON.stringify(vm.dataArr);
-		 	openNew("xuanze-jiaz_kehu.html");
+		 	if(type1=="jzxd"){
+		 		openNew("xuanze-jiaz_kehu.html");
+			}else{
+				openNew("shouhuo-xinxi.html");
+			}
 		});
+		
+		
+		function init(){
+			var data=JSON.parse(localStorage.LZRproduMsg);
+			vm.dataArr=data;
+		}
 	</script>
 </html>
