@@ -31,6 +31,9 @@
 		    background-position: 7.2rem 0.107rem;
 		    background-size: contain;
 		}
+		.g-content-project-list .item-project {
+		     z-index: 999;
+		}
 		</style>
 	</head>
 
@@ -38,14 +41,14 @@
 	    <div class="mui-bar mui-bar-nav header header-details">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<span class="title">家装下单
-              <span class='jiahao'>+</span>
+              <span data-page='add-shangpin.html' class='jiahao'>+</span>
 			</span>
 
 		</div>
 		<div class="g-content g-content-project-list g-jiazhuang-gendan g-yuandingdan">
 			<div class="serach-lay m-tiaozheng-dinggou">
 				<form method="post" id="form" action="##">
-					<input v-el:search v-on:focus="onfocus($event)" v-on:blur="blur($event)" debounce="500" class='search' type="search" name="search" id="search" placeholder="TL单号/业主电话/地址">
+					<input v-el:search v-on:focus="onfocus($event)" v-on:blur="blur($event)" debounce="500" class='search' type="search" name="search" id="search" placeholder="CK卡号/业主电话/地址">
 					<div v-show='focusy' id='cancel' class="botton cancel-bottom" v-on:click="cancelSearch()">取消</div>
 				</form>
 			</div>
@@ -61,11 +64,11 @@
 			</div>
 			<div v-else class="item-project m-dinggou-tiaozheng" id='item-project'>
 				<div class="item-pro-list">
-					<div class="list-qingdan daishenhe">
+					<div  v-for='item in dataArr' @tap='toProjectDetail(item.id,item)'  class="list-qingdan daishenhe">
 						<div class="list-qingdan-box">
 							<div class="tr">
 								<div class="td th">
-									<span class='danhao'>订单号：121231231231231</span>
+									<span class='danhao'>订单号：{{item.id}}</span>
 								</div>
 								<div class="td td-shenhe">
 									 待审核
@@ -75,46 +78,17 @@
 						<div class="list-qingdan-box">
 						    <div class="tr">
 								<div class="td td-address" style='color:#252525 !important;'>
-									 销售金额： <span style='color:#eb4d4b;font-weight:bold;font-size: 0.4rem;'>1000</span>&nbsp;&nbsp;元
+									 销售金额： <span style='color:#eb4d4b;font-weight:bold;font-size: 0.4rem;'>{{item.totalMoney}}</span>&nbsp;&nbsp;元
 								</div>
 							</div>
 							<div class="tr">
 								<div class="td td-address">
-									 张小兰&nbsp;&nbsp;<span class='shuxian'>|</span>&nbsp; 185167134
+									 {{item.customerName}}&nbsp;&nbsp;<span class='shuxian'>|</span>&nbsp; {{item.customerTel}}
 								</div>
 							</div>
 							<div class="tr">									 
 								<div class="td td-address">
-									地址地址
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="list-qingdan daishenhe">
-						<div class="list-qingdan-box">
-							<div class="tr">
-								<div class="td th">
-									<span class='danhao'>订单号：121231231231231</span>
-								</div>
-								<div class="td td-shenhe">
-									 待审核
-								</div>
-							</div>
-						</div>
-						<div class="list-qingdan-box">
-						    <div class="tr">
-								<div class="td td-address" style='color:#252525 !important;'>
-									 销售金额： <span style='color:#eb4d4b;font-weight:bold;font-size: 0.4rem;'>1000</span>&nbsp;&nbsp;元
-								</div>
-							</div>
-							<div class="tr">
-								<div class="td td-address">
-									 张小兰&nbsp;&nbsp;<span class='shuxian'>|</span>&nbsp; 185167134
-								</div>
-							</div>
-							<div class="tr">									 
-								<div class="td td-address">
-									地址地址
+									{{item.customerAddress}}
 								</div>
 							</div>
 						</div>
@@ -145,8 +119,6 @@
 							</div>
 						</div>
 					</div>
-					 
-					 
 				</div>
 			</div>
 		</div>
@@ -157,27 +129,25 @@
 		<script type="text/javascript" src="../js/global.js"></script>
 		<script type="text/javascript" src="../js/public.js"></script>
 		<script>
-
-		     
-			// function init() {
-			// 	//获取工地信息
-			// 	mui.ajax(getBaseServerUrl() + '/app/order/findSiteList',{
-			// 		type: 'get', //HTTP请求类型
-			// 		data: {
-			// 			empId:'admin',
-			// 			query: $("#search").val()
-			// 		},
-			// 		success: function(jsonData) {
-			// 			console.log(JSON.stringify(jsonData));
-			// 			vm.dataArr = jsonData;
-						 
-			// 		},
-			// 		error: function(XMLHttpRequest, textStatus, errorThrown) {
-			// 			$("#search_content").hide();
-			// 			console.log('error')
-			// 		}
-			// 	});
-			// }
+			function init() {
+				//获取工地信息
+				mui.ajax(getBaseServerUrl() + '/app/order/findTlList',{
+					type: 'get', //HTTP请求类型
+                    data: {
+                    	empId:'admin',
+                    	//query:'JZ10023'
+                    	query:'张器'
+                    },
+					success: function(jsonData) {
+						console.log(JSON.stringify(jsonData));
+						vm.dataArr = jsonData.data;
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {
+						$("#search_content").hide();
+						console.log('error')
+					}
+				});
+			}
 
 			var vm = new Vue({
 				el: "body",
@@ -199,11 +169,11 @@
 					blur: function(e) {
 						// this.$els.search.className='left'
 					},
-					toProjectDetail: function(sitesId,contractId,item) {
-						localStorage.xiangmuData=JSON.stringify(item);
-						localStorage.selectSitesId = sitesId;
-						localStorage.selectContractId = contractId;
-						openNew("xiangmu/project-details.html");
+					toProjectDetail: function(id,item) {
+						localStorage.yhnjiazhuangData=JSON.stringify(item);
+						localStorage.yhntlid = id;
+						alert(localStorage.yhntlid)
+						openNew("orderDetail.html");
 					},
 					cancelSearch: function() {
 						search.value = '';
@@ -221,7 +191,7 @@
 					}
 				},
 				ready: function() {
-					// init();
+					init();
 				}
 			});
 
@@ -348,6 +318,10 @@
 				var value = $(this).find('.sptitle').text();
 				setHistoryData(value);
 				vm.focusy = false;
+			});
+
+			$(".jiahao").on('tap',function(){
+				openNew($(this).data('page'));
 			});
 		</script>
 	</body>

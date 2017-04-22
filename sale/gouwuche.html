@@ -15,6 +15,8 @@
 		<link rel="stylesheet" href="../css/base-reset.css">
 		<link rel="stylesheet" href="../css/mui.min.css">
 		<link rel="stylesheet" type="text/css" href="../css/swiper-3.3.1.min.css">
+		<link href="../picker/mui.picker.min.css" rel="stylesheet" />
+		<link href="../picker/mui.poppicker.css" rel="stylesheet" />
 		<link rel="stylesheet" type="text/css" href="../css/common.css">
 		<link rel="stylesheet" type="text/css" href="../css/yhn.css">
 	</head>
@@ -72,171 +74,203 @@
 		.gwc-foot>div:first-child>b{color:red;}
 		.gwc-foot>div:last-child{width:3.2rem;height:1.2rem;font-size:.4rem;line-height:1.2rem;text-align: center;color:#fff;background:#EA6D01;float:right;}
 		.gwc-foot>div:active{opacity: .8;}
+		.gwc-foot{
+			position: absolute;bottom:0;left:0;right:0;
+		}
+		.under-top {
+		    overflow: hidden;
+		}
+		.mui-btn-blue{background-color:#EB6D00 !important;border:1px solid #EB6D00 !important}
+		.price-box input{
+			width:0.8rem;
+			height:0.8rem;
+			padding:0;margin:0;
+			/*border:none;*/
+			text-align: center;font-size: 0.32rem;
+
+		}
 	</style>
 	<body>
-		<header class="mui-bar mui-bar-nav header">
-			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<span class="title">购物车(4)</span>
-			<span class="header-right mui-icon mui-icon-plus"></span>
-		</header>
-		<section class="under-top">
-			<div class="gouwuche-top">
-				<p>制单人：<span>赵小五</span></p>
-				<p>家装顾问：<span>张小兰</span></p>
-			</div>
-			<p class="gwc-title">
-				商品信息(4)
-			</p>
+	<header class="mui-bar mui-bar-nav header">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<span class="title">购物车({{dataArr.detail.length}})</span>
+		<span id="gotoADD" class="header-right mui-icon mui-icon-plus"></span>
+	</header>
+	<section class="under-top">
+		<div class="gouwuche-top">
+			<p class='zhidanren'>制单人：<span>赵小五</span></p>
+			<p class='jiazhuang-guwen'>家装顾问：<span>张小兰</span></p>
+		</div>
+		<p class="gwc-title">
+			商品信息({{dataArr.detail.length}})
+		</p>
+		<div v-show='flag' class='abc gouwuche-edit'>
 			<div class="addBox">
 				<span></span>
-				<h1>01106020/卓邦外墙腻子（外墙腻子0kg）(包)</h1>
+				<h1>{{editPromsg.id}}/{{editPromsg.productName}}</h1>
 				<div>
 					<span></span>
-					<div class="y-sub-box">
+					<div @tap='changeCount(-1)' class="y-sub-box">
 						<img class="y-sd-icon" src="../images/icon-sub.png" alt="" />
 					</div>
-					<strong>1</strong>						
-					<div class="y-add-box">
+					<!-- <strong>{{editPromsg.qty}}</strong> -->
+					<strong>{{m}}</strong>
+					<div @tap='changeCount(1)' class="y-add-box">
 						<img class="y-sd-add y-sd-icon" src="../images/icon-add.png" alt="" />
 					</div>
 				</div>
-				<p>规格:J503+BQ608+100S-3031</p>
+				<p>规格:{{editPromsg.productSpec}}</p>
 			</div>
-			
+
 			<p class="gwc-title">
-				销售价格 1000
+				销售价格 {{editPromsg.mprice}}
 			</p>
-			
 			<div class="price-box">
 				<div>
 					<p>单价<span>(折后)</span></p>
-					<p>¥800</p>
+					<p>¥<input type="text" v-model='salePrice' ></p>
 				</div>
 				<div>
 					<p>折扣率</p>
-					<p>0.8</p>
+					<p><input type="text" v-model='zhekoulv'></p>
 				</div>
 				<div>
 					<p>小计：</p>
-					<p><b>¥800</b></p>
+					<p><b>¥ {{salePrice * m }}</b></p>
 				</div>
 			</div>
-			
+
 			<ul class="mui-table-view" style="margin-top:.3rem">
 				<li class="mui-table-view-cell">
-					<a data-arr="arr1" class="a-choice mui-navigate-right">
-						送货方式
-						<span class="right">点击选择</span>
+					<a data-arr="arr1" data-index='{{editPromsg.deliverType}}' class="a-choice mui-navigate-right songhuo_sy">
+						送货方式 
+						<span class="right show_value0"></span>
+					</a>
+				</li>
+				<li v-show='editPromsg.iscolor == 1' class="mui-table-view-cell">
+					<a data-arr="arr2" class="a-choice mui-navigate-right">
+					    色号:
+						<input class="right" placeholder="输入色号" v-model="editPromsg.colorNum"></span>
 					</a>
 				</li>
 				<li class="mui-table-view-cell">
-					<a data-arr="arr2" class="a-choice mui-navigate-right">
-						<input class="right" placeholder="输入色号">点击选择</span>
-					</a>
-				</li>
-				<li class="mui-table-view-cell">
-					<a data-arr="arr2" class="a-choice mui-navigate-right">
+					<a data-arr="arr2" data-date='{{editPromsg.deliverDate}}' class="a-choice mui-navigate-right startDate">
 						发货日期
-						<span class="right">点击选择</span>
+						<span class="right show_value2"></span>
 					</a>
 				</li>
 			</ul>
 			<div class="gwc-choice">
 				<div>
 					<span class="left">安装</span>
-					<div class="mui-switch mui-switch-mini mui-active ">
+					<div @tap='switchInstall($event)' class="mui-switch mui-switch-mini" :class="{'mui-active':editPromsg.isInstall == 1}">
 						<div class="mui-switch-handle"></div>
 					</div>
 				</div>
 				<div>
 					<span class="left">测量</span>
-					<div class="mui-switch mui-switch-mini mui-active ">
+					<div @tap='switchMeasure($event)' class="mui-switch mui-switch-mini" :class="{'mui-active':editPromsg.isMeasure == 1}">
 						<div class="mui-switch-handle"></div>
 					</div>
 				</div>
 				<div>
 					<span class="left">赠送</span>
-					<div class="mui-switch mui-switch-mini mui-active ">
+					<div @tap='switchGiving($event)' class="mui-switch mui-switch-mini" :class="{'mui-active':editPromsg.isGiving == 1}">
 						<div class="mui-switch-handle"></div>
 					</div>
 				</div>
 			</div>
-			
+
 			<ul class="mui-table-view" style="margin-top:.3rem">
 				<li class="mui-table-view-cell">
 					<a data-arr="arr2" class="a-choice mui-navigate-right">
-						<input style="width:6rem" class="right" placeholder="说点什么吧">备注</span>
+						<input style="width:6rem" class="right" placeholder="说点什么吧" v-model='saysomething'>备注</span>
 					</a>
 				</li>
 			</ul>
-			
-			<div class="y-btn">
-				完成
+
+			<div style="background:#fff;padding:.2rem 0;">
+				<div @tap='done' class="y-btn" style="margin:0 auto;">
+					完成
+				</div>
 			</div>
-			
+		</div>
+
+		<div v-else class="bcd gouwuche-msg" v-for="(index,key) in dataArr.detail">
 			<div class="addBox">
 				<span></span>
-				<h1>01106020/卓邦外墙腻子（外墙腻子0kg）(包)</h1>
-				<h2>编辑</h2>
-				<p>规格:J503+BQ608+100S-3031</p>
+				<h1>{{key.productName}}</h1>
+				<h2 @tap='bianji(key,index)' class="bianji">编辑</h2>
+				<p>规格:{{key.productSpec}}</p>
 				<h3 style="border-bottom:1px solid #ddd;margin-top:.5rem;"></h3>
 			</div>
-			
+
 			<div class="gwc-table">
 				<table>
 					<tr>
 						<td>送货方式：</td>
-						<td>配送</td>
+						<td>{{key.deliverType | formatdeliverType}}</td>
 					</tr>
-					<tr>
+					<tr v-show="key.isColor==1">
 						<td>色号：</td>
-						<td>01245：</td>
+						<td>{{key.colorNum}}</td>
 					</tr>
 					<tr>
 						<td>发货日期：</td>
-						<td>2017-3-20</td>
+						<td>{{key.deliverDate}}</td>
 					</tr>
 				</table>
 			</div>
-			
+
 			<div class="gwc-btnGroup">
 				<div>
-					<div>安装</div>
+					<div :class="{'active':key.isInstall == 1}">安装</div>
 				</div>
 				<div>
-					<div>测量</div>
+					<div :class="{'active':key.isMeasure == 1}">测量</div>
 				</div>
 				<div>
-					<div>赠送</div>
+					<div :class="{'active':key.isGiving == 1}">赠送</div>
 				</div>
 			</div>
-			
+
 			<ul class="mui-table-view" style="margin-top:.3rem">
 				<li class="mui-table-view-cell">
 					<a data-arr="arr2" class="a-choice mui-navigate-right">
-						<input style="width:6rem" class="right" value="次商品为易碎品，请注意！">备注</span>
+						<input style="width:6rem" readonly class="right" value="{{key.remark}}">备注</span>
 					</a>
 				</li>
 			</ul>
-			
+
 			<ul class="gwc-total">
-				<li>¥20 <span>x1</span></li>
-				<li><span>折扣率:</span>0.8</li>
-				<li>小计: <strong>¥20</strong></li>
+				<li>¥{{key.price}} <span>x{{key.qty}}</span></li>
+				<li><span>折扣率:</span>{{key.discount}}</li>
+				<li>小计: <strong>¥{{key.price*key.qty}}</strong></li>
 			</ul>
-		</section>
-		
-		<footer class="gwc-foot">
-			<div>总计：<b>¥800</b></div>
-			<div>下一步</div>
-		</footer>
-	</body>
-	<script src="../js/mui.min.js"></script>
+
+		</div>
+	</section>
+
+	<footer v-show='!flag' class="gwc-foot">
+		<div>总计：<b>¥{{totalMoney}}</b></div>
+		<div id="nextPage">下一步</div>
+	</footer>
+
+</body>
+	<script src="../js/zepto1.1.6.min.js" type="text/javascript"></script>
+	<script src='../js/mui.min.js'></script>
+	<script type="text/javascript" src="../js/public.js"></script>
+	<script type="text/javascript" src="../js/global.js"></script>
+	<script type="text/javascript" src="../js/vue.min.js"></script>
+	<script type="text/javascript" src="../picker/mui.picker.min.js"></script>
+    <script type="text/javascript" src="../picker/mui.poppicker.js"></script>
 	<script>
+
 		mui.init({
 				swipeBack:true //启用右滑关闭功能
-			});
-			mui('.mui-content .mui-switch').each(function() { //循环所有toggle
+		});
+
+		mui('.mui-content .mui-switch').each(function() { //循环所有toggle
 				//toggle.classList.contains('mui-active') 可识别该toggle的开关状态
 				this.parentNode.querySelector('span').innerText = '状态：' + (this.classList.contains('mui-active') ? 'true' : 'false');
 				/**
@@ -245,7 +279,235 @@
 				this.addEventListener('toggle', function(event) {
 					//event.detail.isActive 可直接获取当前状态
 					this.parentNode.querySelector('span').innerText = '状态：' + (event.detail.isActive ? 'true' : 'false');
-				});
+			    });
+		});
+        function picker(){
+			(function($) {
+				$.init();
+				var now = new Date();
+	            var optionsJson = '{"type":"date","beginYear":' + (now.getFullYear() - 1) + ',"endYear":' + (now.getFullYear() + 1) + '}';
+				var options = JSON.parse(optionsJson);
+
+	             
+	            setTimeout(function(){
+					var date=$('.under-top .startDate')[0].getAttribute('data-date');
+				    $('.under-top .startDate .show_value2')[0].innerText=date;
+			    },0)
+			    $('.under-top .startDate .show_value2')[0].innerText = now.getFullYear() + "-" + formatMonth((now.getMonth() + 1).toString()) + "-" + formatMonth(now.getDate().toString());
+
+				$('.under-top .startDate')[0].addEventListener('tap', function() {
+					var picker = new $.DtPicker(options);
+					picker.show(function(rs) {
+						$('.under-top .startDate .show_value2')[0].innerText = rs.text;
+						picker.dispose();
+						deliverdate()
+					});
+				}, false);
+
+				var arr = [{index:0,text:"自提"},{index:1,text:"配送"},{index:2,text:"厂送"}];
+
+				// 默认是配送
+				setTimeout(function(){
+					var index=$('.under-top .songhuo_sy')[0].getAttribute('data-index');
+				    $('.under-top .songhuo_sy .show_value0')[0].innerText=arr[index].text;
+			    },0)
+			
+				$('.under-top .songhuo_sy')[0].addEventListener('tap', function() {
+					var cardPicker = new $.PopPicker({
+						layer: 1
+					});
+					cardPicker.setData(arr);
+					cardPicker.show(function(items) {
+						$('.under-top .songhuo_sy .show_value0')[0].innerText = items[0].text;
+						$('.under-top .songhuo_sy')[0].setAttribute('data-index',items[0].index)
+						cardPicker.dispose();
+						deliverType()
+					});
+				}, false);
+			})(mui);
+		}
+		
+		(function($) {
+				$.init();
+                // 制单人数据
+				var arr2 = [{index:0,text:"赵小五"},{index:1,text:"赵小五222"},{index:2,text:"赵小五33"}];
+				$('.gouwuche-top .zhidanren')[0].addEventListener('tap', function() {
+					var cardPicker = new $.PopPicker({
+						layer: 1
+					});
+					cardPicker.setData(arr2);
+					cardPicker.show(function(items) {
+						$('.zhidanren span')[0].innerText = items[0].text;
+						cardPicker.dispose();
+					});
+				}, false);
+
+				$('.gouwuche-top .jiazhuang-guwen')[0].addEventListener('tap', function() {
+					var cardPicker = new $.PopPicker({
+						layer: 1
+					});
+					cardPicker.setData(arr2);
+					cardPicker.show(function(items) {
+						$('.jiazhuang-guwen span')[0].innerText = items[0].text;
+						cardPicker.dispose();
+					});
+				}, false);
+
+		})(mui);
+		var data1=JSON.parse(localStorage.LZRproduMsg);
+		
+		$(function(){
+			$("#gotoADD").on("tap",function(){
+				openNew("add-shangpin.html");
 			});
+	    })
+
+		
+		Vue.filter('formatdeliverType',function(value){
+          if(value== 0){
+          	return '自提'
+          }
+          else if(value == 1){
+          	return '配送'
+          }else{
+          	return '厂送'
+          }
+	    });
+		
+		
+		var vm=new Vue({
+			el:"body",
+			data:{
+				dataArr:data1,
+				flag:false,
+				editPromsg:'',
+				m:'',
+				mprice:'',
+				salePrice:'',
+				zhekoulv:'',
+				saysomething:'',
+				editIndex:null
+			},
+			methods:{
+				bianji(item,index){
+                   this.flag=true;
+                   this.editIndex=index;
+                   this.editPromsg=item;
+                   this.m=this.editPromsg.qty;
+                   this.salePrice=this.editPromsg.price;
+                   this.zhekoulv=this.editPromsg.discount;
+                   this.mprice=this.editPromsg.mprice;
+                   this.saysomething=this.editPromsg.remark;
+                   console.log(JSON.stringify(this.editPromsg))
+                   picker();
+				},
+				changeCount(m){
+					if (m >= 1) {
+						this.m++
+					} else {
+						if (this.m == 1) {
+							this.m = 1;
+						} else {
+							this.m--;
+						}
+					}
+					this.editPromsg.qty=this.m
+				},
+				switchInstall(e){
+					 if( e.currentTarget.className.indexOf('active') > -1){
+					 	this.editPromsg.isInstall=1;
+					 }
+					 else{
+					 	this.editPromsg.isInstall=0;
+					 }
+				},
+				switchMeasure(e){
+					 if( e.currentTarget.className.indexOf('active') > -1){
+					 	 this.editPromsg.isMeasure=1;
+					 }
+					 else{
+					 	this.editPromsg.isMeasure=0;
+					 }
+				},
+				switchGiving(e){
+					 if( e.currentTarget.className.indexOf('active') > -1){
+					 	 this.editPromsg.isGiving=1;
+					 }
+					 else{
+					 	this.editPromsg.isGiving=0;
+					 }
+				},
+				done(){
+					var length=this.dataArr.detail.length;
+					var index=this.editIndex
+
+					var oldmsg=this.dataArr.detail[index];
+					var newmsg=this.editPromsg;
+					var pro_detail = Object.assign({},oldmsg,newmsg);
+
+					this.dataArr.detail[index]=pro_detail;
+					this.flag=false;
+
+					localStorage.LZRproduMsg=JSON.stringify(this.dataArr)
+				}
+			},
+			watch:{
+				salePrice: function() {
+					if (this.salePrice <= this.mprice) {
+						var zhekoulv = this.salePrice / this.mprice;
+						this.zhekoulv = zhekoulv;
+					} else {
+						this.salePrice = this.mprice
+					}
+					this.editPromsg.price=this.salePrice;
+				},
+				zhekoulv: function() {
+					if (this.zhekoulv > 1 || this.zhekoulv <= 0) {
+						this.zhekoulv = 1;
+					} else {
+						var salePrice = this.zhekoulv * this.mprice;
+						this.salePrice = salePrice
+					}
+					this.editPromsg.discount=this.zhekoulv;
+				},
+				saysomething:function(){
+					this.editPromsg.remark=this.saysomething;
+				}
+			},
+			computed:{
+				totalMoney:function(){
+					var arr=this.dataArr.detail;
+					var length=arr.length;
+					var totalprice=0
+					for(var i=0;i<length;i++){
+                      totalprice += ( arr[i].price * arr[i].qty )
+					}
+					return totalprice
+				}
+			},
+			ready(){
+			}
+		});
+
+		function formatMonth(month) {
+			if(month.length == 1) {
+				return "0" + month;
+			}
+			return month;
+		}
+
+		function deliverType(){
+			var deliverType_index=$('.under-top .songhuo_sy').data('index');
+			vm.editPromsg.deliverType=deliverType_index;
+		}
+		function deliverdate(){
+			var deliverDate=$('.under-top .startDate .show_value2').html();
+ 		    vm.editPromsg.deliverDate=deliverDate;
+		}
+		 
+		$("#nextPage").on("tap",function(){
+		 	localStorage.LZRproduMsg=JSON.stringify(vm.dataArr);
+		 	openNew("xuanze-jiaz_kehu.html");
+		});
 	</script>
 </html>

@@ -114,6 +114,15 @@
 .g-content-sale ul.mui-table-view .kehu-liebiao {
     background-image: url(../images/kehu-liebiao.png);
 }
+.g-content-sale ul.mui-table-view .jz-xdan {
+    background-image: url(../images/icon-jiazhuang-xiadan.png);
+}
+.g-content-sale ul.mui-table-view .dinggou-dingdan {
+    background-image: url(../images/icon-dinggou-tiaozheng.png);
+}
+.g-content-sale ul.mui-table-view .shangpin-kucun {
+    background-image: url(../images/icon-kucun-chaxun.png);
+}
 
 .g-content-sale ul .mui-table-view-cell a {
     background-size: 0.747rem 0.747rem;

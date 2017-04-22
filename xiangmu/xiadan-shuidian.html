@@ -201,7 +201,7 @@
 								<div class="y-sub-box">
 									<img @tap="subToshop(key,$event)" class="y-sd-icon" src="../images/icon-sub.png" alt="" />
 								</div>
-								<strong>0</strong>
+								<strong>{{key.qty |isNull}}</strong>
 								<div class="y-add-box">
 									<img @tap="addToshop(key,$event)" class="y-sd-add y-sd-icon" src="../images/icon-add.png" alt="" />
 								</div>
@@ -252,7 +252,7 @@
 					his_length: 0,
 					dataArr: [],
 					arr1:[],
-					arr2:[1,2,3],
+					arr2:[],
 					nums:0,
 					postData:{},
 					signData:{},
@@ -286,19 +286,26 @@
 					},
 					addToshop:function(key,e){
 						var ele=e.target;
-						var num=$(ele).parent().prev().text();
-						num++;
+						key.qty++;
+						//var num=$(ele).parent().prev().text();
+						//num++;
 						this.nums++;
-						$(ele).parent().prev().text(num);
 						shoppingCartAnimate(ele);
 						var obj={
-	                       productId: key.id,
-	                       productName: key.materialName,
-	                       productSpec: "01",
-	                       productUnit: "33KG",
-	                       qty: num,
+	                       id: key.id,
+	                       materialName: key.materialName,
+	                       materialType: key.materialType,
+	                       materialTypeName:key.materialTypeName,
+	                       qty: key.qty,
+	                       pnModel:key.pnModel,
 	                       productClass: key.productClass,
-	                       productClassName:key.productClassName
+	                       productClassName:key.productClassName,
+	                       band:"0",
+	                       isColor:"0",
+	                       isCustomized:"0",
+	                       tempLateType:key.tempLateType,
+	                       unitName:key.unitName
+	                       
                     	};
                     	
                     	/*var obj={
@@ -314,15 +321,14 @@
 		                       "productClassName": "水电材料"
 		                    }*/
                     	
-                    	
                     	for(var i=0;i<vm.postData.detail.length;i++){
-                    		if(vm.postData.detail[i].productId==key.id){
+                    		if(vm.postData.detail[i].id==key.id){
                     			vm.postData.detail[i]=obj;
-                    			return;
+                    			//return;
                     		}
                     	}
                     	
-                    	vm.postData.detail.push(obj);
+                    	//vm.postData.detail.push(obj);
                     	console.log(vm.postData.detail);
                     	
                     	
@@ -331,43 +337,33 @@
 					},
 					subToshop:function(key,e){
 						var ele=e.target;
-						var num=$(ele).parent().next().text();
-						console.log(num);
 						console.log(1111111111111);
 						console.log(key);
 						/*if(num>0){
 							num--;
 						}*/
-						num>0?num--&&this.nums--:num=0;
+						key.qty>0?key.qty--&&this.nums--:key.qty=0;
 						
 						//this.nums--:this.nums=0;
-						$(ele).parent().next().text(num);
 						var obj={
-	                       productId: key.id,
-	                       productName: key.materialName,
-	                       productSpec: "01",
-	                       productUnit: "33KG",
-	                       qty: num,
+	                       id: key.id,
+	                       materialName: key.materialName,
+	                       materialType: key.materialType,
+	                       materialTypeName:key.materialTypeName,
+	                       qty: key.qty,
+	                       pnModel:key.pnModel,
 	                       productClass: key.productClass,
-	                       productClassName:key.productClassName
+	                       productClassName:key.productClassName,
+	                       band:"0",
+	                       isColor:"0",
+	                       isCustomized:"0",
+	                       tempLateType:key.tempLateType,
+	                       unitName:key.unitName
+	                       
                     	};
-                    	
-//                  	var obj={
-//		                       "productId": "01093205",
-//		                       "productName": "欧盛家俱拉手OLS-LS-5706-96-PA",
-//		                       "brand": "000084",
-//		                       "productSpec": "OLS-LS-5706-96-PA",
-//		                       "productUnit": "zhi",
-//		                       "qty": "11",
-//		                       "isColor": "0", 
-//		                       "isCustomized": "0",
-//		                       "productClass": "03060101",
-//		                       "productClassName": "水电材料"
-//		                    }
                     	for(var i=0;i<vm.postData.detail.length;i++){
-                    		if(vm.postData.detail[i].productId==key.id){
-                    			//console.log(num);
-                    			num>0?vm.postData.detail[i]=obj:vm.postData.detail.splice(i, 1);
+                    		if(vm.postData.detail[i].id==key.id){
+                    			key.qty>0?vm.postData.detail[i]=obj:null;
                     		}
                     	}
                     	
@@ -379,6 +375,14 @@
 				ready: function() {
 					init();
 				}
+			});
+			
+			Vue.filter('isNull', function(value) {
+				if(value===null||value===undefined){
+					return 0;
+				}
+				
+				return value;
 			});
 			
 			function shoppingCartAnimate(dom){
@@ -447,8 +451,15 @@
 					siteId: "2",
 					type: sdyqTypeId,
 					remark: "测试水电油气下单",
-					detail: [],
+					detail: [
+					],
 				}
+			for(var i=0;i<vm.arr1.length;i++ ){
+				for(var k=0;k<vm.arr1[i].detail.length;k++){
+					vm.arr1[i].detail[k].qty="0";
+					vm.postData.detail.push(vm.arr1[i].detail[k]);
+				}
+			}
 			console.log(vm.postData);
 		}
 		
@@ -485,7 +496,7 @@
 				contentType: "application/json",
 				data: {
 					 "empId": "admin",
-					 "orderNo": "SO-201704200001" 
+					 "orderNo": "SO-201704200015" 
 				},
 				success: function(jsonData) {
 					console.log(jsonData);
@@ -504,22 +515,5 @@
 		$(d1).click(function(){
 			delOrder();
 		});
-//		function initPostData(empId,siteId,type,productId,productName,productSpec,productUnit,qty,productClass,productClassName) {
-//			vm.postData = {
-//					"empId": "admin",
-//					"siteId": "1",
-//					"type": "10",
-//					"remark": "测试水电油气下单",
-//					"detail": [{
-//						"productId": "01114695",
-//						"productName": "东方雨虹嘉仕涂聚防水涂料/",
-//						"productSpec": "01",
-//						"productUnit": "33KG",
-//						"qty": "10",
-//						"productClass": "0109210",
-//						"productClassName": "水电材料"
-//					}]
-//				}
-//		}
 </script>
 </html>

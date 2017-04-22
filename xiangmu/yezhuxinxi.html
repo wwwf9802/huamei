@@ -37,13 +37,15 @@
 		.y-yzxx>table tr>td{font-size:.4rem;}
 		.y-yzxx>table tr{line-height:.7rem;}
 		.y-yzxx>table tr>td:first-child{color:#aaa;width:2rem}
+		
+		.baseBack-tit{position:absolute;z-index:-1; top:3.5rem;left:40%;font-size:.4rem;color:#666}
 	</style>
 	<body>
 		<header class="mui-bar mui-bar-nav header">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<span class="title">业主信息</span>
 		</header>
-		<section class="y-yzxx under-top">
+		<section class="y-yzxx under-top" v-show="bool">
 			<div>
 				<p class="left"><span></span></p>
 				<p class="right"><span></span></p>
@@ -71,6 +73,9 @@
 				</tr>
 			</table>
 		</section>
+		<div class="baseBack-tit">
+			暂无业主信息~
+		</div>
 	</body>
 	<script src="../js/zepto1.1.6.min.js"></script>
 	<script type="text/javascript" src="../js/public.js"></script>
@@ -83,7 +88,8 @@
 			el:'body',
 			data:{
                dataArr:{
-               }
+               },
+               bool:false,
 			},
 			ready(){
               init()
@@ -96,7 +102,13 @@
                     customerInfoId: localStorage.customerId
                 },
                 success: function(jsonData) {
-                    yezhuVM.dataArr = jsonData;
+                	console.log(jsonData);
+                	if(jsonData.status==="true"){
+                		yezhuVM.dataArr = jsonData;
+                		if(jsonData.data!==null){
+                			yezhuVM.bool=true;
+                		}
+                	}
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown) {
                     console.log(XMLHttpRequest.status);

@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="../css/base-reset.css">
     <link rel="stylesheet" href="../css/mui.min.css">
     <link rel="stylesheet" type="text/css" href="../css/common.css">
-<<<<<<< HEAD
     <link rel="stylesheet" type="text/css" href="../css/lzr.css">
     <style>
         .project-list-head #edit{
@@ -30,9 +29,7 @@
              position: absolute;
         }
     </style>
-=======
     <link rel="stylesheet" href="../css/yhn.css" />
->>>>>>> c5e9351e5b4668cdebaee53fa7deb997b349988e
 </head>
 <style>
 	.orderBox{padding:.2rem;background:#fff}
@@ -41,13 +38,11 @@
 	.orderBox>p>strong{color:#EA6D01;float:right;font-weight: normal;}
 </style>
 <body>
-<<<<<<< HEAD
     <div class="mui-bar mui-bar-nav header project-list-head">
         <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
         详情
         <span id="edit" class=""></span>
     </div>
-=======
     <header class="mui-bar mui-bar-nav header">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<span class="title">订单明细</span>
@@ -58,7 +53,6 @@
 			<div class="p-box-sub-title"><span>业主：</span>李晓<span>&nbsp;&nbsp;|&nbsp; </span> 15627215946</div>
 		</div>
 		
->>>>>>> c5e9351e5b4668cdebaee53fa7deb997b349988e
 
     	<!-- <div class="user-info m-shuidian-detail">
     	 	   <div class="sub-title"><span>业主：</span>李晓<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
@@ -112,7 +106,6 @@
     <script src="../js/public.js"></script>	 	 
 		<script src="../js/zepto1.1.6.min.js" type="text/javascript"></script>
 		<script src="../js/global.js"></script>
->>>>>>> c5e9351e5b4668cdebaee53fa7deb997b349988e
     <script src='../js/swiper-3.3.1.min.js' type="text/javascript"></script>
     <script src='../js/mui.min.js'></script>
     <script src='../js/vue.min.js'></script>
@@ -148,6 +141,7 @@
     	
     	$("#goEdit").on("tap",function(){
     		 localStorage.cailiaomingxiData=JSON.stringify(vm.getData);
+    		 localStorage.caliaomingxiId=data.id;
     		 openNew("xiadan-shuidian-edit.html");
     	});
     </script>
