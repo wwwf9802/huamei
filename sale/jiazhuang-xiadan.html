@@ -64,7 +64,7 @@
 			</div>
 			<div v-else class="item-project m-dinggou-tiaozheng" id='item-project'>
 				<div class="item-pro-list">
-					<div  v-for='item in dataArr' @click='toProjectDetail(item.id,item)'  class="list-qingdan daishenhe">
+					<div  v-for='item in dataArr' @tap='toProjectDetail(item.id,item)'  class="list-qingdan daishenhe">
 						<div class="list-qingdan-box">
 							<div class="tr">
 								<div class="td th">
@@ -135,7 +135,8 @@
 					type: 'get', //HTTP请求类型
                     data: {
                     	empId:'admin',
-                    	query:'SO-201704150036'
+                    	//query:'JZ10023'
+                    	query:'张器'
                     },
 					success: function(jsonData) {
 						console.log(JSON.stringify(jsonData));
@@ -169,10 +170,10 @@
 						// this.$els.search.className='left'
 					},
 					toProjectDetail: function(id,item) {
-						localStorage.xiangmuData=JSON.stringify(item);
-						localStorage.tlid = id;
-						alert(localStorage.tlid)
-						// openNew("orderApprove.html");
+						localStorage.yhnjiazhuangData=JSON.stringify(item);
+						localStorage.yhntlid = id;
+						alert(localStorage.yhntlid)
+						openNew("orderDetail.html");
 					},
 					cancelSearch: function() {
 						search.value = '';

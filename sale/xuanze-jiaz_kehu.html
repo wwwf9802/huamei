@@ -43,23 +43,23 @@
 				<ul id="search_content" style="display:none;"></ul>
 			</div>
 			<div v-else class="item-project m-jiaz-kehu" id='item-project'>
-				<div class="item-pro-list" v-for='item in dataArr'>
+				<div class="item-pro-list" v-for='item in dataArr.data'>
 					<div class="head">
-						<div class='wen'>CK卡号： {{item.kahao}}</div>
+						<div class='wen'>CK卡号： {{item.carkno}}</div>
 						<input type="radio" name="jiaz_kehu_list">
-						<span class='radio' @tap='chose($event)'></span>
+						<span class='radio' @tap='chose(item,$event)'></span>
 					</div>
 					<div class="list-qingdan">
 						<div class="list-qingdan-box">
 							<a href="##">
 								<div class="tr">
 									<div class="td td-yezhu">
-										 {{item.name}}&nbsp;&nbsp;<span class='shuxian'>|</span>&nbsp;  {{item.tel}}
+										 {{item.customerName}}&nbsp;&nbsp;<span class='shuxian'>|</span>&nbsp;  {{item.phone}}
 									</div>
 								</div>
 								<div class="tr">
 									<div class="td td-address">
-										 {{item.address}}
+										 {{item.sitesAddr}}
 									</div>
 								</div>
 							</a>
@@ -91,11 +91,11 @@
 		
 			function init() {
 				//获取工地信息
-				mui.ajax(getBaseServerUrl() + '/app/order/findSiteList',{
+				mui.ajax(getBaseServerUrl() + '/app/order/findCustomer',{
 					type: 'get', //HTTP请求类型
 					data: {
 						empId:'admin',
-						query: $("#search").val()
+						query: "A2016"
 					},
 					success: function(jsonData) {
 						console.log(JSON.stringify(jsonData));
@@ -117,31 +117,50 @@
 					tijiaob:false,
 					his_length: 0,
 					dataArr: [
-                        {
-                        	kahao:11111,
-                        	name:"张下拉",
-                        	tel:18211212,
-                        	address:"所得税是多少大声道"
-                        },
-                        {
-                        	kahao:222222,
-                        	name:"张下拉",
-                        	tel:18211212,
-                        	address:"所得税是多少大声道"
-                        }
-					]
+					],
+					sonData:null,
 					// dataArr: []
 				},
 				methods: {
-					chose(e){
+					chose:function(item,e){
+						this.sonData=item;
+						console.log(item);
+						data1.customerId=item.customerId;
+						data1.customerName=item.customerName;
+						data1.customerTel=item.customerTel;
+						data1.customerAddress=item.sitesAddr;
+						data1.customerAddress=item.sitesAddr;
+						data1.customerTel=item.phone;
+						var money=data1.totalMoney.toString();
+						data1.totalMoney=money;
+						
+						
+						console.log(JSON.stringify(data1));
+						//data1.empId=item.empId;
+						//data1.id=item.id;
+//						data1.provinceId=item.provinceId;
+//						data1.provinceName=item.provinceName;
+//						data1.cityId=item.cityId;
+//						data1.cityName=item.cityName;
+//						data1.areaId=item.areaId;
+//						data1.areaName=item.areaName;
+//						
+//						data1.townId=item.townId;
+//						data1.townName=item.townName;
+//						data1.viliageId=item.viliageId;
+//						data1.viliageName=item.viliageName;
+//						data1.viliageAddr=item.viliageAddr;
+						
 						this.tijiaob=true;
 						$(".radio").removeClass("check");
 						e.target.classList.add('check');
 					},
-					tijiao(){
+					tijiao:function(){
                         if(!this.tijiaob){
                         	tanchu('请先选择家装客户')
+                        	return
                         }
+                        submitData(data1);
 					},
 					onfocus: function(e) {
 						this.$els.search.className = 'onfocus'
@@ -315,6 +334,20 @@
 				setHistoryData(value);
 				vm.focusy = false;
 			});
+			
+			
+			function submitData(data){
+				mui.ajax(getBaseServerUrl() + '/app/order/createOrder', {
+					type: 'post', //HTTP请求类型
+					contentType: "application/json",
+					data: data,
+					success: function(jsonData) {
+						console.log(jsonData);
+						console.log(111111111);
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {}
+				});
+			}
 		</script>
 	</body>
 

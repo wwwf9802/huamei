@@ -89,26 +89,14 @@
 				<span v-on:tap="sure(item)" class="right">提交</span>
 			</div>
 
-			<div class="gendan-beizhu">
+			<div class="gendan-beizhu" v-for="subItem in item.record">
 				<span>备注:</span>
-				<b>还有三件商品未购。</b>
-				<strong class="right">2017-2-30 12:30</strong>
-				<h1></h1>
-			</div>
-			<div class="gendan-beizhu">
-				<span>备注:</span>
-				<b>还有三件商品未购。</b>
-				<strong class="right">2017-2-30 12:30</strong>
-				<h1></h1>
-			</div>
-			<div class="gendan-beizhu">
-				<span>备注:</span>
-				<b>还有三件商品未购。</b>
-				<strong class="right">2017-2-30 12:30</strong>
+				<b>{{subItem.remark}}</b>
+				<strong class="right">{{subItem.recordData}}</strong>
 				<h1></h1>
 			</div>
 
-			<div class="gendan-more">查看更多跟单记录<img src="../images/icon-jiantoudown.png" alt="" /></div>
+			<!--<div class="gendan-more">查看更多跟单记录<img src="../images/icon-jiantoudown.png" alt="" /></div>-->
 		</section>
 	</body>
 	<script src="../js/zepto1.1.6.min.js" type="text/javascript"></script>

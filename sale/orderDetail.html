@@ -94,6 +94,8 @@
 	<script type="text/javascript" src="../js/vue.min.js"></script>
 	<script type="text/javascript" src="../js/global.js"></script>
 	<script>
+	var tlid=localStorage.yhntlid;
+	
 		var vm = new Vue({
 			el: 'body',
 			data: {
@@ -106,7 +108,20 @@
 		});
 
 		function init() {
-
+			mui.ajax(getBaseServerUrl() + '/app/order/findTLDetail',{
+					type: 'get', //HTTP请求类型
+                    data: {
+                    	id:tlid,
+                    },
+					success: function(jsonData) {
+						console.log(JSON.stringify(jsonData));
+						vm.dataArr = jsonData.data;
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {
+						$("#search_content").hide();
+						console.log('error')
+					}
+				});
 		}
 		
 		$(".header-right").on('tap',function(){
