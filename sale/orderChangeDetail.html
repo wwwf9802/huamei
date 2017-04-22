@@ -20,15 +20,15 @@
 		</div>
 		<div class="w-content" style="padding-bottom: 6.5rem;">
 			<div class="order-info">
-				<div><span class="tip">[变更单]</span>调整订单号：TL2017307<span class="right status">待审批</span></div>
-			    <div class="oldOrder">原订单号：TL2017307</div>
-			    <div class="info">
-			    	<div class="left"><span>制单人</span>赵晓文</div>
-			    	<div class="right"><span>制单机构</span>南城装饰</div>
-			    	<div class="left"><span>销售顾问</span>南城装饰</div>
-			    	<div class="right"><span>制单日期</span>2017-02-14</div>
-			    </div>
-			    <div style="clear: both;"></div>
+				<div><span class="tip">[变更单]</span>调整订单号：{{info.id}}<span class="right status">{{info.statusName}}</span></div>
+				<div class="oldOrder">原订单号：{{info.TL20170307}}</div>
+				<div class="info">
+					<div class="left"><span>制单人</span>{{info.createrName}}</div>
+					<div class="right"><span>制单机构</span>{{info.orgName}}</div>
+					<div class="left"><span>销售顾问</span>{{info.orgName}}</div>
+					<div class="right"><span>制单日期</span>{{info.createDate}}</div>
+				</div>
+				<div style="clear: both;"></div>
 			</div>
 			<div class="chang-detail">
 				<div class="title">
@@ -39,38 +39,6 @@
 					<span class="line"></span>
 				</div>
 				<div class="item-list">
-					<div class="change">
-						<div class="item" style="background-color: #F9F9F9;">
-							<div>[变更前]01106020/卓棒外墙腻子（外墙腻子0kg）（包）</div>
-							<div class="type">规格：J503+BQ035_100S-3301</div>
-							<div class="type">数量：1 发货日期：2017-09-20</div>
-						</div>
-						<div class="item">
-							<div>[变更前]01106020/卓棒外墙腻子（外墙腻子0kg）（包）</div>
-							<div class="type">规格：J503+BQ035_100S-3301</div>
-							<div class="type">数量：1 发货日期：2017-09-20</div>
-						</div>
-						<div class="btn-div">
-							<img src="../images/orderDetail-change.png" />
-							<div>更换商品</div>
-						</div>
-					</div>
-					<div class="change">
-						<div class="item" style="background-color: #F9F9F9;">
-							<div>[变更前]01106020/卓棒外墙腻子（外墙腻子0kg）（包）</div>
-							<div class="type">规格：J503+BQ035_100S-3301</div>
-							<div class="type">数量：1 发货日期：2017-09-20</div>
-						</div>
-						<div class="item">
-							<div>[变更前]01106020/卓棒外墙腻子（外墙腻子0kg）（包）</div>
-							<div class="type">规格：J503+BQ035_100S-3301</div>
-							<div class="type">数量：1 发货日期：2017-09-20</div>
-						</div>
-						<div class="btn-div">
-							<img src="../images/orderDetail-change.png" />
-							<div>更换商品</div>
-						</div>
-					</div>
 					<div class="change edit">
 						<div class="item">
 							<div>[变更前]01106020/卓棒外墙腻子（外墙腻子0kg）（包）</div>
@@ -100,15 +68,10 @@
 					未变更商品
 					<span class="line"></span>
 					<div class="item-list-nochange">
-						<div class="item">
-							<div class="name">01106020/卓棒外墙腻子（外墙腻子0kg）（包）</div>
-							<div class="type">规格：J503+BQ035_100S-3301</div>
-							<div class="type">数量：1 发货日期：2017-09-20</div>
-						</div>
-						<div class="item">
-							<div class="name">01106020/卓棒外墙腻子（外墙腻子0kg）（包）</div>
-							<div class="type">规格：J503+BQ035_100S-3301</div>
-							<div class="type">数量：1 发货日期：2017-09-20</div>
+						<div class="item" v-for="item in info.details">
+							<div class="name">{{item.proId}}/{{item.proName}}</div>
+							<div class="type">规格：{{item.proSpec}}</div>
+							<div class="type">数量：{{item.qty}} 发货日期：{{item.deliverDate}}</div>
 						</div>
 					</div>
 				</div>
@@ -134,7 +97,7 @@
 		var vm = new Vue({
 			el: 'body',
 			data: {
-				dataArr: [{},{}]
+				info: []
 			},
 			methods: {},
 			ready: function() {
@@ -143,7 +106,19 @@
 		});
 
 		function init() {
-
+			mui.ajax(getBaseServerUrl() + '/app/orderAdjust/editAdjustOrder', {
+				type: 'get',
+				data: {
+					orderAdjustId: localStorage.orderDetailIdFromDGTZ
+				},
+				success: function(jsonData) {
+					vm.info = jsonData.data;
+				},
+				error: function(XMLHttpRequest, textStatus, errorThrown) {
+					$("#search_content").hide();
+					console.log('error')
+				}
+			});
 		}
 	</script>
 

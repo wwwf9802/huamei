@@ -47,11 +47,11 @@
 			</div>
 			<div v-else class="item-project m-dinggou-tiaozheng" id='item-project'>
 				<div class="item-pro-list">
-					<div class="list-qingdan daishenhe" v-for="item in dataArr">
+					<div class="list-qingdan daishenhe" v-for="item in dataArr" v-on:tap="gotoDetail(item)">
 						<div class="list-qingdan-box">
 							<div class="tr">
 								<div class="td th">
-									[变更单]
+									[{{item.typeName}}单]
 									<span class='danhao'>调整单号：{{item.id}}</span>
 								</div>
 								<div class="td td-shenhe">
@@ -160,6 +160,14 @@
                         // 重新请求一次数据，因为input事件执行的是搜索事件
                         // 点击取消时，再重新请求数据，并把输入框的内容清空
                         // init();
+					},
+					gotoDetail: function(item){
+						localStorage.orderDetailIdFromDGTZ =  item.id;
+						if(item.type == '0'){
+							openNew('orderChangeDetail.html');
+						}else{
+							openNew('orderDetail.html');
+						}
 					}
 				},
 				ready: function() {
