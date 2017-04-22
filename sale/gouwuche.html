@@ -94,7 +94,7 @@
 	<header class="mui-bar mui-bar-nav header">
 		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 		<span class="title">购物车({{dataArr.detail.length}})</span>
-		<span id="gotoADD" class="header-right mui-icon mui-icon-plus"></span>
+		<span id="gotoADD" @tap='gotoADD' class="header-right mui-icon mui-icon-plus"></span>
 	</header>
 	<section class="under-top">
 		<div class="gouwuche-top">
@@ -128,11 +128,11 @@
 			<div class="price-box">
 				<div>
 					<p>单价<span>(折后)</span></p>
-					<p>¥<input type="text" v-model='salePrice' ></p>
+					<p>¥<input type="number" v-model='salePrice' ></p>
 				</div>
 				<div>
 					<p>折扣率</p>
-					<p><input type="text" v-model='zhekoulv'></p>
+					<p><input type="number" v-model='zhekoulv'></p>
 				</div>
 				<div>
 					<p>小计：</p>
@@ -199,7 +199,7 @@
 		<div v-else class="bcd gouwuche-msg" v-for="(index,key) in dataArr.detail">
 			<div class="addBox">
 				<span></span>
-				<h1>{{key.productName}}</h1>
+				<h1>{{key.id}}/{{key.productName}}</h1>
 				<h2 @tap='bianji(key,index)' class="bianji">编辑</h2>
 				<p>规格:{{key.productSpec}}</p>
 				<h3 style="border-bottom:1px solid #ddd;margin-top:.5rem;"></h3>
@@ -326,7 +326,7 @@
 				}, false);
 			})(mui);
 		}
-		
+
 		(function($) {
 				$.init();
                 // 制单人数据
@@ -356,13 +356,7 @@
 		})(mui);
 		var data1=JSON.parse(localStorage.LZRproduMsg);
 		
-		$(function(){
-			$("#gotoADD").on("tap",function(){
-				openNew("add-shangpin.html");
-			});
-	    })
-
-		
+		 
 		Vue.filter('formatdeliverType',function(value){
           if(value== 0){
           	return '自提'
@@ -449,6 +443,9 @@
 					this.flag=false;
 
 					localStorage.LZRproduMsg=JSON.stringify(this.dataArr)
+				},
+				gotoADD(){
+					openNew("add-shangpin.html");
 				}
 			},
 			watch:{
