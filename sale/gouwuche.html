@@ -78,7 +78,8 @@
 			position: absolute;bottom:0;left:0;right:0;
 		}
 		.under-top {
-		    overflow: hidden;
+		    bottom:1.2rem;
+		    margin-top: 0;
 		}
 		.mui-btn-blue{background-color:#EB6D00 !important;border:1px solid #EB6D00 !important}
 		.price-box input{
@@ -89,14 +90,18 @@
 			text-align: center;font-size: 0.32rem;
 
 		}
+		.gouwuche-msg .bcd{
+			overflow:hidden;
+			margin-bottom: 0.4rem;
+		}
 	</style>
 	<body>
 	<header class="mui-bar mui-bar-nav header">
 		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 		<span class="title">购物车({{dataArr.detail.length}})</span>
-		<span id="gotoADD" class="header-right mui-icon mui-icon-plus"></span>
+		<span id="gotoADD" @tap='gotoADD' class="header-right mui-icon mui-icon-plus"></span>
 	</header>
-	<section class="under-top">
+	<section class=" g-content under-top">
 		<div class="gouwuche-top">
 			<p class='zhidanren'>制单人：<span>赵小五</span></p>
 			<p class='jiazhuang-guwen'>家装顾问：<span>张小兰</span></p>
@@ -128,11 +133,11 @@
 			<div class="price-box">
 				<div>
 					<p>单价<span>(折后)</span></p>
-					<p>¥<input type="text" v-model='salePrice' ></p>
+					<p>¥<input type="number" v-model='salePrice' ></p>
 				</div>
 				<div>
 					<p>折扣率</p>
-					<p><input type="text" v-model='zhekoulv'></p>
+					<p><input type="number" v-model='zhekoulv'></p>
 				</div>
 				<div>
 					<p>小计：</p>
@@ -195,59 +200,60 @@
 				</div>
 			</div>
 		</div>
-
-		<div v-else class="bcd gouwuche-msg" v-for="(index,key) in dataArr.detail">
-			<div class="addBox">
-				<span></span>
-				<h1>{{key.productName}}</h1>
-				<h2 @tap='bianji(key,index)' class="bianji">编辑</h2>
-				<p>规格:{{key.productSpec}}</p>
-				<h3 style="border-bottom:1px solid #ddd;margin-top:.5rem;"></h3>
-			</div>
-
-			<div class="gwc-table">
-				<table>
-					<tr>
-						<td>送货方式：</td>
-						<td>{{key.deliverType | formatdeliverType}}</td>
-					</tr>
-					<tr v-show="key.isColor==1">
-						<td>色号：</td>
-						<td>{{key.colorNum}}</td>
-					</tr>
-					<tr>
-						<td>发货日期：</td>
-						<td>{{key.deliverDate}}</td>
-					</tr>
-				</table>
-			</div>
-
-			<div class="gwc-btnGroup">
-				<div>
-					<div :class="{'active':key.isInstall == 1}">安装</div>
+        <div v-else class="gouwuche-msg">
+			<div class="bcd gouwuche-msg" v-for="(index,key) in dataArr.detail">
+				<div class="addBox">
+					<span></span>
+					<h1>{{key.id}}/{{key.productName}}</h1>
+					<h2 @tap='bianji(key,index)' class="bianji">编辑</h2>
+					<p>规格:{{key.productSpec}}</p>
+					<h3 style="border-bottom:1px solid #ddd;margin-top:.5rem;"></h3>
 				</div>
-				<div>
-					<div :class="{'active':key.isMeasure == 1}">测量</div>
+
+				<div class="gwc-table">
+					<table>
+						<tr>
+							<td>送货方式：</td>
+							<td>{{key.deliverType | formatdeliverType}}</td>
+						</tr>
+						<tr v-show="key.isColor==1">
+							<td>色号：</td>
+							<td>{{key.colorNum}}</td>
+						</tr>
+						<tr>
+							<td>发货日期：</td>
+							<td>{{key.deliverDate}}</td>
+						</tr>
+					</table>
 				</div>
-				<div>
-					<div :class="{'active':key.isGiving == 1}">赠送</div>
+
+				<div class="gwc-btnGroup">
+					<div>
+						<div :class="{'active':key.isInstall == 1}">安装</div>
+					</div>
+					<div>
+						<div :class="{'active':key.isMeasure == 1}">测量</div>
+					</div>
+					<div>
+						<div :class="{'active':key.isGiving == 1}">赠送</div>
+					</div>
 				</div>
+
+				<ul class="mui-table-view" style="margin-top:.3rem">
+					<li class="mui-table-view-cell">
+						<a data-arr="arr2" class="a-choice mui-navigate-right">
+							<input style="width:6rem" readonly class="right" value="{{key.remark}}">备注</span>
+						</a>
+					</li>
+				</ul>
+
+				<ul class="gwc-total">
+					<li>¥{{key.price}} <span>x{{key.qty}}</span></li>
+					<li><span>折扣率:</span>{{key.discount}}</li>
+					<li>小计: <strong>¥{{key.price*key.qty}}</strong></li>
+				</ul>
+
 			</div>
-
-			<ul class="mui-table-view" style="margin-top:.3rem">
-				<li class="mui-table-view-cell">
-					<a data-arr="arr2" class="a-choice mui-navigate-right">
-						<input style="width:6rem" readonly class="right" value="{{key.remark}}">备注</span>
-					</a>
-				</li>
-			</ul>
-
-			<ul class="gwc-total">
-				<li>¥{{key.price}} <span>x{{key.qty}}</span></li>
-				<li><span>折扣率:</span>{{key.discount}}</li>
-				<li>小计: <strong>¥{{key.price*key.qty}}</strong></li>
-			</ul>
-
 		</div>
 	</section>
 
@@ -326,7 +332,7 @@
 				}, false);
 			})(mui);
 		}
-		
+
 		(function($) {
 				$.init();
                 // 制单人数据
@@ -356,13 +362,7 @@
 		})(mui);
 		var data1=JSON.parse(localStorage.LZRproduMsg);
 		
-		$(function(){
-			$("#gotoADD").on("tap",function(){
-				openNew("add-shangpin.html");
-			});
-	    })
-
-		
+		 
 		Vue.filter('formatdeliverType',function(value){
           if(value== 0){
           	return '自提'
@@ -449,6 +449,9 @@
 					this.flag=false;
 
 					localStorage.LZRproduMsg=JSON.stringify(this.dataArr)
+				},
+				gotoADD(){
+					openNew("add-shangpin.html");
 				}
 			},
 			watch:{
