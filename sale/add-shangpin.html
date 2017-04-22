@@ -214,7 +214,8 @@
 
 				})(mui);
 		    }
-
+		    var morennow = new Date();
+            var morendate=morennow.getFullYear() + "-" + formatMonth((morennow.getMonth() + 1).toString()) + "-" + formatMonth(morennow.getDate().toString());
 			var proMorenmsg={
 	            "id": "",
 	            "no": "",
@@ -231,7 +232,7 @@
 	            "isMeasure": "0",
 	            "isGiving": "0",
 	            "deliverType": "1",
-	            "deliverDate": "2017-04-18 00:00:00",
+	            "deliverDate": morendate,
 	            "salePeople": "admin",
 	            "salePeopleName": "系统管理",
 	            "salesman": "10004",
@@ -257,7 +258,6 @@
 				el: "body",
 				data: {
 					dataArr:{
-
 					},
 					salePrice:"",
 					m:1,
