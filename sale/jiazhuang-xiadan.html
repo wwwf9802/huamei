@@ -36,11 +36,25 @@
 		}
 		</style>
 	</head>
-
+	<script>
+		var type1=localStorage.yhnjzOrls;
+		var title1=null;
+		var typeNum=null;
+		if(type1=="jzxd"){
+			title1="家装下单";
+			typeNum="10";
+		}else{
+			title1="零售下单";
+			typeNum="20";
+		}
+		
+		
+		
+	</script>
 	<body>
 	    <div class="mui-bar mui-bar-nav header header-details">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<span class="title">家装下单
+			<span  class="title"><span id="headTit"></span>
               <span data-page='add-shangpin.html' class='jiahao'>+</span>
 			</span>
 
@@ -129,6 +143,8 @@
 		<script type="text/javascript" src="../js/global.js"></script>
 		<script type="text/javascript" src="../js/public.js"></script>
 		<script>
+		headTit.innerHTML=title1;
+		
 			function init() {
 				//获取工地信息
 				mui.ajax(getBaseServerUrl() + '/app/order/findTlList',{
@@ -155,7 +171,7 @@
 					focusy: false,
 					search_cont: false,
 					his_length: 0,
-					dataArr: []
+					dataArr: [],
 				},
 				methods: {
 					onfocus: function(e) {

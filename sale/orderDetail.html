@@ -108,6 +108,7 @@
 		});
 
 		function init() {
+			console.log(tlid);
 			mui.ajax(getBaseServerUrl() + '/app/order/findTLDetail',{
 					type: 'get', //HTTP请求类型
                     data: {

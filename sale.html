@@ -30,14 +30,14 @@
 				</div>
 				<div class="mui-con-list">
 					<ul class="mui-table-view">
-						<li data-page='./sale/jiazhuang-xiadan.html' class="mui-table-view-cell ">
+						<li id="jzxd" class="mui-table-view-cell ">
 							<a class="mui-navigate-right jz-xdan">家装下单</a>
 						</li>
 					</ul>
 				</div>
 				<div class="mui-con-list">
 					<ul class="mui-table-view">
-						<li class="mui-table-view-cell ">
+						<li id="lsxd" class="mui-table-view-cell ">
 							<a class="mui-navigate-right dingdan">零售下单</a>
 						</li>
 					</ul>
@@ -134,7 +134,18 @@
 			}
 			
 			$(".mui-table-view-cell").on('tap',function(){
-				openNew($(this).data('page'));
+				if($(this).data("page")){
+					openNew($(this).data('page'));
+				}
+			});
+			
+			$("#jzxd").on("tap",function(){
+				localStorage.yhnjzOrls="jzxd";
+				openNew("./sale/jiazhuang-xiadan.html");
+			});
+			$("#lsxd").on("tap",function(){
+				localStorage.yhnjzOrls="lsxd";
+				openNew("./sale/jiazhuang-xiadan.html");
 			});
 		</script>
 	</body>
