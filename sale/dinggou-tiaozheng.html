@@ -47,32 +47,32 @@
 			</div>
 			<div v-else class="item-project m-dinggou-tiaozheng" id='item-project'>
 				<div class="item-pro-list">
-					<div class="list-qingdan daishenhe">
+					<div class="list-qingdan daishenhe" v-for="item in dataArr">
 						<div class="list-qingdan-box">
 							<div class="tr">
 								<div class="td th">
 									[变更单]
-									<span class='danhao'>调整单号：121231231231231</span>
+									<span class='danhao'>调整单号：{{item.id}}</span>
 								</div>
 								<div class="td td-shenhe">
-									 待审核
+									 {{item.statusName}}
 								</div>
 							</div>
 							<div class="tr">									 
 								<div class="td td-address">
-									订购单号：1212121212
+									订购单号：{{item.sid}}
 								</div>
 							</div>
 						</div>
 						<div class="list-qingdan-box">
 							<div class="tr">
 								<div class="td td-address">
-									 张小兰&nbsp;&nbsp;<span class='shuxian'>|</span>&nbsp; 185167134
+									 {{item.cusName}}&nbsp;&nbsp;<span class='shuxian'>|</span>&nbsp; {{item.cusTel}}
 								</div>
 							</div>
 							<div class="tr">									 
 								<div class="td td-address">
-									地址地址
+									{{item.fullAddress}}
 								</div>
 							</div>
 						</div>
@@ -82,102 +82,13 @@
 									 制单人：
 								</div>
 								<div class="td td-address">
-									 赵小五
+									 {{item.createrName}}
 								</div>
 								<div class="td td-address">
 									 制单日期：
 								</div>
 								<div class="td td-address">
-									 2017-6-5
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="list-qingdan daishenhe">
-						<div class="list-qingdan-box">
-							<div class="tr">
-								<div class="td th">
-									[追加单]
-									<span class='danhao'>调整单号：121231231231231</span>
-								</div>
-								<div class="td td-shenhe">
-									 待审核
-								</div>
-							</div>
-							<div class="tr">									 
-								<div class="td td-address">
-									订购单号：1212121212
-								</div>
-							</div>
-						</div>
-						<div class="list-qingdan-box">
-							<div class="tr">
-								<div class="td td-address">
-									 张小兰&nbsp;&nbsp;<span class='shuxian'>|</span>&nbsp; 185167134
-								</div>
-							</div>
-							<div class="tr">									 
-								<div class="td td-address">
-									地址地址
-								</div>
-							</div>
-						</div>
-						<div class="list-qingdan-box">
-							<div class="tr tr-heng">
-								<div class="td td-address">
-									 制单人：
-								</div>
-								<div class="td td-address">
-									 赵小五
-								</div>
-								<div class="td td-address">
-									 制单日期：
-								</div>
-								<div class="td td-address">
-									 2017-6-5
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="list-qingdan yishenhe">
-						<div class="list-qingdan-box">
-							<div class="tr">
-								<div class="td th">
-									[追加单]
-									<span class='danhao'>调整单号：121231231231231</span>
-								</div>
-							</div>
-							<div class="tr">									 
-								<div class="td td-address">
-									订购单号：1212121212
-								</div>
-							</div>
-						</div>
-						<div class="list-qingdan-box">
-							<div class="tr">
-								<div class="td td-address">
-									 张小兰&nbsp;&nbsp;<span class='shuxian'>|</span>&nbsp; 185167134
-								</div>
-							</div>
-							<div class="tr">									 
-								<div class="td td-address">
-									地址地址
-								</div>
-							</div>
-						</div>
-						<div class="list-qingdan-box">
-							<div class="tr tr-heng">
-								<div class="td td-address">
-									 制单人：
-								</div>
-								<div class="td td-address">
-									 赵小五
-								</div>
-								<div class="td td-address">
-									 制单日期：
-								</div>
-								<div class="td td-address">
-									 2017-6-5
+									{{item.createDate}}
 								</div>
 							</div>
 						</div>
@@ -194,25 +105,21 @@
 		<script>
 
 		     
-			// function init() {
-			// 	//获取工地信息
-			// 	mui.ajax(getBaseServerUrl() + '/app/order/findSiteList',{
-			// 		type: 'get', //HTTP请求类型
-			// 		data: {
-			// 			empId:'admin',
-			// 			query: $("#search").val()
-			// 		},
-			// 		success: function(jsonData) {
-			// 			console.log(JSON.stringify(jsonData));
-			// 			vm.dataArr = jsonData;
-						 
-			// 		},
-			// 		error: function(XMLHttpRequest, textStatus, errorThrown) {
-			// 			$("#search_content").hide();
-			// 			console.log('error')
-			// 		}
-			// 	});
-			// }
+			 function init() {
+			 	mui.ajax(getBaseServerUrl() + '/app/orderAdjust/findOrderAdjustList',{
+			 		type: 'get', 
+			 		data: {
+			 			query: $("#search").val()
+			 		},
+			 		success: function(jsonData) {
+			 			vm.dataArr = jsonData.data;
+			 		},
+			 		error: function(XMLHttpRequest, textStatus, errorThrown) {
+			 			$("#search_content").hide();
+			 			console.log('error')
+			 		}
+			 	});
+			 }
 
 			var vm = new Vue({
 				el: "body",
@@ -256,7 +163,7 @@
 					}
 				},
 				ready: function() {
-					// init();
+					init();
 				}
 			});
 
