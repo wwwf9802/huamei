@@ -35,7 +35,7 @@
 					</div>
 					<div class="list-qingdan">
 						<div class="list-qingdan-box">
-							<a href="##">
+							<a>
 							    <div class="tr">
 							    	<td>
 							    		<span class='icon-jieduan'>工地阶段</span>
@@ -76,7 +76,7 @@
 					</div>
 				</div>
 				<div class="item-pro-list">
-					<div class="head">
+					<div class="head gendan-head" data-page='gendan-liebiao.html' @tap='chakangendan'>
 						<a>
 							<div class="head-center">跟单信息</div>
 							<span class="see-more">查看更多跟单信息</span>
@@ -101,7 +101,7 @@
 						 </div>
 					</div>
 				</div>
-				<div class="item-pro-list">
+				<!-- <div class="item-pro-list">
 					<div class="head">
 					     <div class="head-center">跟单记录</div>
 					</div>
@@ -133,7 +133,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> -->
 
 			</div>
 		</div>
@@ -186,6 +186,11 @@
 	                      this.items.push(list)
 	                      shuru.value='';
                    	  }
+                   },
+                   chakangendan(){
+                   	  var notice_detail=this.dataArr.notice ;
+                   	  localStorage.lzrnotice_detail=JSON.stringify(notice_detail);
+                   	  openNew('gendan-liebiao.html');
                    }
 				},
 				ready(){

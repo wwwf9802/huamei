@@ -25,86 +25,24 @@
 			<span class="title">跟单信息列表</span>
 		</div>
 		<div class="g-content g-gendan">
-			 <div class="item-gendan weigou">
+			  
+			 <div v-for='item in items' class="item-gendan weigou" :class="{'yi_ngou':item.purchaseType == 20}">
 			 	 <div class="gendan-list">
 			 	 	 <div class="list ">
 			 	 	 	<span class="name">
-			 	 	 		蹲厕马桶
+			 	 	 		{{item.goodsType}}
 			 	 	 	</span>
 			 	 	 	<span class="goumai-detail">
-			 	 	 		未购
+			 	 	 		{{item.purchaseType | fotmatPay}}
 			 	 	 	</span>
 			 	 	 </div>
 			 	 	 <div class="list time">
 			 	 	 	<div class="wen">计划采购日期</div>
-			 	 	 	<div class="time-num">2017-03-10</div>
+			 	 	 	<div class="time-num">{{item.purchaseTime}}</div>
 			 	 	 </div>
 			 	 </div>
 			 </div>
-			 <div class="item-gendan weigou">
-			 	 <div class="gendan-list">
-			 	 	 <div class="list ">
-			 	 	 	<span class="name">
-			 	 	 		蹲厕马桶
-			 	 	 	</span>
-			 	 	 	<span class="goumai-detail">
-			 	 	 		未购
-			 	 	 	</span>
-			 	 	 </div>
-			 	 	 <div class="list time">
-			 	 	 	<div class="wen">计划采购日期</div>
-			 	 	 	<div class="time-num">2017-03-10</div>
-			 	 	 </div>
-			 	 </div>
-			 </div>
-			 <div class="item-gendan weigou">
-			 	 <div class="gendan-list">
-			 	 	 <div class="list ">
-			 	 	 	<span class="name">
-			 	 	 		蹲厕马桶
-			 	 	 	</span>
-			 	 	 	<span class="goumai-detail">
-			 	 	 		未购
-			 	 	 	</span>
-			 	 	 </div>
-			 	 	 <div class="list time">
-			 	 	 	<div class="wen">计划采购日期</div>
-			 	 	 	<div class="time-num">2017-03-10</div>
-			 	 	 </div>
-			 	 </div>
-			 </div>
-			 <div class="item-gendan weigou yi_ngou">
-			 	 <div class="gendan-list">
-			 	 	 <div class="list ">
-			 	 	 	<span class="name">
-			 	 	 		蹲厕马桶
-			 	 	 	</span>
-			 	 	 	<span class="goumai-detail">
-			 	 	 		已内购
-			 	 	 	</span>
-			 	 	 </div>
-			 	 	 <div class="list time">
-			 	 	 	<div class="wen">计划采购日期</div>
-			 	 	 	<div class="time-num">2017-03-10</div>
-			 	 	 </div>
-			 	 </div>
-			 </div>
-			 <div class="item-gendan weigou yi_ngou yi_wgou">
-			 	 <div class="gendan-list">
-			 	 	 <div class="list ">
-			 	 	 	<span class="name">
-			 	 	 		蹲厕马桶
-			 	 	 	</span>
-			 	 	 	<span class="goumai-detail">
-			 	 	 		已外购
-			 	 	 	</span>
-			 	 	 </div>
-			 	 	 <div class="list time">
-			 	 	 	<div class="wen">计划采购日期</div>
-			 	 	 	<div class="time-num">2017-03-10</div>
-			 	 	 </div>
-			 	 </div>
-			 </div>
+			 
 		</div>
 		 
 
@@ -114,6 +52,28 @@
 		<script type="text/javascript" src="../js/public.js"></script>
 		<script type="text/javascript" src="../js/global.js" ></script>
 		<script type="text/javascript" src="../js/vue.min.js" ></script>
+
+		<script>
+		    Vue.filter('fotmatPay',function(value){
+               if(value == 10){
+               	return '未购'
+               }else{
+               	return '已购'
+               }
+		    });
+		    new Vue({
+		    	el:'body',
+		    	data:{
+                    items:[
+
+                    ]
+		    	},
+		    	ready(){
+		    		this.items=JSON.parse( localStorage.lzrnotice_detail );
+		    		console.log(this.items)
+		    	}
+		    })
+		</script>
 		
 		 
 	</body>
